@@ -1,0 +1,1356 @@
+openapi: 3.0.0
+servers:
+  - description: "APILAB testserver"
+    url: https://www.haalcentraal.nl/haalcentraal/api/brp
+info:
+  title: Bevragingen historie ingeschreven personen
+  description: "API voor het ontsluiten van historische gegevens in relatie tot ngeschreven personen en aanverwante gegevens uit de GBA en RNI. Met deze API worden de historische gegevens van ingeschreven personen, hun kinderen, partners en ouders ontsloten. <br> Heeft een persoon bijvoorbeeld geen geldige nationaliteit, dan wordt nationaliteit niet geretourneerd. <br> Heeft een persoon een beëindigd partnerschap of huwelijk, dan wordt de partner niet geretourneerd. <br> <br> Zie de [Functionele documentatie](https://github.com/VNG-Realisatie/Haal-Centraal-BRP-historie-bevragen/tree/master/features) voor nadere toelichting. <br> "
+  version: "0.0.1"
+  contact:
+    url: https://github.com/VNG-Realisatie/Haal-Centraal-BRP-historie-bevragen
+  license:
+    name: European Union Public License, version 1.2 (EUPL-1.2)
+    url: https://eupl.eu/1.2/nl/
+paths:
+  /ingeschrevenpersonen/{burgerservicenummer}/verblijfplaatshistorie:
+    get:
+      operationId: Getverblijfplaatshistorie
+      description: "<body><p>Het ophalen van de verblijfplaatshistorie van een ingeschreven persoon. Van een ingeschreven persoon wordt de verblijfplaats geretourneerd waar de persoon op de (optioneel) opgegeven peildatum verbleef of worden de verblijfplaatsen geretourneerd waar de persoon binnen de (optioneel) opgegeven periode (datumvan tot en met datumtotenmet) heeft verbleven. Wanneer geen peildatum of periode wordt opgegeven, worden alle verblijfplaatsen waar de persoon verbleven heeft of nu verblijft teruggegeven.</p><p>Er wordt aflopend gesorteerd op datumAanvangAdreshuishouding, zodat de meest actuele bovenaan staat.</p></body>"
+      parameters:
+        - $ref: '#/components/parameters/burgerservicenummer'
+        - $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/parameters/fields"
+        - $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/parameters/peildatum"
+        - $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/parameters/datumvan"
+        - $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/parameters/datumtotenmet"
+      responses:
+        '200':
+          description: "Zoekactie geslaagd"
+          headers:
+            api-version:
+              $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/headers/api_version"
+            warning:
+              $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/headers/warning"
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/VerblijfplaatshistorieHalCollectie'
+        '400':
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/responses/400"
+        '401':
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/responses/401"
+        '403':
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/responses/403"
+        '404':
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/responses/404"
+        '406':
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/responses/406"
+        '500':
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/responses/500"
+        '501':
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/responses/501"
+        '503':
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/responses/503"
+        'default':
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/responses/default"
+      tags:
+        - Historie
+  /ingeschrevenpersonen/{burgerservicenummer}/partnerhistorie:
+    get:
+      operationId: Getpartnerhistorie
+      description: "<body><p>Het ophalen van de partnerhistorie van een ingeschreven persoon. Van een ingeschreven persoon worden partners waarmee in het verleden relaties geregistreerd zijn geretourneerd die de persoon had op de (optioneel) opgegeven peildatum of binnen de (optioneel) opgegeven periode (datumvan tot en met datumtotenmet).</p></body>"
+      parameters:
+        - $ref: '#/components/parameters/burgerservicenummer'
+        - $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/parameters/fields"
+        - $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/parameters/peildatum"
+        - $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/parameters/datumvan"
+        - $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/parameters/datumtotenmet"
+      responses:
+        '200':
+          description: "Zoekactie geslaagd"
+          headers:
+            api-version:
+              $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/headers/api_version"
+            warning:
+              $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/headers/warning"
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/PartnerhistorieHalCollectie'
+        '400':
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/responses/400"
+        '401':
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/responses/401"
+        '403':
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/responses/403"
+        '404':
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/responses/404"
+        '406':
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/responses/406"
+        '500':
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/responses/500"
+        '501':
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/responses/501"
+        '503':
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/responses/503"
+        'default':
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/responses/default"
+      tags:
+        - Historie
+  /ingeschrevenpersonen/{burgerservicenummer}/verblijfstitelhistorie:
+    get:
+      operationId: getverblijfstitelhistorie
+      description: "<body><p>Het ophalen van de verblijfstitelhistorie van een ingeschreven persoon. Van een ingeschreven persoon wordt de verblijfstitel geretourneerd die de persoon had op de (optioneel) opgegeven peildatum of worden de verblijfstitels geretourneerd die de persoon had binnen de (optioneel) opgegeven periode (datumvan tot en met datumtotenmet). Wanneer geen peildatum of periode wordt opgegeven, worden alle verblijfstitels van de persoon teruggegeven.</p><p>Er wordt aflopend gesorteerd op datumingang, zodat de meest actuele bovenaan staat.</p></body>"
+      parameters:
+        - $ref: '#/components/parameters/burgerservicenummer'
+        - $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/parameters/fields"
+        - $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/parameters/peildatum"
+        - $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/parameters/datumvan"
+        - $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/parameters/datumtotenmet"
+      responses:
+        '200':
+          description: "Zoekactie geslaagd"
+          headers:
+            api-version:
+              $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/headers/api_version"
+            warning:
+              $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/headers/warning"
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/VerblijfstitelhistorieHalCollectie'
+        '400':
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/responses/400"
+        '401':
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/responses/401"
+        '403':
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/responses/403"
+        '404':
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/responses/404"
+        '406':
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/responses/406"
+        '500':
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/responses/500"
+        '501':
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/responses/501"
+        '503':
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/responses/503"
+        'default':
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/responses/default"
+      tags:
+        - Historie
+  /ingeschrevenpersonen/{burgerservicenummer}/nationaliteithistorie:
+    get:
+      operationId: getnationaliteithistorie
+      description: "<body><p>Het ophalen van de nationaliteithistorie van een ingeschreven persoon. Van een ingeschreven persoon wordt de nationaliteit geretourneerd die de persoon had op de (optioneel) opgegeven peildatum of worden de nationaliteiten geretourneerd die de persoon had binnen de (optioneel) opgegeven periode (datumvan tot en met datumtotenmet). Wanneer geen peildatum of periode wordt opgegeven, worden alle nationaliteiten van de persoon teruggegeven.</p><p>Er wordt aflopend gesorteerd op datumingang, zodat de meest actuele bovenaan staat.</p></body>"
+      parameters:
+        - $ref: '#/components/parameters/burgerservicenummer'
+        - $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/parameters/fields"
+        - $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/parameters/peildatum"
+        - $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/parameters/datumvan"
+        - $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/parameters/datumtotenmet"
+      responses:
+        '200':
+          description: "Zoekactie geslaagd"
+          headers:
+            api-version:
+              $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/headers/api_version"
+            warning:
+              $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/headers/warning"
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/NationaliteithistorieHalCollectie'
+        '400':
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/responses/400"
+        '401':
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/responses/401"
+        '403':
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/responses/403"
+        '404':
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/responses/404"
+        '406':
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/responses/406"
+        '500':
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/responses/500"
+        '501':
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/responses/501"
+        '503':
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/responses/503"
+        'default':
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/responses/default"
+      tags:
+        - Historie
+components:
+  parameters:
+    burgerservicenummer:
+      name: burgerservicenummer
+      in: path
+      required: true
+      schema:
+        type: "string"
+        description: "Het burgerservicenummer, bedoeld in artikel 1.1 van de Wet\
+          \ algemene bepalingen burgerservicenummer. Alle nummers waarvoor geldt\
+          \ dat, indien aangeduid als (s0 s1 s2 s3 s4 s5 s6 s7 s8), het resultaat\
+          \ van (9*s0) + (8*s1) + (7*s2) +...+ (2*s7) - (1*s8) deelbaar is door\
+          \ elf. Er moeten dus 9 cijfers aanwezig zijn."
+        pattern: "^[0-9]*$"
+        maxLength: 9
+        minLength: 9
+        example: "555555021"
+  schemas:
+    Reisdocumentnummer:
+      type: "string"
+      description: "Het nummer van het verstrekte Nederlandse reisdocument."
+      example: "546376728"
+    IngeschrevenPersoon:
+      type: "object"
+      description: "Gegevens over de ingeschreven persoon. \n* **datumEersteInschrijving**\
+        \ : Datum van eerste inschrijving in de GBA"
+      properties:
+        burgerservicenummer:
+            type: "string"
+            example: "555555021"
+        geheimhoudingPersoonsgegevens:
+          type: boolean
+          title: "Indicatie geheim"
+          description: "Een aanduiding die aangeeft dat gegevens wel of niet verstrekt\
+            \ mogen worden. Indien true: op verzoek van deze persoon is het verstrekken\
+            \ van gegevens over deze persoon aan bepaalde derden niet toegestaan."
+        geslachtsaanduiding:
+          $ref: "#/components/schemas/Geslacht_enum"
+        leeftijd:
+          type: integer
+          description: "Leeftijd in jaren op het moment van bevraging"
+          example: 34
+        datumEersteInschrijvingGBA:
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/schemas/Datum_onvolledig"
+        kiesrecht:
+          $ref: "#/components/schemas/Kiesrecht"
+        naam:
+          $ref: "#/components/schemas/NaamPersoon"
+        inOnderzoek:
+          $ref: "#/components/schemas/PersoonInOnderzoek"
+        nationaliteiten:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/Nationaliteit"
+        geboorte:
+          $ref: "#/components/schemas/Geboorte"
+        opschortingBijhouding:
+          $ref: "#/components/schemas/OpschortingBijhouding"
+        overlijden:
+          $ref: "#/components/schemas/Overlijden"
+        verblijfplaats:
+          $ref: "#/components/schemas/Verblijfplaats"
+        gezagsverhouding:
+          $ref: "#/components/schemas/Gezagsverhouding"
+        verblijfstitel:
+          $ref: "#/components/schemas/Verblijfstitel"
+        reisdocumentnummers:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/Reisdocumentnummer"
+    IngeschrevenPersoonHalCollectie:
+      type: object
+      properties:
+        _links:
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/schemas/HalCollectionLinks"
+        _embedded:
+          $ref: "#/components/schemas/IngeschrevenPersoonHalCollectieEmbedded"
+    IngeschrevenPersoonHalCollectieEmbedded:
+      type: object
+      properties:
+        ingeschrevenpersonen:
+          type: array
+          items:
+            $ref: '#/components/schemas/IngeschrevenPersoonHal'
+    IngeschrevenPersoonHalBasis:
+      allOf:
+        - $ref: '#/components/schemas/IngeschrevenPersoon'
+        - properties:
+            _links:
+              $ref: "#/components/schemas/IngeschrevenPersoonLinks"
+    IngeschrevenPersoonHal:
+      allOf:
+        - $ref: '#/components/schemas/IngeschrevenPersoonHalBasis'
+        - properties:
+            _embedded:
+              $ref: "#/components/schemas/IngeschrevenPersoonEmbedded"
+    Ouder:
+      type: "object"
+      description: "Gegevens over de ouder van de ingeschrevene. \n* **datumIngangFamilierechtelijkeBetrekking**\
+        \ : De datum waarop de familierechtelijke betrekking is ontstaan."
+      properties:
+        burgerservicenummer:
+          type: "string"
+          example: "555555021"
+        geslachtsaanduiding:
+          $ref: "#/components/schemas/Geslacht_enum"
+        ouderAanduiding:
+          $ref: "#/components/schemas/OuderAanduiding_enum"
+        datumIngangFamilierechtelijkeBetrekking:
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/schemas/Datum_onvolledig"
+        naam:
+          $ref: "#/components/schemas/Naam"
+        inOnderzoek:
+          $ref: "#/components/schemas/OuderInOnderzoek"
+        geboorte:
+          $ref: "#/components/schemas/Geboorte"
+        geheimhoudingPersoonsgegevens:
+          type: boolean
+          title: "Indicatie geheim"
+          description: "Een aanduiding die aangeeft dat gegevens wel of niet verstrekt\
+            \ mogen worden. Indien true: op verzoek van deze persoon is het verstrekken\
+            \ van gegevens over deze persoon aan bepaalde derden niet toegestaan."
+
+    OuderHalCollectie:
+      type: object
+      properties:
+        _links:
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/schemas/HalCollectionLinks"
+        _embedded:
+          $ref: '#/components/schemas/OuderHalCollectieEmbedded'
+    OuderHalCollectieEmbedded:
+      type: object
+      properties:
+        ouders:
+          type: array
+          items:
+            $ref: '#/components/schemas/OuderHal'
+    OuderHal:
+      allOf:
+        - $ref: '#/components/schemas/Ouder'
+        - properties:
+            _links:
+              $ref: "#/components/schemas/OuderLinks"
+    Kind:
+      type: "object"
+      description: "Gegevens over een kind van de ingeschrevene."
+      properties:
+        burgerservicenummer:
+          type: "string"
+          example: "555555021"
+        leeftijd:
+          type: integer
+          description: "Leeftijd op het moment van bevragen"
+          example: 12
+        inOnderzoek:
+          $ref: "#/components/schemas/KindInOnderzoek"
+        naam:
+          $ref: "#/components/schemas/Naam"
+        geboorte:
+          $ref: "#/components/schemas/Geboorte"
+        geheimhoudingPersoonsgegevens:
+          type: boolean
+          title: "Indicatie geheim"
+          description: "Een aanduiding die aangeeft dat gegevens wel of niet verstrekt\
+            \ mogen worden. Indien true: op verzoek van deze persoon is het verstrekken\
+            \ van gegevens over deze persoon aan bepaalde derden niet toegestaan."
+    KindHalCollectie:
+      type: object
+      properties:
+        _links:
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/schemas/HalCollectionLinks"
+        _embedded:
+          $ref: '#/components/schemas/KindHalCollectieEmbedded'
+    KindHalCollectieEmbedded:
+      type: object
+      properties:
+        kinderen:
+          type: array
+          items:
+            $ref: '#/components/schemas/KindHal'
+    KindHal:
+      allOf:
+        - $ref: '#/components/schemas/Kind'
+        - properties:
+            _links:
+              $ref: "#/components/schemas/KindLinks"
+    Partner:
+      type: "object"
+      description: "Gegevens over een gesloten huwelijk/geregistreerd partnerschap\
+        \ van de ingeschrevene."
+      properties:
+        burgerservicenummer:
+          type: "string"
+          example: "555555021"
+        geslachtsaanduiding:
+          $ref: "#/components/schemas/Geslacht_enum"
+        soortVerbintenis:
+          $ref: "#/components/schemas/SoortVerbintenis_enum"
+        naam:
+          $ref: "#/components/schemas/Naam"
+        geboorte:
+          $ref: "#/components/schemas/Geboorte"
+        inOnderzoek:
+          $ref: "#/components/schemas/PartnerInOnderzoek"
+        aangaanHuwelijkPartnerschap:
+          $ref: "#/components/schemas/AangaanHuwelijkPartnerschap"
+        geheimhoudingPersoonsgegevens:
+          type: boolean
+          title: "Indicatie geheim"
+          description: "Een aanduiding die aangeeft dat gegevens wel of niet verstrekt\
+            \ mogen worden. Indien true: op verzoek van deze persoon is het verstrekken\
+            \ van gegevens over deze persoon aan bepaalde derden niet toegestaan."
+    PartnerHalCollectie:
+      type: object
+      properties:
+        _links:
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/schemas/HalCollectionLinks"
+        _embedded:
+          $ref: '#/components/schemas/PartnerHalCollectieEmbedded'
+    PartnerHalCollectieEmbedded:
+      type: object
+      properties:
+        partners:
+          type: array
+          items:
+            $ref: '#/components/schemas/PartnerHal'
+    PartnerHal:
+      allOf:
+        - $ref: '#/components/schemas/Partner'
+        - properties:
+            _links:
+              $ref: "#/components/schemas/PartnerLinks"
+    Naam:
+      type: "object"
+      description: "Gegevens over de naam van de NATUURLIJK PERSOON \n* **adellijketitelPredikaat**\
+        \ : Tabel Adellijke titel/predikaat, die aangeeft welke titel of welk predikaat\
+        \ behoort tot de naam (bij adellijke titel geslachtsnaam, bij predikaat voornaam)."
+      properties:
+        geslachtsnaam:
+          type: "string"
+          description: "De (geslachts)naam waarvan de eventueel aanwezige voorvoegsels\
+            \ en adellijke titel/predikaat zijn afgesplitst."
+          example: "Vries"
+        voorletters:
+          type: "string"
+          description: "De voorletters waarmee een persoon aangeschreven wil worden.\
+            \ De voorlettes zijn afgeleid van de voornamen."
+          example: "P.J."
+        voornamen:
+          type: "string"
+          description: "De verzameling namen die, gescheiden door spaties, aan de\
+            \ geslachtsnaam voorafgaat. De verzameling namen die, gescheiden door\
+            \ spaties, aan de geslachtsnaam voorafgaat."
+          example: "Pieter Jan"
+        voorvoegsel:
+          type: "string"
+          description: "Dat deel van de geslachtsnaam dat voorkomt in de Voorvoegseltabel\
+            \ en, gescheiden door een spatie, vooraf gaat aan de rest van de geslachtsnaam."
+          example: "de"
+        inOnderzoek:
+          $ref: "#/components/schemas/NaamInOnderzoek"
+    NaamInOnderzoek:
+      type: "object"
+      description: "In onderzoekgroep om aan te geven of gegevens over de naam van\
+        \ de Ingeschreven persoon in onderzoek zijn. Zie de [functionele specificaties](https://github.com/VNG-Realisatie/Bevragingen-ingeschreven-personen/blob/master/features/in_onderzoek.feature)"
+      properties:
+        geslachtsnaam:
+          type: boolean
+          description: "Indicator die aangeeft of het corresponderende gegeven voor\
+            \ deze persoon in onderzoek is."
+        voornamen:
+          type: boolean
+          description: "Indicator die aangeeft of het corresponderende gegeven voor\
+            \ deze persoon in onderzoek is."
+        voorvoegsel:
+          type: boolean
+          description: "Indicator die aangeeft of het corresponderende gegeven voor\
+            \ deze persoon in onderzoek is."
+        datumIngangOnderzoek:
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/schemas/Datum_onvolledig"
+    OuderInOnderzoek:
+      type: "object"
+      description: "Indicators over het in onderzoek zijn van gegevens over de aangaan\
+        \ van het huwelijk van de INGESCHREVEN PERSOON. Zie de [functionele specificaties](https://github.com/VNG-Realisatie/Bevragingen-ingeschreven-personen/blob/master/features/in_onderzoek.feature)"
+      properties:
+        burgerservicenummer:
+          type: boolean
+          description: "Indicator die aangeeft of het corresponderende gegeven voor\
+            \ deze persoon in onderzoek is."
+        datumIngangFamilierechtelijkeBetrekking:
+          type: boolean
+          description: "Indicator die aangeeft of het corresponderende gegeven voor\
+            \ deze persoon in onderzoek is."
+        geslachtsaanduiding:
+          type: boolean
+          description: "Indicator die aangeeft of het corresponderende gegeven voor\
+            \ deze persoon in onderzoek is."
+        datumIngangOnderzoek:
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/schemas/Datum_onvolledig"
+    Geboorte:
+      allOf:
+      - $ref: '#/components/schemas/Geboortedatum'
+      - description: "Gegevens over de geboorte van respectievelijk de persoon, de ouder,\
+        \ de echtgenoot/geregistreerd partner, de eerdere echtgenoot/geregistreerd\
+        \ partner of het kind. \n* **datum** : Datum waarop de persoon is geboren.\
+        \ \n* **land** : Land waar de persoon is geboren \n* **plaats** : De plaats\
+        \ waar een persoon is geboren. Voor een plaats buiten Nederland is gemeentecode=1999\
+        \ (RNI) en gemeentenaam de buitenlandse plaatsnaam of aanduiding."
+        properties:
+          land:
+            $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/schemas/Waardetabel"
+          plaats:
+            $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/schemas/Waardetabel"
+          inOnderzoek:
+            $ref: "#/components/schemas/GeboorteInOnderzoek"
+    GeboorteInOnderzoek:
+      type: "object"
+      description: "Indicators over het in onderzoek zijn van gegevens over de geboorte\
+        \ van de INGESCHREVEN NATUURLIJK PERSOON. Zie de [functionele specificaties](https://github.com/VNG-Realisatie/Bevragingen-ingeschreven-personen/blob/master/features/in_onderzoek.feature)"
+      properties:
+        datum:
+          type: boolean
+          description: "Indicator die aangeeft of het corresponderende gegeven voor\
+            \ deze persoon in onderzoek is."
+        land:
+          type: boolean
+          description: "Indicator die aangeeft of het corresponderende gegeven voor\
+            \ deze persoon in onderzoek is."
+        plaats:
+          type: boolean
+          description: "Indicator die aangeeft of het corresponderende gegeven voor\
+            \ deze persoon in onderzoek is."
+        datumIngangOnderzoek:
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/schemas/Datum_onvolledig"
+    Kiesrecht:
+      type: "object"
+      description: "Gegevens over het kiesrecht van de ingeschreven persoon. \n* **datumUitsluitingEuropeesKiesrecht**:\
+        \ De datum waarop een uitsluiting voor deelname aan verkiezingen voor het\
+        \ Europees parlement niet meer van toepassing is, als er sprake is van uitsluiting\
+        \ voor bepaalde tijd. \n* **datumUitsluitingKiesrecht**: De datum waarop een\
+        \ uitsluiting voor deelname aan verkiezingen niet meer van toepassing is,\
+        \ als er sprake is van uitsluiting voor bepaalde tijd."
+      properties:
+        europeesKiesrecht:
+          type: boolean
+          description: "Een aanduiding die aangeeft of de persoon een oproep moet\
+            \ ontvangen voor verkiezingen voor het Europees parlement. \n* true: persoon\
+            \ ontvangt een oproep"
+          example: true
+        uitgeslotenVanKiesrecht:
+          type: boolean
+          description: "Een aanduiding die aangeeft of de persoon is uitgesloten van kiesrecht.\
+            \n* true: persoon is uitgesloten"
+          example: true
+        einddatumUitsluitingEuropeesKiesrecht:
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/schemas/Datum_onvolledig"
+        einddatumUitsluitingKiesrecht:
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/schemas/Datum_onvolledig"
+    NaamPersoon:
+      allOf:
+        - $ref: "#/components/schemas/Naam"
+        - description: "Gegevens over de naam van de persoon"
+          properties:
+            aanhef:
+              type: "string"
+              description: "De aanhef zoals die in een brief, gericht aan een persoon\
+                \ gebruikt kan worden."
+              example: "Geachte heer In het Veld"
+            aanschrijfwijze:
+              type: "string"
+              description: "Samengestelde naam zoals die in communicatie met de persoon\
+                \ gebruikt kan worden."
+              example: "H. in het Veld"
+            gebruikInLopendeTekst:
+              type: "string"
+              description: "De naam zoals die in lopende tekst gebruikt kan worden."
+              example: "de heer In het Veld"
+            aanduidingNaamgebruik:
+              $ref: "#/components/schemas/Naamgebruik_enum"
+    PersoonInOnderzoek:
+      type: "object"
+      description: "Een groep van booleans om aan te geven welke gegevens van de ingeschreven\
+        \ persoon in onderzoek zijn. Er kunnen ook categorieën in onderzoek zijn.\
+        \ Als een hele categorie in onderzoek is worden alle rubrieken binnen die\
+        \ categorie op _true_ gezet. Zie de [functionele specificaties](https://github.com/VNG-Realisatie/Bevragingen-ingeschreven-personen/blob/master/features/in_onderzoek.feature)\
+        \ ."
+      properties:
+        burgerservicenummer:
+          type: boolean
+          description: "Indicator die aangeeft of het corresponderende gegeven voor\
+            \ deze persoon in onderzoek is."
+        geslachtsaanduiding:
+          type: boolean
+          description: "Indicator die aangeeft of het corresponderende gegeven voor\
+            \ deze persoon in onderzoek is."
+        datumIngangOnderzoek:
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/schemas/Datum_onvolledig"
+    Nationaliteit:
+      type: "object"
+      description: "Gegevens over een nationaliteit van de ingeschrevene. \n* **datumIngangGeldigheid**\
+        \ : De datum waarop de gegevens over deze nationaliteit geldig zijn geworden.\
+        \ \n* **nationaliteit**: Een aanduiding van de nationaliteit die de ingeschreven\
+        \ persoon bezit. \n* **redenOpname** : De reden op grond waarvan de ingeschreven\
+        \ persoon de nationaliteit verkregen heeft."
+      properties:
+        aanduidingBijzonderNederlanderschap:
+          $ref: "#/components/schemas/AanduidingBijzonderNederlanderschap_enum"
+        datumIngangGeldigheid:
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/schemas/Datum_onvolledig"
+        nationaliteit:
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/schemas/Waardetabel"
+        redenOpname:
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/schemas/Waardetabel"
+        inOnderzoek:
+          $ref: "#/components/schemas/NationaliteitInOnderzoek"
+    NationaliteitInOnderzoek:
+      type: "object"
+      description: "Een groep van booleans om aan te geven welke gegevens van de nationaliteit\
+        \ in onderzoek zijn. Als een de categorie in onderzoek is worden alle rubrieken\
+        \ binnen die categorie op _true_ gezet. Zie de [functionele specificaties](https://github.com/VNG-Realisatie/Bevragingen-ingeschreven-personen/blob/master/features/in_onderzoek.feature)"
+      properties:
+        aanduidingBijzonderNederlanderschap:
+          type: boolean
+          description: "Indicator die aangeeft of het corresponderende gegeven voor\
+            \ deze persoon in onderzoek is."
+        nationaliteit:
+          type: boolean
+          description: "Indicator die aangeeft of het corresponderende gegeven voor\
+            \ deze persoon in onderzoek is."
+        redenOpname:
+          type: boolean
+          description: "Indicator die aangeeft of het corresponderende gegeven voor\
+            \ deze persoon in onderzoek is."
+        datumIngangOnderzoek:
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/schemas/Datum_onvolledig"
+    NationaliteithistorieHalCollectie:
+      type: object
+      properties:
+        _links:
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/schemas/HalCollectionLinks"
+        _embedded:
+          $ref: '#/components/schemas/NationaliteithistorieHalCollectieEmbedded'
+    NationaliteithistorieHalCollectieEmbedded:
+      type: object
+      properties:
+        nationaliteithistorie:
+          type: array
+          items:
+            $ref: '#/components/schemas/Nationaliteithistorie'
+    Nationaliteithistorie:
+      allOf:
+      - $ref: "#/components/schemas/Nationaliteit"
+      - description: "<body><p>Gegevens over de verblijfsrechtelijke status van de\
+          \ ingeschrevene.</p><p>\n <em>*</em> datumEinde**: Datum waarop\
+          \ de geldigheid van de gegevens over de Nationaliteit is beëindigd.</p><p>\n\
+          \ <em>*</em> datumIngang**: Datum waarop de gegevens over de Nationaliteit\
+          \ geldig zijn geworden.</p><p> <em>*</em> aanduiding** : Nationaliteittabel,\
+          \ die aangeeft over welke verblijfsrechtelijke status de ingeschrevene beschikt.</p> </body>"
+        properties:
+          geheimhoudingPersoonsgegevens:
+            type: boolean
+            title: "Indicatie geheim"
+            description: "Een aanduiding die aangeeft dat gegevens wel of niet verstrekt\
+              \ mogen worden. Indien true: op verzoek van deze persoon is het verstrekken\
+              \ van gegevens over deze persoon aan bepaalde derden niet toegestaan."
+          datumEindeGeldigheid:
+            $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/schemas/Datum_onvolledig"
+          redenBeeindigen:
+            $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/schemas/Waardetabel"
+          indicatieNationaliteitBeeindigd:
+            type: boolean
+            description: "Een aanduiding dat de nationaliteit beëindigd is."
+            example: true
+    OpschortingBijhouding:
+      type: "object"
+      description: "\n* **reden**: Een aanduiding van de reden waarom de bijhouding\
+        \ van de PL is opgeschort. \n* **datum**: De datum waarop de bijhouding van\
+        \ de persoonslijst is gestaakt. \n* Indien er wel een redenOpschortingBijhouding\
+        \ is maar er wordt geen datumOpschortingBijhouding geleverd, dan is dat datumOpschortingBijhouding\
+        \ onbekend."
+      properties:
+        reden:
+          $ref: "#/components/schemas/RedenOpschortingBijhouding_enum"
+        datum:
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/schemas/Datum_onvolledig"
+    Overlijden:
+      type: "object"
+      description: "Gegevens over het overlijden van de ingeschreven persoon. \n*\
+        \ **datum** : Datum waarop de persoon is overleden. \n* **land** : Land waar\
+        \ de persoon is overleden \n* **plaats** : De plaats waar een persoon is overleden.\
+        \ Voor een plaats buiten Nederland is gemeentecode=1999 (RNI) en gemeentenaam\
+        \ de buitenlandse plaatsnaam of aanduiding."
+      properties:
+        indicatieOverleden:
+          type: boolean
+          description: "Deze indicatie heeft als rol om aan te geven dat iemand is\
+            \ overleden (waarde true). Deze indicator wordt altijd meegeleverd als\
+            \ de waarde true is (dus als iemand overleden is). Als de waarde false\
+            \ is wordt de indicator niet meegeleverd."
+        datum:
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/schemas/Datum_onvolledig"
+        land:
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/schemas/Waardetabel"
+        plaats:
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/schemas/Waardetabel"
+        inOnderzoek:
+          $ref: "#/components/schemas/OverlijdenInOnderzoek"
+    OverlijdenInOnderzoek:
+      type: "object"
+      description: "In onderzoek indicators voor gegevens over het overlijden van\
+        \ de ingeschreven natuurlijk persoon. Zie de [functionele specificaties](https://github.com/VNG-Realisatie/Bevragingen-ingeschreven-personen/blob/master/features/in_onderzoek.feature)"
+      properties:
+        datum:
+          type: boolean
+          description: "Indicator die aangeeft of het corresponderende gegeven voor\
+            \ deze persoon in onderzoek is."
+        land:
+          type: boolean
+          description: "Indicator die aangeeft of het corresponderende gegeven voor\
+            \ deze persoon in onderzoek is."
+        plaats:
+          type: boolean
+          description: "Indicator die aangeeft of het corresponderende gegeven voor\
+            \ deze persoon in onderzoek is."
+        datumIngangOnderzoek:
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/schemas/Datum_onvolledig"
+    KindInOnderzoek:
+      type: "object"
+      description: "Indicators over het in onderzoek zijn van gegevens over de aangaan\
+        \ van het huwelijk van de INGESCHREVEN PERSOON. Zie de [functionele specificaties](https://github.com/VNG-Realisatie/Bevragingen-ingeschreven-personen/blob/master/features/in_onderzoek.feature)"
+      properties:
+        burgerservicenummer:
+          type: boolean
+          description: "Indicator die aangeeft of het corresponderende gegeven voor\
+            \ deze persoon in onderzoek is."
+        datumIngangOnderzoek:
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/schemas/Datum_onvolledig"
+    PartnerInOnderzoek:
+      type: "object"
+      description: "Indicators over het in onderzoek zijn van gegevens over de aangaan\
+        \ van het huwelijk van de INGESCHREVEN PERSOON. Zie de [functionele specificaties](https://github.com/VNG-Realisatie/Bevragingen-ingeschreven-personen/blob/master/features/in_onderzoek.feature)"
+      properties:
+        burgerservicenummer:
+          type: boolean
+          description: "Indicator die aangeeft of het corresponderende gegeven voor\
+            \ deze persoon in onderzoek is."
+        geslachtsaanduiding:
+          type: boolean
+          description: "Indicator die aangeeft of het corresponderende gegeven voor\
+            \ deze persoon in onderzoek is."
+        soortVerbintenis:
+          type: boolean
+          description: "Indicator die aangeeft of het corresponderende gegeven voor\
+            \ deze persoon in onderzoek is."
+        datumIngangOnderzoek:
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/schemas/Datum_onvolledig"
+    AangaanHuwelijkPartnerschap:
+      type: "object"
+      description: "Gegevens over het gesloten huwelijk of het aangegane geregistreerd\
+        \ partnerschap. \n* **datum** : De datum waarop het huwelijk is voltrokken\
+        \ of het partnerschap is aangegaan. \n* **land** : Het land waar het huwelijk\
+        \ is voltrokken of het partnerschap is aangegaan. \n* **plaats** : Als de\
+        \ plaats een gemeente in Nederland is dan gewoon de gemeentecode + gemeentenaam\
+        \ . Voor een plaats buiten Nederland is de gemeentecode leeg en wordt de gemeentenaam\
+        \ de buitenlandse plaatsnaam of aanduiding."
+      properties:
+        datum:
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/schemas/Datum_onvolledig"
+        land:
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/schemas/Waardetabel"
+        plaats:
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/schemas/Waardetabel"
+        inOnderzoek:
+          $ref: "#/components/schemas/AangaanHuwelijkInOnderzoek"
+    AangaanHuwelijkInOnderzoek:
+      type: "object"
+      description: "Indicators over het in onderzoek zijn van gegevens over de aangaan\
+        \ van het huwelijk van de INGESCHREVEN PERSOON. Zie de [functionele specificaties](https://github.com/VNG-Realisatie/Bevragingen-ingeschreven-personen/blob/master/features/in_onderzoek.feature)"
+      properties:
+        datum:
+          type: boolean
+          description: "Indicator die aangeeft of het corresponderende gegeven voor\
+            \ deze persoon in onderzoek is."
+        land:
+          type: boolean
+          description: "Indicator die aangeeft of het corresponderende gegeven voor\
+            \ deze persoon in onderzoek is."
+        plaats:
+          type: boolean
+          description: "Indicator die aangeeft of het corresponderende gegeven voor\
+            \ deze persoon in onderzoek is."
+        datumIngangOnderzoek:
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/schemas/Datum_onvolledig"
+    BinnenlandsAdres:
+      description: |
+        Dit object bevat de basis Verblijfsplaats kenmerken die gedeeld worden door Bewoning en Verblijfplaats
+      allOf:
+       - $ref : "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BAG-bevragen/v1.1.0/specificatie/openapi.yaml#/components/schemas/Adres"
+       - properties:
+          adresseerbaarObjectIdentificatie:
+            type: "string"
+            description: "Een verblijfplaats kan een ligplaats, een standplaats of een\
+              \ verblijfsobject in een of meerdere panden zijn, waaraan respectievelijk\
+              \ een ligplaatsidentificatie, standplaatsidentificatie of verblijfsobjectidentificatie\
+              \ is toegekend. De Identificatiecode verblijfplaats is een combinatie\
+              \ van een viercijferige gemeentecode, een tweecijferige objecttypecode\
+              \ die aangeeft of de aanduiding een verblijfsobject (01), ligplaats (02)\
+              \ of standplaats (03) betreft en een voor het betreffende objecttype binnen\
+              \ een gemeente uniek tiencijferig volgnummer. Combinatie van de viercijferige\
+              \ 'gemeentecode' (volgens GBA tabel 33, Gemeententabel), de tweecijferige\
+              \ 'objecttypecode' en een voor het betreffende objecttype binnen een gemeente\
+              \ uniek tiencijferig 'objectvolgnummer'."
+            example: "0518200000366054"
+          aanduidingBijHuisnummer:
+            $ref: "#/components/schemas/AanduidingBijHuisnummer_enum"
+          nummeraanduidingIdentificatie:
+            type: "string"
+            example: "0518200000366054"
+    Verblijfplaats:
+      allOf:
+      - $ref: '#/components/schemas/BinnenlandsAdres'
+      - description: "Gegevens over het verblijf en adres van de ingeschreven persoon.\
+          \ Dit is het adres waarop een persoon is ingeschreven. \n* **datumAanvangAdreshuishouding**\
+          \ : De datum van aangifte of ambtshalve melding van verblijf en adres. \n* \
+          \ **datumIngangGeldigheid** : Datum waarop de gegevens over de verblijfplaats\
+          \ geldig zijn geworden. \n* **datumInschrijvingInGemeente**: Bij inschrijving\
+          \ op grond van een aangifte door de burger van zijn vestiging in een (volgende)\
+          \ gemeente is dit de aangiftedatum. Bij inschrijving op grond van een geboorteakte\
+          \ is dit de geboortedatum. Bij ambtshalve inschrijving is dit de datum waarop\
+          \  de betrokkene schriftelijk van het voornemen van ambtshalve opneming mededeling\
+          \ is gedaan. \n* **datumVestigingInNederland** : Datum van inschrijving in\
+          \ Nederland \n* **landVanWaarIngeschreven** : Het land waar de ingeschreven\
+          \ persoon verblijf hield voor (her)vestiging in Nederland. \n* **gemeenteVanInschrijving**\
+          \ : Een aanduiding die aangeeft in welke gemeente de PK zich bevindt. De code\
+          \ kan voorloopnullen bevatten \n* **landVanWaarIngeschreven** : Het LAND waar\
+          \ de INGESCHREVEN PERSOON verblijf hield voor (her)vestiging in Nederland."
+        properties:
+          functieAdres:
+            $ref: "#/components/schemas/SoortAdres_enum"
+          indicatieVestigingVanuitBuitenland:
+            type: boolean
+            description: "Indicatie waarmee aangegeven wordt of de ingeschreven persoon\
+              \ zich vanuit het buitenland heeftingeschreven. Deze indicatie heeft als\
+              \ rol om aan te geven dat iemand zich vanuit het buitenland gevestigd\
+              \ heeft. Deze indicator wordt altijd meegeleverd als de waarde true is.\
+              \ Als de waarde false is wordt de indicator niet meegeleverd."
+          locatiebeschrijving:
+            type: "string"
+            description: "Een geheel of gedeeltelijke omschrijving van de ligging van\
+              \ een object."
+            example: "Naast de derde brug"
+          korteNaam:
+            description: "De officiële openbareruimtenaam of een verkorte versie. Beiden hebben maximaal 24 tekens."
+            type: string
+          vanuitVertrokkenOnbekendWaarheen:
+            type: boolean
+            description: "Indicatie waarmee aangegeven wordt dat de persoon is teruggekeerd\
+              \ uit een situatie van vertrokken onbekend waarheen"
+            example: true
+          datumAanvangAdreshouding:
+            $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/schemas/Datum_onvolledig"
+          datumIngangGeldigheid:
+            $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/schemas/Datum_onvolledig"
+          datumInschrijvingInGemeente:
+            $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/schemas/Datum_onvolledig"
+          datumVestigingInNederland:
+            $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/schemas/Datum_onvolledig"
+          gemeenteVanInschrijving:
+            $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/schemas/Waardetabel"
+          landVanwaarIngeschreven:
+            $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/schemas/Waardetabel"
+          adresregel1:
+            type: "string"
+            description: "Het eerste deel van een adres is een combinatie van de straat en huisnummer."
+            # example: "1600 Pennsylvania Avenue NW"
+            example: "Laan van de landinrichtingscommissie Duiven-Westervoort 26A-3"
+          adresregel2:
+            type: "string"
+            description: "Het tweede deel van een adres is een combinatie van woonplaats eventueel in combinatie met de postcode"
+            # example: "Washington, DC 20500"
+            example: "1234AA Nootdorp"
+          adresregel3:
+            type: "string"
+            description: "Het derde deel van een adres is optioneel een of meer geografische gebieden van het adres in het buitenland"
+            example: "Selangor"
+          vertrokkenOnbekendWaarheen:
+            type: boolean
+            description: "Indicatie dat de ingeschreven persoon is vertrokken naar het buitenland,\
+              \ maar dat niet bekend is waar naar toe."
+          land:
+            $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/schemas/Waardetabel"
+          inOnderzoek:
+            $ref: "#/components/schemas/VerblijfplaatsInOnderzoek"
+    VerblijfplaatsInOnderzoek:
+      type: "object"
+      description: "Indicators om aan te geven dat de gegevens over het verblijf en\
+        \ adres van de INGESCHREVEN NATUURLIJK PERSOON in onderzoek zijn. Elementen\
+        \ van het GBA-adres zelf (Dat zou eigenlijk een BAG-adres moeten zijn) kunnen\
+        \ niet in onderzoek zijn. Wel de relatie naar de nummeraanduiding. Dat wordt\
+        \ gedaan door de identificatiecodeNummeraanduiding in onderzoek te zetten.\
+        \ Zie de [functionele specificaties](https://github.com/VNG-Realisatie/Bevragingen-ingeschreven-personen/blob/master/features/in_onderzoek.feature)"
+      properties:
+        aanduidingBijHuisnummer:
+          type: boolean
+          description: "Indicator die aangeeft of het corresponderende gegeven voor\
+            \ deze persoon in onderzoek is."
+        datumAanvangAdreshouding:
+          type: boolean
+          description: "Indicator die aangeeft of het corresponderende gegeven voor\
+            \ deze persoon in onderzoek is."
+        datumIngangGeldigheid:
+          type: boolean
+          description: "Indicator die aangeeft of het corresponderende gegeven voor\
+            \ deze persoon in onderzoek is."
+        datumInschrijvingInGemeente:
+          type: boolean
+          description: "Indicator die aangeeft of het corresponderende gegeven voor\
+            \ deze persoon in onderzoek is."
+        datumVestigingInNederland:
+          type: boolean
+          description: "Indicator die aangeeft of het corresponderende gegeven voor\
+            \ deze persoon in onderzoek is."
+        functieAdres:
+          type: boolean
+          description: "Indicator die aangeeft of het corresponderende gegeven voor\
+            \ deze persoon in onderzoek is."
+        gemeenteVanInschrijving:
+          type: boolean
+          description: "Indicator die aangeeft of het corresponderende gegeven voor\
+            \ deze persoon in onderzoek is."
+        huisletter:
+          type: boolean
+          description: "Indicator die aangeeft of het corresponderende gegeven voor\
+            \ deze persoon in onderzoek is."
+        huisnummer:
+          type: boolean
+          description: "Indicator die aangeeft of het corresponderende gegeven voor\
+            \ deze persoon in onderzoek is."
+        huisnummertoevoeging:
+          type: boolean
+          description: "Indicator die aangeeft of het corresponderende gegeven voor\
+            \ deze persoon in onderzoek is."
+        nummeraanduidingIdentificatie:
+          type: boolean
+          description: "Indicator die aangeeft of het corresponderende gegeven voor\
+            \ deze persoon in onderzoek is."
+        adresseerbaarObjectIdentificatie:
+          type: boolean
+          description: "Indicator die aangeeft of het corresponderende gegeven voor\
+            \ deze persoon in onderzoek is."
+        landVanwaarIngeschreven:
+          type: boolean
+          description: "Indicator die aangeeft of het corresponderende gegeven voor\
+            \ deze persoon in onderzoek is."
+        locatiebeschrijving:
+          type: boolean
+          description: "Indicator die aangeeft of het corresponderende gegeven voor\
+            \ deze persoon in onderzoek is."
+        naamOpenbareRuimte:
+          type: boolean
+          description: "Indicator die aangeeft of het corresponderende gegeven voor\
+            \ deze persoon in onderzoek is."
+        postcode:
+          type: boolean
+          description: "Indicator die aangeeft of het corresponderende gegeven voor\
+            \ deze persoon in onderzoek is."
+        straatnaam:
+          type: boolean
+          description: "Indicator die aangeeft of het corresponderende gegeven voor\
+            \ deze persoon in onderzoek is."
+        verblijfBuitenland:
+          type: boolean
+          description: "Indicator die aangeeft of het corresponderende gegeven voor\
+            \ deze persoon in onderzoek is."
+        woonplaatsnaam:
+          type: boolean
+          description: "Indicator die aangeeft of het corresponderende gegeven voor\
+            \ deze persoon in onderzoek is."
+        datumIngangOnderzoek:
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/schemas/Datum_onvolledig"
+    Gezagsverhouding:
+      type: "object"
+      description: "Gegevens betreffende het gezag over de ingeschrevene."
+      properties:
+        indicatieCurateleRegister:
+          type: boolean
+          description: "Een aanduiding dat de ingeschrevene onder curatele is gesteld."
+          example: true
+        indicatieGezagMinderjarige:
+          $ref: "#/components/schemas/IndicatieGezagMinderjarige_enum"
+        inOnderzoek:
+          $ref: "#/components/schemas/GezagsverhoudingInOnderzoek"
+    GezagsverhoudingInOnderzoek:
+      type: "object"
+      description: "Een groep van booleans om aan te geven welke gegevens van de gezagsverhouding\
+        \ in onderzoek zijn. Als een de categorie in onderzoek is worden alle rubrieken\
+        \ binnen die categorie op _true_ gezet. Zie de [functionele specificaties](https://github.com/VNG-Realisatie/Bevragingen-ingeschreven-personen/blob/master/features/in_onderzoek.feature)"
+      properties:
+        indicatieCurateleRegister:
+          type: boolean
+          description: "Indicator die aangeeft of het corresponderende gegeven voor\
+            \ deze persoon in onderzoek is."
+        indicatieGezagMinderjarige:
+          type: boolean
+          description: "Indicator die aangeeft of het corresponderende gegeven voor\
+            \ deze persoon in onderzoek is."
+        datumIngangOnderzoek:
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/schemas/Datum_onvolledig"
+    Verblijfstitel:
+      type: "object"
+      description: "Gegevens over de verblijfsrechtelijke status van de ingeschrevene.\
+        \ \n* **datumEinde**: Datum waarop de geldigheid van de gegevens\
+        \ over de verblijfstitel is beëindigd. \n* **datumIngang**: Datum\
+        \ waarop de gegevens over de verblijfstitel geldig zijn geworden. \n* **aanduiding**\
+        \ : Verblijfstiteltabel, die aangeeft over welke verblijfsrechtelijke status\
+        \ de ingeschrevene beschikt."
+      properties:
+        aanduiding:
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/schemas/Waardetabel"
+        datumEinde:
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/schemas/Datum_onvolledig"
+        datumIngang:
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/schemas/Datum_onvolledig"
+        inOnderzoek:
+          $ref: "#/components/schemas/VerblijfstitelInOnderzoek"
+    VerblijfstitelInOnderzoek:
+      type: "object"
+      description: "In onderzoek indicators over de gegevens over de verblijfstitel."
+      properties:
+        aanduiding:
+          type: boolean
+          description: "Indicator die aangeeft of het corresponderende gegeven voor\
+            \ deze verblijfstitel in onderzoek is."
+        datumEinde:
+          type: boolean
+          description: "Indicator die aangeeft of het corresponderende gegeven voor\
+            \ deze verblijfstitel in onderzoek is."
+        datumIngang:
+          type: boolean
+          description: "Indicator die aangeeft of het corresponderende gegeven voor\
+            \ deze verblijfstitel in onderzoek is."
+        datumIngangOnderzoek:
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/schemas/Datum_onvolledig"
+    IngeschrevenPersoonLinks:
+      type: "object"
+      properties:
+        self:
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/schemas/HalLink"
+        ouders:
+          type: "array"
+          description: "De ouders van de ingeschreven persoon, waarnaar de OUDER-KIND-RELATIE\
+            \ verwijst`"
+          items:
+            $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/schemas/HalLink"
+        reisdocumenten:
+          type: "array"
+          description: "De ingezetene waaraan het REISDOCUMENT is verstrekt. Dit is\
+            \ de inverse relatie van heeftAlsHouder. Reisdocumenten die aan een ingezetene\
+            \ zijn verstrekt."
+          items:
+            $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/schemas/HalLink"
+        kinderen:
+          type: "array"
+          description: "De kinderen van de ingeschreven persoon, waarnaar de KIND-OUDER-RELATIE\
+            \ verwijst"
+          items:
+            $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/schemas/HalLink"
+        partners:
+          type: "array"
+          description: "De actuele bij de ingeschreven persoon geregistreerde huwelijken\
+            \ en geregistreerd partnerschappen. Een beëindigd huwelijk of geregistreerd\
+            \ partnerschap wordt niet teruggegeven."
+          items:
+            $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/schemas/HalLink"
+        partnerhistorie:
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/schemas/HalLink"
+        verblijfplaatshistorie:
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/schemas/HalLink"
+        verblijfstitelhistorie:
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/schemas/HalLink"
+        nationaliteitHistorie:
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/schemas/HalLink"
+        adres:
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/schemas/HalLink"
+    OuderLinks:
+      type: "object"
+      properties:
+        self:
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/schemas/HalLink"
+        ingeschrevenPersoon:
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/schemas/HalLink"
+    KindLinks:
+      type: "object"
+      properties:
+        self:
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/schemas/HalLink"
+        ingeschrevenPersoon:
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/schemas/HalLink"
+    PartnerLinks:
+      type: "object"
+      properties:
+        self:
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/schemas/HalLink"
+        ingeschrevenPersoon:
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/schemas/HalLink"
+    IngeschrevenPersoonEmbedded:
+      type: "object"
+      properties:
+        ouders:
+          type: "array"
+          description: "De ouders van de ingeschreven persoon, waarnaar de OUDER-KIND-RELATIE\
+            \ verwijst`"
+          items:
+            $ref: "#/components/schemas/OuderHal"
+        kinderen:
+          type: "array"
+          description: "De kinderen van de ingeschreven persoon, waarnaar de KIND-OUDER-RELATIE\
+            \ verwijst"
+          items:
+            $ref: "#/components/schemas/KindHal"
+        partners:
+          type: "array"
+          description: "De actuele bij de ingeschreven persoon geregistreerde huwelijken\
+            \ en geregistreerd partnerschappen. Een beëindigd huwelijk of geregistreerd\
+            \ partnerschap wordt niet teruggegeven."
+          items:
+            $ref: "#/components/schemas/PartnerHal"
+    AanduidingBijzonderNederlanderschap_enum:
+      type: "string"
+      description: "De aanduiding van het bijzonder Nederlanderschap:\n* `behandeld_als_nederlander`\
+        \ - B\n* `vastgesteld_niet_nederlander` - V"
+      enum:
+      - "behandeld_als_nederlander"
+      - "vastgesteld_niet_nederlander"
+    AanduidingBijHuisnummer_enum:
+      type: "string"
+      description: "De aanduiding die wordt gebruikt voor adressen die niet zijn voorzien\
+        \ van de gebruikelijke straatnaam en huisnummeraanduidingen.:\n* `tegenover`\
+        \ - to\n* `bij` - by"
+      enum:
+      - "tegenover"
+      - "bij"
+    Geslacht_enum:
+      type: "string"
+      description: "Een aanduiding die aangeeft dat de ingeschrevene een man of een\
+        \ vrouw is, of dat het geslacht (nog) onbekend is:\n* `man` - M\n* `vrouw`\
+        \ - V\n* `onbekend` - O"
+      enum:
+      - "man"
+      - "vrouw"
+      - "onbekend"
+    IndicatieGezagMinderjarige_enum:
+      type: "string"
+      description: "Een aanduiding die aangeeft wie belast is met het gezag over de\
+        \ minderjarige ingeschrevene.:\n* `ouder1` - 1\n* `ouder2` - 2\n* `derden`\
+        \ - D\n* `ouder1_en_derde` - 1D\n* `ouder2_en_derde` - 2D\n* `ouder1_en_ouder2`\
+        \ - 12"
+      enum:
+      - "ouder1"
+      - "ouder2"
+      - "derden"
+      - "ouder1_en_derde"
+      - "ouder2_en_derde"
+      - "ouder1_en_ouder2"
+    Naamgebruik_enum:
+      type: "string"
+      description: "De voorgedefinieerde waarden van naamgebruik volgens de centrale voorzieningen.\n* `eigen` - E\n* `eigen_partner` - N\n* `partner` - P\n* `partner_eigen` - V"
+      enum:
+      - "eigen"
+      - "eigen_partner"
+      - "partner"
+      - "partner_eigen"
+    OuderAanduiding_enum:
+      type: "string"
+      description: "Aanduiding om welke ouder het gaat volgens de GBA:\n* `ouder1`\
+        \ - 1\n* `ouder2` - 2"
+      enum:
+      - "ouder1"
+      - "ouder2"
+    RedenOpschortingBijhouding_enum:
+      type: "string"
+      description: "Redenen voor opschorting van de bijhouding.:\n* `overlijden` -\
+        \ O\n* `emigratie` - E\n* `ministerieel_besluit` - M\n* `pl_aangelegd_in_de_rni`\
+        \ - R\n* `fout` - F"
+      enum:
+      - "overlijden"
+      - "emigratie"
+      - "ministerieel_besluit"
+      - "pl_aangelegd_in_de_rni"
+      - "fout"
+    SoortAdres_enum:
+      type: "string"
+      description: "Aanduiding van het soort adres.:\n* `woonadres` - W\n* `briefadres`\
+        \ - B"
+      enum:
+      - "woonadres"
+      - "briefadres"
+    SoortVerbintenis_enum:
+      type: "string"
+      description: "Soort verbintenis van een bij de burgerlijke stand ingeschreven\
+        \ verbintenis:\n* `huwelijk` - H\n* `geregistreerd_partnerschap` - P"
+      enum:
+      - "huwelijk"
+      - "geregistreerd_partnerschap"
+    VerblijfplaatshistorieHalCollectie:
+      type: object
+      properties:
+        _links:
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/schemas/HalCollectionLinks"
+        _embedded:
+          $ref: '#/components/schemas/VerblijfplaatshistorieHalCollectieEmbedded'
+    VerblijfplaatshistorieHalCollectieEmbedded:
+      type: object
+      properties:
+        verblijfplaatshistorie:
+          type: array
+          items:
+            $ref: '#/components/schemas/VerblijfplaatshistorieHal'
+    VerblijfplaatshistorieHal:
+      allOf:
+        - $ref: '#/components/schemas/Verblijfplaatshistorie'
+        - properties:
+            _links:
+              $ref: "#/components/schemas/VerblijfplaatshistorieLinks"
+    Verblijfplaatshistorie:
+      allOf:
+      - $ref: "#/components/schemas/Verblijfplaats"
+      - description: "<body><p>Gegevens over het verblijf en adres van de ingeschreven\
+          \ persoon. Dit is het adres waarop een persoon is ingeschreven of ingeschreven\
+          \ is geweest.</p><p>\n <em>*</em> datumAanvangAdreshuishouding** : De datum\
+          \ van aangifte of ambtshalve melding van verblijf en adres.</p><p>\n <em>*</em>\
+          \ datumIngangGeldigheid** : Datum waarop de gegevens over de verblijfplaats\
+          \ geldig zijn geworden.</p><p>\n <em>*</em> datumInschrijvingInGemeente**:\
+          \ Bij inschrijving op grond van een aangifte door de burger van zijn vestiging\
+          \ in een (volgende) gemeente is dit de aangiftedatum. Bij inschrijving op\
+          \ grond van een geboorteakte is dit de geboortedatum. Bij ambtshalve inschrijving\
+          \ is dit de datum waarop de betrokkene schriftelijk van het voornemen van\
+          \ ambtshalve opneming mededeling is gedaan.</p><p>\n <em>*</em> datumVestigingInNederland**\
+          \ : Datum van inschrijving in Nederland</p><p>\n <em>*</em> landVanWaarIngeschreven**\
+          \ : Het land waar de ingeschreven persoon verblijf hield voor (her)vestiging\
+          \ in Nederland.</p><p>\n <em>*</em> gemeenteVanInschrijving** : Een aanduiding\
+          \ die aangeeft in welke gemeente de PK zich bevindt. De code kan voorloopnullen\
+          \ bevatten</p><p>\n <em>*</em> landVanWaarIngeschreven** : Het LAND waar\
+          \ de INGESCHREVEN PERSOON verblijf hield voor (her)vestiging in Nederland.</p></body>"
+        properties:
+          datumTot:
+            $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/schemas/Datum_onvolledig"
+          geheimhoudingPersoonsgegevens:
+            type: boolean
+            title: "Indicatie geheim"
+            description: "Een aanduiding die aangeeft dat gegevens wel of niet verstrekt\
+              \ mogen worden. Indien true: op verzoek van deze persoon is het verstrekken\
+              \ van gegevens over deze persoon aan bepaalde derden niet toegestaan."
+    VerblijfplaatshistorieLinks:
+      type: "object"
+      properties:
+        adres:
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/schemas/HalLink"
+        adresseerbaarObject:
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/schemas/HalLink"
+    PartnerhistorieHalCollectie:
+      type: object
+      properties:
+        _links:
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/schemas/HalCollectionLinks"
+        _embedded:
+          $ref: '#/components/schemas/PartnerhistorieHalCollectieEmbedded'
+    PartnerhistorieHalCollectieEmbedded:
+      type: object
+      properties:
+        partnerhistorie:
+          type: array
+          items:
+            $ref: '#/components/schemas/PartnerhistorieHal'
+    PartnerhistorieHal:
+      allOf:
+        - $ref: '#/components/schemas/Partnerhistorie'
+        - properties:
+            _links:
+              $ref: "#/components/schemas/PartnerhistorieLinks"
+    Partnerhistorie:
+      allOf:
+      - $ref: "#/components/schemas/Partner"
+      - description: "<body><p>Gegevens over een gesloten huwelijk/geregistreerd partnerschap\
+          \ van de ingeschrevene.</p></body>"
+        properties:
+          ontbindingHuwelijkPartnerschap:
+            $ref: "#/components/schemas/OntbindingHuwelijkPartnerschap"
+    OntbindingHuwelijkPartnerschap:
+      type: "object"
+      description: ""
+      properties:
+        indicatieHuwelijkPartnerschapBeeindigd:
+          type: boolean
+          description: "Indicatie of het huwelijk ontbonden is danwel het partnerschap beëindigd is.\
+            \ \n* `True` - Huwelijk/Partnerschap is beëindigd."
+        datum:
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/schemas/Datum_onvolledig"
+        land:
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/schemas/Waardetabel"
+        plaats:
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/schemas/Waardetabel"
+        reden:
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/schemas/Waardetabel"
+        inOnderzoek:
+          $ref: "#/components/schemas/OntbindingHuwelijkInOnderzoek"
+    OntbindingHuwelijkInOnderzoek:
+      type: "object"
+      description: "<body><p>Indicators over het in onderzoek zijn van gegevens over\
+        \ de aangaan van het huwelijk van de INGESCHREVEN PERSOON.</p><p>Zie de <a\
+        \ href=`https://github.com/VNG-Realisatie/Bevragingen-ingeschreven-personen/blob/master/features/in_onderzoek.feature`>\
+        \ functionele specificaties <a></p></body>"
+      properties:
+        datum:
+          type: boolean
+          description: "<body><p>Indicator die aangeeft of het corresponderende gegeven\
+            \ voor deze persoon in onderzoek is.</p></body>"
+        land:
+          type: boolean
+          description: "<body><p>Indicator die aangeeft of het corresponderende gegeven\
+            \ voor deze persoon in onderzoek is.</p></body>"
+        plaats:
+          type: boolean
+          description: "<body><p>Indicator die aangeeft of het corresponderende gegeven\
+            \ voor deze persoon in onderzoek is.</p></body>"
+        datumIngangOnderzoek:
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/schemas/Datum_onvolledig"
+    PartnerhistorieLinks:
+      type: "object"
+      properties:
+        ingeschrevenPersoon:
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/schemas/HalLink"
+    VerblijfstitelhistorieHalCollectie:
+      type: object
+      properties:
+        _links:
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/schemas/HalCollectionLinks"
+        _embedded:
+            $ref: '#/components/schemas/VerblijfstitelhistorieHalCollectieEmbedded'
+    VerblijfstitelhistorieHalCollectieEmbedded:
+      type: object
+      properties:
+        verblijfstitelhistorie:
+          type: array
+          items:
+            $ref: '#/components/schemas/Verblijfstitelhistorie'
+    Verblijfstitelhistorie:
+      allOf:
+      - $ref: "#/components/schemas/Verblijfstitel"
+      - description: "<body><p>Gegevens over de verblijfsrechtelijke status van de\
+          \ ingeschrevene.</p><p>\n <em>*</em> datumEinde**: Datum waarop\
+          \ de geldigheid van de gegevens over de verblijfstitel is beëindigd.</p><p>\n\
+          \ <em>*</em> datumIngang**: Datum waarop de gegevens over de verblijfstitel\
+          \ geldig zijn geworden.</p><p> <em>*</em> aanduiding** : Verblijfstiteltabel,\
+          \ die aangeeft over welke verblijfsrechtelijke status de ingeschrevene beschikt.</p> </body>"
+        properties:
+          geheimhoudingPersoonsgegevens:
+            type: boolean
+            title: "Indicatie geheim"
+            description: "Een aanduiding die aangeeft dat gegevens wel of niet verstrekt\
+              \ mogen worden. Indien true: op verzoek van deze persoon is het verstrekken\
+              \ van gegevens over deze persoon aan bepaalde derden niet toegestaan."
+    Geboortedatum:
+      type: "object"
+      description: "<body><p>Gegevens over de geboorte van respectievelijk de persoon,\
+        \ de ouder, de echtgenoot/geregistreerd partner, de eerdere echtgenoot/geregistreerd\
+        \ partner of het kind.</p><p>\n <em>*</em> datum** : Datum waarop de persoon\
+        \ is geboren.</p><p>\n <em>*</em> land** : Land waar de persoon is geboren</p><p>\n\
+        \ <em>*</em> plaats** : De plaats waar een persoon is geboren. Voor een plaats\
+        \ buiten Nederland is gemeentecode=1999 (RNI) en gemeentenaam de buitenlandse\
+        \ plaatsnaam of aanduiding.</p></body>"
+      properties:
+        datum:
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.1.0/api-specificatie/common.yaml#/components/schemas/Datum_onvolledig"
