@@ -9,7 +9,7 @@ info:
 
                 Heeft een persoon bijvoorbeeld geen geldige nationaliteit, dan wordt nationaliteit niet geretourneerd. <br> Heeft een persoon een beëindigd partnerschap of huwelijk, dan wordt de partner niet geretourneerd.
 
-                Zie de  [Functionele documentatie](https://github.com/VNG-Realisatie/Haal-Centraal-BRP-historie-bevragen/tree/master/features) voor nadere toelichting.
+                Zie de [Functionele documentatie](https://github.com/VNG-Realisatie/Haal-Centraal-BRP-historie-bevragen/tree/master/features) voor nadere toelichting.
   version: 0.0.1 (develop)
   contact:
     url: https://github.com/VNG-Realisatie/Haal-Centraal-BRP-historie-bevragen
@@ -232,7 +232,8 @@ components:
             type: boolean
             title: "Indicatie geheim"
             description: |
-                          Een aanduiding die aangeeft dat gegevens wel of niet verstrekt mogen worden. Indien true : op verzoek van deze persoon is het verstrekken van gegevens over deze persoon aan bepaalde derden niet toegestaan.
+                          Een aanduiding die aangeeft dat gegevens wel of niet verstrekt mogen worden.
+                          Indien true : op verzoek van deze persoon is het verstrekken van gegevens over deze persoon aan bepaalde derden niet toegestaan.
           datumEindeGeldigheid:
             $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.2.0/api-specificatie/common.yaml#/components/schemas/DatumOnvolledig"
           redenBeeindigen:
