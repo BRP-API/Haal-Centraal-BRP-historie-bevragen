@@ -78,10 +78,10 @@ Hiermee wordt het zoeken/raadplegen van de volgende historie ondersteund:
 Er kan gekozen worden om de status op peildatum te raadplegen met de queryparameter peildatum.
 Er kan gekozen worden de historische voorkomens te raadplegen binnen een periode met queryparameters datumVan en datumTotEnMet.
 
-Het antwoordbericht van /verblijfplaatsen bevat het property burgerservicenummer van de ingeschreven natuurlijk persoon, plus \_links en \_embedded met de historische voorkomens van de verblijfplaats van de persoon. Hierin zit ook de property datumIngangGeldigheid.
-Het antwoordbericht van /verblijfstitels bevat de historische voorkomens van de verblijfstitel van de ingeschreven persoon en de properties geldigVan en geldigTotEnMet.
-Het antwoordbericht van /partners bevat het property burgerservicenummer van de ingeschreven natuurlijk persoon, plus de historische voorkomens van partner-relaties (huwelijken of geregistreerd partnerschappen). Hierin zitten ook de geldigVan en geldigTotEnMet.
-Het antwoordbericht van /bewoningen bevat de lijst gevonden adressen, met voor elk adres de bewoners met elk de properties geldigVan en geldigTotEnMet.
+- Het antwoordbericht van /verblijfplaatshistorie bevat \_links en \_embedded met de historische voorkomens van de verblijfplaats van de persoon. Hierin zit ook de property datumIngangGeldigheid.
+- Het antwoordbericht van /verblijfstitelhistorie bevat de historische voorkomens van de verblijfstitel van de ingeschreven persoon en de properties datumEinde en datumIngang.
+- Het antwoordbericht van /partnerhistorie bevat de historische voorkomens van partner-relaties (huwelijken of geregistreerd partnerschappen). Hierin zit in de groep aangaanHuwelijkPartnerschap een datum en in de groep ontbindingHuwelijkPartnerschap een datum.
+- Het antwoordbericht van /nationaliteithistorie bevat de historische nationaliteiten die voor een persoon geregistreerd zijn. Hierin zitten de properties datumIngangGeldigheid en datumEindeGeldigheid. 
 
 
 ## Burgerservicenummer is unieke sleutel voor een ingeschreven natuurlijk persoon
