@@ -4,10 +4,10 @@
 ![generate sdks](https://github.com/VNG-Realisatie/Haal-Centraal-BRP-historie-bevragen/workflows/generate-sdks/badge.svg)
 ![generate postman collection](https://github.com/VNG-Realisatie/Haal-Centraal-BRP-historie-bevragen/workflows/generate-postman-collection/badge.svg)
 
-BRP Historie Bevragen is een Haal Centraal API voor het zoeken en raadplegen van historiesche gegevens met betrekking op een ingeschreven natuurlijke personen voor alle binnengemeentelijke afnemers in NL. De informatie die de API levert is herleidbaar naar het LO GBA 3.10.
+BRP Historie Bevragen is een Haal Centraal API voor het zoeken en raadplegen van historiesche gegevens met betrekking op een ingeschreven natuurlijke personen voor alle binnengemeentelijke afnemers in NL. De informatie die de API levert is herleidbaar naar het LO GBA 3.12.
 
 # Planning
-Op dit ogenblik wordt er gewerkt aan release v1.0.0. Release v1.0.0 is uitgebracht en is [hier](https://github.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/tree/v1.0.0) te vinden.
+Op dit ogenblik wordt er gewerkt aan release v1.0.0.
 
 https://eu-rm.roadmunk.com/publish/29a13c572a0dfc79f1d0386fc572e15383afe11f
 
@@ -29,7 +29,7 @@ Om te beginnen met ontwikkelen van de API is de [getting started](./docs/getting
 * [Functionele specificaties](./features)
 
 Naast deze API is er nog een aantal andere aan BRP gerelateerde API's beschikbaar:
-* [Historische BRP-gegevens bevragen](https://github.com/VNG-Realisatie/Haal-Centraal-BRP-historie-bevragen)
+* [Actuele BRP-gegevens bevragen](https://github.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen)
 * [Reisdocumenten bevragen](https://github.com/VNG-Realisatie/Haal-Centraal-Reisdocumenten-bevragen)
 * [Bewoning en medebewoners bevragen](https://github.com/VNG-Realisatie/Haal-Centraal-BRP-bewoning)
 * [Landelijke tabellen bevragen](https://github.com/VNG-Realisatie/Haal-Centraal-BRP-tabellen-bevragen)
