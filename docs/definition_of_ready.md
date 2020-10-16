@@ -9,4 +9,4 @@
 - Userstory is ingevuld op template architectuurschets
 - Userstory past op wenselijk gebruik GEMMA 2
 - Userstory past binnen Scope
-- Vastgelegd Github en in geplaatst in kolom ready
+- Vastgelegd Github en geplaatst in kolom ready
