@@ -64,26 +64,6 @@ Voor persoonsgegevens gebruiken we LO GBA 3.10.
 *Ratio*
 Het gaat om bevragen bij de bron. De bron voor persoonsgegevens is het GBA. Daarom moet het logisch ontwerp van de GBA worden gebruikt en er geen afwijkende RSGB-modellering zijn van persoonsgegevens.
 
-## Opvragen van historie kan via specifieke endpoints
-Opvragen van historie wordt gedefinieerd met aparte endpoints. Als een provider ervoor kiest om deze niet te implementeren wordt er een 501 geretourneerd. De historische bevraging krijgen dus resourcenaam waaruit blijkt dart het om een historische resource gaat.
-Met deze API kan de historie op het betreffende aspect opgevraagd worden.
-
-Hiermee wordt het zoeken/raadplegen van de volgende historie ondersteund:
-- nationaliteithistorie (welke nationaliteiten heeft een persoon gehad)
-- verblijfplaatshistorie (welke verblijfplaatsen heeft een persoon gehad)
-- partnerhistorie (welke partnerrelaties heeft een persoon gehad)
-- verblijftitelhistorie (welke verblijftitels heeft een persoon gehad)
-
-
-Er kan gekozen worden om de status op peildatum te raadplegen met de queryparameter peildatum.
-Er kan gekozen worden de historische voorkomens te raadplegen binnen een periode met queryparameters datumVan en datumTotEnMet.
-
-- Het antwoordbericht van /verblijfplaatshistorie bevat \_links en \_embedded met de historische voorkomens van de verblijfplaats van de persoon. Hierin zit ook de property datumIngangGeldigheid.
-- Het antwoordbericht van /verblijfstitelhistorie bevat de historische voorkomens van de verblijfstitel van de ingeschreven persoon en de properties datumEinde en datumIngang.
-- Het antwoordbericht van /partnerhistorie bevat de historische voorkomens van partner-relaties (huwelijken of geregistreerd partnerschappen). Hierin zit in de groep aangaanHuwelijkPartnerschap een datum en in de groep ontbindingHuwelijkPartnerschap een datum.
-- Het antwoordbericht van /nationaliteithistorie bevat de historische nationaliteiten die voor een persoon geregistreerd zijn. Hierin zitten de properties datumIngangGeldigheid en datumEindeGeldigheid. 
-
-
 ## Burgerservicenummer is unieke sleutel voor een ingeschreven natuurlijk persoon
 De resource ingeschrevenPersonen wordt uniek geïdentificeerd met de sleutel burgerservicenummer.
 Dus is het pad naar de gegevens van één persoon gedefinieerd als /ingeschrevenpersonen/{burgerservicenummer}
