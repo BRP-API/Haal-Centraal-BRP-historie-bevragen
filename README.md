@@ -15,10 +15,7 @@ https://eu-rm.roadmunk.com/publish/29a13c572a0dfc79f1d0386fc572e15383afe11f
 Om te beginnen met ontwikkelen van de API is de [getting started](./docs/getting-started.md) een goed beginpunt. De API is technisch gespecificeerd in Open API specificaties (zie hieronder bij documentatie).
 
 ## Documentatie
-* [Technische specificaties van de **resolved** versie](./specificatie/genereervariant) (Open API Specificaties), [Technische specificaties van de **unresolved** versie](./specificatie) (Open API versie)
-* Specificaties van de actuele productie versie in [Swagger-formaat](https://petstore.swagger.io/?url=https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-Historie-bevragen/master/specificatie/genereervariant/openapi.yaml)
-
-* Specificaties van de develop versie in [Swagger-formaat](https://petstore.swagger.io/?url=https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-Historie-bevragen/develop/specificatie/genereervariant/openapi.yaml)
+* [Technische specificaties](./specificatie/genereervariant) (Open API Specificaties en JSON schema), in [Swagger-formaat](https://vng-realisatie.github.io/Haal-Centraal-BRP-historie-bevragen/swagger-ui/) en in [Redoc](https://vng-realisatie.github.io/Haal-Centraal-BRP-historie-bevragen/redoc/)
 
 * Ontwerpkeuzes staan in het document [Design decisions](./docs/design_decisions.md)
 * [Productvisie](./docs/productvision.md)
