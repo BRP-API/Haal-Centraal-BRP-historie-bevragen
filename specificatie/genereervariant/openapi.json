@@ -2,7 +2,7 @@
   "openapi" : "3.0.0",
   "info" : {
     "title" : "Bevragingen historie ingeschreven personen",
-    "description" : "API voor het ontsluiten van historische gegevens in relatie tot ngeschreven personen en aanverwante gegevens uit de GBA en RNI. Met deze API worden de historische gegevens van ingeschreven personen, hun kinderen, partners en ouders ontsloten.\n\nHeeft een persoon bijvoorbeeld geen geldige nationaliteit, dan wordt nationaliteit niet geretourneerd. <br> Heeft een persoon een beëindigd partnerschap of huwelijk, dan wordt de partner niet geretourneerd.\n\nZie de [Functionele documentatie](https://github.com/VNG-Realisatie/Haal-Centraal-BRP-historie-bevragen/tree/master/features) voor nadere toelichting.\n",
+    "description" : "API voor het ontsluiten van historische gegevens in relatie tot ingeschreven personen en aanverwante gegevens uit de GBA en RNI.\nMet deze API wordt historie van de verblijfplaatsen, partners, verblijfstitels en nationaliteiten ontsloten.\n\nZie de [Functionele documentatie](https://github.com/VNG-Realisatie/Haal-Centraal-BRP-historie-bevragen/tree/v1.0.0/features) voor nadere toelichting.\n",
     "contact" : {
       "url" : "https://github.com/VNG-Realisatie/Haal-Centraal-BRP-historie-bevragen"
     },
@@ -307,7 +307,7 @@
     "/ingeschrevenpersonen/{burgerservicenummer}/partnerhistorie" : {
       "get" : {
         "tags" : [ "Historie" ],
-        "description" : "Het ophalen van de partnerhistorie van een ingeschreven persoon. Van een ingeschreven persoon worden partners waarmee in het verleden relaties geregistreerd zijn geretourneerd die de persoon had op de (optioneel) opgegeven peildatum of binnen de (optioneel) opgegeven periode (datumVan tot en met datumTotEnMet).\n",
+        "description" : "Het ophalen van de partnerhistorie van een ingeschreven persoon.\nVan een ingeschreven persoon wordt de partner geretourneerd waar de persoon op de (optioneel) opgegeven peildatum een partnerschap\nof huwelijk mee had of worden de partners geretourneerd waar de persoon binnen de (optioneel) opgegeven periode (datumVan tot en met datumTotEnMet)\neen partnerschap of huwelijk mee had. Wanneer geen peildatum of periode wordt opgegeven, worden alle partners waar de persoon een partnerschap of huwelijk\nmee heeft of heeft gehad teruggegeven.\n",
         "operationId" : "Getpartnerhistorie",
         "parameters" : [ {
           "name" : "burgerservicenummer",
@@ -873,7 +873,7 @@
     "/ingeschrevenpersonen/{burgerservicenummer}/nationaliteithistorie" : {
       "get" : {
         "tags" : [ "Historie" ],
-        "description" : "Het ophalen van de nationaliteithistorie van een ingeschreven persoon. Van een ingeschreven persoon wordt de nationaliteit geretourneerd die de persoon had op de (optioneel) opgegeven peildatum of worden de nationaliteiten geretourneerd die de persoon had binnen de (optioneel) opgegeven periode (datumVan tot en met datumTotEnMet). Wanneer geen peildatum of periode wordt opgegeven, worden alle nationaliteiten van de persoon teruggegeven.</p><p>Er wordt aflopend gesorteerd op datumingang, zodat de meest actuele bovenaan staat.\n",
+        "description" : "Het ophalen van de nationaliteithistorie van een persoon. Van een persoon wordt de nationaliteiten geretourneerd die de persoon had op de (optioneel) opgegeven peildatum of worden de nationaliteiten geretourneerd die de persoon had binnen de (optioneel) opgegeven periode (datumVan tot en met datumTotEnMet). Wanneer geen peildatum of periode wordt opgegeven, worden alle nationaliteiten van de persoon teruggegeven.</p><p>Er wordt aflopend gesorteerd op datumingang, zodat de meest actuele bovenaan staat.\n",
         "operationId" : "getnationaliteithistorie",
         "parameters" : [ {
           "name" : "burgerservicenummer",
@@ -1188,7 +1188,7 @@
               "type" : "boolean",
               "description" : "Een aanduiding die aangeeft dat gegevens wel of niet verstrekt mogen worden.\nIndien true : op verzoek van deze persoon is het verstrekken van gegevens over deze persoon aan bepaalde derden niet toegestaan.\n"
             },
-            "datumEindeGeldigheid" : {
+            "datumTot" : {
               "$ref" : "#/components/schemas/DatumOnvolledig"
             },
             "redenBeeindigen" : {
@@ -1200,7 +1200,7 @@
               "example" : true
             }
           },
-          "description" : "Gegevens over de verblijfsrechtelijke status van de ingeschrevene.\n* **datumEinde**: Datum waarop de geldigheid van de gegevens over de Nationaliteit is beëindigd.\n* **datumIngang**: Datum waarop de gegevens over de Nationaliteit geldig zijn geworden.\n* **aanduiding** : Nationaliteittabel, die aangeeft over welke verblijfsrechtelijke status de ingeschrevene beschikt.\n"
+          "description" : "Gegevens over de nationaliteiten van de persoon.\n* **datumTot**: Datum tot wanneer een nationaliteit geldig was.\n* **datumIngangGeldigheid**: Datum waarop de gegevens over de Nationaliteit geldig zijn geworden.\n* **nationaliteit** : Nationaliteittabel, die aangeeft over welke nationaliteit de ingeschrevene beschikt.\n* **redenOpname** : Tabel Reden opnemen/beëindigen nationaliteit, die aangeeft met welke reden de persoon de Nederlandse nationaliteit heeft verkregen of waarom een niet-Nederlandse nationaliteit is opgenomen.\n* **redenBeeindigen** : Tabel Reden opnemen/beëindigen nationaliteit, die aangeeft met welke reden een nationaliteit is beëindigd.\n"
         } ]
       },
       "VerblijfplaatshistorieHalCollectie" : {
@@ -1249,7 +1249,8 @@
               "type" : "boolean",
               "description" : "Een aanduiding die aangeeft dat gegevens wel of niet verstrekt mogen worden. Indien true: op verzoek van deze persoon is het verstrekken van gegevens over deze persoon aan bepaalde derden niet toegestaan.\n"
             }
-          }
+          },
+          "description" : "Gegevens over het verblijfplaatsen of de woonlocaties van een persoon.\n* **datumAanvangAdreshuishouding** : de datum van aangifte of ambtshalve melding van verblijf en adres.\n* **datumIngangGeldigheid** : datum waarop de gegevens over de verblijfplaats geldig zijn geworden.\n* **datumInschrijvingInGemeente**: bij inschrijving op grond van een verhuisaangifte door de burger is dit de aangiftedatum. Bij inschrijving op grond van een geboorteakte is dit de geboortedatum. Bij ambtshalve inschrijving is dit de datum waarop het voornemen van ambtshalve opneming schriftelijk aan de persoon is medegedeeld.\n* **datumVestigingInNederland** : datum van inschrijving in Nederland.\n* **landVanWaarIngeschreven** : het land waar de persoon woonde voor (her)vestiging in Nederland.\n* **gemeenteVanInschrijving** : de gemeente waar de persoon verblijft en is ingeschreven. De code kan voorloopnullen bevatten.\"\n* **datumTot** : de datum tot wanneer iemand op deze verblijfplaats of woonlocatie was ingeschreven\n"
         } ]
       },
       "VerblijfplaatshistorieLinks" : {
@@ -1342,6 +1343,9 @@
             "type" : "boolean"
           },
           "plaats" : {
+            "type" : "boolean"
+          },
+          "reden" : {
             "type" : "boolean"
           },
           "datumIngangOnderzoek" : {
