@@ -22,7 +22,7 @@ paths:
       tags:
       - BRP historie bevragen
       description: |
-        Zoek de verblijfplaatshistorie van een persoon op de opgegeven peildatum of binnen de opgegeven periode verbleef.
+        Zoek de verblijfplaatshistorie van een persoon op de opgegeven peildatum of binnen de opgegeven periode.
         Als je geen peildatum of periode opgeeft, krijg je alle verblijfplaatsen terug. Het meest actuele adres staat bovenaan.
       operationId: Getverblijfplaatshistorie
       parameters:

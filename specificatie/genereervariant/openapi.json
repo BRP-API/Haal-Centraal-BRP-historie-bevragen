@@ -23,7 +23,7 @@
     "/ingeschrevenpersonen/{burgerservicenummer}/verblijfplaatshistorie" : {
       "get" : {
         "tags" : [ "BRP historie bevragen" ],
-        "description" : "Zoek de verblijfplaatshistorie van een persoon op de opgegeven peildatum of binnen de opgegeven periode verbleef.\nAls je geen peildatum of periode opgeeft, krijg je alle verblijfplaatsen terug. Het meest actuele adres staat bovenaan.\n",
+        "description" : "Zoek de verblijfplaatshistorie van een persoon op de opgegeven peildatum of binnen de opgegeven periode.\nAls je geen peildatum of periode opgeeft, krijg je alle verblijfplaatsen terug. Het meest actuele adres staat bovenaan.\n",
         "operationId" : "Getverblijfplaatshistorie",
         "parameters" : [ {
           "name" : "burgerservicenummer",
