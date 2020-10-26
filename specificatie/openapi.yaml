@@ -5,9 +5,10 @@ servers:
 info:
   title: Bevragingen historie ingeschreven personen
   description: |
-                API voor het ontsluiten van historische gegevens in relatie tot ingeschreven personen en aanverwante gegevens uit de GBA en RNI. Met deze API wordt historie van de verblijfplaatsen, partners, verblijfstitels en nationaliteiten ontsloten.
+                API voor het ontsluiten van historische gegevens in relatie tot ingeschreven personen en aanverwante gegevens uit de GBA en RNI.
+                Met deze API wordt historie van de verblijfplaatsen, partners, verblijfstitels en nationaliteiten ontsloten.
 
-                Zie de [Functionele documentatie](https://github.com/VNG-Realisatie/Haal-Centraal-BRP-historie-bevragen/tree/master/features) voor nadere toelichting.
+                Zie de [Functionele documentatie](https://github.com/VNG-Realisatie/Haal-Centraal-BRP-historie-bevragen/tree/v1.0.0/features) voor nadere toelichting.
   version: 0.0.1 (develop)
   contact:
     url: https://github.com/VNG-Realisatie/Haal-Centraal-BRP-historie-bevragen
@@ -352,6 +353,8 @@ components:
         land:
           type: boolean
         plaats:
+          type: boolean
+        reden:
           type: boolean
         datumIngangOnderzoek:
           $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.2.0/api-specificatie/common.yaml#/components/schemas/DatumOnvolledig"
