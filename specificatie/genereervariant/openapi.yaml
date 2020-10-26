@@ -1,9 +1,8 @@
 openapi: 3.0.0
 info:
-  title: Bevragingen historie ingeschreven personen
+  title: BRP historie bevragen
   description: |
-    API voor het ontsluiten van historische gegevens in relatie tot ingeschreven personen en aanverwante gegevens uit de GBA en RNI.
-    Met deze API wordt historie van de verblijfplaatsen, partners, verblijfstitels en nationaliteiten ontsloten.
+    API voor het zoeken en raadplegen van historische verblijfplaatsen, partners, nationaliteiten en verblijfstitels uit de BRP (inclusief de RNI).
 
     Zie de [Functionele documentatie](https://github.com/VNG-Realisatie/Haal-Centraal-BRP-historie-bevragen/tree/v1.0.0/features) voor nadere toelichting.
   contact:
@@ -16,17 +15,15 @@ servers:
 - url: https://www.haalcentraal.nl/haalcentraal/api/brp
   description: APILAB testserver
 tags:
-- name: Historie
-  description: Bevraging van historische gegevens over ingeschreven personen
+- name: BRP historie bevragen
 paths:
   /ingeschrevenpersonen/{burgerservicenummer}/verblijfplaatshistorie:
     get:
       tags:
-      - Historie
+      - BRP historie bevragen
       description: |
-        Het ophalen van de verblijfplaatshistorie van een ingeschreven persoon. Van een ingeschreven persoon wordt de verblijfplaats geretourneerd waar de persoon op de (optioneel) opgegeven peildatum verbleef of worden de verblijfplaatsen geretourneerd waar de persoon binnen de (optioneel) opgegeven periode (datumVan tot en met datumTotEnMet) heeft verbleven. Wanneer geen peildatum of periode wordt opgegeven, worden alle verblijfplaatsen waar de persoon verbleven heeft of nu verblijft teruggegeven.
-
-        Er wordt aflopend gesorteerd op datumAanvangAdreshuishouding, zodat de meest actuele bovenaan staat.
+        Zoek de verblijfplaatshistorie van een persoon op de opgegeven peildatum of binnen de opgegeven periode verbleef.
+        Als je geen peildatum of periode opgeeft, krijg je alle verblijfplaatsen terug. Het meest actuele adres staat bovenaan.
       operationId: Getverblijfplaatshistorie
       parameters:
       - name: burgerservicenummer
@@ -241,13 +238,10 @@ paths:
   /ingeschrevenpersonen/{burgerservicenummer}/partnerhistorie:
     get:
       tags:
-      - Historie
+      - BRP historie bevragen
       description: |
-        Het ophalen van de partnerhistorie van een ingeschreven persoon.
-        Van een ingeschreven persoon wordt de partner geretourneerd waar de persoon op de (optioneel) opgegeven peildatum een partnerschap
-        of huwelijk mee had of worden de partners geretourneerd waar de persoon binnen de (optioneel) opgegeven periode (datumVan tot en met datumTotEnMet)
-        een partnerschap of huwelijk mee had. Wanneer geen peildatum of periode wordt opgegeven, worden alle partners waar de persoon een partnerschap of huwelijk
-        mee heeft of heeft gehad teruggegeven.
+        Zoek de partnerhistorie van een persoon op de opgegeven peildatum of binnen de opgegeven periode.
+        Als je geen peildatum of periode opgeeft, krijg je alle partners terug waarmee een partnerschap is aangegaan of een huwelijk is gesloten.
       operationId: Getpartnerhistorie
       parameters:
       - name: burgerservicenummer
@@ -462,11 +456,10 @@ paths:
   /ingeschrevenpersonen/{burgerservicenummer}/verblijfstitelhistorie:
     get:
       tags:
-      - Historie
+      - BRP historie bevragen
       description: |
-        Het ophalen van de verblijfstitelhistorie van een ingeschreven persoon. Van een ingeschreven persoon wordt de verblijfstitel geretourneerd die de persoon had op de (optioneel) opgegeven peildatum of worden de verblijfstitels geretourneerd die de persoon had binnen de (optioneel) opgegeven periode (datumVan tot en met datumTotEnMet). Wanneer geen peildatum of periode wordt opgegeven, worden alle verblijfstitels van de persoon teruggegeven.
-
-        Er wordt aflopend gesorteerd op datumingang, zodat de meest actuele bovenaan staat.
+        Zoek de verblijfstitelhistorie van een persoon op de opgegeven peildatum of binnen de opgegeven periode.
+        Als je geen peildatum of periode opgeeft, krijg je alle verblijfstitels van de persoon terug. De meest actuele verblijfstitel staat bovenaan.
       operationId: getverblijfstitelhistorie
       parameters:
       - name: burgerservicenummer
@@ -681,9 +674,10 @@ paths:
   /ingeschrevenpersonen/{burgerservicenummer}/nationaliteithistorie:
     get:
       tags:
-      - Historie
+      - BRP historie bevragen
       description: |
-        Het ophalen van de nationaliteithistorie van een persoon. Van een persoon wordt de nationaliteiten geretourneerd die de persoon had op de (optioneel) opgegeven peildatum of worden de nationaliteiten geretourneerd die de persoon had binnen de (optioneel) opgegeven periode (datumVan tot en met datumTotEnMet). Wanneer geen peildatum of periode wordt opgegeven, worden alle nationaliteiten van de persoon teruggegeven.</p><p>Er wordt aflopend gesorteerd op datumingang, zodat de meest actuele bovenaan staat.
+        Zoek de nationaliteithistorie van een persoon op de opgegeven peildatum of binnen de opgegeven periode.
+        Als je geen peildatum of periode opgeeft, krijg je alle nationaliteiten van de persoon terug. De meest actuele nationaliteit staat bovenaan.
       operationId: getnationaliteithistorie
       parameters:
       - name: burgerservicenummer
