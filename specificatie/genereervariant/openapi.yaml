@@ -95,7 +95,7 @@ paths:
                 $ref: '#/components/schemas/BadRequestFoutbericht'
               example:
                 type: https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1
-                title: Ten minste één parameter moet worden opgegeven.
+                title: Ten minste Ã©Ã©n parameter moet worden opgegeven.
                 status: 400
                 detail: The request could not be understood by the server due to malformed
                   syntax. The client SHOULD NOT repeat the request without modification.
@@ -313,7 +313,7 @@ paths:
                 $ref: '#/components/schemas/BadRequestFoutbericht'
               example:
                 type: https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1
-                title: Ten minste één parameter moet worden opgegeven.
+                title: Ten minste Ã©Ã©n parameter moet worden opgegeven.
                 status: 400
                 detail: The request could not be understood by the server due to malformed
                   syntax. The client SHOULD NOT repeat the request without modification.
@@ -531,7 +531,7 @@ paths:
                 $ref: '#/components/schemas/BadRequestFoutbericht'
               example:
                 type: https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1
-                title: Ten minste één parameter moet worden opgegeven.
+                title: Ten minste Ã©Ã©n parameter moet worden opgegeven.
                 status: 400
                 detail: The request could not be understood by the server due to malformed
                   syntax. The client SHOULD NOT repeat the request without modification.
@@ -749,7 +749,7 @@ paths:
                 $ref: '#/components/schemas/BadRequestFoutbericht'
               example:
                 type: https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1
-                title: Ten minste één parameter moet worden opgegeven.
+                title: Ten minste Ã©Ã©n parameter moet worden opgegeven.
                 status: 400
                 detail: The request could not be understood by the server due to malformed
                   syntax. The client SHOULD NOT repeat the request without modification.
@@ -921,15 +921,15 @@ components:
           indicatieNationaliteitBeeindigd:
             type: boolean
             description: |
-              Geeft aan dat de nationaliteit beëindigd is.
+              Geeft aan dat de nationaliteit beÃ«indigd is.
             example: true
         description: |
           Gegevens over de (historische) nationaliteiten van de persoon.
           * **datumTot**: Datum tot wanneer een nationaliteit geldig was.
           * **datumIngangGeldigheid**: Datum waarop de gegevens over de Nationaliteit geldig zijn geworden.
           * **nationaliteit** : Nationaliteittabel, die aangeeft over welke nationaliteit de ingeschrevene beschikt.
-          * **redenOpname** : Tabel Reden opnemen/beëindigen nationaliteit, die aangeeft met welke reden de persoon de Nederlandse nationaliteit heeft verkregen of waarom een niet-Nederlandse nationaliteit is opgenomen.
-          * **redenBeeindigen** : Tabel Reden opnemen/beëindigen nationaliteit, die aangeeft met welke reden een nationaliteit is beëindigd.
+          * **redenOpname** : Tabel Reden opnemen/beÃ«indigen nationaliteit, die aangeeft met welke reden de persoon de Nederlandse nationaliteit heeft verkregen of waarom een niet-Nederlandse nationaliteit is opgenomen.
+          * **redenBeeindigen** : Tabel Reden opnemen/beÃ«indigen nationaliteit, die aangeeft met welke reden een nationaliteit is beÃ«indigd.
     VerblijfplaatshistorieHalCollectie:
       type: object
       properties:
@@ -1011,7 +1011,7 @@ components:
         indicatieHuwelijkPartnerschapBeeindigd:
           type: boolean
           description: |
-            Geeft aan dat het huwelijk is ontbonden of het partnerschap is beëindigd.
+            Geeft aan dat het huwelijk is ontbonden of het partnerschap is beÃ«indigd.
         datum:
           $ref: '#/components/schemas/DatumOnvolledig'
         land:
@@ -1036,7 +1036,7 @@ components:
         datumIngangOnderzoek:
           $ref: '#/components/schemas/DatumOnvolledig'
       description: |
-        Geeft aan dat de ontbinding van het huwelijk of de beëindiging van het partnerschap in onderzoek is.
+        Geeft aan dat de ontbinding van het huwelijk of de beÃ«indiging van het partnerschap in onderzoek is.
 
         [Zie functionele specificaties](https://github.com/VNG-Realisatie/Bevragingen-ingeschreven-personen/blob/master/features/in_onderzoek.feature)
     PartnerhistorieLinks:
@@ -1080,7 +1080,7 @@ components:
           invalidParams:
             type: array
             description: Foutmelding per fout in een parameter. Alle gevonden fouten
-              worden één keer teruggemeld.
+              worden Ã©Ã©n keer teruggemeld.
             items:
               $ref: '#/components/schemas/InvalidParams'
     Foutbericht:
@@ -1260,7 +1260,7 @@ components:
           korteNaam:
             type: string
             description: |
-              De officiële openbareruimtenaam uit de Basisregistratie Gebouwen en Adressen (BAG) of een verkorte versie.
+              De officiÃ«le openbareruimtenaam uit de Basisregistratie Gebouwen en Adressen (BAG) of een verkorte versie.
           vanuitVertrokkenOnbekendWaarheen:
             type: boolean
             description: |
@@ -1582,7 +1582,7 @@ components:
           $ref: '#/components/schemas/VerblijfstitelInOnderzoek'
       description: |
         Gegevens over de verblijfsrechtelijke status van de persoon.
-        * **datumEinde**: Datum waarop de geldigheid van de gegevens over de verblijfstitel is beëindigd.
+        * **datumEinde**: Datum waarop de geldigheid van de gegevens over de verblijfstitel is beÃ«indigd.
         * **datumIngang**: Datum waarop de gegevens over de verblijfstitel geldig zijn geworden.
         * **aanduiding** : Verblijfstiteltabel die aangeeft over welke verblijfsrechtelijke status de persoon beschikt.
     VerblijfstitelInOnderzoek:
