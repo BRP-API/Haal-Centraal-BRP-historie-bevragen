@@ -3,10 +3,9 @@ servers:
   - description: "APILAB testserver"
     url: https://www.haalcentraal.nl/haalcentraal/api/brp
 info:
-  title: Bevragingen historie ingeschreven personen
+  title: BRP historie bevragen
   description: |
-                API voor het ontsluiten van historische gegevens in relatie tot ingeschreven personen en aanverwante gegevens uit de GBA en RNI.
-                Met deze API wordt historie van de verblijfplaatsen, partners, verblijfstitels en nationaliteiten ontsloten.
+                API voor het zoeken en raadplegen van historische verblijfplaatsen, partners, nationaliteiten en verblijfstitels uit de BRP (inclusief de RNI).
 
                 Zie de [Functionele documentatie](https://github.com/VNG-Realisatie/Haal-Centraal-BRP-historie-bevragen/tree/v1.0.0/features) voor nadere toelichting.
   version: 0.0.1 (develop)
@@ -16,16 +15,14 @@ info:
     name: European Union Public License, version 1.2 (EUPL-1.2)
     url: https://eupl.eu/1.2/nl/
 tags:
-  - name: Historie
-    description: "Bevraging van historische gegevens over ingeschreven personen"
+  - name: BRP historie bevragen
 paths:
   /ingeschrevenpersonen/{burgerservicenummer}/verblijfplaatshistorie:
     get:
       operationId: Getverblijfplaatshistorie
       description: |
-                    Het ophalen van de verblijfplaatshistorie van een ingeschreven persoon. Van een ingeschreven persoon wordt de verblijfplaats geretourneerd waar de persoon op de (optioneel) opgegeven peildatum verbleef of worden de verblijfplaatsen geretourneerd waar de persoon binnen de (optioneel) opgegeven periode (datumVan tot en met datumTotEnMet) heeft verbleven. Wanneer geen peildatum of periode wordt opgegeven, worden alle verblijfplaatsen waar de persoon verbleven heeft of nu verblijft teruggegeven.
-
-                    Er wordt aflopend gesorteerd op datumAanvangAdreshuishouding, zodat de meest actuele bovenaan staat.
+                    Zoek de verblijfplaatshistorie van een persoon op de opgegeven peildatum of binnen de opgegeven periode verbleef.
+                    Als je geen peildatum of periode opgeeft, krijg je alle verblijfplaatsen terug. Het meest actuele adres staat bovenaan.
       parameters:
         - $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/v1.0.0/specificatie/openapi.yaml#/components/parameters/burgerservicenummer"
         - $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.2.0/api-specificatie/common.yaml#/components/parameters/fields"
@@ -64,16 +61,13 @@ paths:
         'default':
           $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.2.0/api-specificatie/common.yaml#/components/responses/default"
       tags:
-        - Historie
+        - BRP historie bevragen
   /ingeschrevenpersonen/{burgerservicenummer}/partnerhistorie:
     get:
       operationId: Getpartnerhistorie
       description: |
-                    Het ophalen van de partnerhistorie van een ingeschreven persoon.
-                    Van een ingeschreven persoon wordt de partner geretourneerd waar de persoon op de (optioneel) opgegeven peildatum een partnerschap
-                    of huwelijk mee had of worden de partners geretourneerd waar de persoon binnen de (optioneel) opgegeven periode (datumVan tot en met datumTotEnMet)
-                    een partnerschap of huwelijk mee had. Wanneer geen peildatum of periode wordt opgegeven, worden alle partners waar de persoon een partnerschap of huwelijk
-                    mee heeft of heeft gehad teruggegeven.
+                    Zoek de partnerhistorie van een persoon op de opgegeven peildatum of binnen de opgegeven periode.
+                    Als je geen peildatum of periode opgeeft, krijg je alle partners terug waarmee een partnerschap is aangegaan of een huwelijk is gesloten.
       parameters:
         - $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/v1.0.0/specificatie/openapi.yaml#/components/parameters/burgerservicenummer"
         - $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.2.0/api-specificatie/common.yaml#/components/parameters/fields"
@@ -112,14 +106,13 @@ paths:
         'default':
           $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.2.0/api-specificatie/common.yaml#/components/responses/default"
       tags:
-        - Historie
+        - BRP historie bevragen
   /ingeschrevenpersonen/{burgerservicenummer}/verblijfstitelhistorie:
     get:
       operationId: getverblijfstitelhistorie
       description: |
-                    Het ophalen van de verblijfstitelhistorie van een ingeschreven persoon. Van een ingeschreven persoon wordt de verblijfstitel geretourneerd die de persoon had op de (optioneel) opgegeven peildatum of worden de verblijfstitels geretourneerd die de persoon had binnen de (optioneel) opgegeven periode (datumVan tot en met datumTotEnMet). Wanneer geen peildatum of periode wordt opgegeven, worden alle verblijfstitels van de persoon teruggegeven.
-
-                    Er wordt aflopend gesorteerd op datumingang, zodat de meest actuele bovenaan staat.
+                  Zoek de verblijfstitelhistorie van een persoon op de opgegeven peildatum of binnen de opgegeven periode.
+                  Als je geen peildatum of periode opgeeft, krijg je alle verblijfstitels van de persoon terug. De meest actuele verblijfstitel staat bovenaan.
       parameters:
         - $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/v1.0.0/specificatie/openapi.yaml#/components/parameters/burgerservicenummer"
         - $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.2.0/api-specificatie/common.yaml#/components/parameters/fields"
@@ -158,12 +151,13 @@ paths:
         'default':
           $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.2.0/api-specificatie/common.yaml#/components/responses/default"
       tags:
-        - Historie
+        - BRP historie bevragen
   /ingeschrevenpersonen/{burgerservicenummer}/nationaliteithistorie:
     get:
       operationId: getnationaliteithistorie
       description: |
-                    Het ophalen van de nationaliteithistorie van een persoon. Van een persoon wordt de nationaliteiten geretourneerd die de persoon had op de (optioneel) opgegeven peildatum of worden de nationaliteiten geretourneerd die de persoon had binnen de (optioneel) opgegeven periode (datumVan tot en met datumTotEnMet). Wanneer geen peildatum of periode wordt opgegeven, worden alle nationaliteiten van de persoon teruggegeven.</p><p>Er wordt aflopend gesorteerd op datumingang, zodat de meest actuele bovenaan staat.
+                    Zoek de nationaliteithistorie van een persoon op de opgegeven peildatum of binnen de opgegeven periode.
+                    Als je geen peildatum of periode opgeeft, krijg je alle nationaliteiten van de persoon terug. De meest actuele nationaliteit staat bovenaan.
       parameters:
         - $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/v1.0.0/specificatie/openapi.yaml#/components/parameters/burgerservicenummer"
         - $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.2.0/api-specificatie/common.yaml#/components/parameters/fields"
@@ -202,7 +196,7 @@ paths:
         'default':
           $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.2.0/api-specificatie/common.yaml#/components/responses/default"
       tags:
-        - Historie
+        - BRP historie bevragen
 components:
   parameters:
     burgerservicenummer:
@@ -226,7 +220,7 @@ components:
       allOf:
       - $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/v1.0.0/specificatie/openapi.yaml#/components/schemas/Nationaliteit"
       - description: |
-                      Gegevens over de nationaliteiten van de persoon.
+                      Gegevens over de (historische) nationaliteiten van de persoon.
                       * **datumTot**: Datum tot wanneer een nationaliteit geldig was.
                       * **datumIngangGeldigheid**: Datum waarop de gegevens over de Nationaliteit geldig zijn geworden.
                       * **nationaliteit** : Nationaliteittabel, die aangeeft over welke nationaliteit de ingeschrevene beschikt.
@@ -237,8 +231,7 @@ components:
             type: boolean
             title: "Indicatie geheim"
             description: |
-                          Een aanduiding die aangeeft dat gegevens wel of niet verstrekt mogen worden.
-                          Indien true : op verzoek van deze persoon is het verstrekken van gegevens over deze persoon aan bepaalde derden niet toegestaan.
+                          Gegevens mogen niet worden verstrekt aan derden / maatschappelijke instellingen.
           datumTot:
             $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.2.0/api-specificatie/common.yaml#/components/schemas/DatumOnvolledig"
           redenBeeindigen:
@@ -246,7 +239,7 @@ components:
           indicatieNationaliteitBeeindigd:
             type: boolean
             description: |
-                          Een aanduiding dat de nationaliteit beëindigd is.
+                          Geeft aan dat de nationaliteit beëindigd is.
             example: true
     VerblijfplaatshistorieHalCollectie:
       type: object
@@ -272,7 +265,7 @@ components:
       allOf:
       - $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/v1.0.0/specificatie/openapi.yaml#/components/schemas/Verblijfplaats"
       - description: |
-                      Gegevens over het verblijfplaatsen of de woonlocaties van een persoon.
+                      Gegevens over de (historische) verblijfplaatsen of de woonlocaties van de persoon.
                       * **datumAanvangAdreshuishouding** : de datum van aangifte of ambtshalve melding van verblijf en adres.
                       * **datumIngangGeldigheid** : datum waarop de gegevens over de verblijfplaats geldig zijn geworden.
                       * **datumInschrijvingInGemeente**: bij inschrijving op grond van een verhuisaangifte door de burger is dit de aangiftedatum. Bij inschrijving op grond van een geboorteakte is dit de geboortedatum. Bij ambtshalve inschrijving is dit de datum waarop het voornemen van ambtshalve opneming schriftelijk aan de persoon is medegedeeld.
@@ -287,7 +280,7 @@ components:
             type: boolean
             title: "Indicatie geheim"
             description: |
-                          Een aanduiding die aangeeft dat gegevens wel of niet verstrekt mogen worden. Indien true: op verzoek van deze persoon is het verstrekken van gegevens over deze persoon aan bepaalde derden niet toegestaan.
+                          Gegevens mogen niet worden verstrekt aan derden / maatschappelijke instellingen.
     VerblijfplaatshistorieLinks:
       type: object
       properties:
@@ -319,7 +312,7 @@ components:
       allOf:
       - $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/v1.0.0/specificatie/openapi.yaml#/components/schemas/Partner"
       - description: |
-                      Gegevens over een gesloten huwelijk/geregistreerd partnerschap van de persoon.
+                      Gegevens over (historische) huwelijken en/of geregistreerd partnerschappen van de persoon.
         properties:
           ontbindingHuwelijkPartnerschap:
             $ref: "#/components/schemas/OntbindingHuwelijkPartnerschap"
@@ -329,8 +322,7 @@ components:
         indicatieHuwelijkPartnerschapBeeindigd:
           type: boolean
           description: |
-                        Indicatie of het huwelijk ontbonden is danwel het partnerschap beëindigd is.
-                        * `True` - Huwelijk/Partnerschap is beëindigd.
+                        Geeft aan dat het huwelijk is ontbonden of het partnerschap is beëindigd.
         datum:
           $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.2.0/api-specificatie/common.yaml#/components/schemas/DatumOnvolledig"
         land:
@@ -344,7 +336,7 @@ components:
     OntbindingHuwelijkInOnderzoek:
       type: object
       description: |
-                    Indicators over het in onderzoek zijn van gegevens over de aangaan van het huwelijk van de persoon.
+                    Geeft aan dat de ontbinding van het huwelijk of de beëindiging van het partnerschap in onderzoek is.
 
                     [Zie functionele specificaties](https://github.com/VNG-Realisatie/Bevragingen-ingeschreven-personen/blob/master/features/in_onderzoek.feature)
       properties:
@@ -381,13 +373,13 @@ components:
       allOf:
       - $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/v1.0.0/specificatie/openapi.yaml#/components/schemas/Verblijfstitel"
       - description: |
-                      Gegevens over de verblijfsrechtelijke status van de ingeschrevene.
-                      * **datumEinde**: Datum waarop de geldigheid van de gegevens over de verblijfstitel is beëindigd.
-                      * **datumIngang**: Datum waarop de gegevens over de verblijfstitel geldig zijn geworden.
-                      * **aanduiding** : Verblijfstiteltabel, die aangeeft over welke verblijfsrechtelijke status de ingeschrevene beschikt.
+                      Gegevens over de (historische) verblijfsrechtelijke status van de persoon.
+                      * **datumEinde**: Datum waarop de verblijfstitel niet meer geldig is.
+                      * **datumIngang**: Datum waarop de verblijfstitel ingaat.
+                      * **aanduiding** : Verblijfstiteltabel die aangeeft over welke verblijfsrechtelijke status de persoon beschikt.
         properties:
           geheimhoudingPersoonsgegevens:
             type: boolean
             title: "Indicatie geheim"
             description: |
-                          Een aanduiding die aangeeft dat gegevens wel of niet verstrekt mogen worden. Indien true: op verzoek van deze persoon is het verstrekken van gegevens over deze persoon aan bepaalde derden niet toegestaan.
+                          Gegevens mogen niet worden verstrekt aan derden / maatschappelijke instellingen.
