@@ -13,8 +13,8 @@
     "version" : "0.0.1 (develop)"
   },
   "servers" : [ {
-    "url" : "https://www.haalcentraal.nl/haalcentraal/api/brp",
-    "description" : "APILAB testserver"
+    "url" : "https://www.haalcentraal.nl/haalcentraal/api/brphistorie",
+    "description" : "APILAB testserver historie"
   } ],
   "tags" : [ {
     "name" : "BRP historie bevragen"
