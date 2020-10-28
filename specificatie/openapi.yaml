@@ -1,7 +1,7 @@
 openapi: 3.0.0
 servers:
-  - description: "APILAB testserver"
-    url: https://www.haalcentraal.nl/haalcentraal/api/brp
+  - description: "APILAB testserver historie"
+    url: https://www.haalcentraal.nl/haalcentraal/api/brphistorie
 info:
   title: BRP historie bevragen
   description: |
