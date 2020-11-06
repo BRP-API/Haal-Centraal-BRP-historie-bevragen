@@ -12,8 +12,8 @@ info:
     url: https://eupl.eu/1.2/nl/
   version: 0.0.1 (develop)
 servers:
-- url: https://www.haalcentraal.nl/haalcentraal/api/brp
-  description: APILAB testserver
+- url: https://www.haalcentraal.nl/haalcentraal/api/brphistorie
+  description: APILAB testserver historie
 tags:
 - name: BRP historie bevragen
 paths:
@@ -22,9 +22,9 @@ paths:
       tags:
       - BRP historie bevragen
       description: |
-        Zoek de verblijfplaatshistorie van een persoon op de opgegeven peildatum of binnen de opgegeven periode verbleef.
+        Zoek de verblijfplaatshistorie van een persoon op de opgegeven peildatum of binnen de opgegeven periode.
         Als je geen peildatum of periode opgeeft, krijg je alle verblijfplaatsen terug. Het meest actuele adres staat bovenaan.
-      operationId: Getverblijfplaatshistorie
+      operationId: GetVerblijfplaatshistorie
       parameters:
       - name: burgerservicenummer
         in: path
@@ -242,7 +242,7 @@ paths:
       description: |
         Zoek de partnerhistorie van een persoon op de opgegeven peildatum of binnen de opgegeven periode.
         Als je geen peildatum of periode opgeeft, krijg je alle partners terug waarmee een partnerschap is aangegaan of een huwelijk is gesloten.
-      operationId: Getpartnerhistorie
+      operationId: GetPartnerhistorie
       parameters:
       - name: burgerservicenummer
         in: path
@@ -460,7 +460,7 @@ paths:
       description: |
         Zoek de verblijfstitelhistorie van een persoon op de opgegeven peildatum of binnen de opgegeven periode.
         Als je geen peildatum of periode opgeeft, krijg je alle verblijfstitels van de persoon terug. De meest actuele verblijfstitel staat bovenaan.
-      operationId: getverblijfstitelhistorie
+      operationId: GetVerblijfstitelhistorie
       parameters:
       - name: burgerservicenummer
         in: path
@@ -678,7 +678,7 @@ paths:
       description: |
         Zoek de nationaliteithistorie van een persoon op de opgegeven peildatum of binnen de opgegeven periode.
         Als je geen peildatum of periode opgeeft, krijg je alle nationaliteiten van de persoon terug. De meest actuele nationaliteit staat bovenaan.
-      operationId: getnationaliteithistorie
+      operationId: GetNationaliteithistorie
       parameters:
       - name: burgerservicenummer
         in: path
