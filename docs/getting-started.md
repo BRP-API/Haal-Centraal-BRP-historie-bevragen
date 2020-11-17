@@ -1,3 +1,7 @@
+---
+layout: page-with-side-nav
+title: Getting Started
+---
 # Getting Started
 
 _**Deze Getting started is in concept. Pas als de er een test-implementatie beschikbaar is wordt deze aangepast.**_
