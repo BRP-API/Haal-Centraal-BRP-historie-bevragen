@@ -60,7 +60,7 @@ Onderstaande tabel bevat de burgerservicenummers van testpersonen voor specifiek
 
 burgerservicenummer | situatie
 ---------------- | :-------  
-999993847 | ouders, partner, kinderen, BAG-adres, verblijfplaats in onderzoek
+999993847 | verblijfplaats in onderzoek
 999993483 | uitgebreide verblijfplaatshistorie
 999990482 | niet-BAG adres
 000009921 | locatiebeschrijving
