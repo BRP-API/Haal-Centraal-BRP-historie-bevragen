@@ -19,12 +19,12 @@ API voor het raadplegen van historiesche gegevens over ingeschreven natuurlijke 
 * Vraag een API-key voor toegang tot de Haal Centraal probeeromgeving aan bij de product owner [cathy.dingemanse@denhaag.nl](mailto:cathy.dingemanse@denhaag.nl)
 
 ## Heb je meer nodig? 
-Gebruik de BRP bevragen API in combinatie met (een van de) andere BRP API’s:
+Gebruik de BRP historie bevragen API in combinatie met (een van de) andere BRP API’s:
 
-* [Actuele BRP-gegevens bevragen](https://github.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen){:target="_blank" rel="noopener"}
-* [Reisdocumenten bevragen](https://github.com/VNG-Realisatie/Haal-Centraal-Reisdocumenten-bevragen){:target="_blank" rel="noopener"}
-* [Bewoning en medebewoners bevragen](https://github.com/VNG-Realisatie/Haal-Centraal-BRP-bewoning){:target="_blank" rel="noopener"}
-* [Landelijke tabellen bevragen](https://github.com/VNG-Realisatie/Haal-Centraal-BRP-tabellen-bevragen){:target="_blank" rel="noopener"}
+* [Actuele BRP-gegevens bevragen](https://vng-realisatie.github.io/Haal-Centraal-BRP-bevragen){:target="_blank" rel="noopener"}
+* [Reisdocumenten bevragen](https://vng-realisatie.github.io/Haal-Centraal-Reisdocumenten-bevragen){:target="_blank" rel="noopener"}
+* [Bewoning en medebewoners bevragen](vng-realisatie.github.io/Haal-Centraal-BRP-bewoning){:target="_blank" rel="noopener"}
+* [Landelijke tabellen bevragen](vng-realisatie.github.io/Haal-Centraal-BRP-tabellen-bevragen){:target="_blank" rel="noopener"}
 
 ## Bronnen
 
