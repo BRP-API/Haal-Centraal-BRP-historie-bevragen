@@ -12,7 +12,7 @@ title: Haal-Centraal-BRP-historie-bevragen
 API voor het raadplegen van historiesche gegevens over ingeschreven natuurlijke personen. Met deze API kun je verblijfplaatshistorie, partnerhistorie, verblijfstitelhistorie en nationaliteithistorie opvragen.
 
 ## Direct aan de slag?
-* Bekijk de specificaties met [Swagger UI](https://vng-realisatie.github.io/Haal-Centraal-BRP-historie-bevragen/swagger-ui) of [Redoc](https://vng-realisatie.github.io/Haal-Centraal-BRP-bevragen/redoc)
+* Bekijk de specificaties met [Swagger UI](https://vng-realisatie.github.io/Haal-Centraal-BRP-historie-bevragen/swagger-ui) of [Redoc](https://vng-realisatie.github.io/Haal-Centraal-BRP-historie-bevragen/redoc)
 * Lees de [Getting started](./getting-started)
 * Download de [technische specificaties](https://github.com/VNG-Realisatie/Haal-Centraal-BRP-historie-bevragen/blob/master/specificatie/genereervariant/openapi.yaml){:target="_blank" rel="noopener"}
 * Download [client code](https://github.com/VNG-Realisatie/Haal-Centraal-BRP-historie-bevragen/tree/master/code){:target="_blank" rel="noopener"}
