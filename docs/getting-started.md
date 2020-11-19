@@ -22,7 +22,7 @@ bekend is in de registratie.
 
 Je kunt een visuele weergave van de specificatie inzien met [Swagger UI](https://vng-realisatie.github.io/Haal-Centraal-BRP-historie-bevragen/swagger-ui) of [Redoc](https://vng-realisatie.github.io/Haal-Centraal-BRP-historie-bevragen/redoc).
 
-De [functionele documentatie](https://vng-realisatie.github.io/Haal-Centraal-BRP-historie-bevragen/features) is beschreven in [features](https://vng-realisatie.github.io/Haal-Centraal-BRP-historie-bevragen/features).
+Je kunt de [functionele documentatie](./features) vinden in de [features](./features).
 
 ## Implementeer de API
 
