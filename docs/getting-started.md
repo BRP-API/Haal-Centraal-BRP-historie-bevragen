@@ -20,9 +20,9 @@ over de opgegeven periode.
 3. Zonder peildatum of periode. Je krijgt dan de gehele historie zoals die
 bekend is in de registratie.
 
-Je kunt een visuele representatie van de specificatie genereren met [Swagger UI](https://vng-realisatie.github.io/Haal-Centraal-BRP-historie-bevragen/swagger-ui) of [Redoc](https://vng-realisatie.github.io/Haal-Centraal-BRP-historie-bevragen/redoc).
+Je kunt een visuele weergave van de specificatie inzien met [Swagger UI](https://vng-realisatie.github.io/Haal-Centraal-BRP-historie-bevragen/swagger-ui) of [Redoc](https://vng-realisatie.github.io/Haal-Centraal-BRP-historie-bevragen/redoc).
 
-De [functionele documentatie](https://vng-realisatie.github.io/Haal-Centraal-BRP-historie-bevragen/features) van de 'Bevraging Ingeschreven Persoon' Web API kun je vinden in de github repository.
+De [functionele documentatie](https://vng-realisatie.github.io/Haal-Centraal-BRP-historie-bevragen/features) is beschreven in [features](https://vng-realisatie.github.io/Haal-Centraal-BRP-historie-bevragen/features).
 
 ## Implementeer de API
 
@@ -35,7 +35,7 @@ Wil je de 'BRP-historie bevragen' Web API proberen en testen? Kijk op: `https://
 
 Om de web api te gebruiken heb je een apikey nodig. Deze voeg je aan een request toe als header "X-API-KEY". Een API-key vraag je aan bij de product owner [cathy.dingemanse@denhaag.nl](mailto:cathy.dingemanse@denhaag.nl).
 
-__De Haal Centraal probeeromgeving gebruikt GBA-V op basis van de gemeentelijke autorisatie "Algemene gemeentetaken" voor buitengemeentelijke personen. Dit betekent dat de GBA-V niet alle gegevens teruggeeft die in de response zijn gedefinieerd. In de [API mapping](https://github.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/blob/master/docs/BRP-LO%20GBA%20mapping.xlsx?raw=true){:target="_blank" rel="noopener"} kun je zien welke gegevens wel of niet onder deze autorisatie vallen.__
+__De Haal Centraal probeeromgeving gebruikt GBA-V op basis van de gemeentelijke autorisatie "Algemene gemeentetaken" voor buitengemeentelijke personen. Dit betekent dat de GBA-V niet alle gegevens teruggeeft die in de response zijn gedefinieerd. Het endpoint nationaliteithistorie werkt niet in de probeeromgeving, omdat de GBA-V autorisatie daarvoor niet voldoende gegevens bevat. In de [API mapping](https://github.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/blob/master/docs/BRP-LO%20GBA%20mapping.xlsx?raw=true){:target="_blank" rel="noopener"} kun je zien welke gegevens wel of niet onder deze autorisatie vallen.__
 
 __Je kan de Haal Centraal probeeromgeving niet gebruiken vanuit de browser, dus ook niet vanuit de browserversie van Postman. Gebruik dus de desktopversie van een testtool (zoals Postman) om berichten te sturen.__
 
