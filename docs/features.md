@@ -3,7 +3,7 @@ layout: page-with-side-nav
 title: Features
 ---
 # Features
-De functionaliteit van de API is gespecificeerd en geillustreerd door middel van gerichte voorbeelden.
+Deze voorbeelden illustreren en specificeren zoveel mogelijk de functionaliteit van de API:
 
 - [nationaliteithistorie](https://github.com/VNG-Realisatie/Haal-Centraal-BRP-historie-bevragen/blob/master/features/nationaliteithistorie.feature){:target="_blank" rel="noopener"}
 - [partnerhistorie](https://github.com/VNG-Realisatie/Haal-Centraal-BRP-historie-bevragen/blob/master/features/partnerhistorie.feature){:target="_blank" rel="noopener"}
@@ -11,7 +11,7 @@ De functionaliteit van de API is gespecificeerd en geillustreerd door middel van
 - [verblijfstitelhistorie](https://github.com/VNG-Realisatie/Haal-Centraal-BRP-historie-bevragen/blob/master/features/verblijfstitelhistorie.feature){:target="_blank" rel="noopener"}
 
 ## Algemene Haal Centraal features
-Naast de features die specifiek zijn voor BRP historie bevragen, zijn voor de API ook enkele features relevant die zijn opgenomen in Haal Centraal common, omdat deze gelden voor alle Haal Centraal API's:
+Naast API specifieke features zijn er ook features voor alle Haal Centraal API's. Zij staan in Haal Centraal common:
 - [fields](https://github.com/VNG-Realisatie/Haal-Centraal-common/blob/master/features/fields.feature){:target="_blank" rel="noopener"}
 - [foutafhandeling](https://github.com/VNG-Realisatie/Haal-Centraal-common/blob/master/features/foutafhandeling.feature){:target="_blank" rel="noopener"}
 - [uri-templating](https://github.com/VNG-Realisatie/Haal-Centraal-common/blob/master/features/uri-templating.feature){:target="_blank" rel="noopener"}
