@@ -13,14 +13,12 @@ Wil je de API gebruiken? Dit kun je doen:
 3. Probeer en test de API
 
 ## Functionaliteit en specificaties
-De historie kan op drie manieren worden gebruikt:
+Je kunt historie op drie manieren opzoeken:
 1. Met een peildatum. Je krijgt dan de situatie op de opgegeven datum.
-2. Met een periode (datumVan en datumTotEnMet). Je krijgt dan de historie
-over de opgegeven periode.
-3. Zonder peildatum of periode. Je krijgt dan de gehele historie zoals die
-bekend is in de registratie.
+2. Met een periode (datumVan en datumTotEnMet). Je krijgt dan de historie binnen de opgegeven periode.
+3. Zonder peildatum of periode. Je krijgt dan alle historie die de registratie heeft.
 
-Je kunt een visuele weergave van de specificatie inzien met [Swagger UI](https://vng-realisatie.github.io/Haal-Centraal-BRP-historie-bevragen/swagger-ui) of [Redoc](https://vng-realisatie.github.io/Haal-Centraal-BRP-historie-bevragen/redoc).
+Je kunt een visuele weergave van de specificatie bekijken met [Swagger UI](https://vng-realisatie.github.io/Haal-Centraal-BRP-historie-bevragen/swagger-ui) of [Redoc](https://vng-realisatie.github.io/Haal-Centraal-BRP-historie-bevragen/redoc).
 
 Je kunt de [functionele documentatie](./features) vinden in de [features](./features).
 
@@ -56,7 +54,7 @@ De werking van de API is het makkelijkst te testen met behulp van [Postman](http
 
 ### Testpersonen
 
-Onderstaande tabel bevat de burgerservicenummers van testpersonen voor specifieke situaties waarmee de 'BRP historie bevragen' Web API kan worden getest.
+Deze tabel bevat de burgerservicenummers van testpersonen voor specifieke situaties waarmee de 'BRP historie bevragen' Web API kan worden getest.
 
 burgerservicenummer | situatie
 ---------------- | :-------  
