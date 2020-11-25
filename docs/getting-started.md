@@ -8,21 +8,19 @@ De 'BRP-historie bevragen' Web API is gespecificeerd in OpenAPI specifications (
 
 Wil je de API gebruiken? Dit kun je doen:
 
-1. Bekijk de [functionaliteit en specificaties](#Functionaliteit-en-specificaties)
-2. [Implementeer](#Implementeer-de-API) de API
-3. [Probeer en test](#Probeer-en-test) de API
+1. Bekijk de functionaliteit en specificaties
+2. Implementeer de API
+3. Probeer en test de API
 
 ## Functionaliteit en specificaties
-De historie kan op drie manieren worden gebruikt:
+Je kunt historie op drie manieren opzoeken:
 1. Met een peildatum. Je krijgt dan de situatie op de opgegeven datum.
-2. Met een periode (datumVan en datumTotEnMet). Je krijgt dan de historie
-over de opgegeven periode.
-3. Zonder peildatum of periode. Je krijgt dan de gehele historie zoals die
-bekend is in de registratie.
+2. Met een periode (datumVan en datumTotEnMet). Je krijgt dan de historie binnen de opgegeven periode.
+3. Zonder peildatum of periode. Je krijgt dan alle historie die de registratie heeft.
 
-Je kunt een visuele representatie van de specificatie genereren met [Swagger UI](https://vng-realisatie.github.io/Haal-Centraal-BRP-historie-bevragen/swagger-ui) of [Redoc](https://vng-realisatie.github.io/Haal-Centraal-BRP-historie-bevragen/redoc).
+Je kunt een visuele weergave van de specificatie bekijken met [Swagger UI](https://vng-realisatie.github.io/Haal-Centraal-BRP-historie-bevragen/swagger-ui) of [Redoc](https://vng-realisatie.github.io/Haal-Centraal-BRP-historie-bevragen/redoc).
 
-De [functionele documentatie](https://vng-realisatie.github.io/Haal-Centraal-BRP-historie-bevragen/features) van de 'Bevraging Ingeschreven Persoon' Web API kun je vinden in de github repository.
+Je kunt de [functionele documentatie](./features) vinden in de [features](./features).
 
 ## Implementeer de API
 
@@ -35,13 +33,13 @@ Wil je de 'BRP-historie bevragen' Web API proberen en testen? Kijk op: `https://
 
 Om de web api te gebruiken heb je een apikey nodig. Deze voeg je aan een request toe als header "X-API-KEY". Een API-key vraag je aan bij de product owner [cathy.dingemanse@denhaag.nl](mailto:cathy.dingemanse@denhaag.nl).
 
-__De Haal Centraal probeeromgeving gebruikt GBA-V op basis van de gemeentelijke autorisatie "Algemene gemeentetaken" voor buitengemeentelijke personen. Dit betekent dat de GBA-V niet alle gegevens teruggeeft die in de response zijn gedefinieerd. In de [API mapping](https://github.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/blob/master/docs/BRP-LO%20GBA%20mapping.xlsx?raw=true){:target="_blank" rel="noopener"} kun je zien welke gegevens wel of niet onder deze autorisatie vallen.__
+__De Haal Centraal probeeromgeving gebruikt GBA-V op basis van de gemeentelijke autorisatie "Algemene gemeentetaken" voor buitengemeentelijke personen. Dit betekent dat de GBA-V niet alle gegevens teruggeeft die in de response zijn gedefinieerd. Het endpoint nationaliteithistorie werkt niet in de probeeromgeving, omdat de GBA-V autorisatie daarvoor niet voldoende gegevens bevat. In de [API mapping](https://github.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/blob/master/docs/BRP-LO%20GBA%20mapping.xlsx?raw=true){:target="_blank" rel="noopener"} kun je zien welke gegevens wel of niet onder deze autorisatie vallen.__
 
 __Je kan de Haal Centraal probeeromgeving niet gebruiken vanuit de browser, dus ook niet vanuit de browserversie van Postman. Gebruik dus de desktopversie van een testtool (zoals Postman) om berichten te sturen.__
 
 ### Importeer de specificaties in Postman
 
-De werking van de 'Bevraging Ingeschreven Persoon' Web API is het makkelijkst te testen met behulp van [Postman](https://www.getpostman.com/){:target="_blank" rel="noopener"}. We hebben al een [Postman collection](https://github.com/VNG-Realisatie/Haal-Centraal-BRP-historie-bevragen/blob/master/test/BRP-Historie-Bevragen-postman-collection.json){:target="_blank" rel="noopener"} voor je klaargezet. Deze kun je importeren in Postman. 
+De werking van de API is het makkelijkst te testen met behulp van [Postman](https://www.getpostman.com/){:target="_blank" rel="noopener"}. We hebben al een [Postman collection](https://github.com/VNG-Realisatie/Haal-Centraal-BRP-historie-bevragen/blob/master/test/BRP-Historie-Bevragen-postman-collection.json){:target="_blank" rel="noopener"} voor je klaargezet. Deze kun je importeren in Postman. 
 
 ### Configureer de url en api key
 
@@ -56,11 +54,11 @@ De werking van de 'Bevraging Ingeschreven Persoon' Web API is het makkelijkst te
 
 ### Testpersonen
 
-Onderstaande tabel bevat de burgerservicenummers van testpersonen voor specifieke situaties waarmee de 'Bevraging Ingeschreven Persoon' Web API kan worden getest.
+Deze tabel bevat de burgerservicenummers van testpersonen voor specifieke situaties waarmee de 'BRP historie bevragen' Web API kan worden getest.
 
 burgerservicenummer | situatie
 ---------------- | :-------  
-999993847 | ouders, partner, kinderen, BAG-adres, verblijfplaats in onderzoek
+999993847 | verblijfplaats in onderzoek
 999993483 | uitgebreide verblijfplaatshistorie
 999990482 | niet-BAG adres
 000009921 | locatiebeschrijving
