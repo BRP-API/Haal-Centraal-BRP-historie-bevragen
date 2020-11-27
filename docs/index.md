@@ -33,6 +33,14 @@ Gebruik de BRP historie bevragen API in combinatie met (een van de) andere BRP A
 * [REST API Design Rules](https://docs.geostandaarden.nl/api/API-Designrules/){:target="_blank" rel="noopener"}
 * [Landelijke API strategie voor de overheid](https://geonovum.github.io/KP-APIs/){:target="_blank" rel="noopener"}
 
+## Contact
+
+* Product Owner: Cathy Dingemanse, [cathy.dingemanse@denhaag.nl](mailto:cathy.dingemanse@denhaag.nl)
+* Designer: Johan Boer, [johan.boer@vng.nl](mailto:johan.boer@vng.nl)
+* Designer: Robert Melskens, [robert.melskens@vng.nl](mailto:robert.melskens@vng.nl)
+* Customer zero: Melvin Lee, [melvin.lee@iswish.nl](mailto:melvin.lee@iswish.nl)
+* Tester: Frank Samwel, [frank.samwel@denhaag.nl](mailto:frank.samwel@denhaag.nl)
+
 ## Licentie
 
 Copyright &copy; VNG Realisatie 2018
