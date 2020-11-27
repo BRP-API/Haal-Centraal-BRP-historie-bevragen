@@ -43,5 +43,5 @@ Gebruik de BRP historie bevragen API in combinatie met (een van de) andere BRP A
 
 ## Licentie
 
-Copyright &copy; VNG Realisatie 2018
+Copyright&copy; VNG Realisatie 2020
 Licensed under the [EUPL](https://github.com/VNG-Realisatie/Haal-Centraal-BRP-historie-bevragen/blob/master/LICENCE.md){:target="_blank" rel="noopener"}
