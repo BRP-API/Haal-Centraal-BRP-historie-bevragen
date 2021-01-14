@@ -13,7 +13,7 @@ For more information, please visit [https://github.com/VNG-Realisatie/Haal-Centr
 
 ## Requirements.
 
-Python 2.7 and 3.4+
+Python >= 3.6
 
 ## Installation & Usage
 ### pip install
@@ -49,17 +49,21 @@ import openapi_client
 Please follow the [installation procedure](#installation--usage) and then run the following:
 
 ```python
-from __future__ import print_function
 
 import time
 import openapi_client
-from openapi_client.rest import ApiException
 from pprint import pprint
-
-# Defining the host is optional and defaults to https://www.haalcentraal.nl/haalcentraal/api/brp
+from openapi_client.api import brp_historie_bevragen_api
+from openapi_client.model.bad_request_foutbericht import BadRequestFoutbericht
+from openapi_client.model.foutbericht import Foutbericht
+from openapi_client.model.nationaliteithistorie_hal_collectie import NationaliteithistorieHalCollectie
+from openapi_client.model.partnerhistorie_hal_collectie import PartnerhistorieHalCollectie
+from openapi_client.model.verblijfplaatshistorie_hal_collectie import VerblijfplaatshistorieHalCollectie
+from openapi_client.model.verblijfstitelhistorie_hal_collectie import VerblijfstitelhistorieHalCollectie
+# Defining the host is optional and defaults to https://www.haalcentraal.nl/haalcentraal/api/brphistorie
 # See configuration.py for a list of all supported configuration parameters.
 configuration = openapi_client.Configuration(
-    host = "https://www.haalcentraal.nl/haalcentraal/api/brp"
+    host = "https://www.haalcentraal.nl/haalcentraal/api/brphistorie"
 )
 
 
@@ -67,24 +71,23 @@ configuration = openapi_client.Configuration(
 # Enter a context with an instance of the API client
 with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.BRPHistorieBevragenApi(api_client)
-    burgerservicenummer = '555555021' # str | Uniek persoonsnummer 
-fields = 'fields_example' # str | Hiermee kun je de inhoud van de resource naar behoefte aanpassen door een door komma's gescheiden lijst van property namen op te geven. Bij opgave van niet-bestaande properties wordt een 400 Bad Request teruggegeven. Wanneer de fields parameter niet is opgegeven, worden alle properties met een waarde teruggegeven. Zie [functionele specificaties](https://github.com/VNG-Realisatie/Haal-Centraal-common/blob/v1.2.0/features/fields.feature) (optional)
-peildatum = 'Sun Sep 09 00:00:00 UTC 2018' # date | De datum waarop de resource wordt opgevraagd. (optional)
-datum_van = 'Sun Sep 09 00:00:00 UTC 2018' # date | De begindatum van de periode waarover de resource wordt opgevraagd. (optional)
-datum_tot_en_met = 'Tue Oct 09 00:00:00 UTC 2018' # date | De einddatum van de periode waarover de resource wordt opgevraagd. (optional)
+    api_instance = brp_historie_bevragen_api.BRPHistorieBevragenApi(api_client)
+    burgerservicenummer = "555555021" # str | Uniek persoonsnummer 
+fields = "fields_example" # str | Hiermee kun je de inhoud van de resource naar behoefte aanpassen door een door komma's gescheiden lijst van property namen op te geven. Bij opgave van niet-bestaande properties wordt een 400 Bad Request teruggegeven. Wanneer de fields parameter niet is opgegeven, worden alle properties met een waarde teruggegeven. Zie [functionele specificaties](https://github.com/VNG-Realisatie/Haal-Centraal-common/blob/v1.2.0/features/fields.feature) (optional)
+peildatum = dateutil_parser('Sun Sep 09 00:00:00 UTC 2018').date() # date | De datum waarop de resource wordt opgevraagd. (optional)
+datum_van = dateutil_parser('Sun Sep 09 00:00:00 UTC 2018').date() # date | De begindatum van de periode waarover de resource wordt opgevraagd. (optional)
+datum_tot_en_met = dateutil_parser('Tue Oct 09 00:00:00 UTC 2018').date() # date | De einddatum van de periode waarover de resource wordt opgevraagd. (optional)
 
     try:
         api_response = api_instance.getnationaliteithistorie(burgerservicenummer, fields=fields, peildatum=peildatum, datum_van=datum_van, datum_tot_en_met=datum_tot_en_met)
         pprint(api_response)
-    except ApiException as e:
+    except openapi_client.ApiException as e:
         print("Exception when calling BRPHistorieBevragenApi->getnationaliteithistorie: %s\n" % e)
-    
 ```
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *https://www.haalcentraal.nl/haalcentraal/api/brp*
+All URIs are relative to *https://www.haalcentraal.nl/haalcentraal/api/brphistorie*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
@@ -161,4 +164,23 @@ Class | Method | HTTP request | Description
 
 
 
+
+## Notes for Large OpenAPI documents
+If the OpenAPI document is large, imports in openapi_client.apis and openapi_client.models may fail with a
+RecursionError indicating the maximum recursion limit has been exceeded. In that case, there are a couple of solutions:
+
+Solution 1:
+Use specific imports for apis and models like:
+- `from openapi_client.api.default_api import DefaultApi`
+- `from openapi_client.model.pet import Pet`
+
+Solution 1:
+Before importing the package, adjust the maximum recursion limit as shown below:
+```
+import sys
+sys.setrecursionlimit(1500)
+import openapi_client
+from openapi_client.apis import *
+from openapi_client.models import *
+```
 

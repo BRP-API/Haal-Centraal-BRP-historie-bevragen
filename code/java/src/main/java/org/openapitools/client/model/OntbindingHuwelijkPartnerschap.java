@@ -30,7 +30,7 @@ import org.openapitools.client.model.Waardetabel;
 /**
  * OntbindingHuwelijkPartnerschap
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-26T14:29:30.495Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-01-14T15:42:47.439Z[Etc/UTC]")
 public class OntbindingHuwelijkPartnerschap {
   public static final String SERIALIZED_NAME_INDICATIE_HUWELIJK_PARTNERSCHAP_BEEINDIGD = "indicatieHuwelijkPartnerschapBeeindigd";
   @SerializedName(SERIALIZED_NAME_INDICATIE_HUWELIJK_PARTNERSCHAP_BEEINDIGD)
@@ -196,7 +196,7 @@ public class OntbindingHuwelijkPartnerschap {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -236,7 +236,7 @@ public class OntbindingHuwelijkPartnerschap {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

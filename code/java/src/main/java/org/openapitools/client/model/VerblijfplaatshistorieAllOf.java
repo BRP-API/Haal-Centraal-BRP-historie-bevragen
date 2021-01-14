@@ -29,7 +29,7 @@ import org.openapitools.client.model.DatumOnvolledig;
  * Gegevens over de (historische) verblijfplaatsen of de woonlocaties van de persoon. * **datumAanvangAdreshuishouding** : de datum van aangifte of ambtshalve melding van verblijf en adres. * **datumIngangGeldigheid** : datum waarop de gegevens over de verblijfplaats geldig zijn geworden. * **datumInschrijvingInGemeente**: bij inschrijving op grond van een verhuisaangifte door de burger is dit de aangiftedatum. Bij inschrijving op grond van een geboorteakte is dit de geboortedatum. Bij ambtshalve inschrijving is dit de datum waarop het voornemen van ambtshalve opneming schriftelijk aan de persoon is medegedeeld. * **datumVestigingInNederland** : datum van inschrijving in Nederland. * **landVanWaarIngeschreven** : het land waar de persoon woonde voor (her)vestiging in Nederland. * **gemeenteVanInschrijving** : de gemeente waar de persoon verblijft en is ingeschreven. De code kan voorloopnullen bevatten.\&quot; * **datumTot** : de datum tot wanneer iemand op deze verblijfplaats of woonlocatie was ingeschreven 
  */
 @ApiModel(description = "Gegevens over de (historische) verblijfplaatsen of de woonlocaties van de persoon. * **datumAanvangAdreshuishouding** : de datum van aangifte of ambtshalve melding van verblijf en adres. * **datumIngangGeldigheid** : datum waarop de gegevens over de verblijfplaats geldig zijn geworden. * **datumInschrijvingInGemeente**: bij inschrijving op grond van een verhuisaangifte door de burger is dit de aangiftedatum. Bij inschrijving op grond van een geboorteakte is dit de geboortedatum. Bij ambtshalve inschrijving is dit de datum waarop het voornemen van ambtshalve opneming schriftelijk aan de persoon is medegedeeld. * **datumVestigingInNederland** : datum van inschrijving in Nederland. * **landVanWaarIngeschreven** : het land waar de persoon woonde voor (her)vestiging in Nederland. * **gemeenteVanInschrijving** : de gemeente waar de persoon verblijft en is ingeschreven. De code kan voorloopnullen bevatten.\" * **datumTot** : de datum tot wanneer iemand op deze verblijfplaats of woonlocatie was ingeschreven ")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-10-26T14:29:30.495Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-01-14T15:42:47.439Z[Etc/UTC]")
 public class VerblijfplaatshistorieAllOf {
   public static final String SERIALIZED_NAME_DATUM_TOT = "datumTot";
   @SerializedName(SERIALIZED_NAME_DATUM_TOT)
@@ -87,7 +87,7 @@ public class VerblijfplaatshistorieAllOf {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -119,7 +119,7 @@ public class VerblijfplaatshistorieAllOf {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

@@ -1,5 +1,3 @@
-# coding: utf-8
-
 """
     BRP historie bevragen
 
@@ -10,18 +8,25 @@
 """
 
 
-from __future__ import absolute_import
-
 import re  # noqa: F401
+import sys  # noqa: F401
 
-# python 2 and python 3 compatibility library
-import six
-
-from openapi_client.api_client import ApiClient
-from openapi_client.exceptions import (  # noqa: F401
-    ApiTypeError,
-    ApiValueError
+from openapi_client.api_client import ApiClient, Endpoint
+from openapi_client.model_utils import (  # noqa: F401
+    check_allowed_values,
+    check_validations,
+    date,
+    datetime,
+    file_type,
+    none_type,
+    validate_and_convert_types
 )
+from openapi_client.model.bad_request_foutbericht import BadRequestFoutbericht
+from openapi_client.model.foutbericht import Foutbericht
+from openapi_client.model.nationaliteithistorie_hal_collectie import NationaliteithistorieHalCollectie
+from openapi_client.model.partnerhistorie_hal_collectie import PartnerhistorieHalCollectie
+from openapi_client.model.verblijfplaatshistorie_hal_collectie import VerblijfplaatshistorieHalCollectie
+from openapi_client.model.verblijfstitelhistorie_hal_collectie import VerblijfstitelhistorieHalCollectie
 
 
 class BRPHistorieBevragenApi(object):
@@ -36,570 +41,602 @@ class BRPHistorieBevragenApi(object):
             api_client = ApiClient()
         self.api_client = api_client
 
-    def getnationaliteithistorie(self, burgerservicenummer, **kwargs):  # noqa: E501
-        """getnationaliteithistorie  # noqa: E501
+        def __getnationaliteithistorie(
+            self,
+            burgerservicenummer,
+            **kwargs
+        ):
+            """getnationaliteithistorie  # noqa: E501
 
-        Zoek de nationaliteithistorie van een persoon op de opgegeven peildatum of binnen de opgegeven periode. Als je geen peildatum of periode opgeeft, krijg je alle nationaliteiten van de persoon terug. De meest actuele nationaliteit staat bovenaan.   # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.getnationaliteithistorie(burgerservicenummer, async_req=True)
-        >>> result = thread.get()
+            Zoek de nationaliteithistorie van een persoon op de opgegeven peildatum of binnen de opgegeven periode. Als je geen peildatum of periode opgeeft, krijg je alle nationaliteiten van de persoon terug. De meest actuele nationaliteit staat bovenaan.   # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
 
-        :param async_req bool: execute request asynchronously
-        :param str burgerservicenummer: Uniek persoonsnummer  (required)
-        :param str fields: Hiermee kun je de inhoud van de resource naar behoefte aanpassen door een door komma's gescheiden lijst van property namen op te geven. Bij opgave van niet-bestaande properties wordt een 400 Bad Request teruggegeven. Wanneer de fields parameter niet is opgegeven, worden alle properties met een waarde teruggegeven. Zie [functionele specificaties](https://github.com/VNG-Realisatie/Haal-Centraal-common/blob/v1.2.0/features/fields.feature)
-        :param date peildatum: De datum waarop de resource wordt opgevraagd.
-        :param date datum_van: De begindatum van de periode waarover de resource wordt opgevraagd.
-        :param date datum_tot_en_met: De einddatum van de periode waarover de resource wordt opgevraagd.
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :return: NationaliteithistorieHalCollectie
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-        kwargs['_return_http_data_only'] = True
-        return self.getnationaliteithistorie_with_http_info(burgerservicenummer, **kwargs)  # noqa: E501
+            >>> thread = api.getnationaliteithistorie(burgerservicenummer, async_req=True)
+            >>> result = thread.get()
 
-    def getnationaliteithistorie_with_http_info(self, burgerservicenummer, **kwargs):  # noqa: E501
-        """getnationaliteithistorie  # noqa: E501
+            Args:
+                burgerservicenummer (str): Uniek persoonsnummer 
 
-        Zoek de nationaliteithistorie van een persoon op de opgegeven peildatum of binnen de opgegeven periode. Als je geen peildatum of periode opgeeft, krijg je alle nationaliteiten van de persoon terug. De meest actuele nationaliteit staat bovenaan.   # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.getnationaliteithistorie_with_http_info(burgerservicenummer, async_req=True)
-        >>> result = thread.get()
+            Keyword Args:
+                fields (str): Hiermee kun je de inhoud van de resource naar behoefte aanpassen door een door komma's gescheiden lijst van property namen op te geven. Bij opgave van niet-bestaande properties wordt een 400 Bad Request teruggegeven. Wanneer de fields parameter niet is opgegeven, worden alle properties met een waarde teruggegeven. Zie [functionele specificaties](https://github.com/VNG-Realisatie/Haal-Centraal-common/blob/v1.2.0/features/fields.feature). [optional]
+                peildatum (date): De datum waarop de resource wordt opgevraagd.. [optional]
+                datum_van (date): De begindatum van de periode waarover de resource wordt opgevraagd.. [optional]
+                datum_tot_en_met (date): De einddatum van de periode waarover de resource wordt opgevraagd.. [optional]
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
 
-        :param async_req bool: execute request asynchronously
-        :param str burgerservicenummer: Uniek persoonsnummer  (required)
-        :param str fields: Hiermee kun je de inhoud van de resource naar behoefte aanpassen door een door komma's gescheiden lijst van property namen op te geven. Bij opgave van niet-bestaande properties wordt een 400 Bad Request teruggegeven. Wanneer de fields parameter niet is opgegeven, worden alle properties met een waarde teruggegeven. Zie [functionele specificaties](https://github.com/VNG-Realisatie/Haal-Centraal-common/blob/v1.2.0/features/fields.feature)
-        :param date peildatum: De datum waarop de resource wordt opgevraagd.
-        :param date datum_van: De begindatum van de periode waarover de resource wordt opgevraagd.
-        :param date datum_tot_en_met: De einddatum van de periode waarover de resource wordt opgevraagd.
-        :param _return_http_data_only: response data without head status code
-                                       and headers
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :return: tuple(NationaliteithistorieHalCollectie, status_code(int), headers(HTTPHeaderDict))
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
+            Returns:
+                NationaliteithistorieHalCollectie
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['burgerservicenummer'] = \
+                burgerservicenummer
+            return self.call_with_http_info(**kwargs)
 
-        local_var_params = locals()
-
-        all_params = [
-            'burgerservicenummer',
-            'fields',
-            'peildatum',
-            'datum_van',
-            'datum_tot_en_met'
-        ]
-        all_params.extend(
-            [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout'
-            ]
+        self.getnationaliteithistorie = Endpoint(
+            settings={
+                'response_type': (NationaliteithistorieHalCollectie,),
+                'auth': [],
+                'endpoint_path': '/ingeschrevenpersonen/{burgerservicenummer}/nationaliteithistorie',
+                'operation_id': 'getnationaliteithistorie',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'burgerservicenummer',
+                    'fields',
+                    'peildatum',
+                    'datum_van',
+                    'datum_tot_en_met',
+                ],
+                'required': [
+                    'burgerservicenummer',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                    'burgerservicenummer',
+                ]
+            },
+            root_map={
+                'validations': {
+                    ('burgerservicenummer',): {
+                        'max_length': 9,
+                        'min_length': 9,
+                        'regex': {
+                            'pattern': r'^[0-9]*$',  # noqa: E501
+                        },
+                    },
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'burgerservicenummer':
+                        (str,),
+                    'fields':
+                        (str,),
+                    'peildatum':
+                        (date,),
+                    'datum_van':
+                        (date,),
+                    'datum_tot_en_met':
+                        (date,),
+                },
+                'attribute_map': {
+                    'burgerservicenummer': 'burgerservicenummer',
+                    'fields': 'fields',
+                    'peildatum': 'peildatum',
+                    'datum_van': 'datumVan',
+                    'datum_tot_en_met': 'datumTotEnMet',
+                },
+                'location_map': {
+                    'burgerservicenummer': 'path',
+                    'fields': 'query',
+                    'peildatum': 'query',
+                    'datum_van': 'query',
+                    'datum_tot_en_met': 'query',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/hal+json',
+                    'application/problem+json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__getnationaliteithistorie
         )
 
-        for key, val in six.iteritems(local_var_params['kwargs']):
-            if key not in all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method getnationaliteithistorie" % key
-                )
-            local_var_params[key] = val
-        del local_var_params['kwargs']
-        # verify the required parameter 'burgerservicenummer' is set
-        if self.api_client.client_side_validation and ('burgerservicenummer' not in local_var_params or  # noqa: E501
-                                                        local_var_params['burgerservicenummer'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `burgerservicenummer` when calling `getnationaliteithistorie`")  # noqa: E501
+        def __getpartnerhistorie(
+            self,
+            burgerservicenummer,
+            **kwargs
+        ):
+            """getpartnerhistorie  # noqa: E501
 
-        if self.api_client.client_side_validation and ('burgerservicenummer' in local_var_params and  # noqa: E501
-                                                        len(local_var_params['burgerservicenummer']) > 9):  # noqa: E501
-            raise ApiValueError("Invalid value for parameter `burgerservicenummer` when calling `getnationaliteithistorie`, length must be less than or equal to `9`")  # noqa: E501
-        if self.api_client.client_side_validation and ('burgerservicenummer' in local_var_params and  # noqa: E501
-                                                        len(local_var_params['burgerservicenummer']) < 9):  # noqa: E501
-            raise ApiValueError("Invalid value for parameter `burgerservicenummer` when calling `getnationaliteithistorie`, length must be greater than or equal to `9`")  # noqa: E501
-        if self.api_client.client_side_validation and 'burgerservicenummer' in local_var_params and not re.search(r'^[0-9]*$', local_var_params['burgerservicenummer']):  # noqa: E501
-            raise ApiValueError("Invalid value for parameter `burgerservicenummer` when calling `getnationaliteithistorie`, must conform to the pattern `/^[0-9]*$/`")  # noqa: E501
-        collection_formats = {}
+            Zoek de partnerhistorie van een persoon op de opgegeven peildatum of binnen de opgegeven periode. Als je geen peildatum of periode opgeeft, krijg je alle partners terug waarmee een partnerschap is aangegaan of een huwelijk is gesloten.   # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
 
-        path_params = {}
-        if 'burgerservicenummer' in local_var_params:
-            path_params['burgerservicenummer'] = local_var_params['burgerservicenummer']  # noqa: E501
+            >>> thread = api.getpartnerhistorie(burgerservicenummer, async_req=True)
+            >>> result = thread.get()
 
-        query_params = []
-        if 'fields' in local_var_params and local_var_params['fields'] is not None:  # noqa: E501
-            query_params.append(('fields', local_var_params['fields']))  # noqa: E501
-        if 'peildatum' in local_var_params and local_var_params['peildatum'] is not None:  # noqa: E501
-            query_params.append(('peildatum', local_var_params['peildatum']))  # noqa: E501
-        if 'datum_van' in local_var_params and local_var_params['datum_van'] is not None:  # noqa: E501
-            query_params.append(('datumVan', local_var_params['datum_van']))  # noqa: E501
-        if 'datum_tot_en_met' in local_var_params and local_var_params['datum_tot_en_met'] is not None:  # noqa: E501
-            query_params.append(('datumTotEnMet', local_var_params['datum_tot_en_met']))  # noqa: E501
+            Args:
+                burgerservicenummer (str): Uniek persoonsnummer 
 
-        header_params = {}
+            Keyword Args:
+                fields (str): Hiermee kun je de inhoud van de resource naar behoefte aanpassen door een door komma's gescheiden lijst van property namen op te geven. Bij opgave van niet-bestaande properties wordt een 400 Bad Request teruggegeven. Wanneer de fields parameter niet is opgegeven, worden alle properties met een waarde teruggegeven. Zie [functionele specificaties](https://github.com/VNG-Realisatie/Haal-Centraal-common/blob/v1.2.0/features/fields.feature). [optional]
+                peildatum (date): De datum waarop de resource wordt opgevraagd.. [optional]
+                datum_van (date): De begindatum van de periode waarover de resource wordt opgevraagd.. [optional]
+                datum_tot_en_met (date): De einddatum van de periode waarover de resource wordt opgevraagd.. [optional]
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
 
-        form_params = []
-        local_var_files = {}
+            Returns:
+                PartnerhistorieHalCollectie
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['burgerservicenummer'] = \
+                burgerservicenummer
+            return self.call_with_http_info(**kwargs)
 
-        body_params = None
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/hal+json', 'application/problem+json'])  # noqa: E501
-
-        # Authentication setting
-        auth_settings = []  # noqa: E501
-
-        return self.api_client.call_api(
-            '/ingeschrevenpersonen/{burgerservicenummer}/nationaliteithistorie', 'GET',
-            path_params,
-            query_params,
-            header_params,
-            body=body_params,
-            post_params=form_params,
-            files=local_var_files,
-            response_type='NationaliteithistorieHalCollectie',  # noqa: E501
-            auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
-
-    def getpartnerhistorie(self, burgerservicenummer, **kwargs):  # noqa: E501
-        """getpartnerhistorie  # noqa: E501
-
-        Zoek de partnerhistorie van een persoon op de opgegeven peildatum of binnen de opgegeven periode. Als je geen peildatum of periode opgeeft, krijg je alle partners terug waarmee een partnerschap is aangegaan of een huwelijk is gesloten.   # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.getpartnerhistorie(burgerservicenummer, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool: execute request asynchronously
-        :param str burgerservicenummer: Uniek persoonsnummer  (required)
-        :param str fields: Hiermee kun je de inhoud van de resource naar behoefte aanpassen door een door komma's gescheiden lijst van property namen op te geven. Bij opgave van niet-bestaande properties wordt een 400 Bad Request teruggegeven. Wanneer de fields parameter niet is opgegeven, worden alle properties met een waarde teruggegeven. Zie [functionele specificaties](https://github.com/VNG-Realisatie/Haal-Centraal-common/blob/v1.2.0/features/fields.feature)
-        :param date peildatum: De datum waarop de resource wordt opgevraagd.
-        :param date datum_van: De begindatum van de periode waarover de resource wordt opgevraagd.
-        :param date datum_tot_en_met: De einddatum van de periode waarover de resource wordt opgevraagd.
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :return: PartnerhistorieHalCollectie
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-        kwargs['_return_http_data_only'] = True
-        return self.getpartnerhistorie_with_http_info(burgerservicenummer, **kwargs)  # noqa: E501
-
-    def getpartnerhistorie_with_http_info(self, burgerservicenummer, **kwargs):  # noqa: E501
-        """getpartnerhistorie  # noqa: E501
-
-        Zoek de partnerhistorie van een persoon op de opgegeven peildatum of binnen de opgegeven periode. Als je geen peildatum of periode opgeeft, krijg je alle partners terug waarmee een partnerschap is aangegaan of een huwelijk is gesloten.   # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.getpartnerhistorie_with_http_info(burgerservicenummer, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool: execute request asynchronously
-        :param str burgerservicenummer: Uniek persoonsnummer  (required)
-        :param str fields: Hiermee kun je de inhoud van de resource naar behoefte aanpassen door een door komma's gescheiden lijst van property namen op te geven. Bij opgave van niet-bestaande properties wordt een 400 Bad Request teruggegeven. Wanneer de fields parameter niet is opgegeven, worden alle properties met een waarde teruggegeven. Zie [functionele specificaties](https://github.com/VNG-Realisatie/Haal-Centraal-common/blob/v1.2.0/features/fields.feature)
-        :param date peildatum: De datum waarop de resource wordt opgevraagd.
-        :param date datum_van: De begindatum van de periode waarover de resource wordt opgevraagd.
-        :param date datum_tot_en_met: De einddatum van de periode waarover de resource wordt opgevraagd.
-        :param _return_http_data_only: response data without head status code
-                                       and headers
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :return: tuple(PartnerhistorieHalCollectie, status_code(int), headers(HTTPHeaderDict))
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-
-        local_var_params = locals()
-
-        all_params = [
-            'burgerservicenummer',
-            'fields',
-            'peildatum',
-            'datum_van',
-            'datum_tot_en_met'
-        ]
-        all_params.extend(
-            [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout'
-            ]
+        self.getpartnerhistorie = Endpoint(
+            settings={
+                'response_type': (PartnerhistorieHalCollectie,),
+                'auth': [],
+                'endpoint_path': '/ingeschrevenpersonen/{burgerservicenummer}/partnerhistorie',
+                'operation_id': 'getpartnerhistorie',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'burgerservicenummer',
+                    'fields',
+                    'peildatum',
+                    'datum_van',
+                    'datum_tot_en_met',
+                ],
+                'required': [
+                    'burgerservicenummer',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                    'burgerservicenummer',
+                ]
+            },
+            root_map={
+                'validations': {
+                    ('burgerservicenummer',): {
+                        'max_length': 9,
+                        'min_length': 9,
+                        'regex': {
+                            'pattern': r'^[0-9]*$',  # noqa: E501
+                        },
+                    },
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'burgerservicenummer':
+                        (str,),
+                    'fields':
+                        (str,),
+                    'peildatum':
+                        (date,),
+                    'datum_van':
+                        (date,),
+                    'datum_tot_en_met':
+                        (date,),
+                },
+                'attribute_map': {
+                    'burgerservicenummer': 'burgerservicenummer',
+                    'fields': 'fields',
+                    'peildatum': 'peildatum',
+                    'datum_van': 'datumVan',
+                    'datum_tot_en_met': 'datumTotEnMet',
+                },
+                'location_map': {
+                    'burgerservicenummer': 'path',
+                    'fields': 'query',
+                    'peildatum': 'query',
+                    'datum_van': 'query',
+                    'datum_tot_en_met': 'query',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/hal+json',
+                    'application/problem+json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__getpartnerhistorie
         )
 
-        for key, val in six.iteritems(local_var_params['kwargs']):
-            if key not in all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method getpartnerhistorie" % key
-                )
-            local_var_params[key] = val
-        del local_var_params['kwargs']
-        # verify the required parameter 'burgerservicenummer' is set
-        if self.api_client.client_side_validation and ('burgerservicenummer' not in local_var_params or  # noqa: E501
-                                                        local_var_params['burgerservicenummer'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `burgerservicenummer` when calling `getpartnerhistorie`")  # noqa: E501
+        def __getverblijfplaatshistorie(
+            self,
+            burgerservicenummer,
+            **kwargs
+        ):
+            """getverblijfplaatshistorie  # noqa: E501
 
-        if self.api_client.client_side_validation and ('burgerservicenummer' in local_var_params and  # noqa: E501
-                                                        len(local_var_params['burgerservicenummer']) > 9):  # noqa: E501
-            raise ApiValueError("Invalid value for parameter `burgerservicenummer` when calling `getpartnerhistorie`, length must be less than or equal to `9`")  # noqa: E501
-        if self.api_client.client_side_validation and ('burgerservicenummer' in local_var_params and  # noqa: E501
-                                                        len(local_var_params['burgerservicenummer']) < 9):  # noqa: E501
-            raise ApiValueError("Invalid value for parameter `burgerservicenummer` when calling `getpartnerhistorie`, length must be greater than or equal to `9`")  # noqa: E501
-        if self.api_client.client_side_validation and 'burgerservicenummer' in local_var_params and not re.search(r'^[0-9]*$', local_var_params['burgerservicenummer']):  # noqa: E501
-            raise ApiValueError("Invalid value for parameter `burgerservicenummer` when calling `getpartnerhistorie`, must conform to the pattern `/^[0-9]*$/`")  # noqa: E501
-        collection_formats = {}
+            Zoek de verblijfplaatshistorie van een persoon op de opgegeven peildatum of binnen de opgegeven periode. Als je geen peildatum of periode opgeeft, krijg je alle verblijfplaatsen terug. Het meest actuele adres staat bovenaan.   # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
 
-        path_params = {}
-        if 'burgerservicenummer' in local_var_params:
-            path_params['burgerservicenummer'] = local_var_params['burgerservicenummer']  # noqa: E501
+            >>> thread = api.getverblijfplaatshistorie(burgerservicenummer, async_req=True)
+            >>> result = thread.get()
 
-        query_params = []
-        if 'fields' in local_var_params and local_var_params['fields'] is not None:  # noqa: E501
-            query_params.append(('fields', local_var_params['fields']))  # noqa: E501
-        if 'peildatum' in local_var_params and local_var_params['peildatum'] is not None:  # noqa: E501
-            query_params.append(('peildatum', local_var_params['peildatum']))  # noqa: E501
-        if 'datum_van' in local_var_params and local_var_params['datum_van'] is not None:  # noqa: E501
-            query_params.append(('datumVan', local_var_params['datum_van']))  # noqa: E501
-        if 'datum_tot_en_met' in local_var_params and local_var_params['datum_tot_en_met'] is not None:  # noqa: E501
-            query_params.append(('datumTotEnMet', local_var_params['datum_tot_en_met']))  # noqa: E501
+            Args:
+                burgerservicenummer (str): Uniek persoonsnummer 
 
-        header_params = {}
+            Keyword Args:
+                fields (str): Hiermee kun je de inhoud van de resource naar behoefte aanpassen door een door komma's gescheiden lijst van property namen op te geven. Bij opgave van niet-bestaande properties wordt een 400 Bad Request teruggegeven. Wanneer de fields parameter niet is opgegeven, worden alle properties met een waarde teruggegeven. Zie [functionele specificaties](https://github.com/VNG-Realisatie/Haal-Centraal-common/blob/v1.2.0/features/fields.feature). [optional]
+                peildatum (date): De datum waarop de resource wordt opgevraagd.. [optional]
+                datum_van (date): De begindatum van de periode waarover de resource wordt opgevraagd.. [optional]
+                datum_tot_en_met (date): De einddatum van de periode waarover de resource wordt opgevraagd.. [optional]
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
 
-        form_params = []
-        local_var_files = {}
+            Returns:
+                VerblijfplaatshistorieHalCollectie
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['burgerservicenummer'] = \
+                burgerservicenummer
+            return self.call_with_http_info(**kwargs)
 
-        body_params = None
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/hal+json', 'application/problem+json'])  # noqa: E501
-
-        # Authentication setting
-        auth_settings = []  # noqa: E501
-
-        return self.api_client.call_api(
-            '/ingeschrevenpersonen/{burgerservicenummer}/partnerhistorie', 'GET',
-            path_params,
-            query_params,
-            header_params,
-            body=body_params,
-            post_params=form_params,
-            files=local_var_files,
-            response_type='PartnerhistorieHalCollectie',  # noqa: E501
-            auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
-
-    def getverblijfplaatshistorie(self, burgerservicenummer, **kwargs):  # noqa: E501
-        """getverblijfplaatshistorie  # noqa: E501
-
-        Zoek de verblijfplaatshistorie van een persoon op de opgegeven peildatum of binnen de opgegeven periode verbleef. Als je geen peildatum of periode opgeeft, krijg je alle verblijfplaatsen terug. Het meest actuele adres staat bovenaan.   # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.getverblijfplaatshistorie(burgerservicenummer, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool: execute request asynchronously
-        :param str burgerservicenummer: Uniek persoonsnummer  (required)
-        :param str fields: Hiermee kun je de inhoud van de resource naar behoefte aanpassen door een door komma's gescheiden lijst van property namen op te geven. Bij opgave van niet-bestaande properties wordt een 400 Bad Request teruggegeven. Wanneer de fields parameter niet is opgegeven, worden alle properties met een waarde teruggegeven. Zie [functionele specificaties](https://github.com/VNG-Realisatie/Haal-Centraal-common/blob/v1.2.0/features/fields.feature)
-        :param date peildatum: De datum waarop de resource wordt opgevraagd.
-        :param date datum_van: De begindatum van de periode waarover de resource wordt opgevraagd.
-        :param date datum_tot_en_met: De einddatum van de periode waarover de resource wordt opgevraagd.
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :return: VerblijfplaatshistorieHalCollectie
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-        kwargs['_return_http_data_only'] = True
-        return self.getverblijfplaatshistorie_with_http_info(burgerservicenummer, **kwargs)  # noqa: E501
-
-    def getverblijfplaatshistorie_with_http_info(self, burgerservicenummer, **kwargs):  # noqa: E501
-        """getverblijfplaatshistorie  # noqa: E501
-
-        Zoek de verblijfplaatshistorie van een persoon op de opgegeven peildatum of binnen de opgegeven periode verbleef. Als je geen peildatum of periode opgeeft, krijg je alle verblijfplaatsen terug. Het meest actuele adres staat bovenaan.   # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.getverblijfplaatshistorie_with_http_info(burgerservicenummer, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool: execute request asynchronously
-        :param str burgerservicenummer: Uniek persoonsnummer  (required)
-        :param str fields: Hiermee kun je de inhoud van de resource naar behoefte aanpassen door een door komma's gescheiden lijst van property namen op te geven. Bij opgave van niet-bestaande properties wordt een 400 Bad Request teruggegeven. Wanneer de fields parameter niet is opgegeven, worden alle properties met een waarde teruggegeven. Zie [functionele specificaties](https://github.com/VNG-Realisatie/Haal-Centraal-common/blob/v1.2.0/features/fields.feature)
-        :param date peildatum: De datum waarop de resource wordt opgevraagd.
-        :param date datum_van: De begindatum van de periode waarover de resource wordt opgevraagd.
-        :param date datum_tot_en_met: De einddatum van de periode waarover de resource wordt opgevraagd.
-        :param _return_http_data_only: response data without head status code
-                                       and headers
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :return: tuple(VerblijfplaatshistorieHalCollectie, status_code(int), headers(HTTPHeaderDict))
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-
-        local_var_params = locals()
-
-        all_params = [
-            'burgerservicenummer',
-            'fields',
-            'peildatum',
-            'datum_van',
-            'datum_tot_en_met'
-        ]
-        all_params.extend(
-            [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout'
-            ]
+        self.getverblijfplaatshistorie = Endpoint(
+            settings={
+                'response_type': (VerblijfplaatshistorieHalCollectie,),
+                'auth': [],
+                'endpoint_path': '/ingeschrevenpersonen/{burgerservicenummer}/verblijfplaatshistorie',
+                'operation_id': 'getverblijfplaatshistorie',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'burgerservicenummer',
+                    'fields',
+                    'peildatum',
+                    'datum_van',
+                    'datum_tot_en_met',
+                ],
+                'required': [
+                    'burgerservicenummer',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                    'burgerservicenummer',
+                ]
+            },
+            root_map={
+                'validations': {
+                    ('burgerservicenummer',): {
+                        'max_length': 9,
+                        'min_length': 9,
+                        'regex': {
+                            'pattern': r'^[0-9]*$',  # noqa: E501
+                        },
+                    },
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'burgerservicenummer':
+                        (str,),
+                    'fields':
+                        (str,),
+                    'peildatum':
+                        (date,),
+                    'datum_van':
+                        (date,),
+                    'datum_tot_en_met':
+                        (date,),
+                },
+                'attribute_map': {
+                    'burgerservicenummer': 'burgerservicenummer',
+                    'fields': 'fields',
+                    'peildatum': 'peildatum',
+                    'datum_van': 'datumVan',
+                    'datum_tot_en_met': 'datumTotEnMet',
+                },
+                'location_map': {
+                    'burgerservicenummer': 'path',
+                    'fields': 'query',
+                    'peildatum': 'query',
+                    'datum_van': 'query',
+                    'datum_tot_en_met': 'query',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/hal+json',
+                    'application/problem+json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__getverblijfplaatshistorie
         )
 
-        for key, val in six.iteritems(local_var_params['kwargs']):
-            if key not in all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method getverblijfplaatshistorie" % key
-                )
-            local_var_params[key] = val
-        del local_var_params['kwargs']
-        # verify the required parameter 'burgerservicenummer' is set
-        if self.api_client.client_side_validation and ('burgerservicenummer' not in local_var_params or  # noqa: E501
-                                                        local_var_params['burgerservicenummer'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `burgerservicenummer` when calling `getverblijfplaatshistorie`")  # noqa: E501
+        def __getverblijfstitelhistorie(
+            self,
+            burgerservicenummer,
+            **kwargs
+        ):
+            """getverblijfstitelhistorie  # noqa: E501
 
-        if self.api_client.client_side_validation and ('burgerservicenummer' in local_var_params and  # noqa: E501
-                                                        len(local_var_params['burgerservicenummer']) > 9):  # noqa: E501
-            raise ApiValueError("Invalid value for parameter `burgerservicenummer` when calling `getverblijfplaatshistorie`, length must be less than or equal to `9`")  # noqa: E501
-        if self.api_client.client_side_validation and ('burgerservicenummer' in local_var_params and  # noqa: E501
-                                                        len(local_var_params['burgerservicenummer']) < 9):  # noqa: E501
-            raise ApiValueError("Invalid value for parameter `burgerservicenummer` when calling `getverblijfplaatshistorie`, length must be greater than or equal to `9`")  # noqa: E501
-        if self.api_client.client_side_validation and 'burgerservicenummer' in local_var_params and not re.search(r'^[0-9]*$', local_var_params['burgerservicenummer']):  # noqa: E501
-            raise ApiValueError("Invalid value for parameter `burgerservicenummer` when calling `getverblijfplaatshistorie`, must conform to the pattern `/^[0-9]*$/`")  # noqa: E501
-        collection_formats = {}
+            Zoek de verblijfstitelhistorie van een persoon op de opgegeven peildatum of binnen de opgegeven periode. Als je geen peildatum of periode opgeeft, krijg je alle verblijfstitels van de persoon terug. De meest actuele verblijfstitel staat bovenaan.   # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
 
-        path_params = {}
-        if 'burgerservicenummer' in local_var_params:
-            path_params['burgerservicenummer'] = local_var_params['burgerservicenummer']  # noqa: E501
+            >>> thread = api.getverblijfstitelhistorie(burgerservicenummer, async_req=True)
+            >>> result = thread.get()
 
-        query_params = []
-        if 'fields' in local_var_params and local_var_params['fields'] is not None:  # noqa: E501
-            query_params.append(('fields', local_var_params['fields']))  # noqa: E501
-        if 'peildatum' in local_var_params and local_var_params['peildatum'] is not None:  # noqa: E501
-            query_params.append(('peildatum', local_var_params['peildatum']))  # noqa: E501
-        if 'datum_van' in local_var_params and local_var_params['datum_van'] is not None:  # noqa: E501
-            query_params.append(('datumVan', local_var_params['datum_van']))  # noqa: E501
-        if 'datum_tot_en_met' in local_var_params and local_var_params['datum_tot_en_met'] is not None:  # noqa: E501
-            query_params.append(('datumTotEnMet', local_var_params['datum_tot_en_met']))  # noqa: E501
+            Args:
+                burgerservicenummer (str): Uniek persoonsnummer 
 
-        header_params = {}
+            Keyword Args:
+                fields (str): Hiermee kun je de inhoud van de resource naar behoefte aanpassen door een door komma's gescheiden lijst van property namen op te geven. Bij opgave van niet-bestaande properties wordt een 400 Bad Request teruggegeven. Wanneer de fields parameter niet is opgegeven, worden alle properties met een waarde teruggegeven. Zie [functionele specificaties](https://github.com/VNG-Realisatie/Haal-Centraal-common/blob/v1.2.0/features/fields.feature). [optional]
+                peildatum (date): De datum waarop de resource wordt opgevraagd.. [optional]
+                datum_van (date): De begindatum van de periode waarover de resource wordt opgevraagd.. [optional]
+                datum_tot_en_met (date): De einddatum van de periode waarover de resource wordt opgevraagd.. [optional]
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
 
-        form_params = []
-        local_var_files = {}
+            Returns:
+                VerblijfstitelhistorieHalCollectie
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['burgerservicenummer'] = \
+                burgerservicenummer
+            return self.call_with_http_info(**kwargs)
 
-        body_params = None
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/hal+json', 'application/problem+json'])  # noqa: E501
-
-        # Authentication setting
-        auth_settings = []  # noqa: E501
-
-        return self.api_client.call_api(
-            '/ingeschrevenpersonen/{burgerservicenummer}/verblijfplaatshistorie', 'GET',
-            path_params,
-            query_params,
-            header_params,
-            body=body_params,
-            post_params=form_params,
-            files=local_var_files,
-            response_type='VerblijfplaatshistorieHalCollectie',  # noqa: E501
-            auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
-
-    def getverblijfstitelhistorie(self, burgerservicenummer, **kwargs):  # noqa: E501
-        """getverblijfstitelhistorie  # noqa: E501
-
-        Zoek de verblijfstitelhistorie van een persoon op de opgegeven peildatum of binnen de opgegeven periode. Als je geen peildatum of periode opgeeft, krijg je alle verblijfstitels van de persoon terug. De meest actuele verblijfstitel staat bovenaan.   # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.getverblijfstitelhistorie(burgerservicenummer, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool: execute request asynchronously
-        :param str burgerservicenummer: Uniek persoonsnummer  (required)
-        :param str fields: Hiermee kun je de inhoud van de resource naar behoefte aanpassen door een door komma's gescheiden lijst van property namen op te geven. Bij opgave van niet-bestaande properties wordt een 400 Bad Request teruggegeven. Wanneer de fields parameter niet is opgegeven, worden alle properties met een waarde teruggegeven. Zie [functionele specificaties](https://github.com/VNG-Realisatie/Haal-Centraal-common/blob/v1.2.0/features/fields.feature)
-        :param date peildatum: De datum waarop de resource wordt opgevraagd.
-        :param date datum_van: De begindatum van de periode waarover de resource wordt opgevraagd.
-        :param date datum_tot_en_met: De einddatum van de periode waarover de resource wordt opgevraagd.
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :return: VerblijfstitelhistorieHalCollectie
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-        kwargs['_return_http_data_only'] = True
-        return self.getverblijfstitelhistorie_with_http_info(burgerservicenummer, **kwargs)  # noqa: E501
-
-    def getverblijfstitelhistorie_with_http_info(self, burgerservicenummer, **kwargs):  # noqa: E501
-        """getverblijfstitelhistorie  # noqa: E501
-
-        Zoek de verblijfstitelhistorie van een persoon op de opgegeven peildatum of binnen de opgegeven periode. Als je geen peildatum of periode opgeeft, krijg je alle verblijfstitels van de persoon terug. De meest actuele verblijfstitel staat bovenaan.   # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.getverblijfstitelhistorie_with_http_info(burgerservicenummer, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool: execute request asynchronously
-        :param str burgerservicenummer: Uniek persoonsnummer  (required)
-        :param str fields: Hiermee kun je de inhoud van de resource naar behoefte aanpassen door een door komma's gescheiden lijst van property namen op te geven. Bij opgave van niet-bestaande properties wordt een 400 Bad Request teruggegeven. Wanneer de fields parameter niet is opgegeven, worden alle properties met een waarde teruggegeven. Zie [functionele specificaties](https://github.com/VNG-Realisatie/Haal-Centraal-common/blob/v1.2.0/features/fields.feature)
-        :param date peildatum: De datum waarop de resource wordt opgevraagd.
-        :param date datum_van: De begindatum van de periode waarover de resource wordt opgevraagd.
-        :param date datum_tot_en_met: De einddatum van de periode waarover de resource wordt opgevraagd.
-        :param _return_http_data_only: response data without head status code
-                                       and headers
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :return: tuple(VerblijfstitelhistorieHalCollectie, status_code(int), headers(HTTPHeaderDict))
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-
-        local_var_params = locals()
-
-        all_params = [
-            'burgerservicenummer',
-            'fields',
-            'peildatum',
-            'datum_van',
-            'datum_tot_en_met'
-        ]
-        all_params.extend(
-            [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout'
-            ]
+        self.getverblijfstitelhistorie = Endpoint(
+            settings={
+                'response_type': (VerblijfstitelhistorieHalCollectie,),
+                'auth': [],
+                'endpoint_path': '/ingeschrevenpersonen/{burgerservicenummer}/verblijfstitelhistorie',
+                'operation_id': 'getverblijfstitelhistorie',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'burgerservicenummer',
+                    'fields',
+                    'peildatum',
+                    'datum_van',
+                    'datum_tot_en_met',
+                ],
+                'required': [
+                    'burgerservicenummer',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                    'burgerservicenummer',
+                ]
+            },
+            root_map={
+                'validations': {
+                    ('burgerservicenummer',): {
+                        'max_length': 9,
+                        'min_length': 9,
+                        'regex': {
+                            'pattern': r'^[0-9]*$',  # noqa: E501
+                        },
+                    },
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'burgerservicenummer':
+                        (str,),
+                    'fields':
+                        (str,),
+                    'peildatum':
+                        (date,),
+                    'datum_van':
+                        (date,),
+                    'datum_tot_en_met':
+                        (date,),
+                },
+                'attribute_map': {
+                    'burgerservicenummer': 'burgerservicenummer',
+                    'fields': 'fields',
+                    'peildatum': 'peildatum',
+                    'datum_van': 'datumVan',
+                    'datum_tot_en_met': 'datumTotEnMet',
+                },
+                'location_map': {
+                    'burgerservicenummer': 'path',
+                    'fields': 'query',
+                    'peildatum': 'query',
+                    'datum_van': 'query',
+                    'datum_tot_en_met': 'query',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/hal+json',
+                    'application/problem+json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__getverblijfstitelhistorie
         )
-
-        for key, val in six.iteritems(local_var_params['kwargs']):
-            if key not in all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method getverblijfstitelhistorie" % key
-                )
-            local_var_params[key] = val
-        del local_var_params['kwargs']
-        # verify the required parameter 'burgerservicenummer' is set
-        if self.api_client.client_side_validation and ('burgerservicenummer' not in local_var_params or  # noqa: E501
-                                                        local_var_params['burgerservicenummer'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `burgerservicenummer` when calling `getverblijfstitelhistorie`")  # noqa: E501
-
-        if self.api_client.client_side_validation and ('burgerservicenummer' in local_var_params and  # noqa: E501
-                                                        len(local_var_params['burgerservicenummer']) > 9):  # noqa: E501
-            raise ApiValueError("Invalid value for parameter `burgerservicenummer` when calling `getverblijfstitelhistorie`, length must be less than or equal to `9`")  # noqa: E501
-        if self.api_client.client_side_validation and ('burgerservicenummer' in local_var_params and  # noqa: E501
-                                                        len(local_var_params['burgerservicenummer']) < 9):  # noqa: E501
-            raise ApiValueError("Invalid value for parameter `burgerservicenummer` when calling `getverblijfstitelhistorie`, length must be greater than or equal to `9`")  # noqa: E501
-        if self.api_client.client_side_validation and 'burgerservicenummer' in local_var_params and not re.search(r'^[0-9]*$', local_var_params['burgerservicenummer']):  # noqa: E501
-            raise ApiValueError("Invalid value for parameter `burgerservicenummer` when calling `getverblijfstitelhistorie`, must conform to the pattern `/^[0-9]*$/`")  # noqa: E501
-        collection_formats = {}
-
-        path_params = {}
-        if 'burgerservicenummer' in local_var_params:
-            path_params['burgerservicenummer'] = local_var_params['burgerservicenummer']  # noqa: E501
-
-        query_params = []
-        if 'fields' in local_var_params and local_var_params['fields'] is not None:  # noqa: E501
-            query_params.append(('fields', local_var_params['fields']))  # noqa: E501
-        if 'peildatum' in local_var_params and local_var_params['peildatum'] is not None:  # noqa: E501
-            query_params.append(('peildatum', local_var_params['peildatum']))  # noqa: E501
-        if 'datum_van' in local_var_params and local_var_params['datum_van'] is not None:  # noqa: E501
-            query_params.append(('datumVan', local_var_params['datum_van']))  # noqa: E501
-        if 'datum_tot_en_met' in local_var_params and local_var_params['datum_tot_en_met'] is not None:  # noqa: E501
-            query_params.append(('datumTotEnMet', local_var_params['datum_tot_en_met']))  # noqa: E501
-
-        header_params = {}
-
-        form_params = []
-        local_var_files = {}
-
-        body_params = None
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/hal+json', 'application/problem+json'])  # noqa: E501
-
-        # Authentication setting
-        auth_settings = []  # noqa: E501
-
-        return self.api_client.call_api(
-            '/ingeschrevenpersonen/{burgerservicenummer}/verblijfstitelhistorie', 'GET',
-            path_params,
-            query_params,
-            header_params,
-            body=body_params,
-            post_params=form_params,
-            files=local_var_files,
-            response_type='VerblijfstitelhistorieHalCollectie',  # noqa: E501
-            auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
