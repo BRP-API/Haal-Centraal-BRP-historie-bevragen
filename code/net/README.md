@@ -81,7 +81,7 @@ namespace Example
         public static void Main()
         {
 
-            Configuration.Default.BasePath = "https://www.haalcentraal.nl/haalcentraal/api/brp";
+            Configuration.Default.BasePath = "https://www.haalcentraal.nl/haalcentraal/api/brphistorie";
             var apiInstance = new BRPHistorieBevragenApi(Configuration.Default);
             var burgerservicenummer = 555555021;  // string | Uniek persoonsnummer 
             var fields = fields_example;  // string | Hiermee kun je de inhoud van de resource naar behoefte aanpassen door een door komma's gescheiden lijst van property namen op te geven. Bij opgave van niet-bestaande properties wordt een 400 Bad Request teruggegeven. Wanneer de fields parameter niet is opgegeven, worden alle properties met een waarde teruggegeven. Zie [functionele specificaties](https://github.com/VNG-Realisatie/Haal-Centraal-common/blob/v1.2.0/features/fields.feature) (optional) 
@@ -108,7 +108,7 @@ namespace Example
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *https://www.haalcentraal.nl/haalcentraal/api/brp*
+All URIs are relative to *https://www.haalcentraal.nl/haalcentraal/api/brphistorie*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------

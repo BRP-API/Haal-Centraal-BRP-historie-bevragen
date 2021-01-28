@@ -2,7 +2,7 @@
 
 BRP historie bevragen
 - API version: 0.0.1 (develop)
-  - Build date: 2020-10-26T14:29:30.495Z[Etc/UTC]
+  - Build date: 2021-01-14T15:42:47.439Z[Etc/UTC]
 
 API voor het zoeken en raadplegen van historische verblijfplaatsen, partners, nationaliteiten en verblijfstitels uit de BRP (inclusief de RNI).
 
@@ -86,14 +86,14 @@ import org.openapitools.client.api.BrpHistorieBevragenApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://www.haalcentraal.nl/haalcentraal/api/brp");
+    defaultClient.setBasePath("https://www.haalcentraal.nl/haalcentraal/api/brphistorie");
 
     BrpHistorieBevragenApi apiInstance = new BrpHistorieBevragenApi(defaultClient);
-    String burgerservicenummer = 555555021; // String | Uniek persoonsnummer 
+    String burgerservicenummer = "555555021"; // String | Uniek persoonsnummer 
     String fields = "fields_example"; // String | Hiermee kun je de inhoud van de resource naar behoefte aanpassen door een door komma's gescheiden lijst van property namen op te geven. Bij opgave van niet-bestaande properties wordt een 400 Bad Request teruggegeven. Wanneer de fields parameter niet is opgegeven, worden alle properties met een waarde teruggegeven. Zie [functionele specificaties](https://github.com/VNG-Realisatie/Haal-Centraal-common/blob/v1.2.0/features/fields.feature)
-    LocalDate peildatum = Sun Sep 09 00:00:00 UTC 2018; // LocalDate | De datum waarop de resource wordt opgevraagd.
-    LocalDate datumVan = Sun Sep 09 00:00:00 UTC 2018; // LocalDate | De begindatum van de periode waarover de resource wordt opgevraagd.
-    LocalDate datumTotEnMet = Tue Oct 09 00:00:00 UTC 2018; // LocalDate | De einddatum van de periode waarover de resource wordt opgevraagd.
+    LocalDate peildatum = new LocalDate(); // LocalDate | De datum waarop de resource wordt opgevraagd.
+    LocalDate datumVan = new LocalDate(); // LocalDate | De begindatum van de periode waarover de resource wordt opgevraagd.
+    LocalDate datumTotEnMet = new LocalDate(); // LocalDate | De einddatum van de periode waarover de resource wordt opgevraagd.
     try {
       NationaliteithistorieHalCollectie result = apiInstance.getnationaliteithistorie(burgerservicenummer, fields, peildatum, datumVan, datumTotEnMet);
       System.out.println(result);
@@ -111,7 +111,7 @@ public class Example {
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *https://www.haalcentraal.nl/haalcentraal/api/brp*
+All URIs are relative to *https://www.haalcentraal.nl/haalcentraal/api/brphistorie*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------

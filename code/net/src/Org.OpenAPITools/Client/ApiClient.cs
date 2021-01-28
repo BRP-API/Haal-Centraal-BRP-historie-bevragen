@@ -14,6 +14,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Text.RegularExpressions;
 using System.IO;
+using System.Threading;
 using System.Web;
 using System.Linq;
 using System.Net;
@@ -28,7 +29,7 @@ namespace Org.OpenAPITools.Client
     /// </summary>
     public partial class ApiClient
     {
-        private JsonSerializerSettings serializerSettings = new JsonSerializerSettings
+        public JsonSerializerSettings serializerSettings = new JsonSerializerSettings
         {
             ConstructorHandling = ConstructorHandling.AllowNonPublicDefaultConstructor
         };
@@ -53,12 +54,12 @@ namespace Org.OpenAPITools.Client
         public ApiClient()
         {
             Configuration = Org.OpenAPITools.Client.Configuration.Default;
-            RestClient = new RestClient("https://www.haalcentraal.nl/haalcentraal/api/brp");
+            RestClient = new RestClient("https://www.haalcentraal.nl/haalcentraal/api/brphistorie");
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ApiClient" /> class
-        /// with default base path (https://www.haalcentraal.nl/haalcentraal/api/brp).
+        /// with default base path (https://www.haalcentraal.nl/haalcentraal/api/brphistorie).
         /// </summary>
         /// <param name="config">An instance of Configuration.</param>
         public ApiClient(Configuration config)
@@ -73,7 +74,7 @@ namespace Org.OpenAPITools.Client
         /// with default configuration.
         /// </summary>
         /// <param name="basePath">The base path.</param>
-        public ApiClient(String basePath = "https://www.haalcentraal.nl/haalcentraal/api/brp")
+        public ApiClient(String basePath = "https://www.haalcentraal.nl/haalcentraal/api/brphistorie")
         {
            if (String.IsNullOrEmpty(basePath))
                 throw new ArgumentException("basePath cannot be empty");
@@ -192,19 +193,20 @@ namespace Org.OpenAPITools.Client
         /// <param name="fileParams">File parameters.</param>
         /// <param name="pathParams">Path parameters.</param>
         /// <param name="contentType">Content type.</param>
+        /// <param name="cancellationToken">Cancellation Token.</param>
         /// <returns>The Task instance.</returns>
         public async System.Threading.Tasks.Task<Object> CallApiAsync(
             String path, RestSharp.Method method, List<KeyValuePair<String, String>> queryParams, Object postBody,
             Dictionary<String, String> headerParams, Dictionary<String, String> formParams,
             Dictionary<String, FileParameter> fileParams, Dictionary<String, String> pathParams,
-            String contentType)
+            String contentType, CancellationToken cancellationToken)
         {
             var request = PrepareRequest(
                 path, method, queryParams, postBody, headerParams, formParams, fileParams,
                 pathParams, contentType);
             RestClient.UserAgent = Configuration.UserAgent;
             InterceptRequest(request);
-            var response = await RestClient.ExecuteTaskAsync(request);
+            var response = await RestClient.ExecuteTaskAsync(request, cancellationToken);
             InterceptResponse(request, response);
             return (Object)response;
         }
