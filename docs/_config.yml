@@ -18,7 +18,7 @@ nav:
       - title: Getting started
         path: /getting-started
       - title: User stories
-        url: https://github.com/VNG-Realisatie/Haal-Centraal-BRP-historie-bevragen/issues?q=is%3Aissue
+        url: https://vng-realisatie.github.io/Haal-Centraal-BRP-historie-bevragen/user-stories-dev
         path: /user-stories
         target: blank
       - title: User stories  (afgeschermd)
