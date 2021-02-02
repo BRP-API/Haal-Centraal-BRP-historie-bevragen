@@ -69,7 +69,7 @@ paths:
                     Zoek de partnerhistorie van een persoon op de opgegeven peildatum of binnen de opgegeven periode.
                     Als je geen peildatum of periode opgeeft, krijg je alle partners terug waarmee een partnerschap is aangegaan of een huwelijk is gesloten.
       parameters:
-        - $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/v1.0.0/specificatie/openapi.yaml#/components/parameters/burgerservicenummer"
+        - $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/v1.2.0/specificatie/openapi.yaml#/components/parameters/burgerservicenummer"
         - $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.2.0/api-specificatie/common.yaml#/components/parameters/fields"
         - $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.2.0/api-specificatie/common.yaml#/components/parameters/peildatum"
         - $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.2.0/api-specificatie/common.yaml#/components/parameters/datumVan"
@@ -114,7 +114,7 @@ paths:
                   Zoek de verblijfstitelhistorie van een persoon op de opgegeven peildatum of binnen de opgegeven periode.
                   Als je geen peildatum of periode opgeeft, krijg je alle verblijfstitels van de persoon terug. De meest actuele verblijfstitel staat bovenaan.
       parameters:
-        - $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/v1.0.0/specificatie/openapi.yaml#/components/parameters/burgerservicenummer"
+        - $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/v1.2.0/specificatie/openapi.yaml#/components/parameters/burgerservicenummer"
         - $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.2.0/api-specificatie/common.yaml#/components/parameters/fields"
         - $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.2.0/api-specificatie/common.yaml#/components/parameters/peildatum"
         - $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.2.0/api-specificatie/common.yaml#/components/parameters/datumVan"
@@ -159,7 +159,7 @@ paths:
                     Zoek de nationaliteithistorie van een persoon op de opgegeven peildatum of binnen de opgegeven periode.
                     Als je geen peildatum of periode opgeeft, krijg je alle nationaliteiten van de persoon terug. De meest actuele nationaliteit staat bovenaan.
       parameters:
-        - $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/v1.0.0/specificatie/openapi.yaml#/components/parameters/burgerservicenummer"
+        - $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/v1.2.0/specificatie/openapi.yaml#/components/parameters/burgerservicenummer"
         - $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.2.0/api-specificatie/common.yaml#/components/parameters/fields"
         - $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.2.0/api-specificatie/common.yaml#/components/parameters/peildatum"
         - $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.2.0/api-specificatie/common.yaml#/components/parameters/datumVan"
@@ -200,7 +200,7 @@ paths:
 components:
   parameters:
     burgerservicenummer:
-      $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/v1.0.0/specificatie/openapi.yaml#/components/parameters/burgerservicenummer"
+      $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/v1.2.0/specificatie/openapi.yaml#/components/parameters/burgerservicenummer"
   schemas:
     NationaliteithistorieHalCollectie:
       type: object
@@ -218,7 +218,7 @@ components:
             $ref: '#/components/schemas/Nationaliteithistorie'
     Nationaliteithistorie:
       allOf:
-      - $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/v1.0.0/specificatie/openapi.yaml#/components/schemas/Nationaliteit"
+      - $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/v1.2.0/specificatie/openapi.yaml#/components/schemas/Nationaliteit"
       - description: |
                       Gegevens over de (historische) nationaliteiten van de persoon.
                       * **datumTot**: Datum tot wanneer een nationaliteit geldig was.
@@ -263,7 +263,7 @@ components:
               $ref: "#/components/schemas/VerblijfplaatshistorieLinks"
     Verblijfplaatshistorie:
       allOf:
-      - $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/v1.0.0/specificatie/openapi.yaml#/components/schemas/Verblijfplaats"
+      - $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/v1.2.0/specificatie/openapi.yaml#/components/schemas/Verblijfplaats"
       - description: |
                       Gegevens over de (historische) verblijfplaatsen of de woonlocaties van de persoon.
                       * **datumAanvangAdreshuishouding** : de datum van aangifte of ambtshalve melding van verblijf en adres.
@@ -310,7 +310,7 @@ components:
               $ref: "#/components/schemas/PartnerhistorieLinks"
     Partnerhistorie:
       allOf:
-      - $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/v1.0.0/specificatie/openapi.yaml#/components/schemas/Partner"
+      - $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/v1.2.0/specificatie/openapi.yaml#/components/schemas/Partner"
       - description: |
                       Gegevens over (historische) huwelijken en/of geregistreerd partnerschappen van de persoon.
         properties:
@@ -371,7 +371,7 @@ components:
             $ref: '#/components/schemas/Verblijfstitelhistorie'
     Verblijfstitelhistorie:
       allOf:
-      - $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/v1.0.0/specificatie/openapi.yaml#/components/schemas/Verblijfstitel"
+      - $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/v1.2.0/specificatie/openapi.yaml#/components/schemas/Verblijfstitel"
       - description: |
                       Gegevens over de (historische) verblijfsrechtelijke status van de persoon.
                       * **datumEinde**: Datum waarop de verblijfstitel niet meer geldig is.
