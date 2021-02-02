@@ -19,12 +19,12 @@ tags:
 paths:
   /ingeschrevenpersonen/{burgerservicenummer}/verblijfplaatshistorie:
     get:
-      operationId: Getverblijfplaatshistorie
+      operationId: GetVerblijfplaatsHistorie
       description: |
                     Zoek de verblijfplaatshistorie van een persoon op de opgegeven peildatum of binnen de opgegeven periode.
                     Als je geen peildatum of periode opgeeft, krijg je alle verblijfplaatsen terug. Het meest actuele adres staat bovenaan.
       parameters:
-        - $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/v1.0.0/specificatie/openapi.yaml#/components/parameters/burgerservicenummer"
+        - $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/v1.2.0/specificatie/openapi.yaml#/components/parameters/burgerservicenummer"
         - $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.2.0/api-specificatie/common.yaml#/components/parameters/fields"
         - $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.2.0/api-specificatie/common.yaml#/components/parameters/peildatum"
         - $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.2.0/api-specificatie/common.yaml#/components/parameters/datumVan"
@@ -64,7 +64,7 @@ paths:
         - BRP historie bevragen
   /ingeschrevenpersonen/{burgerservicenummer}/partnerhistorie:
     get:
-      operationId: Getpartnerhistorie
+      operationId: GetPartnerHistorie
       description: |
                     Zoek de partnerhistorie van een persoon op de opgegeven peildatum of binnen de opgegeven periode.
                     Als je geen peildatum of periode opgeeft, krijg je alle partners terug waarmee een partnerschap is aangegaan of een huwelijk is gesloten.
@@ -109,7 +109,7 @@ paths:
         - BRP historie bevragen
   /ingeschrevenpersonen/{burgerservicenummer}/verblijfstitelhistorie:
     get:
-      operationId: getverblijfstitelhistorie
+      operationId: GetVerblijfstitelHistorie
       description: |
                   Zoek de verblijfstitelhistorie van een persoon op de opgegeven peildatum of binnen de opgegeven periode.
                   Als je geen peildatum of periode opgeeft, krijg je alle verblijfstitels van de persoon terug. De meest actuele verblijfstitel staat bovenaan.
@@ -154,7 +154,7 @@ paths:
         - BRP historie bevragen
   /ingeschrevenpersonen/{burgerservicenummer}/nationaliteithistorie:
     get:
-      operationId: getnationaliteithistorie
+      operationId: GetNationaliteitHistorie
       description: |
                     Zoek de nationaliteithistorie van een persoon op de opgegeven peildatum of binnen de opgegeven periode.
                     Als je geen peildatum of periode opgeeft, krijg je alle nationaliteiten van de persoon terug. De meest actuele nationaliteit staat bovenaan.
