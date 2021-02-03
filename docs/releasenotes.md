@@ -17,6 +17,39 @@ Dit is een globaal (en niet limitatief) overzicht van wijzigingen die daarvoor z
   - datumvan --> datumVan _**(breaking)**_
   - datumtotenmet --> datumTotEnMet  _**(breaking)**_
 
+- Schema-component Burgerservicenummer is verwijderd. De properties die deze als $REF gebruikten zijn als string gedefinieerd.
+
+- Enkele property-namen zijn gewijzigd (deze zijn allemaal _**breaking**_ )
+  - nationaliteithistorie.datumEindeGeldigheid --> nationaliteithistorie.datumTot
+  - Verblijfplaatshistorie_links.nummeraanduiding --> VerblijfplaatshistorieLinks.adres
+  - Verblijfplaats is anders opgebouwd.
+    - Schema-component BinnenlandsAdres is verwijderd. Er wordt nu hergebruik gemaakt van het component Adres en dat wordt direct aangevuld met de properties
+      - BinnenlandsAdres.openbareRuimteNaam --> Verblijfplaats.straat
+      - BinnenlandsAdres.functieAdres --> Verblijfplaats.functieAdres
+      - BinnenlandsAdres.aanduidingBijHuisnummer --> Verblijfplaats.aanduidingBijHuisnummer
+      - BinnenlandsAdres.identificatiecodeNummeraanduiding --> Verblijfplaats.nummeraanduidingIdentificatie
+      - BinnenlandsAdres.woonplaatsnaam --> Verblijfplaats.woonplaats
+      - Verblijfplaats.identificatiecodeVerblijfplaats --> Verblijfplaats.identificatiecodeAdresseerbaarObject --> Verblijfplaats.adresseerbaarObjectIdentificatie
+      - Verblijfplaats.straatnaam --> Verblijfplaats.korteNaam
+      - component verblijfBuitenland is komen te vervallen.
+    - Schema-component Verblijfbuitenland is verwijderd. Properties zijn opgenomen in Verblijfplaats.
+      - VerblijfBuitenland.adresRegel1 --> Verblijfplaats.adresregel1
+      - VerblijfBuitenland.adresRegel2 --> Verblijfplaats.adresregel2  
+      - VerblijfBuitenland.vertrokkenOnbekendWaarheen --> Verblijfplaats.vertrokkenOnbekendWaarheen
+      - VerblijfBuitenland.land --> Verblijfplaats.land
+    - VerblijfplaatsInOnderzoek.identificatiecodeNummeraanduiding --> VerblijfplaatsInOnderzoek.nummeraanduidingIdentificatie
+    - VerblijfplaatsInOnderzoek.identificatiecodeVerblijfplaats --> VerblijfplaatsInOnderzoek.identificatiecodeAdresseerbaarObject --> VerblijfplaatsInOnderzoek.adresseerbarObjectIdentificatie
+    - VerblijfplaatsInOnderzoek.straatnaam --> VerblijfplaatsInOnderzoek.korteNaam
+    - VerblijfplaatsInOnderzoek.naamOpenbareRuimte --> VerblijfplaatsInOnderzoek.straat
+    - VerblijfplaatsInOnderzoek.woonplaatsnaam --> VerblijfplaatsInOnderzoek.woonplaats
+
+
+- Verwijderde properties (_**breaking**_):
+  - Verblijfstitelhistorie.indicatieVerblijfstitelBeeindigd
+  - Verblijfstitel.datumOpneming
+  - VerblijfstitelInOnderzoek.datumOpneming
+
+
 
 - Enkele namen van schema-componenten zijn aangepast vanwege consistentie met andere Haal-Centraal API's
   - NationaliteithistorieHalCollectie__embedded --> NationaliteithistorieHalCollectieEmbedded
@@ -28,34 +61,9 @@ Dit is een globaal (en niet limitatief) overzicht van wijzigingen die daarvoor z
   - VerblijfstitelhistorieHalCollectie__embedded --> VerblijfstitelhistorieHalCollectieEmbedded
   - AangaanHuwelijkInOnderzoek --> AangaanHuwelijkPartnerschapInOnderzoek
 
-- Schema-component Burgerservicenummer
-
-- Enkele property-namen zijn gewijzigd (deze zijn allemaal _**(breaking)**_ )
-  - nationaliteithistorie.datumEindeGeldigheid --> nationaliteithistorie.datumTot
-  - Verblijfplaatshistorie_links.nummeraanduiding --> VerblijfplaatshistorieLinks.adres
-  - Verblijfplaats is anders opgebouwd.
-    - Schema-component BinnenlandsAdres is verwijderd. Er wordt nu hergebruik gemaakt van het component Adres en dat wordt direct aangevuld met de properties
-      - BinnenlandsAdres.openbareRuimteNaam --> Verblijfplaats.straat
-      - BinnenlandsAdres.functieAdres --> Verblijfplaats.functieAdres
-      - BinnenlandsAdres.aanduidingBijHuisnummer --> Verblijfplaats.aanduidingBijHuisnummer
-      - BinnenlandsAdres.identificatiecodeNummeraanduiding --> Verblijfplaats.nummeraanduidingIdentificatie
-      - BinnenlandsAdres.woonplaatsnaam --> Verblijfplaats.woonplaats
-      - Verblijfplaats.identificatiecodeAdresseerbaarObject --> Verblijfplaats.adresseerbaarObjectIdentificatie
-      - Verblijfplaats.straatnaam --> Verblijfplaats.korteNaam
-      - component verblijfBuitenland is komen te vervallen.
-    - Schema-component Verblijfbuitenland is verwijderd. Properties zijn opgenomen in Verblijfplaats.
-      - VerblijfBuitenland.adresRegel1 --> Verblijfplaats.adresregel1
-      - VerblijfBuitenland.adresRegel2 --> Verblijfplaats.adresregel2  
-      - VerblijfBuitenland.vertrokkenOnbekendWaarheen --> Verblijfplaats.vertrokkenOnbekendWaarheen
-      - VerblijfBuitenland.land --> Verblijfplaats.land
-    - VerblijfplaatsInOnderzoek.identificatiecodeNummeraanduiding --> VerblijfplaatsInOnderzoek.nummeraanduidingIdentificatie
-    - VerblijfplaatsInOnderzoek.identificatiecodeAdresseerbaarObject --> VerblijfplaatsInOnderzoek.adresseerbarObjectIdentificatie
-    - VerblijfplaatsInOnderzoek.straatnaam --> VerblijfplaatsInOnderzoek.korteNaam
-    - VerblijfplaatsInOnderzoek.naamOpenbareRuimte --> VerblijfplaatsInOnderzoek.straat
-    - VerblijfplaatsInOnderzoek.woonplaatsnaam --> VerblijfplaatsInOnderzoek.woonplaats
-
 - Toegevoegde properties:
   - OntbindingHuwelijkInOnderzoek.reden is toegevoegd
+  - OntbindingHuwelijk.indicatieHuwelijkPartnerschapBeeindigd is toegevoegd
 
 - Er is in de toelichting van Hallinks opgenomen dat een Hallink ook een templated link kan zijn.
 
