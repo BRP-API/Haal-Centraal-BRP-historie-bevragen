@@ -19,7 +19,7 @@ tags:
 paths:
   /ingeschrevenpersonen/{burgerservicenummer}/verblijfplaatshistorie:
     get:
-      operationId: GetVerblijfplaatsHistorie
+      operationId: GetVerblijfplaatshistorie
       description: |
                     Zoek de verblijfplaatshistorie van een persoon op de opgegeven peildatum of binnen de opgegeven periode.
                     Als je geen peildatum of periode opgeeft, krijg je alle verblijfplaatsen terug. Het meest actuele adres staat bovenaan.
@@ -64,7 +64,7 @@ paths:
         - BRP historie bevragen
   /ingeschrevenpersonen/{burgerservicenummer}/partnerhistorie:
     get:
-      operationId: GetPartnerHistorie
+      operationId: GetPartnerhistorie
       description: |
                     Zoek de partnerhistorie van een persoon op de opgegeven peildatum of binnen de opgegeven periode.
                     Als je geen peildatum of periode opgeeft, krijg je alle partners terug waarmee een partnerschap is aangegaan of een huwelijk is gesloten.
@@ -109,7 +109,7 @@ paths:
         - BRP historie bevragen
   /ingeschrevenpersonen/{burgerservicenummer}/verblijfstitelhistorie:
     get:
-      operationId: GetVerblijfstitelHistorie
+      operationId: GetVerblijfstitelhistorie
       description: |
                   Zoek de verblijfstitelhistorie van een persoon op de opgegeven peildatum of binnen de opgegeven periode.
                   Als je geen peildatum of periode opgeeft, krijg je alle verblijfstitels van de persoon terug. De meest actuele verblijfstitel staat bovenaan.
@@ -154,7 +154,7 @@ paths:
         - BRP historie bevragen
   /ingeschrevenpersonen/{burgerservicenummer}/nationaliteithistorie:
     get:
-      operationId: GetNationaliteitHistorie
+      operationId: GetNationaliteithistorie
       description: |
                     Zoek de nationaliteithistorie van een persoon op de opgegeven peildatum of binnen de opgegeven periode.
                     Als je geen peildatum of periode opgeeft, krijg je alle nationaliteiten van de persoon terug. De meest actuele nationaliteit staat bovenaan.
