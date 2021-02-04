@@ -4,12 +4,14 @@
 ## Versie 1.0.0
 
 Alhoewel er nog geen eerdere officiële versie van de Haal-Centraal-BRP-historie-bevragen API als release is uitgebracht zijn de specificaties van deze endpoints als onderdeel van de specificatie van Haal-Centraal-BRP-bevragen het afgelopen jaar beschikbaar geweest via de repository. In de [v0.9.0 release van BRP-bevragen](https://github.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/tree/v0.9.0) zijn de historie-endpoints nog opgenomen. In de afgelopen maanden hebben we de historie-endpoints in een aparte API ondergebracht. Daarbij zijn nieuwe inzichten die het afgelopen jaar zijn opgedaan opgenomen. Recentelijk hebben we de specificaties ook aangepast op het hergebruik van componenten uit BRP-Bevragen release 1.2.0.
-Dit is een globaal (en niet limitatief) overzicht van wijzigingen die daarvoor zijn doorgevoerd.
+Dit is een globaal overzicht van wijzigingen die daarvoor zijn doorgevoerd.
+
+We bieden nu ook SDK's aan met gegenereerde [plumbing-code](./code). Daarnaast bieden we een [postman-collectie](./test) t.b.v. testen aan.
 
 ### Openapi.yaml :
 
 - server-url is aangepast (omdat het een aparte API is geworden.) --> https://github.com/VNG-Realisatie/Haal-Centraal-BRP-historie-bevragen _**(breaking)**_
-- OperationId's zijn aangepast ivm code-generatie issues en nu in UpperCamelCase. _**(breaking)**_
+- OperationId's zijn aangepast ivm code-generatie issues en nu in UpperCamelCase.
 - Alle descriptions zijn omgezet naar markdown.
 - Bij properties zijn de maxLength, minLength, pattern en (waar overbodig) de title weggehaald.
 - Descriptions zijn aangepast om beter bij de gebruikersbeleving aan te sluiten, overbodige descriptions zijn verwijderd.
@@ -35,6 +37,7 @@ Dit is een globaal (en niet limitatief) overzicht van wijzigingen die daarvoor z
     - Schema-component Verblijfbuitenland is verwijderd. Properties zijn opgenomen in Verblijfplaats.
       - VerblijfBuitenland.adresRegel1 --> Verblijfplaats.adresregel1
       - VerblijfBuitenland.adresRegel2 --> Verblijfplaats.adresregel2  
+      - VerblijfBuitenland.adresRegel3 --> Verblijfplaats.adresregel3  
       - VerblijfBuitenland.vertrokkenOnbekendWaarheen --> Verblijfplaats.vertrokkenOnbekendWaarheen
       - VerblijfBuitenland.land --> Verblijfplaats.land
     - VerblijfplaatsInOnderzoek.identificatiecodeNummeraanduiding --> VerblijfplaatsInOnderzoek.nummeraanduidingIdentificatie
@@ -64,6 +67,7 @@ Dit is een globaal (en niet limitatief) overzicht van wijzigingen die daarvoor z
 - Toegevoegde properties:
   - OntbindingHuwelijkInOnderzoek.reden is toegevoegd
   - OntbindingHuwelijk.indicatieHuwelijkPartnerschapBeeindigd is toegevoegd
+  - Partnerhistorie.naam.adellijkeTitelPredikaat is toegevoegd
 
 - Er is in de toelichting van Hallinks opgenomen dat een Hallink ook een templated link kan zijn.
 
@@ -76,8 +80,6 @@ De feature files hebben als doel om functioneel de werking te beschrijven.
 - verblijfplaatshistorie.feature is verplaatst naar [Haal-Centraal-BRP-historie-bevragen](./features)
 - verblijfstitelhistorie.feature is verplaatst naar [Haal-Centraal-BRP-historie-bevragen](./features)
 - onvolledige_datum.feature is verplaatst naar [Common](https://github.com/VNG-Realisatie/Haal-Centraal-common/tree/v1.2.0/features)
-- expand.feature is verplaatst naar [Common](https://github.com/VNG-Realisatie/Haal-Centraal-common/tree/v1.2.0/features)
 - fields.feature is verplaatst naar [Common](https://github.com/VNG-Realisatie/Haal-Centraal-common/tree/v1.2.0/features)
 - foutafhandeling.feature is verplaatst naar [Common](https://github.com/VNG-Realisatie/Haal-Centraal-common/tree/v1.2.0/features)
 - links.feature is verplaatst naar [Common](https://github.com/VNG-Realisatie/Haal-Centraal-common/tree/v1.2.0/features)
-- wildcard.feature is verplaatst naar [Common](https://github.com/VNG-Realisatie/Haal-Centraal-common/tree/v1.2.0/features)

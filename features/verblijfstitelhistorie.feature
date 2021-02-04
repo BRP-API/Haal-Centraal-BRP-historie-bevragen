@@ -31,8 +31,8 @@
 
   Als een verblijfstitel, actueel of historisch, in onderzoek is, en dit onderzoek is niet afgerond (Datum einde onderzoek is leeg), wordt inOnderzoek gevuld voor betreffende verblijfstitel.
 
-  Als wel het begin van de periode (datumvan) wordt opgegeven, maar geen einde van de periode (datumtotenmet), dan worden alle verblijfstitels vanaf de datumvan in het antwoord opgenomen.
-  Als wel het einde van de periode (datumtotenmet) wordt opgegeven, maar geen begin van de periode (datumtotenmet), dan worden alle verblijfstitels tot en met de datumtotenmet in het antwoord opgenomen.
+  Als wel het begin van de periode (datumVan) wordt opgegeven, maar geen einde van de periode (datumTotEnMet), dan worden alle verblijfstitels vanaf de datumVan in het antwoord opgenomen.
+  Als wel het einde van de periode (datumTotEnMet) wordt opgegeven, maar geen begin van de periode (datumTotEnMet), dan worden alle verblijfstitels tot en met de datumTotEnMet in het antwoord opgenomen.
 
   Achtergrond:
     Gegeven de gevraagde persoon heeft de volgende verblijfstitels in de registratie
@@ -80,38 +80,38 @@
       | 24         | 2009-05-12  | 2012-04-05 |
 
   Scenario: verblijfstitelhistorie met periode na datum einde laatste verblijfstitel
-    Als de verblijfstitelhistorie wordt opgevraagd met voor datumvan de waarde "2019-09-28"
+    Als de verblijfstitelhistorie wordt opgevraagd met voor datumVan de waarde "2019-09-28"
     Dan bevat het antwoord geen enkel voorkomen van verblijfstitelhistorie
 
   Scenario: verblijfstitelhistorie met periode voor de ingangsdatum van de eerste verblijfstitel
-    Als de verblijfstitelhistorie wordt opgevraagd met voor datumtotenmet de waarde "2003-03-26"
+    Als de verblijfstitelhistorie wordt opgevraagd met voor datumTotEnMet de waarde "2003-03-26"
     Dan bevat het antwoord geen enkel voorkomen van verblijfstitelhistorie
 
   Scenario: verblijfstitelhistorie met periode die start op de datum einde van een verblijfstitel
-    Als de verblijfstitelhistorie wordt opgevraagd met voor datumvan de waarde "2019-09-01"
+    Als de verblijfstitelhistorie wordt opgevraagd met voor datumVan de waarde "2019-09-01"
     Dan bevat het antwoord geen enkel voorkomen van verblijfstitelhistorie
 
   Scenario: verblijfstitelhistorie met periode binnen de actuele verblijfstitel
-    Als de verblijfstitelhistorie wordt opgevraagd met voor datumvan de waarde "2019-01-01" en datumtotenmet de waarde "2019-06-30"
+    Als de verblijfstitelhistorie wordt opgevraagd met voor datumVan de waarde "2019-01-01" en datumTotEnMet de waarde "2019-06-30"
     Dan wordt de volgende verblijfstitelhistorie teruggegeven
       | aanduiding | datumIngang | datumEinde |
       | 42         | 2016-09-01  | 2019-09-01 |
 
   Scenario: verblijfstitelhistorie met peildatum binnen een historische verblijfstitel
-    Als de verblijfstitelhistorie wordt opgevraagd met voor peildatum de waarde "2010-01-01" en datumtotenmet de waarde "2010-12-31"
+    Als de verblijfstitelhistorie wordt opgevraagd met voor peildatum de waarde "2010-01-01" en datumTotEnMet de waarde "2010-12-31"
     Dan wordt de volgende verblijfstitelhistorie teruggegeven
       | aanduiding | datumIngang | datumEinde |
       | 24         | 2009-05-12  | 2012-04-05 |
 
   Scenario: verblijfstitelhistorie met periode over meerdere verblijfstitels
-    Als de verblijfstitelhistorie wordt opgevraagd met voor datumvan de waarde "2009-01-01" en datumtotenmet de waarde "2009-06-30"
+    Als de verblijfstitelhistorie wordt opgevraagd met voor datumVan de waarde "2009-01-01" en datumTotEnMet de waarde "2009-06-30"
     Dan wordt de volgende verblijfstitelhistorie teruggegeven
       | aanduiding | datumIngang | datumEinde |
       | 24         | 2009-05-12  | 2012-04-05 |
       | 26         | 2008-11-29  | 2009-05-12 |
 
   Scenario: verblijfstitelhistorie met alleen begin van de periode
-    Als de verblijfstitelhistorie wordt opgevraagd met voor datumvan de waarde "2009-01-01" en geen datumtotenmet
+    Als de verblijfstitelhistorie wordt opgevraagd met voor datumVan de waarde "2009-01-01" en geen datumTotEnMet
     Dan wordt de volgende verblijfstitelhistorie teruggegeven
       | aanduiding | datumIngang | datumEinde |
       | 42         | 2016-09-01  | 2019-09-01 |
@@ -119,7 +119,7 @@
       | 26         | 2008-11-29  | 2009-05-12 |
 
   Scenario: verblijfstitelhistorie met alleen einde van de periode
-    Als de verblijfstitelhistorie wordt opgevraagd met voor datumtotenmet de waarde "2009-01-01" en geen datumvan
+    Als de verblijfstitelhistorie wordt opgevraagd met voor datumTotEnMet de waarde "2009-01-01" en geen datumVan
     Dan wordt de volgende verblijfstitelhistorie teruggegeven
       | aanduiding | datumIngang | datumEinde |
       | 26         | 2008-11-29  | 2009-05-12 |
@@ -127,13 +127,13 @@
       | 33         | 2003-03-27  | 2005-02-19 |
 
   Scenario: verblijfstitelhistorie met periode én peildatum
-    Als de verblijfstitelhistorie wordt opgevraagd met voor datumvan de waarde "2009-01-01" en datumtotenmet de waarde "2009-06-30" en voor peildatum de waarde "2009-03-19"
+    Als de verblijfstitelhistorie wordt opgevraagd met voor datumVan de waarde "2009-01-01" en datumTotEnMet de waarde "2009-06-30" en voor peildatum de waarde "2009-03-19"
     Dan wordt de volgende verblijfstitelhistorie teruggegeven
       | aanduiding | datumIngang | datumEinde |
       | 26         | 2008-11-29  | 2009-05-12 |
 
   Scenario: verblijfstitelhistorie met periode én peildatum buiten de opgegeven periode
-    Als de verblijfstitelhistorie wordt opgevraagd met voor datumvan de waarde "2009-01-01" en datumtotenmet de waarde "2009-06-30" en voor peildatum de waarde "2019-03-19"
+    Als de verblijfstitelhistorie wordt opgevraagd met voor datumVan de waarde "2009-01-01" en datumTotEnMet de waarde "2009-06-30" en voor peildatum de waarde "2019-03-19"
     Dan bevat het antwoord geen enkel voorkomen van verblijfstitelhistorie
 
   Scenario: vervallen of ingetrokken verblijfstitel
