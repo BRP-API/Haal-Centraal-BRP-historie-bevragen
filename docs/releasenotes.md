@@ -10,7 +10,7 @@ We bieden nu ook SDK's aan met gegenereerde [plumbing-code](./code). Daarnaast b
 
 ### Openapi.yaml :
 
-- server-url is aangepast (omdat het een aparte API is geworden.) --> https://github.com/VNG-Realisatie/Haal-Centraal-BRP-historie-bevragen _**(breaking)**_
+- server-url is aangepast (omdat het een aparte API is geworden.) --> https://github.com/VNG-Realisatie/Haal-Centraal-BRP-historie-bevragen
 - OperationId's zijn aangepast ivm code-generatie issues en nu in UpperCamelCase.
 - Bij properties zijn de maxLength, minLength, pattern en (waar overbodig) de title weggehaald.
 - Enkele parameternamen zijn aangepast vanwege consistentie met andere Haal-Centraal API's en/of de Design Decision om parameternamen in camelCase op te nemen  
