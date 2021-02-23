@@ -12,9 +12,7 @@ We bieden nu ook SDK's aan met gegenereerde [plumbing-code](./code). Daarnaast b
 
 - server-url is aangepast (omdat het een aparte API is geworden.) --> https://github.com/VNG-Realisatie/Haal-Centraal-BRP-historie-bevragen _**(breaking)**_
 - OperationId's zijn aangepast ivm code-generatie issues en nu in UpperCamelCase.
-- Alle descriptions zijn omgezet naar markdown.
 - Bij properties zijn de maxLength, minLength, pattern en (waar overbodig) de title weggehaald.
-- Descriptions zijn aangepast om beter bij de gebruikersbeleving aan te sluiten, overbodige descriptions zijn verwijderd.
 - Enkele parameternamen zijn aangepast vanwege consistentie met andere Haal-Centraal API's en/of de Design Decision om parameternamen in camelCase op te nemen  
   - datumvan --> datumVan _**(breaking)**_
   - datumtotenmet --> datumTotEnMet  _**(breaking)**_
@@ -69,7 +67,6 @@ We bieden nu ook SDK's aan met gegenereerde [plumbing-code](./code). Daarnaast b
   - OntbindingHuwelijk.indicatieHuwelijkPartnerschapBeeindigd is toegevoegd
   - Partnerhistorie.naam.adellijkeTitelPredikaat is toegevoegd
 
-- Er is in de toelichting van Hallinks opgenomen dat een Hallink ook een templated link kan zijn.
 
 ### Features:
 
