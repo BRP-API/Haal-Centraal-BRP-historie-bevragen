@@ -10,46 +10,51 @@ We bieden nu ook SDK's aan met gegenereerde [plumbing-code](./code). Daarnaast b
 
 ### Openapi.yaml :
 
+_**Breaking:**_
+
+- Enkele parameternamen zijn aangepast vanwege consistentie met andere Haal-Centraal API's en/of de Design Decision om parameternamen in camelCase op te nemen  
+  - datumvan --> datumVan
+  - datumtotenmet --> datumTotEnMet  
+
+  - Enkele property-namen zijn gewijzigd (deze zijn allemaal )
+    - nationaliteithistorie.datumEindeGeldigheid --> nationaliteithistorie.datumTot
+    - Verblijfplaatshistorie_links.nummeraanduiding --> VerblijfplaatshistorieLinks.adres
+    - Verblijfplaats is anders opgebouwd.
+      - Schema-component BinnenlandsAdres is verwijderd. Er wordt nu hergebruik gemaakt van het component Adres en dat wordt direct aangevuld met de properties
+        - BinnenlandsAdres.openbareRuimteNaam --> Verblijfplaats.straat
+        - BinnenlandsAdres.functieAdres --> Verblijfplaats.functieAdres
+        - BinnenlandsAdres.aanduidingBijHuisnummer --> Verblijfplaats.aanduidingBijHuisnummer
+        - BinnenlandsAdres.identificatiecodeNummeraanduiding --> Verblijfplaats.nummeraanduidingIdentificatie
+        - BinnenlandsAdres.woonplaatsnaam --> Verblijfplaats.woonplaats
+        - Verblijfplaats.identificatiecodeVerblijfplaats --> Verblijfplaats.identificatiecodeAdresseerbaarObject --> Verblijfplaats.adresseerbaarObjectIdentificatie
+        - Verblijfplaats.straatnaam --> Verblijfplaats.korteNaam
+        - component verblijfBuitenland is komen te vervallen.
+      - Schema-component Verblijfbuitenland is verwijderd. Properties zijn opgenomen in Verblijfplaats.
+        - VerblijfBuitenland.adresRegel1 --> Verblijfplaats.adresregel1
+        - VerblijfBuitenland.adresRegel2 --> Verblijfplaats.adresregel2  
+        - VerblijfBuitenland.adresRegel3 --> Verblijfplaats.adresregel3  
+        - VerblijfBuitenland.vertrokkenOnbekendWaarheen --> Verblijfplaats.vertrokkenOnbekendWaarheen
+        - VerblijfBuitenland.land --> Verblijfplaats.land
+      - VerblijfplaatsInOnderzoek.identificatiecodeNummeraanduiding --> VerblijfplaatsInOnderzoek.nummeraanduidingIdentificatie
+      - VerblijfplaatsInOnderzoek.identificatiecodeVerblijfplaats --> VerblijfplaatsInOnderzoek.identificatiecodeAdresseerbaarObject --> VerblijfplaatsInOnderzoek.adresseerbarObjectIdentificatie
+      - VerblijfplaatsInOnderzoek.straatnaam --> VerblijfplaatsInOnderzoek.korteNaam
+      - VerblijfplaatsInOnderzoek.naamOpenbareRuimte --> VerblijfplaatsInOnderzoek.straat
+      - VerblijfplaatsInOnderzoek.woonplaatsnaam --> VerblijfplaatsInOnderzoek.woonplaats
+
+
+  - Verwijderde properties:
+    - Verblijfstitelhistorie.indicatieVerblijfstitelBeeindigd
+    - Verblijfstitel.datumOpneming
+    - VerblijfstitelInOnderzoek.datumOpneming
+
+
+
+_**Non-breaking:**_
 - server-url is aangepast (omdat het een aparte API is geworden.) --> https://github.com/VNG-Realisatie/Haal-Centraal-BRP-historie-bevragen
 - OperationId's zijn aangepast ivm code-generatie issues en nu in UpperCamelCase.
 - Bij properties zijn de maxLength, minLength, pattern en (waar overbodig) de title weggehaald.
-- Enkele parameternamen zijn aangepast vanwege consistentie met andere Haal-Centraal API's en/of de Design Decision om parameternamen in camelCase op te nemen  
-  - datumvan --> datumVan _**(breaking)**_
-  - datumtotenmet --> datumTotEnMet  _**(breaking)**_
 
 - Schema-component Burgerservicenummer is verwijderd. De properties die deze als $REF gebruikten zijn als string gedefinieerd.
-
-- Enkele property-namen zijn gewijzigd (deze zijn allemaal _**breaking**_ )
-  - nationaliteithistorie.datumEindeGeldigheid --> nationaliteithistorie.datumTot
-  - Verblijfplaatshistorie_links.nummeraanduiding --> VerblijfplaatshistorieLinks.adres
-  - Verblijfplaats is anders opgebouwd.
-    - Schema-component BinnenlandsAdres is verwijderd. Er wordt nu hergebruik gemaakt van het component Adres en dat wordt direct aangevuld met de properties
-      - BinnenlandsAdres.openbareRuimteNaam --> Verblijfplaats.straat
-      - BinnenlandsAdres.functieAdres --> Verblijfplaats.functieAdres
-      - BinnenlandsAdres.aanduidingBijHuisnummer --> Verblijfplaats.aanduidingBijHuisnummer
-      - BinnenlandsAdres.identificatiecodeNummeraanduiding --> Verblijfplaats.nummeraanduidingIdentificatie
-      - BinnenlandsAdres.woonplaatsnaam --> Verblijfplaats.woonplaats
-      - Verblijfplaats.identificatiecodeVerblijfplaats --> Verblijfplaats.identificatiecodeAdresseerbaarObject --> Verblijfplaats.adresseerbaarObjectIdentificatie
-      - Verblijfplaats.straatnaam --> Verblijfplaats.korteNaam
-      - component verblijfBuitenland is komen te vervallen.
-    - Schema-component Verblijfbuitenland is verwijderd. Properties zijn opgenomen in Verblijfplaats.
-      - VerblijfBuitenland.adresRegel1 --> Verblijfplaats.adresregel1
-      - VerblijfBuitenland.adresRegel2 --> Verblijfplaats.adresregel2  
-      - VerblijfBuitenland.adresRegel3 --> Verblijfplaats.adresregel3  
-      - VerblijfBuitenland.vertrokkenOnbekendWaarheen --> Verblijfplaats.vertrokkenOnbekendWaarheen
-      - VerblijfBuitenland.land --> Verblijfplaats.land
-    - VerblijfplaatsInOnderzoek.identificatiecodeNummeraanduiding --> VerblijfplaatsInOnderzoek.nummeraanduidingIdentificatie
-    - VerblijfplaatsInOnderzoek.identificatiecodeVerblijfplaats --> VerblijfplaatsInOnderzoek.identificatiecodeAdresseerbaarObject --> VerblijfplaatsInOnderzoek.adresseerbarObjectIdentificatie
-    - VerblijfplaatsInOnderzoek.straatnaam --> VerblijfplaatsInOnderzoek.korteNaam
-    - VerblijfplaatsInOnderzoek.naamOpenbareRuimte --> VerblijfplaatsInOnderzoek.straat
-    - VerblijfplaatsInOnderzoek.woonplaatsnaam --> VerblijfplaatsInOnderzoek.woonplaats
-
-
-- Verwijderde properties (_**breaking**_):
-  - Verblijfstitelhistorie.indicatieVerblijfstitelBeeindigd
-  - Verblijfstitel.datumOpneming
-  - VerblijfstitelInOnderzoek.datumOpneming
-
 
 
 - Enkele namen van schema-componenten zijn aangepast vanwege consistentie met andere Haal-Centraal API's
