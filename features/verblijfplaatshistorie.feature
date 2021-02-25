@@ -7,7 +7,7 @@ Functionaliteit: Tonen van verblijfplaatsen
   De gebruiker kan de verblijfplaats raadplegen op een specifieke peildatum (in het verleden).
   De gebruiker kan de verblijfplaatsen raadplegen over een specifieke periode.
   Filteren op peildatum of periode wordt gedaan op basis van de datum aanvang adreshouding van de verblijfplaats(en).
-  Op periode gefilterde gegevens tonen alle verblijfplaatsen waar de persoon gedurende de periode heeft verbleven. Ook wanneer de persoon al voor de periode op een verblijfplaats verbleef en binnen de gevraagde periode nog steeds, wordt de verblijfplaats opgenomen in het antwoord. Ook wanneer de persoon tijdens (een deel van) de periode op een verblijfplaats verbleef en na de gevraagde periode nog steeds, wordt de verblijfplaats opgenomen in het antwoord.
+  Op periode gefilterde gegevens tonen alle verblijfplaatsen waar de persoon gedurende de periode heeft verbleven. Ook wanneer de persoon al voor de periode op een verblijfplaats verbleef en binnen (een deel van) de gevraagde periode nog steeds, wordt de verblijfplaats opgenomen in het antwoord. Ook wanneer de persoon tijdens (een deel van) de periode op een verblijfplaats verbleef en na de gevraagde periode nog steeds, wordt de verblijfplaats opgenomen in het antwoord.
 
   Wanneer de datum aanvang gedeeltelijk onbekend is, wordt voor de filtering aangenomen dat de persoon gedurende de gehele onzekerheidstijd op het adres heeft verbleven. Wanneer van de datum aanvang adreshouding alleen het jaar bekend is, wordt aangenomen dat de persoon het hele jaar op deze verblijfplaats heeft verbleven.
   Wanneer van de datum aanvang adreshouding alleen het jaar en de maand bekend is, wordt aangenomen dat de persoon de hele maand op deze verblijfplaats heeft verbleven.

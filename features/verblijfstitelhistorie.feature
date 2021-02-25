@@ -8,7 +8,7 @@
   Filteren op peildatum of periode wordt gedaan op basis Ingangsdatum verblijfstitel (39.30) en Datum einde verblijfstitel (39.20). Datum einde verblijfstitel is de datum waarop de verblijfstitel niet meer geldig is
   .
   Op periode gefilterde gegevens tonen alle verblijfstitels die de persoon gedurende de periode heeft gehad.
-  Als de persoon al voor de periode een verblijfstitel had die binnen de gevraagde periode nog steeds geldig was, dan wordt de verblijfstitel opgenomen in het antwoord.
+  Als de persoon al voor de periode een verblijfstitel had die binnen (een deel van) de gevraagde periode nog steeds geldig was, dan wordt de verblijfstitel opgenomen in het antwoord.
   Als de persoon tijdens (een deel van) de periode een verblijfstitel kreeg die na de gevraagde periode nog steeds geldig was, dan wordt de verblijfstitel opgenomen in het antwoord.
   Als de persoon tijdens de periode een verblijfstitel kreeg die voor het einde van de gevraagde periode zijn geldigheid verloor, dan wordt de verblijfstitel opgenomen in het antwoord.
 
