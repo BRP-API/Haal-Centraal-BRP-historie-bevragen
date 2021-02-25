@@ -16,8 +16,8 @@ _**Breaking:**_
   - datumvan --> datumVan
   - datumtotenmet --> datumTotEnMet  
 
-  - Enkele property-namen zijn gewijzigd (deze zijn allemaal )
-    - nationaliteithistorie.datumEindeGeldigheid --> nationaliteithistorie.datumTot
+  - Enkele property-namen zijn gewijzigd
+    - Nationaliteithistorie.datumEindeGeldigheid --> Nationaliteithistorie.datumTot
     - Verblijfplaatshistorie_links.nummeraanduiding --> VerblijfplaatshistorieLinks.adres
     - Verblijfplaats is anders opgebouwd.
       - Schema-component BinnenlandsAdres is verwijderd. Er wordt nu hergebruik gemaakt van het component Adres en dat wordt direct aangevuld met de properties
@@ -29,7 +29,7 @@ _**Breaking:**_
         - Verblijfplaats.identificatiecodeVerblijfplaats --> Verblijfplaats.identificatiecodeAdresseerbaarObject --> Verblijfplaats.adresseerbaarObjectIdentificatie
         - Verblijfplaats.straatnaam --> Verblijfplaats.korteNaam
         - component verblijfBuitenland is komen te vervallen.
-      - Schema-component Verblijfbuitenland is verwijderd. Properties zijn opgenomen in Verblijfplaats.
+      - Schema-component Verblijfbuitenland is verwijderd. Properties zijn opgenomen in Verblijfplaats en enkele zijn hernoemd.
         - VerblijfBuitenland.adresRegel1 --> Verblijfplaats.adresregel1
         - VerblijfBuitenland.adresRegel2 --> Verblijfplaats.adresregel2  
         - VerblijfBuitenland.adresRegel3 --> Verblijfplaats.adresregel3  
