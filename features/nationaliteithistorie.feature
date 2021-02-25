@@ -5,7 +5,7 @@ Functionaliteit: Tonen van Nationaliteithistorie
 
   In het antwoord wordt indicatieNationaliteitBeeindigd opgenomen met de waarde true, wanneer in de actuele nationaliteit (categorie 04) GEEN nationaliteit (05.10) noch aanduiding bijzonder Nederlanderschap (65.10) is opgenomen, of wanneer in categorie 04 reden beëindigen nationaliteit (64.10) is opgenomen.
 
-  Voor een beëindigde nationaliteit of beëindigd bijzonder Nederlanderschap worden de eigenschappen overgenomen uit de jongste bijbehorende historische categorie (54) waarin deze zijn voorkomen. Dit betreft de volgende eigenschappen:
+  Voor een beëindigde nationaliteit of beëindigd bijzonder Nederlanderschap worden de eigenschappen overgenomen uit de jongste bijbehorende historische categorie (54) waarin deze voorkomen. Dit betreft de volgende eigenschappen:
   - nationaliteit
   - aanduidingBijzonderNederlanderschap
   - redenOpname
@@ -21,7 +21,7 @@ Functionaliteit: Tonen van Nationaliteithistorie
   Een beëindigde nationaliteit waarbij de jongste bijbehorende historische categorie 54 met nationaliteit (05.10) gevuld én indicatie onjuist (84.10) gevuld, wordt niet opgenomen in het antwoord.
   Voor een actuele nationaliteit (niet-beëindigd) met een bijbehorende historische categorie 54 met indicatie onjuist, worden de gegevens (incl. datum ingang) in de onjuiste categorie genegeerd.
 
-  In het antwoord worden de eerst de actuele nationaliteiten opgenomen, gevolgd door de beëindigde nationaliteiten (gesorteerd op indicatieNationaliteitBeeindigd). Daarbinnen worden resultaten aflopend gesorteerd op datumTot en vervolgens aflopend gesorteerd op datumIngangGeldigheid.
+  In het antwoord worden eerst de actuele nationaliteiten opgenomen, gevolgd door de beëindigde nationaliteiten (gesorteerd op indicatieNationaliteitBeeindigd). Daarbinnen worden resultaten aflopend gesorteerd op datumTot en vervolgens aflopend gesorteerd op datumIngangGeldigheid.
 
 
   Gegeven de ingeschreven persoon met burgerservicenummer 999991292 kent de volgende nationaliteiten:

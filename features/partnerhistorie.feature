@@ -4,7 +4,7 @@ Functionaliteit: Tonen van Partnerhistorie
   Huidige en beëindigde huwelijken en geregistreerd partnerschappen van ingeschreven personen kunnen worden geraadpleegd.
 
   Alleen huwelijken en partnerschappen uit categorie 05 worden opgenomen in het antwoord.
-  Bij het ophalen van ontbonden huwelijken en partnerschappen uit GBA-V wordt Datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10) uit de eerste historische huwelijk/partnerschap (categorie 55) na het actuele huwelijk/partnerschap waarin Datum huwelijkssluiting/aangaan geregistreerd partnerschap een waarde heeft.
+  Bij het ophalen van ontbonden huwelijken en partnerschappen uit GBA-V wordt de _Datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10)_ uit de eerste historische huwelijk/partnerschap (categorie 55) na het actuele huwelijk/partnerschap waarin _Datum huwelijkssluiting/aangaan geregistreerd partnerschap_ een waarde heeft opgenomen.
 
   De gebruiker kan het huwelijk of partnerschap raadplegen op een specifieke peildatum (in het verleden).
   De gebruiker kan de huwelijken of partnerschappen raadplegen over een specifieke periode.
@@ -27,7 +27,7 @@ Functionaliteit: Tonen van Partnerhistorie
   Wanneer van de ontbinding alleen het jaar en maand bekend is, wordt voor de filtering aangenomen dat de persoon de hele maand deze partner heeft gehad.
 
 
-  De huwelijken/partnerschappen worden in het antwoord aflopend gesorteerd op Datum huwelijkssluiting/aangaan geregistreerd partnerschap, zodat de meest laatst gesloten huwelijk/partnerschap bovenaan staat.
+  De huwelijken/partnerschappen worden in het antwoord aflopend gesorteerd op Datum huwelijkssluiting/aangaan geregistreerd partnerschap, zodat de laatst gesloten huwelijk/partnerschap bovenaan staat.
 
   Als een huwelijk/partnerschap, actueel of ontbonden, in onderzoek is, en dit onderzoek is niet afgerond (Datum einde onderzoek is leeg), wordt inOnderzoek gevuld voor betreffende huwelijk/partnerschap.
 
