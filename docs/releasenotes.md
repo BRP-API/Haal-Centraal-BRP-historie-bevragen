@@ -36,7 +36,7 @@ _**Breaking:**_
         - VerblijfBuitenland.vertrokkenOnbekendWaarheen --> Verblijfplaats.vertrokkenOnbekendWaarheen
         - VerblijfBuitenland.land --> Verblijfplaats.land
       - VerblijfplaatsInOnderzoek.identificatiecodeNummeraanduiding --> VerblijfplaatsInOnderzoek.nummeraanduidingIdentificatie
-      - VerblijfplaatsInOnderzoek.identificatiecodeVerblijfplaats --> VerblijfplaatsInOnderzoek.identificatiecodeAdresseerbaarObject --> VerblijfplaatsInOnderzoek.adresseerbarObjectIdentificatie
+      - VerblijfplaatsInOnderzoek.identificatiecodeVerblijfplaats --> VerblijfplaatsInOnderzoek.identificatiecodeAdresseerbaarObject --> VerblijfplaatsInOnderzoek.adresseerbaarObjectIdentificatie
       - VerblijfplaatsInOnderzoek.straatnaam --> VerblijfplaatsInOnderzoek.korteNaam
       - VerblijfplaatsInOnderzoek.naamOpenbareRuimte --> VerblijfplaatsInOnderzoek.straat
       - VerblijfplaatsInOnderzoek.woonplaatsnaam --> VerblijfplaatsInOnderzoek.woonplaats
