@@ -32,7 +32,7 @@
   Als een verblijfstitel, actueel of historisch, in onderzoek is, en dit onderzoek is niet afgerond (Datum einde onderzoek is leeg), wordt inOnderzoek gevuld voor betreffende verblijfstitel.
 
   Als wel het begin van de periode (datumVan) wordt opgegeven, maar geen einde van de periode (datumTotEnMet), dan worden alle verblijfstitels vanaf de datumVan in het antwoord opgenomen.
-  Als wel het einde van de periode (datumTotEnMet) wordt opgegeven, maar geen begin van de periode (datumTotEnMet), dan worden alle verblijfstitels tot en met de datumTotEnMet in het antwoord opgenomen.
+  Als wel het einde van de periode (datumTotEnMet) wordt opgegeven, maar geen begin van de periode (datumVan), dan worden alle verblijfstitels tot en met de datumTotEnMet in het antwoord opgenomen.
 
   Achtergrond:
     Gegeven de gevraagde persoon heeft de volgende verblijfstitels in de registratie

@@ -32,7 +32,7 @@ Functionaliteit: Tonen van Partnerhistorie
   Als een huwelijk/partnerschap, actueel of ontbonden, in onderzoek is, en dit onderzoek is niet afgerond (Datum einde onderzoek is leeg), wordt inOnderzoek gevuld voor betreffende huwelijk/partnerschap.
 
   Als wel het begin van de periode (datumVan) wordt opgegeven, maar geen einde van de periode (datumTotEnMet), dan worden alle huwelijken/partnerschappen vanaf de datumVan in het antwoord opgenomen.
-  Als wel het einde van de periode (datumTotEnMet) wordt opgegeven, maar geen begin van de periode (datumTotEnMet), dan worden alle huwelijken/partnerschappen tot en met de datumTotEnMet in het antwoord opgenomen.
+  Als wel het einde van de periode (datumTotEnMet) wordt opgegeven, maar geen begin van de periode (datumVan), dan worden alle huwelijken/partnerschappen tot en met de datumTotEnMet in het antwoord opgenomen.
 
   Achtergrond:
     Gegeven de persoon met burgerservienummer 999991553 heeft de volgende huwelijken/partnerschappen in de registratie
