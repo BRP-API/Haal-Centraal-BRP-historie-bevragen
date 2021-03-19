@@ -5,7 +5,7 @@ Functionaliteit: Tonen van Nationaliteithistorie
 
   In het antwoord wordt indicatieNationaliteitBeeindigd opgenomen met de waarde true, wanneer in de actuele nationaliteit (categorie 04) GEEN nationaliteit (05.10) noch aanduiding bijzonder Nederlanderschap (65.10) is opgenomen, of wanneer in categorie 04 reden beëindigen nationaliteit (64.10) is opgenomen.
 
-  Voor een beëindigde nationaliteit of beëindigd bijzonder Nederlanderschap worden de eigenschappen overgenomen uit de jongste bijbehorende historische categorie (54) waarin deze zijn voorkomen. Dit betreft de volgende eigenschappen:
+  Voor een beëindigde nationaliteit of beëindigd bijzonder Nederlanderschap worden de eigenschappen overgenomen uit de jongste bijbehorende historische categorie (54) waarin deze voorkomen. Dit betreft de volgende eigenschappen:
   - nationaliteit
   - aanduidingBijzonderNederlanderschap
   - redenOpname
@@ -21,7 +21,7 @@ Functionaliteit: Tonen van Nationaliteithistorie
   Een beëindigde nationaliteit waarbij de jongste bijbehorende historische categorie 54 met nationaliteit (05.10) gevuld én indicatie onjuist (84.10) gevuld, wordt niet opgenomen in het antwoord.
   Voor een actuele nationaliteit (niet-beëindigd) met een bijbehorende historische categorie 54 met indicatie onjuist, worden de gegevens (incl. datum ingang) in de onjuiste categorie genegeerd.
 
-  In het antwoord worden de eerst de actuele nationaliteiten opgenomen, gevolgd door de beëindigde nationaliteiten (gesorteerd op indicatieNationaliteitBeeindigd). Daarbinnen worden resultaten aflopend gesorteerd op datumEindeGeldigheid en vervolgens aflopend gesorteerd op datumIngangGeldigheid.
+  In het antwoord worden eerst de actuele nationaliteiten opgenomen, gevolgd door de beëindigde nationaliteiten (gesorteerd op indicatieNationaliteitBeeindigd). Daarbinnen worden resultaten aflopend gesorteerd op datumTot en vervolgens aflopend gesorteerd op datumIngangGeldigheid.
 
 
   Gegeven de ingeschreven persoon met burgerservicenummer 999991292 kent de volgende nationaliteiten:
@@ -79,7 +79,7 @@ Functionaliteit: Tonen van Nationaliteithistorie
     Als de nationaliteithistorie met burgerservicenummer 999991292 wordt geraadpleegd
     Dan bevat het antwoord 3 voorkomens
     En wordt de nationaliteithistorie teruggegeven in de volgorde en met waarden:
-    | # | nationaliteit.code | aanduidingBijzonderNederlanderschap | datumIngangGeldigheid | datumEindeGeldigheid | indicatieNationaliteitBeeindigd | redenBeeindigen.code |
+    | # | nationaliteit.code | aanduidingBijzonderNederlanderschap | datumIngangGeldigheid | datumTot             | indicatieNationaliteitBeeindigd | redenBeeindigen.code |
     | 0 | 0001               | -                                   | 1991-02-01            | -                    | -                               | -                    |
     | 0 | 0057               | -                                   | 1983-12-13            | 2014-06-01           | true                            | 404                  |
     | 0 | 0100               | -                                   | 1989-03-01            | 1994-06-01           | true                            | 404                  |
@@ -88,7 +88,7 @@ Functionaliteit: Tonen van Nationaliteithistorie
     Als de nationalteithistorie met burgerservicenummer 999990457 wordt geraadpleegd
     Dan bevat het antwoord 5 voorkomens
     En wordt de nationaliteithistorie teruggegeven in de volgorde en met waarden:
-      | # | nationaliteit.code | aanduidingBijzonderNederlanderschap | datumIngangGeldigheid | datumEindeGeldigheid | indicatieNationaliteitBeeindigd | redenBeeindigen.code |
+      | # | nationaliteit.code | aanduidingBijzonderNederlanderschap | datumIngangGeldigheid | datumTot             | indicatieNationaliteitBeeindigd | redenBeeindigen.code |
       | 0 | 0038               | -                                   | -                     | -                    | -                               | -                    |
       | 1 | 0027               | -                                   | -                     | -                    | -                               | -                    |
       | 2 | 0039               | -                                   | -                     | 2012-01-01           | true                            | -                    |
@@ -99,7 +99,7 @@ Functionaliteit: Tonen van Nationaliteithistorie
     Als de nationaliteithistorie met burgerservicenummer 999992806 wordt geraadpleegd
     Dan bevat het antwoord 3 voorkomens
     En worden de nationaliteiten teruggegeven in de volgorde en met waarden:
-      | # | nationaliteit.code | aanduidingBijzonderNederlanderschap | datumIngangGeldigheid | datumEindeGeldigheid | indicatieNationaliteitBeeindigd | redenBeeindigen.code |
+      | # | nationaliteit.code | aanduidingBijzonderNederlanderschap | datumIngangGeldigheid | datumTot             | indicatieNationaliteitBeeindigd | redenBeeindigen.code |
       | 0 | -                  | vastgesteld_niet_nederlander        | 2000-01-14            | -                    | -                               | -                    |
       | 1 | 0334               | -                                   | -                     | -                    | -                               | -                    |
       | 2 | 0331               | -                                   | -                     | 2000-01-14           | true                            | 404                  |
@@ -108,7 +108,7 @@ Functionaliteit: Tonen van Nationaliteithistorie
     Als de nationaliteithistorie met burgerservicenummer 9999955555 wordt geraadpleegd
     Dan bevat het antwoord 2 voorkomens
     En worden de nationaliteiten teruggegeven in de volgorde en met waarden:
-      | # | nationaliteit.code | datumIngangGeldigheid | datumEindeGeldigheid | redenOpname.code | redenBeeindigen.code |
+      | # | nationaliteit.code | datumIngangGeldigheid | datumTot             | redenOpname.code | redenBeeindigen.code |
       | 0 | 0001               | 2016-08-03            | -                    | 018              | -                    |
       | 1 | 0449               | 1993-04-19            | 2017-02-10           | 301              | 403                  |
 
@@ -124,7 +124,7 @@ Functionaliteit: Tonen van Nationaliteithistorie
     Dan bevat het antwoord 3 voorkomens
     En bevat het antwoord geen nationaliteit.code 0251
     En worden de nationaliteiten teruggegeven in de volgorde en met waarden:
-      | # | nationaliteit.code | datumIngangGeldigheid | datumEindeGeldigheid | redenOpname.code | redenBeeindigen.code |
+      | # | nationaliteit.code | datumIngangGeldigheid | datumTot             | redenOpname.code | redenBeeindigen.code |
       | 0 | 0001               | 2004-10-15            | -                    | 018              | -                    |
       | 1 | 0445               | 1961-12-30            | -                    | -                | -                    |
       | 2 | 0446               | 1961-12-30            | -                    | -                | -                    |

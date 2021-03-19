@@ -7,7 +7,7 @@ Functionaliteit: Tonen van verblijfplaatsen
   De gebruiker kan de verblijfplaats raadplegen op een specifieke peildatum (in het verleden).
   De gebruiker kan de verblijfplaatsen raadplegen over een specifieke periode.
   Filteren op peildatum of periode wordt gedaan op basis van de datum aanvang adreshouding van de verblijfplaats(en).
-  Op periode gefilterde gegevens tonen alle verblijfplaatsen waar de persoon gedurende de periode heeft verbleven. Ook wanneer de persoon al voor de periode op een verblijfplaats verbleef en binnen de gevraagde periode nog steeds, wordt de verblijfplaats opgenomen in het antwoord. Ook wanneer de persoon tijdens (een deel van) de periode op een verblijfplaats verbleef en na de gevraagde periode nog steeds, wordt de verblijfplaats opgenomen in het antwoord.
+  Op periode gefilterde gegevens tonen alle verblijfplaatsen waar de persoon gedurende de periode heeft verbleven. Ook wanneer de persoon al voor de periode op een verblijfplaats verbleef en binnen (een deel van) de gevraagde periode nog steeds, wordt de verblijfplaats opgenomen in het antwoord. Ook wanneer de persoon tijdens (een deel van) de periode op een verblijfplaats verbleef en na de gevraagde periode nog steeds, wordt de verblijfplaats opgenomen in het antwoord.
 
   Wanneer de datum aanvang gedeeltelijk onbekend is, wordt voor de filtering aangenomen dat de persoon gedurende de gehele onzekerheidstijd op het adres heeft verbleven. Wanneer van de datum aanvang adreshouding alleen het jaar bekend is, wordt aangenomen dat de persoon het hele jaar op deze verblijfplaats heeft verbleven.
   Wanneer van de datum aanvang adreshouding alleen het jaar en de maand bekend is, wordt aangenomen dat de persoon de hele maand op deze verblijfplaats heeft verbleven.
@@ -89,7 +89,7 @@ Functionaliteit: Tonen van verblijfplaatsen
     Dan wordt geen enkele verblijfplaats teruggegeven
 
   Scenario: Verblijfplaatsen opvragen over een periode
-    Als de ingeschreven persoon met burgerservicenummer 999994669 wordt geraadpleegd met datumvan 1961-12-29 en datumtotenmet 2019-09-11
+    Als de ingeschreven persoon met burgerservicenummer 999994669 wordt geraadpleegd met datumVan 1961-12-29 en datumTotEnMet 2019-09-11
     Dan worden de verblijfplaatsen teruggegeven in de volgorde en met waarden:
       | # | datumAanvangAdreshouding | datumTot   | datumIngangGeldigheid | Adres            |
       | 0 | 1994-05-08               | -          | 2011-02-05            | Beethovenlaan 23 |
@@ -97,33 +97,33 @@ Functionaliteit: Tonen van verblijfplaatsen
       | 2 | 1993-02-15               | 1993-09-10 | 1993-02-15            | België           |
       | 3 | 1961-12-30               | 1993-02-15 | 1961-12-30            | Javaplein 11     |
 
-    Als de ingeschreven persoon met burgerservicenummer 999994669 wordt geraadpleegd met datumvan 2012-01-01 en datumtotenmet 2019-09-11
+    Als de ingeschreven persoon met burgerservicenummer 999994669 wordt geraadpleegd met datumVan 2012-01-01 en datumTotEnMet 2019-09-11
     Dan worden de verblijfplaatsen teruggegeven in de volgorde en met waarden:
       | # | datumAanvangAdreshouding | datumTot   | datumIngangGeldigheid | Adres            |
       | 0 | 1994-05-08               | -          | 2011-02-05            | Beethovenlaan 23 |
 
-    Als de ingeschreven persoon met burgerservicenummer 999994669 wordt geraadpleegd met datumvan 1995-01-01 en datumtotenmet 1996-01-01
+    Als de ingeschreven persoon met burgerservicenummer 999994669 wordt geraadpleegd met datumVan 1995-01-01 en datumTotEnMet 1996-01-01
     Dan worden de verblijfplaatsen teruggegeven in de volgorde en met waarden:
       | # | datumAanvangAdreshouding | datumTot   | datumIngangGeldigheid | Adres            |
       | 0 | 1994-05-08               | -          | 2011-02-05            | Beethovenlaan 23 |
 
-    Als de ingeschreven persoon met burgerservicenummer 999994669 wordt geraadpleegd met datumvan 1950-01-01 en datumtotenmet 1993-09-09
+    Als de ingeschreven persoon met burgerservicenummer 999994669 wordt geraadpleegd met datumVan 1950-01-01 en datumTotEnMet 1993-09-09
     Dan worden de verblijfplaatsen teruggegeven in de volgorde en met waarden:
       | # | datumAanvangAdreshouding | datumTot   | datumIngangGeldigheid | Adres            |
       | 0 | 1993-02-15               | 1993-09-10 | 1993-02-15            | België           |
       | 1 | 1961-12-30               | 1993-02-15 | 1961-12-30            | Javaplein 11     |
 
-    Als de ingeschreven persoon met burgerservicenummer 999994669 wordt geraadpleegd met datumvan 1950-01-01 en datumtotenmet 1993-09-10
+    Als de ingeschreven persoon met burgerservicenummer 999994669 wordt geraadpleegd met datumVan 1950-01-01 en datumTotEnMet 1993-09-10
     Dan worden de verblijfplaatsen teruggegeven in de volgorde en met waarden:
       | # | datumAanvangAdreshouding | datumTot   | datumIngangGeldigheid | Adres            |
       | 0 | 1993-09-10               | 1994-05-08 | 1993-09-10            | Kerkstraat 83    |
       | 1 | 1993-02-15               | 1993-09-10 | 1993-02-15            | België           |
       | 2 | 1961-12-30               | 1993-02-15 | 1961-12-30            | Javaplein 11     |
 
-    Als de ingeschreven persoon met burgerservicenummer 999994669 wordt geraadpleegd met datumvan 1950-01-01 en datumtotenmet 1961-12-29
+    Als de ingeschreven persoon met burgerservicenummer 999994669 wordt geraadpleegd met datumVan 1950-01-01 en datumTotEnMet 1961-12-29
     Dan wordt geen enkele verblijfplaats teruggegeven
 
-    Als de ingeschreven persoon met burgerservicenummer 999994669 wordt geraadpleegd met datumvan 1950-01-01 en datumtotenmet 1961-12-30
+    Als de ingeschreven persoon met burgerservicenummer 999994669 wordt geraadpleegd met datumVan 1950-01-01 en datumTotEnMet 1961-12-30
     Dan worden de verblijfplaatsen teruggegeven in de volgorde en met waarden:
       | # | datumAanvangAdreshouding | datumTot   | datumIngangGeldigheid | Adres            |
       | 0 | 1961-12-30               | 1993-02-15 | 1961-12-30            | Javaplein 11     |
@@ -143,12 +143,12 @@ Functionaliteit: Tonen van verblijfplaatsen
     Als de ingeschreven persoon met burgerservicenummer 999992338 wordt geraadpleegd met peildatum 1995-12-31
     Dan wordt geen enkele verblijfplaats teruggegeven
 
-    Als de ingeschreven persoon met burgerservicenummer 999992338 wordt geraadpleegd met datumvan 1995-01-01 en datumtotenmet 1996-01-01
+    Als de ingeschreven persoon met burgerservicenummer 999992338 wordt geraadpleegd met datumVan 1995-01-01 en datumTotEnMet 1996-01-01
     Dan worden de verblijfplaatsen teruggegeven in de volgorde en met waarden:
       | # | datumAanvangAdreshouding | datumTot   | datumIngangGeldigheid | Adres            |
       | 2 | 1996                     | 1994-05-08 | 1996                  | België           |
 
-    Als de ingeschreven persoon met burgerservicenummer 999992338 wordt geraadpleegd met datumvan 1995-01-01 en datumtotenmet 1995-12-31
+    Als de ingeschreven persoon met burgerservicenummer 999992338 wordt geraadpleegd met datumVan 1995-01-01 en datumTotEnMet 1995-12-31
     Dan wordt geen enkele verblijfplaats teruggegeven
 
   Scenario: Verblijfplaats heeft geheel onbekende datum aanvang adreshouding
@@ -168,7 +168,7 @@ Functionaliteit: Tonen van verblijfplaatsen
       | # | datumAanvangAdreshouding | datumTot   | datumIngangGeldigheid | Adres            |
       | 0 | -                        | 2012-03-05 | -                     | Leyweg 61        |
 
-    Als de ingeschreven persoon met burgerservicenummer 999993483 wordt geraadpleegd met datumvan 1850-01-01 en datumtotenmet 1900-01-01
+    Als de ingeschreven persoon met burgerservicenummer 999993483 wordt geraadpleegd met datumVan 1850-01-01 en datumTotEnMet 1900-01-01
     Dan worden de verblijfplaatsen teruggegeven in de volgorde en met waarden:
       | # | datumAanvangAdreshouding | datumTot   | datumIngangGeldigheid | Adres            |
       | 0 | -                        | 2012-03-05 | -                     | Leyweg 61        |
