@@ -24,7 +24,7 @@
       "get" : {
         "tags" : [ "BRP historie bevragen" ],
         "description" : "Zoek de verblijfplaatshistorie van een persoon op de opgegeven peildatum of binnen de opgegeven periode.\nAls je geen peildatum of periode opgeeft, krijg je alle verblijfplaatsen terug. Het meest actuele adres staat bovenaan.\n",
-        "operationId" : "Getverblijfplaatshistorie",
+        "operationId" : "GetVerblijfplaatshistorie",
         "parameters" : [ {
           "name" : "burgerservicenummer",
           "in" : "path",
@@ -307,7 +307,7 @@
       "get" : {
         "tags" : [ "BRP historie bevragen" ],
         "description" : "Zoek de partnerhistorie van een persoon op de opgegeven peildatum of binnen de opgegeven periode.\nAls je geen peildatum of periode opgeeft, krijg je alle partners terug waarmee een partnerschap is aangegaan of een huwelijk is gesloten.\n",
-        "operationId" : "Getpartnerhistorie",
+        "operationId" : "GetPartnerhistorie",
         "parameters" : [ {
           "name" : "burgerservicenummer",
           "in" : "path",
@@ -590,7 +590,7 @@
       "get" : {
         "tags" : [ "BRP historie bevragen" ],
         "description" : "Zoek de verblijfstitelhistorie van een persoon op de opgegeven peildatum of binnen de opgegeven periode.\nAls je geen peildatum of periode opgeeft, krijg je alle verblijfstitels van de persoon terug. De meest actuele verblijfstitel staat bovenaan.\n",
-        "operationId" : "getverblijfstitelhistorie",
+        "operationId" : "GetVerblijfstitelhistorie",
         "parameters" : [ {
           "name" : "burgerservicenummer",
           "in" : "path",
@@ -873,7 +873,7 @@
       "get" : {
         "tags" : [ "BRP historie bevragen" ],
         "description" : "Zoek de nationaliteithistorie van een persoon op de opgegeven peildatum of binnen de opgegeven periode.\nAls je geen peildatum of periode opgeeft, krijg je alle nationaliteiten van de persoon terug. De meest actuele nationaliteit staat bovenaan.\n",
-        "operationId" : "getnationaliteithistorie",
+        "operationId" : "GetNationaliteithistorie",
         "parameters" : [ {
           "name" : "burgerservicenummer",
           "in" : "path",
@@ -1590,7 +1590,7 @@
             "$ref" : "#/components/schemas/DatumOnvolledig"
           }
         },
-        "description" : "Geeft aan welke gegevens over de nationaliteit in onderzoek zijn. Zie de [functionele specificaties](https://github.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/blob/v1.0.0/features/in_onderzoek.feature)\n"
+        "description" : "Geeft aan welke gegevens over de nationaliteit in onderzoek zijn. Zie de [functionele specificaties](https://github.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/blob/v1.1.0/features/in_onderzoek.feature)\n"
       },
       "Verblijfplaats" : {
         "allOf" : [ {
@@ -1790,7 +1790,7 @@
             "$ref" : "#/components/schemas/DatumOnvolledig"
           }
         },
-        "description" : "Geeft aan welke gegevens over het verblijf en adres van de persoon in onderzoek zijn. Elementen van het GBA-adres zelf (Dat zou eigenlijk een BAG-adres moeten zijn) kunnen niet in onderzoek zijn. Wel de relatie naar de nummeraanduiding. Dat wordt gedaan door de identificatiecodeNummeraanduiding in onderzoek te zetten. Zie de [functionele specificaties](https://github.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/blob/v1.0.0/features/in_onderzoek.feature)\n"
+        "description" : "Geeft aan welke gegevens over het verblijf en adres van de persoon in onderzoek zijn. Elementen van het GBA-adres zelf (Dat zou eigenlijk een BAG-adres moeten zijn) kunnen niet in onderzoek zijn. Wel de relatie naar de nummeraanduiding. Dat wordt gedaan door de identificatiecodeNummeraanduiding in onderzoek te zetten. Zie de [functionele specificaties](https://github.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/blob/v1.1.0/features/in_onderzoek.feature)\n"
       },
       "Partner" : {
         "type" : "object",
@@ -1857,6 +1857,9 @@
             "type" : "string",
             "example" : "de"
           },
+          "adellijkeTitelPredikaat" : {
+            "$ref" : "#/components/schemas/Waardetabel"
+          },
           "inOnderzoek" : {
             "$ref" : "#/components/schemas/NaamInOnderzoek"
           }
@@ -1874,11 +1877,14 @@
           "voorvoegsel" : {
             "type" : "boolean"
           },
+          "adellijkeTitelPredikaat" : {
+            "type" : "boolean"
+          },
           "datumIngangOnderzoek" : {
             "$ref" : "#/components/schemas/DatumOnvolledig"
           }
         },
-        "description" : "Geeft aan welke gegevens over de naam in onderzoek zijn. Zie de [functionele specificaties](https://github.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/blob/v1.0.0/features/in_onderzoek.feature)\n"
+        "description" : "Geeft aan welke gegevens over de naam in onderzoek zijn. Zie de [functionele specificaties](https://github.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/blob/v1.1.0/features/in_onderzoek.feature)\n"
       },
       "Geboorte" : {
         "allOf" : [ {
@@ -1895,7 +1901,7 @@
               "$ref" : "#/components/schemas/GeboorteInOnderzoek"
             }
           },
-          "description" : "Gegevens over de geboorte.\n* **datum** : datum waarop de persoon is geboren.\n* **land** : land waar de persoon is geboren\n* **plaats** : plaats waar de persoon is geboren. Voor een plaats buiten Nederland is gemeentecode=1999 (RNI) en gemeentenaam de buitenlandse plaatsnaam of aanduiding.\n"
+          "description" : "Gegevens over de geboorte.\n* **datum** : datum waarop de persoon is geboren.\n* **land** : land waar de persoon is geboren\n* **plaats** : gemeente waar de persoon is geboren. Is de persoon geboren buiten Nederland, dan bevat het antwoord alleen een buitenlandse plaatsnaam of aanduiding.\n"
         } ]
       },
       "Geboortedatum" : {
@@ -1923,7 +1929,7 @@
             "$ref" : "#/components/schemas/DatumOnvolledig"
           }
         },
-        "description" : "Geeft aan welke gegevens over de geboorte van de persoon in onderzoek zijn. Zie de [functionele specificaties](https://github.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/blob/v1.0.0/features/in_onderzoek.feature)\n"
+        "description" : "Geeft aan welke gegevens over de geboorte van de persoon in onderzoek zijn. Zie de [functionele specificaties](https://github.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/blob/v1.1.0/features/in_onderzoek.feature)\n"
       },
       "PartnerInOnderzoek" : {
         "type" : "object",
@@ -1941,7 +1947,7 @@
             "$ref" : "#/components/schemas/DatumOnvolledig"
           }
         },
-        "description" : "Geeft aan welke gegevens over het huwelijk of het partnerschap in onderzoek zijn. Zie de [functionele specificaties](https://github.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/blob/v1.0.0/features/in_onderzoek.feature)\n"
+        "description" : "Geeft aan welke gegevens over het huwelijk of het partnerschap in onderzoek zijn. Zie de [functionele specificaties](https://github.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/blob/v1.1.0/features/in_onderzoek.feature)\n"
       },
       "AangaanHuwelijkPartnerschap" : {
         "type" : "object",
@@ -1959,7 +1965,7 @@
             "$ref" : "#/components/schemas/AangaanHuwelijkPartnerschapInOnderzoek"
           }
         },
-        "description" : "Gegevens over de voltrekking van het huwelijk of het aangaan van het geregistreerd partnerschap.\n* **datum** : De datum waarop het huwelijk is voltrokken of het partnerschap is aangegaan.\n* **land** : Het land waar het huwelijk is voltrokken of het partnerschap is aangegaan.\n* **plaats** : Als de plaats een gemeente in Nederland is dan gewoon de gemeentecode + gemeentenaam. Voor een plaats buiten Nederland is de gemeentecode leeg en wordt de gemeentenaam de buitenlandse plaatsnaam of aanduiding.\"\n"
+        "description" : "Gegevens over de voltrekking van het huwelijk of het aangaan van het geregistreerd partnerschap.\n* **datum** : De datum waarop het huwelijk is voltrokken of het partnerschap is aangegaan.\n* **land** : Het land waar het huwelijk is voltrokken of het partnerschap is aangegaan.\n* **plaats** : De gemeente waar het huwelijk is voltrokken of het partnerschap is aangegaan. Voor een plaats buiten Nederland bevat het antwoord een buitenlandse plaatsnaam of aanduiding.\n"
       },
       "AangaanHuwelijkPartnerschapInOnderzoek" : {
         "type" : "object",
@@ -1977,7 +1983,7 @@
             "$ref" : "#/components/schemas/DatumOnvolledig"
           }
         },
-        "description" : "Geeft aan welke gegevens over het voltrekken van het huwelijk of aangaan van het partnerschap in onderzoek zijn. Zie de functionele specificaties. Zie de [functionele specificaties](https://github.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/blob/v1.0.0/features/in_onderzoek.feature)\n"
+        "description" : "Geeft aan welke gegevens over het voltrekken van het huwelijk of aangaan van het partnerschap in onderzoek zijn. Zie de functionele specificaties. Zie de [functionele specificaties](https://github.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/blob/v1.1.0/features/in_onderzoek.feature)\n"
       },
       "Verblijfstitel" : {
         "type" : "object",
@@ -2013,7 +2019,7 @@
             "$ref" : "#/components/schemas/DatumOnvolledig"
           }
         },
-        "description" : "Geeft aan welke gegevens over de verblijfstitel in onderzoek zijn. Zie de [functionele specificaties](https://github.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/blob/v1.0.0/features/in_onderzoek.feature)\n"
+        "description" : "Geeft aan welke gegevens over de verblijfstitel in onderzoek zijn. Zie de [functionele specificaties](https://github.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/blob/v1.1.0/features/in_onderzoek.feature)\n"
       }
     },
     "parameters" : {

@@ -13,13 +13,12 @@ nav:
         path: /
 #      - title: Goals canvas
 #        path: /goals-canvas
-  - title: Specificaties v. 1.0 (IO)
+  - title: Specificaties v. 1.0
     subnav:
       - title: Getting started
         path: /getting-started
       - title: User stories
-        url: https://vng-realisatie.github.io/Haal-Centraal-BRP-historie-bevragen/user-stories-dev
-        path: /user-stories
+        path: /user-stories-prod
       - title: User stories  (afgeschermd)
         url: https://gitlab.com/vng-realisatie/haal-centraal-brp-afgeschermd/-/issues?label_name%5B%5D=historie
         path: /user-stories
