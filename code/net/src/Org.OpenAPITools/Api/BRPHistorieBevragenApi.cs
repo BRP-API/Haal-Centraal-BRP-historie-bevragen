@@ -12,6 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading;
 using RestSharp;
 using Org.OpenAPITools.Client;
 using Org.OpenAPITools.Model;
@@ -86,7 +87,7 @@ namespace Org.OpenAPITools.Api
         /// 
         /// </summary>
         /// <remarks>
-        /// Zoek de verblijfplaatshistorie van een persoon op de opgegeven peildatum of binnen de opgegeven periode verbleef. Als je geen peildatum of periode opgeeft, krijg je alle verblijfplaatsen terug. Het meest actuele adres staat bovenaan. 
+        /// Zoek de verblijfplaatshistorie van een persoon op de opgegeven peildatum of binnen de opgegeven periode. Als je geen peildatum of periode opgeeft, krijg je alle verblijfplaatsen terug. Het meest actuele adres staat bovenaan. 
         /// </remarks>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="burgerservicenummer">Uniek persoonsnummer </param>
@@ -101,7 +102,7 @@ namespace Org.OpenAPITools.Api
         /// 
         /// </summary>
         /// <remarks>
-        /// Zoek de verblijfplaatshistorie van een persoon op de opgegeven peildatum of binnen de opgegeven periode verbleef. Als je geen peildatum of periode opgeeft, krijg je alle verblijfplaatsen terug. Het meest actuele adres staat bovenaan. 
+        /// Zoek de verblijfplaatshistorie van een persoon op de opgegeven peildatum of binnen de opgegeven periode. Als je geen peildatum of periode opgeeft, krijg je alle verblijfplaatsen terug. Het meest actuele adres staat bovenaan. 
         /// </remarks>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="burgerservicenummer">Uniek persoonsnummer </param>
@@ -154,8 +155,9 @@ namespace Org.OpenAPITools.Api
         /// <param name="peildatum">De datum waarop de resource wordt opgevraagd. (optional)</param>
         /// <param name="datumVan">De begindatum van de periode waarover de resource wordt opgevraagd. (optional)</param>
         /// <param name="datumTotEnMet">De einddatum van de periode waarover de resource wordt opgevraagd. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of NationaliteithistorieHalCollectie</returns>
-        System.Threading.Tasks.Task<NationaliteithistorieHalCollectie> GetnationaliteithistorieAsync (string burgerservicenummer, string fields = default(string), DateTime? peildatum = default(DateTime?), DateTime? datumVan = default(DateTime?), DateTime? datumTotEnMet = default(DateTime?));
+        System.Threading.Tasks.Task<NationaliteithistorieHalCollectie> GetnationaliteithistorieAsync (string burgerservicenummer, string fields = default(string), DateTime? peildatum = default(DateTime?), DateTime? datumVan = default(DateTime?), DateTime? datumTotEnMet = default(DateTime?), CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// 
@@ -169,8 +171,9 @@ namespace Org.OpenAPITools.Api
         /// <param name="peildatum">De datum waarop de resource wordt opgevraagd. (optional)</param>
         /// <param name="datumVan">De begindatum van de periode waarover de resource wordt opgevraagd. (optional)</param>
         /// <param name="datumTotEnMet">De einddatum van de periode waarover de resource wordt opgevraagd. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (NationaliteithistorieHalCollectie)</returns>
-        System.Threading.Tasks.Task<ApiResponse<NationaliteithistorieHalCollectie>> GetnationaliteithistorieAsyncWithHttpInfo (string burgerservicenummer, string fields = default(string), DateTime? peildatum = default(DateTime?), DateTime? datumVan = default(DateTime?), DateTime? datumTotEnMet = default(DateTime?));
+        System.Threading.Tasks.Task<ApiResponse<NationaliteithistorieHalCollectie>> GetnationaliteithistorieWithHttpInfoAsync (string burgerservicenummer, string fields = default(string), DateTime? peildatum = default(DateTime?), DateTime? datumVan = default(DateTime?), DateTime? datumTotEnMet = default(DateTime?), CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -183,8 +186,9 @@ namespace Org.OpenAPITools.Api
         /// <param name="peildatum">De datum waarop de resource wordt opgevraagd. (optional)</param>
         /// <param name="datumVan">De begindatum van de periode waarover de resource wordt opgevraagd. (optional)</param>
         /// <param name="datumTotEnMet">De einddatum van de periode waarover de resource wordt opgevraagd. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of PartnerhistorieHalCollectie</returns>
-        System.Threading.Tasks.Task<PartnerhistorieHalCollectie> GetpartnerhistorieAsync (string burgerservicenummer, string fields = default(string), DateTime? peildatum = default(DateTime?), DateTime? datumVan = default(DateTime?), DateTime? datumTotEnMet = default(DateTime?));
+        System.Threading.Tasks.Task<PartnerhistorieHalCollectie> GetpartnerhistorieAsync (string burgerservicenummer, string fields = default(string), DateTime? peildatum = default(DateTime?), DateTime? datumVan = default(DateTime?), DateTime? datumTotEnMet = default(DateTime?), CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// 
@@ -198,13 +202,14 @@ namespace Org.OpenAPITools.Api
         /// <param name="peildatum">De datum waarop de resource wordt opgevraagd. (optional)</param>
         /// <param name="datumVan">De begindatum van de periode waarover de resource wordt opgevraagd. (optional)</param>
         /// <param name="datumTotEnMet">De einddatum van de periode waarover de resource wordt opgevraagd. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (PartnerhistorieHalCollectie)</returns>
-        System.Threading.Tasks.Task<ApiResponse<PartnerhistorieHalCollectie>> GetpartnerhistorieAsyncWithHttpInfo (string burgerservicenummer, string fields = default(string), DateTime? peildatum = default(DateTime?), DateTime? datumVan = default(DateTime?), DateTime? datumTotEnMet = default(DateTime?));
+        System.Threading.Tasks.Task<ApiResponse<PartnerhistorieHalCollectie>> GetpartnerhistorieWithHttpInfoAsync (string burgerservicenummer, string fields = default(string), DateTime? peildatum = default(DateTime?), DateTime? datumVan = default(DateTime?), DateTime? datumTotEnMet = default(DateTime?), CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Zoek de verblijfplaatshistorie van een persoon op de opgegeven peildatum of binnen de opgegeven periode verbleef. Als je geen peildatum of periode opgeeft, krijg je alle verblijfplaatsen terug. Het meest actuele adres staat bovenaan. 
+        /// Zoek de verblijfplaatshistorie van een persoon op de opgegeven peildatum of binnen de opgegeven periode. Als je geen peildatum of periode opgeeft, krijg je alle verblijfplaatsen terug. Het meest actuele adres staat bovenaan. 
         /// </remarks>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="burgerservicenummer">Uniek persoonsnummer </param>
@@ -212,14 +217,15 @@ namespace Org.OpenAPITools.Api
         /// <param name="peildatum">De datum waarop de resource wordt opgevraagd. (optional)</param>
         /// <param name="datumVan">De begindatum van de periode waarover de resource wordt opgevraagd. (optional)</param>
         /// <param name="datumTotEnMet">De einddatum van de periode waarover de resource wordt opgevraagd. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of VerblijfplaatshistorieHalCollectie</returns>
-        System.Threading.Tasks.Task<VerblijfplaatshistorieHalCollectie> GetverblijfplaatshistorieAsync (string burgerservicenummer, string fields = default(string), DateTime? peildatum = default(DateTime?), DateTime? datumVan = default(DateTime?), DateTime? datumTotEnMet = default(DateTime?));
+        System.Threading.Tasks.Task<VerblijfplaatshistorieHalCollectie> GetverblijfplaatshistorieAsync (string burgerservicenummer, string fields = default(string), DateTime? peildatum = default(DateTime?), DateTime? datumVan = default(DateTime?), DateTime? datumTotEnMet = default(DateTime?), CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Zoek de verblijfplaatshistorie van een persoon op de opgegeven peildatum of binnen de opgegeven periode verbleef. Als je geen peildatum of periode opgeeft, krijg je alle verblijfplaatsen terug. Het meest actuele adres staat bovenaan. 
+        /// Zoek de verblijfplaatshistorie van een persoon op de opgegeven peildatum of binnen de opgegeven periode. Als je geen peildatum of periode opgeeft, krijg je alle verblijfplaatsen terug. Het meest actuele adres staat bovenaan. 
         /// </remarks>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="burgerservicenummer">Uniek persoonsnummer </param>
@@ -227,8 +233,9 @@ namespace Org.OpenAPITools.Api
         /// <param name="peildatum">De datum waarop de resource wordt opgevraagd. (optional)</param>
         /// <param name="datumVan">De begindatum van de periode waarover de resource wordt opgevraagd. (optional)</param>
         /// <param name="datumTotEnMet">De einddatum van de periode waarover de resource wordt opgevraagd. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (VerblijfplaatshistorieHalCollectie)</returns>
-        System.Threading.Tasks.Task<ApiResponse<VerblijfplaatshistorieHalCollectie>> GetverblijfplaatshistorieAsyncWithHttpInfo (string burgerservicenummer, string fields = default(string), DateTime? peildatum = default(DateTime?), DateTime? datumVan = default(DateTime?), DateTime? datumTotEnMet = default(DateTime?));
+        System.Threading.Tasks.Task<ApiResponse<VerblijfplaatshistorieHalCollectie>> GetverblijfplaatshistorieWithHttpInfoAsync (string burgerservicenummer, string fields = default(string), DateTime? peildatum = default(DateTime?), DateTime? datumVan = default(DateTime?), DateTime? datumTotEnMet = default(DateTime?), CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -241,8 +248,9 @@ namespace Org.OpenAPITools.Api
         /// <param name="peildatum">De datum waarop de resource wordt opgevraagd. (optional)</param>
         /// <param name="datumVan">De begindatum van de periode waarover de resource wordt opgevraagd. (optional)</param>
         /// <param name="datumTotEnMet">De einddatum van de periode waarover de resource wordt opgevraagd. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of VerblijfstitelhistorieHalCollectie</returns>
-        System.Threading.Tasks.Task<VerblijfstitelhistorieHalCollectie> GetverblijfstitelhistorieAsync (string burgerservicenummer, string fields = default(string), DateTime? peildatum = default(DateTime?), DateTime? datumVan = default(DateTime?), DateTime? datumTotEnMet = default(DateTime?));
+        System.Threading.Tasks.Task<VerblijfstitelhistorieHalCollectie> GetverblijfstitelhistorieAsync (string burgerservicenummer, string fields = default(string), DateTime? peildatum = default(DateTime?), DateTime? datumVan = default(DateTime?), DateTime? datumTotEnMet = default(DateTime?), CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// 
@@ -256,8 +264,9 @@ namespace Org.OpenAPITools.Api
         /// <param name="peildatum">De datum waarop de resource wordt opgevraagd. (optional)</param>
         /// <param name="datumVan">De begindatum van de periode waarover de resource wordt opgevraagd. (optional)</param>
         /// <param name="datumTotEnMet">De einddatum van de periode waarover de resource wordt opgevraagd. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (VerblijfstitelhistorieHalCollectie)</returns>
-        System.Threading.Tasks.Task<ApiResponse<VerblijfstitelhistorieHalCollectie>> GetverblijfstitelhistorieAsyncWithHttpInfo (string burgerservicenummer, string fields = default(string), DateTime? peildatum = default(DateTime?), DateTime? datumVan = default(DateTime?), DateTime? datumTotEnMet = default(DateTime?));
+        System.Threading.Tasks.Task<ApiResponse<VerblijfstitelhistorieHalCollectie>> GetverblijfstitelhistorieWithHttpInfoAsync (string burgerservicenummer, string fields = default(string), DateTime? peildatum = default(DateTime?), DateTime? datumVan = default(DateTime?), DateTime? datumTotEnMet = default(DateTime?), CancellationToken cancellationToken = default(CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -457,10 +466,11 @@ namespace Org.OpenAPITools.Api
         /// <param name="peildatum">De datum waarop de resource wordt opgevraagd. (optional)</param>
         /// <param name="datumVan">De begindatum van de periode waarover de resource wordt opgevraagd. (optional)</param>
         /// <param name="datumTotEnMet">De einddatum van de periode waarover de resource wordt opgevraagd. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of NationaliteithistorieHalCollectie</returns>
-        public async System.Threading.Tasks.Task<NationaliteithistorieHalCollectie> GetnationaliteithistorieAsync (string burgerservicenummer, string fields = default(string), DateTime? peildatum = default(DateTime?), DateTime? datumVan = default(DateTime?), DateTime? datumTotEnMet = default(DateTime?))
+        public async System.Threading.Tasks.Task<NationaliteithistorieHalCollectie> GetnationaliteithistorieAsync (string burgerservicenummer, string fields = default(string), DateTime? peildatum = default(DateTime?), DateTime? datumVan = default(DateTime?), DateTime? datumTotEnMet = default(DateTime?), CancellationToken cancellationToken = default(CancellationToken))
         {
-             ApiResponse<NationaliteithistorieHalCollectie> localVarResponse = await GetnationaliteithistorieAsyncWithHttpInfo(burgerservicenummer, fields, peildatum, datumVan, datumTotEnMet);
+             ApiResponse<NationaliteithistorieHalCollectie> localVarResponse = await GetnationaliteithistorieWithHttpInfoAsync(burgerservicenummer, fields, peildatum, datumVan, datumTotEnMet, cancellationToken);
              return localVarResponse.Data;
 
         }
@@ -474,8 +484,9 @@ namespace Org.OpenAPITools.Api
         /// <param name="peildatum">De datum waarop de resource wordt opgevraagd. (optional)</param>
         /// <param name="datumVan">De begindatum van de periode waarover de resource wordt opgevraagd. (optional)</param>
         /// <param name="datumTotEnMet">De einddatum van de periode waarover de resource wordt opgevraagd. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (NationaliteithistorieHalCollectie)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<NationaliteithistorieHalCollectie>> GetnationaliteithistorieAsyncWithHttpInfo (string burgerservicenummer, string fields = default(string), DateTime? peildatum = default(DateTime?), DateTime? datumVan = default(DateTime?), DateTime? datumTotEnMet = default(DateTime?))
+        public async System.Threading.Tasks.Task<ApiResponse<NationaliteithistorieHalCollectie>> GetnationaliteithistorieWithHttpInfoAsync (string burgerservicenummer, string fields = default(string), DateTime? peildatum = default(DateTime?), DateTime? datumVan = default(DateTime?), DateTime? datumTotEnMet = default(DateTime?), CancellationToken cancellationToken = default(CancellationToken))
         {
             // verify the required parameter 'burgerservicenummer' is set
             if (burgerservicenummer == null)
@@ -513,7 +524,7 @@ namespace Org.OpenAPITools.Api
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(localVarPath,
                 Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
+                localVarPathParams, localVarHttpContentType, cancellationToken);
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
@@ -616,10 +627,11 @@ namespace Org.OpenAPITools.Api
         /// <param name="peildatum">De datum waarop de resource wordt opgevraagd. (optional)</param>
         /// <param name="datumVan">De begindatum van de periode waarover de resource wordt opgevraagd. (optional)</param>
         /// <param name="datumTotEnMet">De einddatum van de periode waarover de resource wordt opgevraagd. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of PartnerhistorieHalCollectie</returns>
-        public async System.Threading.Tasks.Task<PartnerhistorieHalCollectie> GetpartnerhistorieAsync (string burgerservicenummer, string fields = default(string), DateTime? peildatum = default(DateTime?), DateTime? datumVan = default(DateTime?), DateTime? datumTotEnMet = default(DateTime?))
+        public async System.Threading.Tasks.Task<PartnerhistorieHalCollectie> GetpartnerhistorieAsync (string burgerservicenummer, string fields = default(string), DateTime? peildatum = default(DateTime?), DateTime? datumVan = default(DateTime?), DateTime? datumTotEnMet = default(DateTime?), CancellationToken cancellationToken = default(CancellationToken))
         {
-             ApiResponse<PartnerhistorieHalCollectie> localVarResponse = await GetpartnerhistorieAsyncWithHttpInfo(burgerservicenummer, fields, peildatum, datumVan, datumTotEnMet);
+             ApiResponse<PartnerhistorieHalCollectie> localVarResponse = await GetpartnerhistorieWithHttpInfoAsync(burgerservicenummer, fields, peildatum, datumVan, datumTotEnMet, cancellationToken);
              return localVarResponse.Data;
 
         }
@@ -633,8 +645,9 @@ namespace Org.OpenAPITools.Api
         /// <param name="peildatum">De datum waarop de resource wordt opgevraagd. (optional)</param>
         /// <param name="datumVan">De begindatum van de periode waarover de resource wordt opgevraagd. (optional)</param>
         /// <param name="datumTotEnMet">De einddatum van de periode waarover de resource wordt opgevraagd. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (PartnerhistorieHalCollectie)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<PartnerhistorieHalCollectie>> GetpartnerhistorieAsyncWithHttpInfo (string burgerservicenummer, string fields = default(string), DateTime? peildatum = default(DateTime?), DateTime? datumVan = default(DateTime?), DateTime? datumTotEnMet = default(DateTime?))
+        public async System.Threading.Tasks.Task<ApiResponse<PartnerhistorieHalCollectie>> GetpartnerhistorieWithHttpInfoAsync (string burgerservicenummer, string fields = default(string), DateTime? peildatum = default(DateTime?), DateTime? datumVan = default(DateTime?), DateTime? datumTotEnMet = default(DateTime?), CancellationToken cancellationToken = default(CancellationToken))
         {
             // verify the required parameter 'burgerservicenummer' is set
             if (burgerservicenummer == null)
@@ -672,7 +685,7 @@ namespace Org.OpenAPITools.Api
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(localVarPath,
                 Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
+                localVarPathParams, localVarHttpContentType, cancellationToken);
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
@@ -688,7 +701,7 @@ namespace Org.OpenAPITools.Api
         }
 
         /// <summary>
-        ///  Zoek de verblijfplaatshistorie van een persoon op de opgegeven peildatum of binnen de opgegeven periode verbleef. Als je geen peildatum of periode opgeeft, krijg je alle verblijfplaatsen terug. Het meest actuele adres staat bovenaan. 
+        ///  Zoek de verblijfplaatshistorie van een persoon op de opgegeven peildatum of binnen de opgegeven periode. Als je geen peildatum of periode opgeeft, krijg je alle verblijfplaatsen terug. Het meest actuele adres staat bovenaan. 
         /// </summary>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="burgerservicenummer">Uniek persoonsnummer </param>
@@ -704,7 +717,7 @@ namespace Org.OpenAPITools.Api
         }
 
         /// <summary>
-        ///  Zoek de verblijfplaatshistorie van een persoon op de opgegeven peildatum of binnen de opgegeven periode verbleef. Als je geen peildatum of periode opgeeft, krijg je alle verblijfplaatsen terug. Het meest actuele adres staat bovenaan. 
+        ///  Zoek de verblijfplaatshistorie van een persoon op de opgegeven peildatum of binnen de opgegeven periode. Als je geen peildatum of periode opgeeft, krijg je alle verblijfplaatsen terug. Het meest actuele adres staat bovenaan. 
         /// </summary>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="burgerservicenummer">Uniek persoonsnummer </param>
@@ -767,7 +780,7 @@ namespace Org.OpenAPITools.Api
         }
 
         /// <summary>
-        ///  Zoek de verblijfplaatshistorie van een persoon op de opgegeven peildatum of binnen de opgegeven periode verbleef. Als je geen peildatum of periode opgeeft, krijg je alle verblijfplaatsen terug. Het meest actuele adres staat bovenaan. 
+        ///  Zoek de verblijfplaatshistorie van een persoon op de opgegeven peildatum of binnen de opgegeven periode. Als je geen peildatum of periode opgeeft, krijg je alle verblijfplaatsen terug. Het meest actuele adres staat bovenaan. 
         /// </summary>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="burgerservicenummer">Uniek persoonsnummer </param>
@@ -775,16 +788,17 @@ namespace Org.OpenAPITools.Api
         /// <param name="peildatum">De datum waarop de resource wordt opgevraagd. (optional)</param>
         /// <param name="datumVan">De begindatum van de periode waarover de resource wordt opgevraagd. (optional)</param>
         /// <param name="datumTotEnMet">De einddatum van de periode waarover de resource wordt opgevraagd. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of VerblijfplaatshistorieHalCollectie</returns>
-        public async System.Threading.Tasks.Task<VerblijfplaatshistorieHalCollectie> GetverblijfplaatshistorieAsync (string burgerservicenummer, string fields = default(string), DateTime? peildatum = default(DateTime?), DateTime? datumVan = default(DateTime?), DateTime? datumTotEnMet = default(DateTime?))
+        public async System.Threading.Tasks.Task<VerblijfplaatshistorieHalCollectie> GetverblijfplaatshistorieAsync (string burgerservicenummer, string fields = default(string), DateTime? peildatum = default(DateTime?), DateTime? datumVan = default(DateTime?), DateTime? datumTotEnMet = default(DateTime?), CancellationToken cancellationToken = default(CancellationToken))
         {
-             ApiResponse<VerblijfplaatshistorieHalCollectie> localVarResponse = await GetverblijfplaatshistorieAsyncWithHttpInfo(burgerservicenummer, fields, peildatum, datumVan, datumTotEnMet);
+             ApiResponse<VerblijfplaatshistorieHalCollectie> localVarResponse = await GetverblijfplaatshistorieWithHttpInfoAsync(burgerservicenummer, fields, peildatum, datumVan, datumTotEnMet, cancellationToken);
              return localVarResponse.Data;
 
         }
 
         /// <summary>
-        ///  Zoek de verblijfplaatshistorie van een persoon op de opgegeven peildatum of binnen de opgegeven periode verbleef. Als je geen peildatum of periode opgeeft, krijg je alle verblijfplaatsen terug. Het meest actuele adres staat bovenaan. 
+        ///  Zoek de verblijfplaatshistorie van een persoon op de opgegeven peildatum of binnen de opgegeven periode. Als je geen peildatum of periode opgeeft, krijg je alle verblijfplaatsen terug. Het meest actuele adres staat bovenaan. 
         /// </summary>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="burgerservicenummer">Uniek persoonsnummer </param>
@@ -792,8 +806,9 @@ namespace Org.OpenAPITools.Api
         /// <param name="peildatum">De datum waarop de resource wordt opgevraagd. (optional)</param>
         /// <param name="datumVan">De begindatum van de periode waarover de resource wordt opgevraagd. (optional)</param>
         /// <param name="datumTotEnMet">De einddatum van de periode waarover de resource wordt opgevraagd. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (VerblijfplaatshistorieHalCollectie)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<VerblijfplaatshistorieHalCollectie>> GetverblijfplaatshistorieAsyncWithHttpInfo (string burgerservicenummer, string fields = default(string), DateTime? peildatum = default(DateTime?), DateTime? datumVan = default(DateTime?), DateTime? datumTotEnMet = default(DateTime?))
+        public async System.Threading.Tasks.Task<ApiResponse<VerblijfplaatshistorieHalCollectie>> GetverblijfplaatshistorieWithHttpInfoAsync (string burgerservicenummer, string fields = default(string), DateTime? peildatum = default(DateTime?), DateTime? datumVan = default(DateTime?), DateTime? datumTotEnMet = default(DateTime?), CancellationToken cancellationToken = default(CancellationToken))
         {
             // verify the required parameter 'burgerservicenummer' is set
             if (burgerservicenummer == null)
@@ -831,7 +846,7 @@ namespace Org.OpenAPITools.Api
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(localVarPath,
                 Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
+                localVarPathParams, localVarHttpContentType, cancellationToken);
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 
@@ -934,10 +949,11 @@ namespace Org.OpenAPITools.Api
         /// <param name="peildatum">De datum waarop de resource wordt opgevraagd. (optional)</param>
         /// <param name="datumVan">De begindatum van de periode waarover de resource wordt opgevraagd. (optional)</param>
         /// <param name="datumTotEnMet">De einddatum van de periode waarover de resource wordt opgevraagd. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of VerblijfstitelhistorieHalCollectie</returns>
-        public async System.Threading.Tasks.Task<VerblijfstitelhistorieHalCollectie> GetverblijfstitelhistorieAsync (string burgerservicenummer, string fields = default(string), DateTime? peildatum = default(DateTime?), DateTime? datumVan = default(DateTime?), DateTime? datumTotEnMet = default(DateTime?))
+        public async System.Threading.Tasks.Task<VerblijfstitelhistorieHalCollectie> GetverblijfstitelhistorieAsync (string burgerservicenummer, string fields = default(string), DateTime? peildatum = default(DateTime?), DateTime? datumVan = default(DateTime?), DateTime? datumTotEnMet = default(DateTime?), CancellationToken cancellationToken = default(CancellationToken))
         {
-             ApiResponse<VerblijfstitelhistorieHalCollectie> localVarResponse = await GetverblijfstitelhistorieAsyncWithHttpInfo(burgerservicenummer, fields, peildatum, datumVan, datumTotEnMet);
+             ApiResponse<VerblijfstitelhistorieHalCollectie> localVarResponse = await GetverblijfstitelhistorieWithHttpInfoAsync(burgerservicenummer, fields, peildatum, datumVan, datumTotEnMet, cancellationToken);
              return localVarResponse.Data;
 
         }
@@ -951,8 +967,9 @@ namespace Org.OpenAPITools.Api
         /// <param name="peildatum">De datum waarop de resource wordt opgevraagd. (optional)</param>
         /// <param name="datumVan">De begindatum van de periode waarover de resource wordt opgevraagd. (optional)</param>
         /// <param name="datumTotEnMet">De einddatum van de periode waarover de resource wordt opgevraagd. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (VerblijfstitelhistorieHalCollectie)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<VerblijfstitelhistorieHalCollectie>> GetverblijfstitelhistorieAsyncWithHttpInfo (string burgerservicenummer, string fields = default(string), DateTime? peildatum = default(DateTime?), DateTime? datumVan = default(DateTime?), DateTime? datumTotEnMet = default(DateTime?))
+        public async System.Threading.Tasks.Task<ApiResponse<VerblijfstitelhistorieHalCollectie>> GetverblijfstitelhistorieWithHttpInfoAsync (string burgerservicenummer, string fields = default(string), DateTime? peildatum = default(DateTime?), DateTime? datumVan = default(DateTime?), DateTime? datumTotEnMet = default(DateTime?), CancellationToken cancellationToken = default(CancellationToken))
         {
             // verify the required parameter 'burgerservicenummer' is set
             if (burgerservicenummer == null)
@@ -990,7 +1007,7 @@ namespace Org.OpenAPITools.Api
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(localVarPath,
                 Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
+                localVarPathParams, localVarHttpContentType, cancellationToken);
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
 

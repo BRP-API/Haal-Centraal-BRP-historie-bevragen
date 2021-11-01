@@ -12,15 +12,15 @@ info:
   title: BRP historie bevragen
   version: 0.0.1 (develop)
 servers:
-- description: APILAB testserver
-  url: https://www.haalcentraal.nl/haalcentraal/api/brp
+- description: APILAB testserver historie
+  url: https://www.haalcentraal.nl/haalcentraal/api/brphistorie
 tags:
 - name: BRP historie bevragen
 paths:
   /ingeschrevenpersonen/{burgerservicenummer}/verblijfplaatshistorie:
     get:
       description: |
-        Zoek de verblijfplaatshistorie van een persoon op de opgegeven peildatum of binnen de opgegeven periode verbleef.
+        Zoek de verblijfplaatshistorie van een persoon op de opgegeven peildatum of binnen de opgegeven periode.
         Als je geen peildatum of periode opgeeft, krijg je alle verblijfplaatsen terug. Het meest actuele adres staat bovenaan.
       operationId: Getverblijfplaatshistorie
       parameters:
@@ -1606,6 +1606,7 @@ components:
           items:
             $ref: '#/components/schemas/InvalidParams'
           type: array
+      type: object
     Verblijfplaats_allOf:
       description: |
         Gegevens over het verblijf of de woonlocatie van een persoon.
