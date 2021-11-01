@@ -8,7 +8,7 @@ info:
                 API voor het zoeken en raadplegen van historische verblijfplaatsen, partners, nationaliteiten en verblijfstitels uit de BRP (inclusief de RNI).
 
                 Zie de [Functionele documentatie](https://github.com/VNG-Realisatie/Haal-Centraal-BRP-historie-bevragen/tree/v1.0.0/features) voor nadere toelichting.
-  version: 0.0.1 (develop)
+  version: 2.0.0
   contact:
     url: https://github.com/VNG-Realisatie/Haal-Centraal-BRP-historie-bevragen
   license:
@@ -19,6 +19,7 @@ tags:
 paths:
   /ingeschrevenpersonen/{burgerservicenummer}/verblijfplaatshistorie:
     get:
+      deprecated: true
       operationId: GetVerblijfplaatshistorie
       description: |
                     Zoek de verblijfplaatshistorie van een persoon op de opgegeven peildatum of binnen de opgegeven periode.
@@ -62,8 +63,53 @@ paths:
           $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.2.0/api-specificatie/common.yaml#/components/responses/default"
       tags:
         - BRP historie bevragen
+  /ingeschrevenpersonen/verblijfplaatshistorie:
+    post:
+      operationId: PostVerblijfplaatshistorie
+      description: |
+                    Zoek de verblijfplaatshistorie van een persoon op de opgegeven peildatum of binnen de opgegeven periode.
+                    Als je geen peildatum of periode opgeeft, krijg je alle verblijfplaatsen terug. Het meest actuele adres staat bovenaan.
+      requestBody:
+        content:
+          application/json:
+            schema:
+                $ref: '#/components/schemas/IngeschrevenPersoonQuery'
+      responses:
+        '200':
+          description: |
+                        Zoekactie geslaagd
+          headers:
+            api-version:
+              $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.2.0/api-specificatie/common.yaml#/components/headers/api_version"
+            warning:
+              $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.2.0/api-specificatie/common.yaml#/components/headers/warning"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VerblijfplaatshistorieCollectie'
+        '400':
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.2.0/api-specificatie/common.yaml#/components/responses/400"
+        '401':
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.2.0/api-specificatie/common.yaml#/components/responses/401"
+        '403':
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.2.0/api-specificatie/common.yaml#/components/responses/403"
+        '404':
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.2.0/api-specificatie/common.yaml#/components/responses/404"
+        '406':
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.2.0/api-specificatie/common.yaml#/components/responses/406"
+        '500':
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.2.0/api-specificatie/common.yaml#/components/responses/500"
+        '501':
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.2.0/api-specificatie/common.yaml#/components/responses/501"
+        '503':
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.2.0/api-specificatie/common.yaml#/components/responses/503"
+        'default':
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.2.0/api-specificatie/common.yaml#/components/responses/default"
+      tags:
+        - BRP historie bevragen
   /ingeschrevenpersonen/{burgerservicenummer}/partnerhistorie:
     get:
+      deprecated: true
       operationId: GetPartnerhistorie
       description: |
                     Zoek de partnerhistorie van een persoon op de opgegeven peildatum of binnen de opgegeven periode.
@@ -107,8 +153,53 @@ paths:
           $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.2.0/api-specificatie/common.yaml#/components/responses/default"
       tags:
         - BRP historie bevragen
+  /ingeschrevenpersonen/partnerhistorie:
+    post:
+      operationId: PostPartnerhistorie
+      description: |
+                    Zoek de partnerhistorie van een persoon op de opgegeven peildatum of binnen de opgegeven periode.
+                    Als je geen peildatum of periode opgeeft, krijg je alle partners terug waarmee een partnerschap is aangegaan of een huwelijk is gesloten.
+      requestBody:
+        content:
+          application/json:
+            schema:
+                $ref: '#/components/schemas/IngeschrevenPersoonQuery'
+      responses:
+        '200':
+          description: |
+                        Zoekactie geslaagd
+          headers:
+            api-version:
+              $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.2.0/api-specificatie/common.yaml#/components/headers/api_version"
+            warning:
+              $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.2.0/api-specificatie/common.yaml#/components/headers/warning"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PartnerhistorieCollectie'
+        '400':
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.2.0/api-specificatie/common.yaml#/components/responses/400"
+        '401':
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.2.0/api-specificatie/common.yaml#/components/responses/401"
+        '403':
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.2.0/api-specificatie/common.yaml#/components/responses/403"
+        '404':
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.2.0/api-specificatie/common.yaml#/components/responses/404"
+        '406':
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.2.0/api-specificatie/common.yaml#/components/responses/406"
+        '500':
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.2.0/api-specificatie/common.yaml#/components/responses/500"
+        '501':
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.2.0/api-specificatie/common.yaml#/components/responses/501"
+        '503':
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.2.0/api-specificatie/common.yaml#/components/responses/503"
+        'default':
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.2.0/api-specificatie/common.yaml#/components/responses/default"
+      tags:
+        - BRP historie bevragen
   /ingeschrevenpersonen/{burgerservicenummer}/verblijfstitelhistorie:
     get:
+      deprecated: true
       operationId: GetVerblijfstitelhistorie
       description: |
                   Zoek de verblijfstitelhistorie van een persoon op de opgegeven peildatum of binnen de opgegeven periode.
@@ -152,8 +243,52 @@ paths:
           $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.2.0/api-specificatie/common.yaml#/components/responses/default"
       tags:
         - BRP historie bevragen
+  /ingeschrevenpersonen/verblijfstitelhistorie:
+    post:
+      operationId: PostVerblijfstitelhistorie
+      description: |
+                    Zoek de verblijfstitelhistorie van een persoon op de opgegeven peildatum of binnen de opgegeven periode. Als je geen peildatum of periode opgeeft, krijg je alle verblijfstitels van de persoon terug. De meest actuele verblijfstitel staat bovenaan.
+      requestBody:
+        content:
+          application/json:
+            schema:
+                $ref: '#/components/schemas/IngeschrevenPersoonQuery'
+      responses:
+        '200':
+          description: |
+                        Zoekactie geslaagd
+          headers:
+            api-version:
+              $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.2.0/api-specificatie/common.yaml#/components/headers/api_version"
+            warning:
+              $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.2.0/api-specificatie/common.yaml#/components/headers/warning"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VerblijfstitelhistorieCollectie'
+        '400':
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.2.0/api-specificatie/common.yaml#/components/responses/400"
+        '401':
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.2.0/api-specificatie/common.yaml#/components/responses/401"
+        '403':
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.2.0/api-specificatie/common.yaml#/components/responses/403"
+        '404':
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.2.0/api-specificatie/common.yaml#/components/responses/404"
+        '406':
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.2.0/api-specificatie/common.yaml#/components/responses/406"
+        '500':
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.2.0/api-specificatie/common.yaml#/components/responses/500"
+        '501':
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.2.0/api-specificatie/common.yaml#/components/responses/501"
+        '503':
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.2.0/api-specificatie/common.yaml#/components/responses/503"
+        'default':
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.2.0/api-specificatie/common.yaml#/components/responses/default"
+      tags:
+        - BRP historie bevragen
   /ingeschrevenpersonen/{burgerservicenummer}/nationaliteithistorie:
     get:
+      deprecated: true
       operationId: GetNationaliteithistorie
       description: |
                     Zoek de nationaliteithistorie van een persoon op de opgegeven peildatum of binnen de opgegeven periode.
@@ -197,11 +332,90 @@ paths:
           $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.2.0/api-specificatie/common.yaml#/components/responses/default"
       tags:
         - BRP historie bevragen
+  /ingeschrevenpersonen/nationaliteithistorie:
+    post:
+      operationId: PostNationaliteithistorie
+      description: |
+                    Zoek de nationaliteithistorie van een persoon op de opgegeven peildatum of binnen de opgegeven periode.
+                    Als je geen peildatum of periode opgeeft, krijg je alle nationaliteiten van de persoon terug. De meest actuele nationaliteit staat bovenaan.
+      requestBody:
+        content:
+          application/json:
+            schema:
+                $ref: '#/components/schemas/IngeschrevenPersoonQuery'
+      responses:
+        '200':
+          description: |
+                        Zoekactie geslaagd
+          headers:
+            api-version:
+              $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.2.0/api-specificatie/common.yaml#/components/headers/api_version"
+            warning:
+              $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.2.0/api-specificatie/common.yaml#/components/headers/warning"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NationaliteithistorieCollectie'
+        '400':
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.2.0/api-specificatie/common.yaml#/components/responses/400"
+        '401':
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.2.0/api-specificatie/common.yaml#/components/responses/401"
+        '403':
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.2.0/api-specificatie/common.yaml#/components/responses/403"
+        '404':
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.2.0/api-specificatie/common.yaml#/components/responses/404"
+        '406':
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.2.0/api-specificatie/common.yaml#/components/responses/406"
+        '500':
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.2.0/api-specificatie/common.yaml#/components/responses/500"
+        '501':
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.2.0/api-specificatie/common.yaml#/components/responses/501"
+        '503':
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.2.0/api-specificatie/common.yaml#/components/responses/503"
+        'default':
+          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.2.0/api-specificatie/common.yaml#/components/responses/default"
+      tags:
+        - BRP historie bevragen
 components:
   parameters:
     burgerservicenummer:
       $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/v1.2.0/specificatie/openapi.yaml#/components/parameters/burgerservicenummer"
+#Is het verwijzen tussen verschillende API-specificaties voor dergelijke definities nog wel verstandig ? We raken volgens mij het overzicht kwijt.
   schemas:
+    IngeschrevenPersoonQuery:
+      type: "object"
+      properties:
+        burgerservicenummer:
+          description: |
+                        Uniek persoonsnummer
+          example: 999993653
+          type: "string"
+          pattern: "^[0-9]{9}$"
+        fields:
+          type: string
+          description: "Hiermee kun je de inhoud van de resource naar behoefte aanpassen door een door komma's gescheiden lijst van property namen op te geven. Bij opgave van niet-bestaande properties wordt een 400 Bad Request teruggegeven. De fiels parameter is verplicht vanwege dataminimalisatie overwegingen. Zie [functionele specificaties](https://github.com/VNG-Realisatie/Haal-Centraal-common/blob/v1.3.0/features/fields.feature)"
+          pattern: "^[a-zA-Z.,_]+$"
+        peildatum:
+          description: |
+                        De datum waarop de resource wordt opgevraagd.
+
+          type: "string"
+          format: date
+          example: "2018-09-09"
+        datumVan:
+          description: |
+                        De begindatum van de periode waarover de resource wordt opgevraagd.
+
+          type: "string"
+          format: date
+          example: "2018-09-09"
+        datumTotEnMet:
+          description: |
+                        De einddatum van de periode waarover de resource wordt opgevraagd.
+
+          type: "string"
+          format: date
+          example: "2018-10-09"
     NationaliteithistorieHalCollectie:
       type: object
       properties:
@@ -210,6 +424,13 @@ components:
         _embedded:
           $ref: '#/components/schemas/NationaliteithistorieHalCollectieEmbedded'
     NationaliteithistorieHalCollectieEmbedded:
+      type: object
+      properties:
+        nationaliteithistorie:
+          type: array
+          items:
+            $ref: '#/components/schemas/Nationaliteithistorie'
+    NationaliteithistorieCollectie:
       type: object
       properties:
         nationaliteithistorie:
@@ -261,6 +482,13 @@ components:
         - properties:
             _links:
               $ref: "#/components/schemas/VerblijfplaatshistorieLinks"
+    VerblijfplaatshistorieCollectie:
+      type: object
+      properties:
+        verblijfplaatshistorie:
+          type: array
+          items:
+            $ref: '#/components/schemas/Verblijfplaatshistorie'
     Verblijfplaatshistorie:
       allOf:
       - $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/v1.2.0/specificatie/openapi.yaml#/components/schemas/Verblijfplaats"
@@ -308,6 +536,13 @@ components:
         - properties:
             _links:
               $ref: "#/components/schemas/PartnerhistorieLinks"
+    PartnerhistorieCollectie:
+      type: object
+      properties:
+        partnerhistorie:
+          type: array
+          items:
+            $ref: '#/components/schemas/Partnerhistorie'
     Partnerhistorie:
       allOf:
       - $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/v1.2.0/specificatie/openapi.yaml#/components/schemas/Partner"
@@ -363,6 +598,13 @@ components:
         _embedded:
             $ref: '#/components/schemas/VerblijfstitelhistorieHalCollectieEmbedded'
     VerblijfstitelhistorieHalCollectieEmbedded:
+      type: object
+      properties:
+        verblijfstitelhistorie:
+          type: array
+          items:
+            $ref: '#/components/schemas/Verblijfstitelhistorie'
+    VerblijfstitelhistorieCollectie:
       type: object
       properties:
         verblijfstitelhistorie:
