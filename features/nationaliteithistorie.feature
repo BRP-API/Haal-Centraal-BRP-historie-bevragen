@@ -3,128 +3,220 @@
 Functionaliteit: Tonen van Nationaliteithistorie
   Huidige en voormalige nationaliteiten van ingeschreven personen kunnen worden geraadpleegd.
 
-  In het antwoord wordt indicatieNationaliteitBeeindigd opgenomen met de waarde true, wanneer in de actuele nationaliteit (categorie 04) GEEN nationaliteit (05.10) noch aanduiding bijzonder Nederlanderschap (65.10) is opgenomen, of wanneer in categorie 04 reden beëindigen nationaliteit (64.10) is opgenomen.
+  Rule: In het antwoord wordt indicatieNationaliteitBeeindigd opgenomen met de waarde true, wanneer in de actuele nationaliteit (categorie 04) GEEN nationaliteit (05.10) noch aanduiding bijzonder Nederlanderschap (65.10) is opgenomen, of wanneer in categorie 04 reden beëindigen nationaliteit (64.10) is opgenomen.
 
-  Voor een beëindigde nationaliteit of beëindigd bijzonder Nederlanderschap worden de eigenschappen overgenomen uit de jongste bijbehorende historische categorie (54) waarin deze voorkomen. Dit betreft de volgende eigenschappen:
-  - nationaliteit
-  - aanduidingBijzonderNederlanderschap
-  - redenOpname
+    Scenario: actuele nationaliteit
+      Gegeven de ingeschreven persoon met burgerservicenummer 000009830 kent de volgende nationaliteiten:
+        | Stapel | Categorie | nationaliteit (05.10) | reden opnemen (63.10) | reden beëindigen (64.10) | bijzonder Nederlanderschap (65.10) | onjuist (84.10) | datum ingang geldigheid (85.10) |
+        | 1      | 4         | 0001                  | 001                   |                          |                                    |                 | 19750707                        |
+      Als de nationaliteithistorie met burgerservicenummer 000009830 wordt geraadpleegd
+      Dan bevat het antwoord 1 item(s) voor nationaliteithistorie
+      En bevat het nationaliteithistorie-item met nationaliteit.code "0001" geen gegeven "indicatieNationaliteitBeeindigd"
 
-  Voor een nationaliteit (actueel of beëindigd) wordt de datumIngangGeldigheid gevuld met de datum geldigheid (85.10) uit de oudste bijbehorende categorie (04 of 54) waarin er een waarde is voor 05.10 of voor 65.10.
+    Scenario: actueel bijzonder Nederlanderschap
+      Gegeven de ingeschreven persoon met burgerservicenummer 000009866 kent de volgende nationaliteiten:
+        | Stapel | Categorie | nationaliteit (05.10) | reden opnemen (63.10) | reden beëindigen (64.10) | bijzonder Nederlanderschap (65.10) | onjuist (84.10) | datum ingang geldigheid (85.10) |
+        | 1      | 4         |                       | 310                   |                          | B                                  |                 | 19570115                        |
+      Als de nationaliteithistorie met burgerservicenummer 000009830 wordt geraadpleegd
+      Dan bevat het antwoord 1 item(s) voor nationaliteithistorie
+      En bevat het nationaliteithistorie-item met aanduidingBijzonderNederlanderschap "behandeld_als_nederlander" geen gegeven "indicatieNationaliteitBeeindigd"
 
-  Voor een beëindigde nationaliteit wordt de redenBeeindigen overgenomen uit de bijbehorende actuele categorie (04).
+    Scenario: actuele en beëindigde nationaliteit
+      Gegeven de ingeschreven persoon met burgerservicenummer 999990998 kent de volgende nationaliteiten:
+        | Stapel | Categorie | nationaliteit (05.10) | reden opnemen (63.10) | reden beëindigen (64.10) | bijzonder Nederlanderschap (65.10) | onjuist (84.10) | datum ingang geldigheid (85.10) |
+        | 1      | 4         |                       |                       | 404                      |                                    |                 | 20150131                        |
+        | 1      | 54        | 0307                  | 301                   |                          |                                    |                 | 00000000                        |
+        | 2      | 4         | 0001                  | 000                   |                          |                                    |                 | 00000000                        |
+      Als de nationaliteithistorie met burgerservicenummer 999990998 wordt geraadpleegd
+      Dan bevat het antwoord 2 item(s) voor nationaliteithistorie
+      En bevat het nationaliteithistorie-item met nationaliteit.code "0307" het gegeven "indicatieNationaliteitBeeindigd" met waarde true
+      En bevat het nationaliteithistorie-item met nationaliteit.code "0001" geen gegeven "indicatieNationaliteitBeeindigd"
 
-  Voor een beëindigde nationaliteit wordt datumEindeGeldigheid gevuld met de datum geldigheid (85.10) uit de oudste bijbehorende categorie (04 of 54) waarin er geen waarde is voor 05.10 noch voor 65.10.
+    Scenario: verlies bijzonder Nederlanderschap
+      Gegeven de ingeschreven persoon met burgerservicenummer XXXXXXXXX kent de volgende nationaliteiten:
+        | Stapel | Categorie | nationaliteit (05.10) | reden opnemen (63.10) | reden beëindigen (64.10) | bijzonder Nederlanderschap (65.10) | onjuist (84.10) | datum ingang geldigheid (85.10) |
+        | 1      | 4         |                       |                       | 410                      |                                    |                 | 20190604                        |
+        | 1      | 54        |                       | 310                   |                          | V                                  |                 | 20010319                        |
+        | 2      | 4         | 0001                  | 017                   |                          |                                    |                 | 20190602                        |
+      Als de nationaliteithistorie met burgerservicenummer XXXXXXXXX wordt geraadpleegd
+      Dan bevat het antwoord 2 item(s) voor nationaliteithistorie
+      En bevat het nationaliteithistorie-item met aanduidingBijzonderNederlanderschap "vastgesteld_niet_nederlander" het gegeven "indicatieNationaliteitBeeindigd" met waarde true
+      En bevat het nationaliteithistorie-item met nationaliteit.code "0001" geen gegeven "indicatieNationaliteitBeeindigd"
 
-  Een onjuiste nationaliteit wordt niet opgenomen.
-  Een actuele nationaliteit waarbij in categorie 04 indicatie onjuist (84.10) is gevuld, wordt niet opgenomen in het antwoord.
-  Een beëindigde nationaliteit waarbij de jongste bijbehorende historische categorie 54 met nationaliteit (05.10) gevuld én indicatie onjuist (84.10) gevuld, wordt niet opgenomen in het antwoord.
-  Voor een actuele nationaliteit (niet-beëindigd) met een bijbehorende historische categorie 54 met indicatie onjuist, worden de gegevens (incl. datum ingang) in de onjuiste categorie genegeerd.
 
-  In het antwoord worden eerst de actuele nationaliteiten opgenomen, gevolgd door de beëindigde nationaliteiten (gesorteerd op indicatieNationaliteitBeeindigd). Daarbinnen worden resultaten aflopend gesorteerd op datumTot en vervolgens aflopend gesorteerd op datumIngangGeldigheid.
+  Rule: Voor een beëindigde nationaliteit of beëindigd bijzonder Nederlanderschap worden de nationaliteit, aanduidingBijzonderNederlanderschap en redenOpname overgenomen uit de jongste bijbehorende historische categorie (54) waarin deze voorkomen.
 
+    Scenario: beëindigde nationaliteit
+      Gegeven de ingeschreven persoon met burgerservicenummer 999990998 kent de volgende nationaliteiten:
+        | Stapel | Categorie | nationaliteit (05.10) | reden opnemen (63.10) | reden beëindigen (64.10) | bijzonder Nederlanderschap (65.10) | onjuist (84.10) | datum ingang geldigheid (85.10) |
+        | 1      | 4         |                       |                       | 404                      |                                    |                 | 20150131                        |
+        | 1      | 54        | 0307                  | 301                   |                          |                                    |                 | 00000000                        |
+        | 2      | 4         | 0001                  | 000                   |                          |                                    |                 | 00000000                        |
+      Als de nationaliteithistorie met burgerservicenummer 999990998 wordt geraadpleegd
+      Dan bevat het nationaliteithistorie-item met nationaliteit.code "0307" de volgende gegevens:
+        | nationaliteit.code | redenOpname.code | redenBeeindigen.code |
+        | 0307               | 301              | 404                  |
 
-  Gegeven de ingeschreven persoon met burgerservicenummer 999991292 kent de volgende nationaliteiten:
-    | Stapel | Categorie | 05.10 | 65.10 | 64.10 | 85.10    |
-    | 1      | 04        |       |       | 404   | 20140601 |
-    | 1      | 54        |       |       | 401   | 19940601 |
-    | 1      | 54        | 0100  |       |       | 19890301 |
-    | 2      | 04        | 0001  |       |       | 19910201 |
-    | 3      | 04        |       |       | 404   | 20140601 |
-    | 3      | 54        | 0057  |       |       | 19831213 |
+    Scenario: verlies bijzonder Nederlanderschap
+      Gegeven de ingeschreven persoon met burgerservicenummer XXXXXXXXX kent de volgende nationaliteiten:
+        | Stapel | Categorie | nationaliteit (05.10) | reden opnemen (63.10) | reden beëindigen (64.10) | bijzonder Nederlanderschap (65.10) | onjuist (84.10) | datum ingang geldigheid (85.10) |
+        | 1      | 4         |                       |                       | 410                      |                                    |                 | 20190604                        |
+        | 1      | 54        |                       | 310                   |                          | V                                  |                 | 20010319                        |
+        | 2      | 4         | 0001                  | 017                   |                          |                                    |                 | 20190602                        |
+      Als de nationaliteithistorie met burgerservicenummer XXXXXXXXX wordt geraadpleegd
+      Dan bevat het nationaliteithistorie-item met aanduidingBijzonderNederlanderschap "vastgesteld_niet_nederlander" de volgende gegevens:
+        | aanduidingBijzonderNederlanderschap | redenOpname.code | redenBeeindigen.code |
+        | vastgesteld_niet_nederlander        | 301              | 410                  |
 
-  En de ingeschreven persoon met burgerservicenummer 999990457 kent de volgende nationaliteiten:
-    | Stapel | Categorie | 05.10 | 65.10 | 64.10 | 85.10    |
-    | 1      | 04        |       |       |       | 20120101 |
-    | 1      | 54        | 0039  |       |       | 00000000 |
-    | 2      | 04        |       |       |       | 20120101 |
-    | 2      | 54        | 0078  |       |       | 00000000 |
-    | 3      | 04        | 0038  |       |       | 00000000 |
-    | 4      | 04        | 0027  |       |       | 00000000 |
-    | 5      | 04        |       |       | 038   | 19911231 |
-    | 5      | 54        | 0001  |       |       | 19861010 |
+  
+  Rule: Voor een nationaliteit (actueel of beëindigd) wordt de datumIngangGeldigheid gevuld met de datum geldigheid (85.10) uit de oudste bijbehorende categorie (04 of 54) waarin er een waarde is voor 05.10 of voor 65.10.
 
-  En de ingeschreven persoon met burgerservicenummer 999992806 kent de volgende nationaliteiten:
-    | Stapel | Categorie | 05.10 | 65.10 | 64.10 | 85.10    |
-    | 1      | 04        | 0334  |       |       | 00000000 |
-    | 2      | 04        |       |       | 404   | 20150131 |
-    | 2      | 54        |       |       | 401   | 20000114 |
-    | 2      | 54        | 0331  |       |       | 00000000 |
-    | 3      | 04        |       | V     |       | 20000114 |
+    Scenario: actueel en ongewijzigde nationaliteit
+      Gegeven de ingeschreven persoon met burgerservicenummer 000009830 kent de volgende nationaliteiten:
+        | Stapel | Categorie | nationaliteit (05.10) | reden opnemen (63.10) | reden beëindigen (64.10) | bijzonder Nederlanderschap (65.10) | onjuist (84.10) | datum ingang geldigheid (85.10) |
+        | 1      | 4         | 0001                  | 001                   |                          |                                    |                 | 19750707                        |
+      Als de nationaliteithistorie met burgerservicenummer 000009830 wordt geraadpleegd
+      Dan bevat het nationaliteithistorie-item met nationaliteit.code "0001" het gegeven "datumIngangGeldigheid" met datum "1975-07-07"
 
-  En de ingeschreven persoon met burgerservicenummer 999995555 kent de volgende nationaliteiten:
-    | Stapel | Categorie | 05.10 | 63.10 | 64.10 | 85.10    |
-    | 1      | 04        | 0001  | 018   |       | 20180731 |
-    | 1      | 04        | 0001  | 057   |       | 20160803 |
-    | 2      | 54        |       |       | 403   | 20170526 |
-    | 2      | 54        |       |       | 402   | 20170210 |
-    | 2      | 54        | 0449  | 301   |       | 19930419 |
+    Scenario: beëindigde nationaliteit
+      Gegeven de ingeschreven persoon met burgerservicenummer 999991188 kent de volgende nationaliteiten:
+        | Stapel | Categorie | nationaliteit (05.10) | reden opnemen (63.10) | reden beëindigen (64.10) | bijzonder Nederlanderschap (65.10) | onjuist (84.10) | datum ingang geldigheid (85.10) |
+        | 1      | 4         | 0499                  | 312                   |                          |                                    |                 | 20040201                        |
+        | 2      | 4         |                       |                       | 401                      |                                    |                 | 20040201                        |
+        | 2      | 54        | 0065                  | 301                   |                          |                                    |                 | 19310624                        |
+      Als de nationaliteithistorie met burgerservicenummer 999991188 wordt geraadpleegd
+      Dan bevat het nationaliteithistorie-item met nationaliteit.code "0499" het gegeven "datumIngangGeldigheid" met datum "1931-06-24"
 
-  En de ingeschreven persoon met burgerservicenummer 999992466 kent de volgende nationaliteiten:
-    | Stapel | Categorie | 05.10 | 63.10 | 64.10 | 85.10    | 84.10 |
-    | 1      | 04        | 0057  | 301   |       | 20160601 |       |
-    | 1      | 54        | 0057  | 301   |       | 20160501 |       |
-    | 1      | 54        | 0057  | 301   |       | 20160401 |       |
-    | 1      | 54        | 0057  | 301   |       | 20160301 | O     |
+    Scenario: verlies bijzonder Nederlanderschap
+      Gegeven de ingeschreven persoon met burgerservicenummer XXXXXXXXX kent de volgende nationaliteiten:
+        | Stapel | Categorie | nationaliteit (05.10) | reden opnemen (63.10) | reden beëindigen (64.10) | bijzonder Nederlanderschap (65.10) | onjuist (84.10) | datum ingang geldigheid (85.10) |
+        | 1      | 4         |                       |                       | 410                      |                                    |                 | 20190604                        |
+        | 1      | 54        |                       | 310                   |                          | V                                  |                 | 20010319                        |
+        | 2      | 4         | 0001                  | 017                   |                          |                                    |                 | 20190602                        |
+      Als de nationaliteithistorie met burgerservicenummer XXXXXXXXX wordt geraadpleegd
+      Dan bevat het nationaliteithistorie-item met aanduidingBijzonderNederlanderschap "vastgesteld_niet_nederlander" het gegeven "datumIngangGeldigheid" met datum "2001-03-19"
 
-  En de ingeschreven persoon met burgerservicenummer 999992855 kent de volgende nationaliteiten:
-    | Stapel | Categorie | 05.10 | 63.10 | 64.10 | 85.10    | 84.10 |
-    | 1      | 04        | 0001  | 018   |       | 20041015 |       |
-    | 2      | 04        |       |       |       | 20121022 |       |
-    | 2      | 54        | 0251  |       |       | 20121022 | O     |
-    | 3      | 04        | 0445  |       |       | 19611230 |       |
-    | 4      | 04        | 0446  |       |       | 19611230 |       |
+    Scenario: nationaliteit met onbekende datum ingang geldigheid
+      Gegeven de ingeschreven persoon met burgerservicenummer 999990998 kent de volgende nationaliteiten:
+        | Stapel | Categorie | nationaliteit (05.10) | reden opnemen (63.10) | reden beëindigen (64.10) | bijzonder Nederlanderschap (65.10) | onjuist (84.10) | datum ingang geldigheid (85.10) |
+        | 1      | 4         |                       |                       | 404                      |                                    |                 | 20150131                        |
+        | 1      | 54        | 0307                  | 301                   |                          |                                    |                 | 00000000                        |
+        | 2      | 4         | 0001                  | 000                   |                          |                                    |                 | 00000000                        |
+      Als de nationaliteithistorie met burgerservicenummer 999990998 wordt geraadpleegd
+      Dan bevat het nationaliteithistorie-item met nationaliteit.code "0307" geen gegeven "datumIngangGeldigheid"
+      En bevat het nationaliteithistorie-item met nationaliteit.code "0001" geen gegeven "datumIngangGeldigheid"
 
-  Scenario: actuele en beëindigde nationaliteiten in de juiste volgorde
-    Als de nationaliteithistorie met burgerservicenummer 999991292 wordt geraadpleegd
-    Dan bevat het antwoord 3 voorkomens
-    En wordt de nationaliteithistorie teruggegeven in de volgorde en met waarden:
-    | # | nationaliteit.code | aanduidingBijzonderNederlanderschap | datumIngangGeldigheid | datumTot             | indicatieNationaliteitBeeindigd | redenBeeindigen.code |
-    | 0 | 0001               | -                                   | 1991-02-01            | -                    | -                               | -                    |
-    | 0 | 0057               | -                                   | 1983-12-13            | 2014-06-01           | true                            | 404                  |
-    | 0 | 0100               | -                                   | 1989-03-01            | 1994-06-01           | true                            | 404                  |
+    Scenario: gewijzigde reden opnemen
+      Gegeven de ingeschreven persoon met burgerservicenummer XXXXXXXXX kent de volgende nationaliteiten:
+        | Stapel | Categorie | nationaliteit (05.10) | reden opnemen (63.10) | reden beëindigen (64.10) | bijzonder Nederlanderschap (65.10) | onjuist (84.10) | datum ingang geldigheid (85.10) |
+        | 1      | 4         | 0100                  | 301                   |                          |                                    |                 | 20200727                        |
+        | 1      | 54        | 0100                  | 311                   |                          |                                    |                 | 20200713                        |
+      Als de nationaliteithistorie met burgerservicenummer XXXXXXXXX wordt geraadpleegd
+      Dan bevat het nationaliteithistorie-item met nationaliteit.code "0100" het gegeven "datumIngangGeldigheid" met datum "2020-07-13"
 
-  Scenario: meerdere actuele en beëindigde nationaliteiten
-    Als de nationalteithistorie met burgerservicenummer 999990457 wordt geraadpleegd
-    Dan bevat het antwoord 5 voorkomens
-    En wordt de nationaliteithistorie teruggegeven in de volgorde en met waarden:
+    Scenario: gewijzigde reden beëindigen
+      Gegeven de ingeschreven persoon met burgerservicenummer 999994657 kent de volgende nationaliteiten:
+        | Stapel | Categorie | nationaliteit (05.10) | reden opnemen (63.10) | reden beëindigen (64.10) | bijzonder Nederlanderschap (65.10) | onjuist (84.10) | datum ingang geldigheid (85.10) |
+        | 1      | 4         |                       |                       | 404                      |                                    |                 | 20140601                        |
+        | 1      | 54        |                       |                       | 401                      |                                    |                 | 19940601                        |
+        | 1      | 54        | 0100                  | 301                   |                          |                                    |                 | 19890301                        |
+        | 2      | 4         | 0001                  | 030                   |                          |                                    |                 | 19910201                        |
+      Als de nationaliteithistorie met burgerservicenummer 999994657 wordt geraadpleegd
+      Dan bevat het nationaliteithistorie-item met nationaliteit.code "0100" het gegeven "datumIngangGeldigheid" met datum "1989-03-01"
+
+  
+  Rule: Voor een beëindigde nationaliteit of beëindigd bijzonder Nederlanderschap wordt de redenBeeindigen overgenomen uit de bijbehorende actuele categorie (04).
+
+    Scenario: gewijzigde reden beëindigen
+      Gegeven de ingeschreven persoon met burgerservicenummer 999994657 kent de volgende nationaliteiten:
+        | Stapel | Categorie | nationaliteit (05.10) | reden opnemen (63.10) | reden beëindigen (64.10) | bijzonder Nederlanderschap (65.10) | onjuist (84.10) | datum ingang geldigheid (85.10) |
+        | 1      | 4         |                       |                       | 404                      |                                    |                 | 20140601                        |
+        | 1      | 54        |                       |                       | 401                      |                                    |                 | 19940601                        |
+        | 1      | 54        | 0100                  | 301                   |                          |                                    |                 | 19890301                        |
+        | 2      | 4         | 0001                  | 030                   |                          |                                    |                 | 19910201                        |
+      Als de nationaliteithistorie met burgerservicenummer 999994657 wordt geraadpleegd
+      Dan bevat het nationaliteithistorie-item met nationaliteit.code "0100" het gegeven "redenBeeindigen" met code "404"
+
+  
+  Rule: Voor een beëindigde nationaliteit wordt datumTot gevuld met de datum geldigheid (85.10) uit de oudste bijbehorende categorie (04 of 54) waarin er geen waarde is voor 05.10 noch voor 65.10.
+
+    Scenario: gewijzigde reden beëindigen
+      Gegeven de ingeschreven persoon met burgerservicenummer 999994657 kent de volgende nationaliteiten:
+        | Stapel | Categorie | nationaliteit (05.10) | reden opnemen (63.10) | reden beëindigen (64.10) | bijzonder Nederlanderschap (65.10) | onjuist (84.10) | datum ingang geldigheid (85.10) |
+        | 1      | 4         |                       |                       | 404                      |                                    |                 | 20140601                        |
+        | 1      | 54        |                       |                       | 401                      |                                    |                 | 19940601                        |
+        | 1      | 54        | 0100                  | 301                   |                          |                                    |                 | 19890301                        |
+        | 2      | 4         | 0001                  | 030                   |                          |                                    |                 | 19910201                        |
+      Als de nationaliteithistorie met burgerservicenummer 999994657 wordt geraadpleegd
+      Dan bevat het nationaliteithistorie-item met nationaliteit.code "0100" het gegeven "datumTot" met datum "1994-06-01"
+
+    Scenario: actuele nationaliteit
+      Gegeven de ingeschreven persoon met burgerservicenummer 000009830 kent de volgende nationaliteiten:
+        | Stapel | Categorie | nationaliteit (05.10) | reden opnemen (63.10) | reden beëindigen (64.10) | bijzonder Nederlanderschap (65.10) | onjuist (84.10) | datum ingang geldigheid (85.10) |
+        | 1      | 4         | 0001                  | 001                   |                          |                                    |                 | 19750707                        |
+      Als de nationaliteithistorie met burgerservicenummer 000009830 wordt geraadpleegd
+      Dan bevat het nationaliteithistorie-item met nationaliteit.code "0001" geen gegeven "datumTot"
+  
+  Rule: Een onjuiste nationaliteit wordt niet opgenomen.
+    # Een nationaliteit waarbij in categorie 04 indicatie onjuist (84.10) is gevuld, wordt niet opgenomen in het antwoord.
+    # Een beëindigde nationaliteit waarbij de jongste bijbehorende historische categorie 54 met nationaliteit (05.10) gevuld én indicatie onjuist (84.10) gevuld, wordt niet opgenomen in het antwoord.
+    # Voor een actuele nationaliteit (niet-beëindigd) met een bijbehorende historische categorie 54 met indicatie onjuist, worden de gegevens (incl. datum ingang) in de onjuiste categorie genegeerd.
+
+    Scenario: onjuiste nationaliteit in actuele categorie
+      Gegeven de ingeschreven persoon met burgerservicenummer 999992855 kent de volgende nationaliteiten:
+        | Stapel | Categorie | nationaliteit (05.10) | reden opnemen (63.10) | reden beëindigen (64.10) | bijzonder Nederlanderschap (65.10) | onjuist (84.10) | datum ingang geldigheid (85.10) |
+        | 1      | 4         | 0001                  | 018                   |                          |                                    |                 | 20041015                        |
+        | 2      | 4         |                       |                       |                          |                                    |                 | 20121022                        |
+        | 3      | 4         | 0251                  |                       |                          |                                    | O               | 20121022                        |
+        | 4      | 4         | 0445                  |                       |                          |                                    |                 | 19611230                        |
+        | 5      | 4         | 0446                  |                       |                          |                                    |                 | 19611230                        |
+      Als de nationaliteithistorie met burgerservicenummer 999992855 wordt geraadpleegd
+      Dan is er geen nationaliteithistorie-item met nationaliteit.code "0251"
+  
+    Scenario: onjuiste nationaliteit in historische categorie
+      Gegeven de ingeschreven persoon met burgerservicenummer XXXXXXXXX kent de volgende nationaliteiten:
+        | Stapel | Categorie | nationaliteit (05.10) | reden opnemen (63.10) | reden beëindigen (64.10) | bijzonder Nederlanderschap (65.10) | onjuist (84.10) | datum ingang geldigheid (85.10) |
+        | 1      | 4         | 0001                  | 189                   |                          |                                    |                 | 20180210                        |
+        | 2      | 4         |                       |                       | 405                      |                                    |                 | 20181014                        |
+        | 2      | 54        | 0031                  | 301                   |                          |                                    | O               | 20160526                        |
+      Als de nationaliteithistorie met burgerservicenummer XXXXXXXXX wordt geraadpleegd
+      Dan is er geen nationaliteithistorie-item met nationaliteit.code "0031"
+  
+
+  Rule: In het antwoord worden eerst de actuele nationaliteiten opgenomen, gevolgd door de beëindigde nationaliteiten (gesorteerd op indicatieNationaliteitBeeindigd). Daarbinnen worden resultaten aflopend gesorteerd op datumTot en vervolgens aflopend gesorteerd op datumIngangGeldigheid.
+
+    Scenario: actuele en beëindigde nationaliteiten in de juiste volgorde
+      Gegeven de ingeschreven persoon met burgerservicenummer 999991292 kent de volgende nationaliteiten:
+        | Stapel | Categorie | 05.10 | 65.10 | 64.10 | 85.10    |
+        | Stapel | Categorie | nationaliteit (05.10) | reden opnemen (63.10) | reden beëindigen (64.10) | bijzonder Nederlanderschap (65.10) | onjuist (84.10) | datum ingang geldigheid (85.10) |
+        | 1      | 04        |                       |                       | 404                      |                                    |                 | 19940601                        |
+        | 1      | 54        | 0100                  |                       |                          |                                    |                 | 19890301                        |
+        | 2      | 04        | 0001                  |                       |                          |                                    |                 | 19910201                        |
+        | 3      | 04        |                       |                       | 404                      |                                    |                 | 20140601                        |
+        | 3      | 54        | 0057                  |                       |                          |                                    |                 | 19831213                        |
+      Als de nationaliteithistorie met burgerservicenummer 999991292 wordt geraadpleegd
+      Dan bevat het antwoord 3 voorkomens
+      En wordt de nationaliteithistorie teruggegeven in de volgorde en met waarden:
       | # | nationaliteit.code | aanduidingBijzonderNederlanderschap | datumIngangGeldigheid | datumTot             | indicatieNationaliteitBeeindigd | redenBeeindigen.code |
-      | 0 | 0038               | -                                   | -                     | -                    | -                               | -                    |
-      | 1 | 0027               | -                                   | -                     | -                    | -                               | -                    |
-      | 2 | 0039               | -                                   | -                     | 2012-01-01           | true                            | -                    |
-      | 3 | 0078               | -                                   | -                     | 2012-01-01           | true                            | -                    |
-      | 4 | 0001               | -                                   | 1986-10-10            | 1991-12-31           | true                            | 038                  |
+      | 0 | 0001               |                                     | 1991-02-01            |                      |                                 |                      |
+      | 1 | 0057               |                                     | 1983-12-13            | 2014-06-01           | true                            | 404                  |
+      | 2 | 0100               |                                     | 1989-03-01            | 1994-06-01           | true                            | 404                  |
 
-  Scenario: actuele nationaliteit, actueel bijzonder Nederlanderschap en beëindigde nationaliteit met gewijzigde reden
-    Als de nationaliteithistorie met burgerservicenummer 999992806 wordt geraadpleegd
-    Dan bevat het antwoord 3 voorkomens
-    En worden de nationaliteiten teruggegeven in de volgorde en met waarden:
+
+  Rule: bij sorteren wordt een nationaliteit met volledig onbekende datum ingang geplaatst onder de nationaliteit(en) met een bekende datum)
+
+    Scenario: onbekende datum ingang geldigheid
+      Gegeven de ingeschreven persoon met burgerservicenummer 999992806 kent de volgende nationaliteiten:
+        | Stapel | Categorie | nationaliteit (05.10) | reden opnemen (63.10) | reden beëindigen (64.10) | bijzonder Nederlanderschap (65.10) | onjuist (84.10) | datum ingang geldigheid (85.10) |
+        | 1      | 4         | 0334                  | 301                   |                          |                                    |                 | 00000000                        |
+        | 2      | 4         |                       |                       | 404                      |                                    |                 | 20150131                        |
+        | 2      | 54        |                       |                       | 401                      |                                    |                 | 20000114                        |
+        | 2      | 54        | 0331                  | 301                   |                          |                                    |                 | 00000000                        |
+        | 3      | 4         |                       | 310                   |                          | V                                  |                 | 20000114                        |
+      Als de nationaliteithistorie met burgerservicenummer 999992806 wordt geraadpleegd
+      Dan bevat het antwoord 3 voorkomens
+      En wordt de nationaliteithistorie teruggegeven in de volgorde en met waarden:
       | # | nationaliteit.code | aanduidingBijzonderNederlanderschap | datumIngangGeldigheid | datumTot             | indicatieNationaliteitBeeindigd | redenBeeindigen.code |
-      | 0 | -                  | vastgesteld_niet_nederlander        | 2000-01-14            | -                    | -                               | -                    |
-      | 1 | 0334               | -                                   | -                     | -                    | -                               | -                    |
-      | 2 | 0331               | -                                   | -                     | 2000-01-14           | true                            | 404                  |
-
-  Scenario: ingangsdatum en einddatum bij gewijzigde nationaliteitsgegevens
-    Als de nationaliteithistorie met burgerservicenummer 9999955555 wordt geraadpleegd
-    Dan bevat het antwoord 2 voorkomens
-    En worden de nationaliteiten teruggegeven in de volgorde en met waarden:
-      | # | nationaliteit.code | datumIngangGeldigheid | datumTot             | redenOpname.code | redenBeeindigen.code |
-      | 0 | 0001               | 2016-08-03            | -                    | 018              | -                    |
-      | 1 | 0449               | 1993-04-19            | 2017-02-10           | 301              | 403                  |
-
-  Scenario: Historische nationaliteit is onjuist maar actuele is juist
-    Als de nationaliteithistorie met burgerservicenummer 999992466 wordt geraadpleegd
-    Dan bevat het antwoord 1 voorkomens
-    En worden de nationaliteiten teruggegeven in de volgorde en met waarden:
-      | # | nationaliteit.code | datumIngangGeldigheid | datumEindeGeldigheid | redenOpname.code | redenBeeindigen.code |
-      | 0 | 0057               | 2016-04-01            | -                    | 301              | -                    |
-
-  Scenario: Nationaliteit is onjuist
-    Als de nationaliteithistorie met burgerservicenummer 999992466 wordt geraadpleegd
-    Dan bevat het antwoord 3 voorkomens
-    En bevat het antwoord geen nationaliteit.code 0251
-    En worden de nationaliteiten teruggegeven in de volgorde en met waarden:
-      | # | nationaliteit.code | datumIngangGeldigheid | datumTot             | redenOpname.code | redenBeeindigen.code |
-      | 0 | 0001               | 2004-10-15            | -                    | 018              | -                    |
-      | 1 | 0445               | 1961-12-30            | -                    | -                | -                    |
-      | 2 | 0446               | 1961-12-30            | -                    | -                | -                    |
+      | 0 | 0100               | vastgesteld_niet_nederlander        | 2000-01-14            |                      |                                 |                      |
+      | 1 | 0334               |                                     |                       |                      |                                 |                      |
+      | 2 | 0331               |                                     | 1983-12-13            | 2000-01-14           | true                            | 404                  |
