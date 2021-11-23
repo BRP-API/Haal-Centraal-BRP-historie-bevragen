@@ -3,11 +3,18 @@
 Functionaliteit: Tonen van Nationaliteithistorie
   Huidige en voormalige nationaliteiten van ingeschreven personen kunnen worden geraadpleegd.
 
-  # in onderstaande scenario's staat ten behoeve van de provider implementatie in Gegeven achter de veldnaam tussen haakjes de veldcode zoals deze in de bron volgens LO GBA is geregistreerd
+  # In onderstaande scenario's staat ten behoeve van de provider implementatie in Gegeven achter de veldnaam tussen haakjes de veldcode zoals deze in de bron volgens LO GBA is geregistreerd.
+  # De historie van de registratie van nationaliteiten wordt bewaard in opeenvolgende categorievoorkomens.
+  # Elk categorievoorkomen bevat alleen de gewijzigde gegevens, de ingangsdatum dat die gelden en de registratiedatum.
+  # Voor elke actuele of beëindigde nationaliteit is er 1 "actuele" categorievoorkomen en 0, 1 of meer "historische" categorievoorkomens.
+  # De actuele categorie en de daarbijbehorende historische voorkomens zijn gegroepeerd in een stapel.
+  # Een persoon kan meerdere nationaliteiten bezitten of hebben gehad, die elk gegroepeerd zijn op 1 stapel.
+  # Het categorievoorkomen met categorie 4 is de actuele categorie, de categorievoorkomens met categorie 54 bevatten de historische gegevens.
 
-  Rule: In het antwoord wordt indicatieNationaliteitBeeindigd opgenomen met de waarde true, wanneer in de actuele nationaliteit (categorie 04) GEEN nationaliteit (05.10) noch aanduiding bijzonder Nederlanderschap (65.10) is opgenomen, of wanneer in categorie 04 reden beëindigen nationaliteit (64.10) is opgenomen.
 
-    Scenario: actuele nationaliteit
+  Rule: In het antwoord wordt indicatieNationaliteitBeeindigd opgenomen met de waarde true, wanneer in de actuele nationaliteit (categorie 04) reden beëindigen nationaliteit (64.10) is opgenomen.
+
+    Scenario: de persoon heeft de nationaliteit nu
       Gegeven de ingeschreven persoon met burgerservicenummer 000009830 kent de volgende nationaliteiten:
         | Stapel | Categorie | nationaliteit (05.10) | reden opnemen (63.10) | reden beëindigen (64.10) | bijzonder Nederlanderschap (65.10) | onjuist (84.10) | datum ingang geldigheid (85.10) |
         | 1      | 4         | 0001                  | 001                   |                          |                                    |                 | 19750707                        |
@@ -15,7 +22,7 @@ Functionaliteit: Tonen van Nationaliteithistorie
       Dan bevat het antwoord 1 item(s) voor nationaliteithistorie
       En bevat het nationaliteithistorie-item met nationaliteit.code "0001" geen gegeven "indicatieNationaliteitBeeindigd"
 
-    Scenario: actueel bijzonder Nederlanderschap
+    Scenario: de persoon heeft nu bijzonder Nederlanderschap
       Gegeven de ingeschreven persoon met burgerservicenummer 000009866 kent de volgende nationaliteiten:
         | Stapel | Categorie | nationaliteit (05.10) | reden opnemen (63.10) | reden beëindigen (64.10) | bijzonder Nederlanderschap (65.10) | onjuist (84.10) | datum ingang geldigheid (85.10) |
         | 1      | 4         |                       | 310                   |                          | B                                  |                 | 19570115                        |
@@ -23,7 +30,7 @@ Functionaliteit: Tonen van Nationaliteithistorie
       Dan bevat het antwoord 1 item(s) voor nationaliteithistorie
       En bevat het nationaliteithistorie-item met aanduidingBijzonderNederlanderschap "behandeld_als_nederlander" geen gegeven "indicatieNationaliteitBeeindigd"
 
-    Scenario: actuele en beëindigde nationaliteit
+    Scenario: beëindigde registratie van vreemde nationaliteit
       Gegeven de ingeschreven persoon met burgerservicenummer 999990998 kent de volgende nationaliteiten:
         | Stapel | Categorie | nationaliteit (05.10) | reden opnemen (63.10) | reden beëindigen (64.10) | bijzonder Nederlanderschap (65.10) | onjuist (84.10) | datum ingang geldigheid (85.10) |
         | 1      | 4         |                       |                       | 404                      |                                    |                 | 20150131                        |
@@ -45,8 +52,19 @@ Functionaliteit: Tonen van Nationaliteithistorie
       En bevat het nationaliteithistorie-item met aanduidingBijzonderNederlanderschap "vastgesteld_niet_nederlander" het gegeven "indicatieNationaliteitBeeindigd" met waarde true
       En bevat het nationaliteithistorie-item met nationaliteit.code "0001" geen gegeven "indicatieNationaliteitBeeindigd"
 
+    Scenario: beëindigde nationaliteit met onbekende reden
+      Gegeven de ingeschreven persoon met burgerservicenummer 555550011 kent de volgende nationaliteiten:
+        | Stapel | Categorie | nationaliteit (05.10) | reden opnemen (63.10) | reden beëindigen (64.10) | bijzonder Nederlanderschap (65.10) | onjuist (84.10) | datum ingang geldigheid (85.10) |
+        | 1      | 4         |                       |                       | 000                      |                                    |                 | 20181122                        |
+        | 1      | 54        | 0268                  | 301                   |                          |                                    |                 | 00000000                        |
+        | 2      | 4         | 0499                  | 312                   |                          |                                    |                 | 20181122                        |
+      Als de nationaliteithistorie met burgerservicenummer 555550011 wordt geraadpleegd
+      Dan bevat het antwoord 2 item(s) voor nationaliteithistorie
+      En bevat het nationaliteithistorie-item met nationaliteit.code "0268" het gegeven "indicatieNationaliteitBeeindigd" met waarde true
+      En bevat het nationaliteithistorie-item met nationaliteit.code "0499" geen gegeven "indicatieNationaliteitBeeindigd"
 
-  Rule: Voor een beëindigde nationaliteit of beëindigd bijzonder Nederlanderschap worden de nationaliteit, aanduidingBijzonderNederlanderschap en redenOpname overgenomen uit de jongste bijbehorende historische categorie (54) waarin deze voorkomen.
+
+  Rule: Voor een beëindigde nationaliteit of beëindigd bijzonder Nederlanderschap worden de nationaliteit, aanduidingBijzonderNederlanderschap, redenOpname en datumIngangGeldigheid overgenomen uit de jongste bijbehorende historische categorie (54) waarin deze voorkomen.
 
     Scenario: beëindigde nationaliteit
       Gegeven de ingeschreven persoon met burgerservicenummer 999990998 kent de volgende nationaliteiten:
@@ -56,8 +74,8 @@ Functionaliteit: Tonen van Nationaliteithistorie
         | 2      | 4         | 0001                  | 000                   |                          |                                    |                 | 00000000                        |
       Als de nationaliteithistorie met burgerservicenummer 999990998 wordt geraadpleegd
       Dan bevat het nationaliteithistorie-item met nationaliteit.code "0307" de volgende gegevens:
-        | nationaliteit.code | redenOpname.code | redenBeeindigen.code |
-        | 0307               | 301              | 404                  |
+        | nationaliteit.code | redenOpname.code | redenBeeindigen.code | datumIngangGeldigheid.datum |
+        | 0307               | 301              | 404                  | 20150131
 
     Scenario: verlies bijzonder Nederlanderschap
       Gegeven de ingeschreven persoon met burgerservicenummer 555550002 kent de volgende nationaliteiten:
@@ -71,7 +89,7 @@ Functionaliteit: Tonen van Nationaliteithistorie
         | vastgesteld_niet_nederlander        | 301              | 410                  |
 
   
-  Rule: Voor een nationaliteit (actueel of beëindigd) wordt de datumIngangGeldigheid gevuld met de datum geldigheid (85.10) uit de oudste bijbehorende categorie (04 of 54) waarin er een waarde is voor 05.10 of voor 65.10.
+  Rule: Voor een actueel geldende nationaliteit of bijzonder Nederlanderschap wordt de datumIngangGeldigheid gevuld met de datum geldigheid (85.10) in de actuele categorie (04).
 
     Scenario: actueel en ongewijzigde nationaliteit
       Gegeven de ingeschreven persoon met burgerservicenummer 000009830 kent de volgende nationaliteiten:
