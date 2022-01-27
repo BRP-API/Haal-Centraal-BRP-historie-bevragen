@@ -41,7 +41,7 @@ Functionaliteit: Tonen van Nationaliteithistorie
       Dan bevat het nationaliteithistorie-item met nationaliteit.code "0100" het gegeven "datumIngangGeldigheid" met datum "2020-07-27"
 
 
-  Rule: In het antwoord wordt indicatieNationaliteitBeeindigd opgenomen met de waarde true, wanneer in de actuele nationaliteit (categorie 04) reden beëindigen nationaliteit (64.10) is opgenomen.
+  Rule: In het antwoord wordt indicatieNationaliteitBeeindigd opgenomen met de waarde true, wanneer in de actuele nationaliteit (categorie 04) GEEN nationaliteit (05.10) en GEEN bijzonder Nederlanderschap (65.10) is opgenomen.
 
     Scenario: de persoon heeft de nationaliteit nu
       Gegeven de ingeschreven persoon met burgerservicenummer 000009830 kent de volgende nationaliteiten:
@@ -93,7 +93,7 @@ Functionaliteit: Tonen van Nationaliteithistorie
       En bevat het nationaliteithistorie-item met nationaliteit.code "0499" geen gegeven "indicatieNationaliteitBeeindigd"
 
 
-  Rule: Voor een beëindigde nationaliteit of beëindigd bijzonder Nederlanderschap worden de nationaliteit, aanduidingBijzonderNederlanderschap, redenOpname en datumIngangGeldigheid overgenomen uit de jongste bijbehorende historische categorie (54) waarin redenOpname voorkomt en die niet onjuist is.
+  Rule: Voor een beëindigde nationaliteit of beëindigd bijzonder Nederlanderschap worden de nationaliteit, aanduidingBijzonderNederlanderschap, redenOpname en datumIngangGeldigheid overgenomen uit de jongste bijbehorende historische categorie (54) waarin deze voorkomen en die niet onjuist is.
 
     Scenario: beëindigde registratie vreemde nationaliteit na verkrijgen Nederlandse nationaliteit
       Gegeven de ingeschreven persoon met burgerservicenummer 999993008 kent de volgende nationaliteiten:
@@ -144,8 +144,8 @@ Functionaliteit: Tonen van Nationaliteithistorie
       Gegeven de ingeschreven persoon met burgerservicenummer 555550014 kent de volgende nationaliteiten:
         | Stapel | Categorie | nationaliteit (05.10) | reden opnemen (63.10) | reden beëindigen (64.10) | bijzonder Nederlanderschap (65.10) | onjuist (84.10) | datum ingang geldigheid (85.10) |
         | 1      | 4         |                       |                       | 404                      |                                    |                 | 20190821                        |
-        | 1      | 4         |                       |                       | 401                      |                                    | O               | 20190821                        |
-        | 1      | 4         | 0264                  | 301                   |                          |                                    |                 | 20160417                        |
+        | 1      | 54        |                       |                       | 401                      |                                    | O               | 20190821                        |
+        | 1      | 54        | 0264                  | 301                   |                          |                                    |                 | 20160417                        |
         | 1      | 54        | 0264                  | 311                   |                          |                                    | O               | 20160417                        |
       Als de nationaliteithistorie met burgerservicenummer 555550014 wordt geraadpleegd
       Dan bevat het nationaliteithistorie-item met nationaliteit.code "0264" de volgende gegevens:
@@ -213,7 +213,7 @@ Functionaliteit: Tonen van Nationaliteithistorie
 
   Rule: Wanneer (registratie van) een nationaliteit is beëindigd en daarna weer wordt opgenomen, worden beide periodes dat de nationaliteit geldig was opgenomen.
 
-    Scenario: verlies Nederlanderschap
+    Scenario: verlies Nederlanderschap verwerkt als actualisering vreemde nationaliteit met een nieuwe datum geldigheid
       Gegeven de ingeschreven persoon met burgerservicenummer 555550012 kent de volgende nationaliteiten:
         | Stapel | Categorie | nationaliteit (05.10) | reden opnemen (63.10) | reden beëindigen (64.10) | bijzonder Nederlanderschap (65.10) | onjuist (84.10) | datum ingang geldigheid (85.10) |
         | 1      | 4         | 0131                  | 301                   |                          |                                    |                 | 20210604                        |
