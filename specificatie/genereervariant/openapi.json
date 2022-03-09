@@ -1,5 +1,5 @@
 {
-  "openapi" : "3.0.0",
+  "openapi" : "3.0.3",
   "info" : {
     "title" : "BRP historie bevragen",
     "description" : "API voor het zoeken en raadplegen van historische verblijfplaatsen, partners, nationaliteiten en verblijfstitels uit de BRP (inclusief de RNI).\n\nZie de [Functionele documentatie](https://github.com/VNG-Realisatie/Haal-Centraal-BRP-historie-bevragen/tree/v1.0.0/features) voor nadere toelichting.\n",
@@ -10,72 +10,31 @@
       "name" : "European Union Public License, version 1.2 (EUPL-1.2)",
       "url" : "https://eupl.eu/1.2/nl/"
     },
-    "version" : "0.0.1 (develop)"
+    "version" : "2.0.0 (develop)"
   },
   "servers" : [ {
     "url" : "https://www.haalcentraal.nl/haalcentraal/api/brphistorie",
     "description" : "APILAB testserver historie"
   } ],
   "tags" : [ {
-    "name" : "BRP historie bevragen"
+    "name" : "BRP historie bevragen",
+    "description" : "Zoeken historische gegevens"
   } ],
   "paths" : {
-    "/ingeschrevenpersonen/{burgerservicenummer}/verblijfplaatshistorie" : {
-      "get" : {
+    "/verblijfplaatshistorie" : {
+      "post" : {
         "tags" : [ "BRP historie bevragen" ],
-        "description" : "Zoek de verblijfplaatshistorie van een persoon op de opgegeven peildatum of binnen de opgegeven periode.\nAls je geen peildatum of periode opgeeft, krijg je alle verblijfplaatsen terug. Het meest actuele adres staat bovenaan.\n",
+        "description" : "Zoek de verblijfplaatshistorie van een persoon op de opgegeven peildatum of binnen de opgegeven periode.\nAls je geen peildatum of periode opgeeft, krijg je alle verblijfplaatsen terug. Het meest actuele adres staat bovenaan.\n\n1.  Zoek met burgerservicenummer\n    - burgerservicenummer\n",
         "operationId" : "GetVerblijfplaatshistorie",
-        "parameters" : [ {
-          "name" : "burgerservicenummer",
-          "in" : "path",
-          "description" : "Uniek persoonsnummer\n",
-          "required" : true,
-          "schema" : {
-            "maxLength" : 9,
-            "minLength" : 9,
-            "pattern" : "^[0-9]*$",
-            "type" : "string",
-            "example" : "555555021"
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/VerblijfplaatshistorieQuery"
+              }
+            }
           }
-        }, {
-          "name" : "fields",
-          "in" : "query",
-          "description" : "Hiermee kun je de inhoud van de resource naar behoefte aanpassen door een door komma's gescheiden lijst van property namen op te geven. Bij opgave van niet-bestaande properties wordt een 400 Bad Request teruggegeven. Wanneer de fields parameter niet is opgegeven, worden alle properties met een waarde teruggegeven. Zie [functionele specificaties](https://github.com/VNG-Realisatie/Haal-Centraal-common/blob/v1.2.0/features/fields.feature)",
-          "required" : false,
-          "schema" : {
-            "type" : "string"
-          }
-        }, {
-          "name" : "peildatum",
-          "in" : "query",
-          "description" : "De datum waarop de resource wordt opgevraagd.",
-          "required" : false,
-          "schema" : {
-            "type" : "string",
-            "format" : "date",
-            "example" : "2018-09-09"
-          }
-        }, {
-          "name" : "datumVan",
-          "in" : "query",
-          "description" : "De begindatum van de periode waarover de resource wordt opgevraagd.",
-          "required" : false,
-          "schema" : {
-            "type" : "string",
-            "format" : "date",
-            "example" : "2018-09-09"
-          }
-        }, {
-          "name" : "datumTotEnMet",
-          "in" : "query",
-          "description" : "De einddatum van de periode waarover de resource wordt opgevraagd.",
-          "required" : false,
-          "schema" : {
-            "type" : "string",
-            "format" : "date",
-            "example" : "2018-10-09"
-          }
-        } ],
+        },
         "responses" : {
           "200" : {
             "description" : "Zoekactie geslaagd\n",
@@ -85,12 +44,21 @@
               },
               "warning" : {
                 "$ref" : "#/components/headers/warning"
+              },
+              "X-Rate-Limit-Limit" : {
+                "$ref" : "#/components/headers/X_Rate_Limit_Limit"
+              },
+              "X-Rate-Limit-Remaining" : {
+                "$ref" : "#/components/headers/X_Rate_Limit_Remaining"
+              },
+              "X-Rate-Limit-Reset" : {
+                "$ref" : "#/components/headers/X_Rate_Limit_Reset"
               }
             },
             "content" : {
-              "application/hal+json" : {
+              "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/VerblijfplaatshistorieHalCollectie"
+                  "$ref" : "#/components/schemas/VerblijfplaatshistorieQueryResponse"
                 }
               }
             }
@@ -170,29 +138,6 @@
               }
             }
           },
-          "404" : {
-            "description" : "Not Found",
-            "headers" : {
-              "api-version" : {
-                "$ref" : "#/components/headers/api_version"
-              }
-            },
-            "content" : {
-              "application/problem+json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Foutbericht"
-                },
-                "example" : {
-                  "type" : "https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5",
-                  "title" : "Opgevraagde resource bestaat niet.",
-                  "status" : 404,
-                  "detail" : "The server has not found anything matching the Request-URI.",
-                  "instance" : "https://datapunt.voorbeeldgemeente.nl/api/v1/resourcenaam?parameter=waarde",
-                  "code" : "notFound"
-                }
-              }
-            }
-          },
           "406" : {
             "description" : "Not Acceptable",
             "headers" : {
@@ -212,6 +157,29 @@
                   "detail" : "The resource identified by the request is only capable of generating response entities which have content characteristics not acceptable according to thr accept headers sent in the request",
                   "instance" : "https://datapunt.voorbeeldgemeente.nl/api/v1/resourcenaam?parameter=waarde",
                   "code" : "notAcceptable"
+                }
+              }
+            }
+          },
+          "429" : {
+            "description" : "Too Many Requests",
+            "headers" : {
+              "api-version" : {
+                "$ref" : "#/components/headers/api_version"
+              }
+            },
+            "content" : {
+              "application/problem+json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Foutbericht"
+                },
+                "example" : {
+                  "type" : "https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html",
+                  "title" : "Too many request",
+                  "status" : 429,
+                  "detail" : "The user has sent too many requests in a given amount of time (rate limiting).",
+                  "instance" : "https://datapunt.voorbeeldgemeente.nl/api/v1/resourcenaam?parameter=waarde",
+                  "code" : "tooManyRequests"
                 }
               }
             }
@@ -276,856 +244,7 @@
                 },
                 "example" : {
                   "type" : "https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.4",
-                  "title" : "Bronservice {bron} is tijdelijk niet beschikbaar.",
-                  "status" : 503,
-                  "detail" : "The service is currently unable to handle the request due to a temporary overloading or maintenance of the server.",
-                  "instance" : "https://datapunt.voorbeeldgemeente.nl/api/v1/resourcenaam?parameter=waarde",
-                  "code" : "notAvailable"
-                }
-              }
-            }
-          },
-          "default" : {
-            "description" : "Er is een onverwachte fout opgetreden",
-            "headers" : {
-              "api-version" : {
-                "$ref" : "#/components/headers/api_version"
-              }
-            },
-            "content" : {
-              "application/problem+json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Foutbericht"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/ingeschrevenpersonen/{burgerservicenummer}/partnerhistorie" : {
-      "get" : {
-        "tags" : [ "BRP historie bevragen" ],
-        "description" : "Zoek de partnerhistorie van een persoon op de opgegeven peildatum of binnen de opgegeven periode.\nAls je geen peildatum of periode opgeeft, krijg je alle partners terug waarmee een partnerschap is aangegaan of een huwelijk is gesloten.\n",
-        "operationId" : "GetPartnerhistorie",
-        "parameters" : [ {
-          "name" : "burgerservicenummer",
-          "in" : "path",
-          "description" : "Uniek persoonsnummer\n",
-          "required" : true,
-          "schema" : {
-            "maxLength" : 9,
-            "minLength" : 9,
-            "pattern" : "^[0-9]*$",
-            "type" : "string",
-            "example" : "555555021"
-          }
-        }, {
-          "name" : "fields",
-          "in" : "query",
-          "description" : "Hiermee kun je de inhoud van de resource naar behoefte aanpassen door een door komma's gescheiden lijst van property namen op te geven. Bij opgave van niet-bestaande properties wordt een 400 Bad Request teruggegeven. Wanneer de fields parameter niet is opgegeven, worden alle properties met een waarde teruggegeven. Zie [functionele specificaties](https://github.com/VNG-Realisatie/Haal-Centraal-common/blob/v1.2.0/features/fields.feature)",
-          "required" : false,
-          "schema" : {
-            "type" : "string"
-          }
-        }, {
-          "name" : "peildatum",
-          "in" : "query",
-          "description" : "De datum waarop de resource wordt opgevraagd.",
-          "required" : false,
-          "schema" : {
-            "type" : "string",
-            "format" : "date",
-            "example" : "2018-09-09"
-          }
-        }, {
-          "name" : "datumVan",
-          "in" : "query",
-          "description" : "De begindatum van de periode waarover de resource wordt opgevraagd.",
-          "required" : false,
-          "schema" : {
-            "type" : "string",
-            "format" : "date",
-            "example" : "2018-09-09"
-          }
-        }, {
-          "name" : "datumTotEnMet",
-          "in" : "query",
-          "description" : "De einddatum van de periode waarover de resource wordt opgevraagd.",
-          "required" : false,
-          "schema" : {
-            "type" : "string",
-            "format" : "date",
-            "example" : "2018-10-09"
-          }
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "Zoekactie geslaagd\n",
-            "headers" : {
-              "api-version" : {
-                "$ref" : "#/components/headers/api_version"
-              },
-              "warning" : {
-                "$ref" : "#/components/headers/warning"
-              }
-            },
-            "content" : {
-              "application/hal+json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/PartnerhistorieHalCollectie"
-                }
-              }
-            }
-          },
-          "400" : {
-            "description" : "Bad Request",
-            "headers" : {
-              "api-version" : {
-                "$ref" : "#/components/headers/api_version"
-              }
-            },
-            "content" : {
-              "application/problem+json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/BadRequestFoutbericht"
-                },
-                "example" : {
-                  "type" : "https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1",
-                  "title" : "Ten minste één parameter moet worden opgegeven.",
-                  "status" : 400,
-                  "detail" : "The request could not be understood by the server due to malformed syntax. The client SHOULD NOT repeat the request without modification.",
-                  "instance" : "https://datapunt.voorbeeldgemeente.nl/api/v1/resourcenaam?parameter=waarde",
-                  "code" : "paramsRequired",
-                  "invalidParams" : [ {
-                    "type" : "https://www.vng.nl/realisatie/api/validaties/integer",
-                    "name" : "verblijfplaats__huisnummer",
-                    "code" : "integer",
-                    "reason" : "Waarde is geen geldige integer."
-                  } ]
-                }
-              }
-            }
-          },
-          "401" : {
-            "description" : "Unauthorized",
-            "headers" : {
-              "api-version" : {
-                "$ref" : "#/components/headers/api_version"
-              }
-            },
-            "content" : {
-              "application/problem+json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Foutbericht"
-                },
-                "example" : {
-                  "type" : "https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2",
-                  "title" : "Niet correct geauthenticeerd.",
-                  "status" : 401,
-                  "detail" : "The request requires user authentication. The response MUST include a WWW-Authenticate header field (section 14.47) containing a challenge applicable to the requested resource.",
-                  "instance" : "https://datapunt.voorbeeldgemeente.nl/api/v1/resourcenaam?parameter=waarde",
-                  "code" : "authentication"
-                }
-              }
-            }
-          },
-          "403" : {
-            "description" : "Forbidden",
-            "headers" : {
-              "api-version" : {
-                "$ref" : "#/components/headers/api_version"
-              }
-            },
-            "content" : {
-              "application/problem+json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Foutbericht"
-                },
-                "example" : {
-                  "type" : "https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.4",
-                  "title" : "U bent niet geautoriseerd voor deze operatie.",
-                  "status" : 403,
-                  "detail" : "The server understood the request, but is refusing to fulfill it.",
-                  "instance" : "https://datapunt.voorbeeldgemeente.nl/api/v1/resourcenaam?parameter=waarde",
-                  "code" : "autorisation"
-                }
-              }
-            }
-          },
-          "404" : {
-            "description" : "Not Found",
-            "headers" : {
-              "api-version" : {
-                "$ref" : "#/components/headers/api_version"
-              }
-            },
-            "content" : {
-              "application/problem+json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Foutbericht"
-                },
-                "example" : {
-                  "type" : "https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5",
-                  "title" : "Opgevraagde resource bestaat niet.",
-                  "status" : 404,
-                  "detail" : "The server has not found anything matching the Request-URI.",
-                  "instance" : "https://datapunt.voorbeeldgemeente.nl/api/v1/resourcenaam?parameter=waarde",
-                  "code" : "notFound"
-                }
-              }
-            }
-          },
-          "406" : {
-            "description" : "Not Acceptable",
-            "headers" : {
-              "api-version" : {
-                "$ref" : "#/components/headers/api_version"
-              }
-            },
-            "content" : {
-              "application/problem+json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Foutbericht"
-                },
-                "example" : {
-                  "type" : "https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.7",
-                  "title" : "Gevraagde contenttype wordt niet ondersteund.",
-                  "status" : 406,
-                  "detail" : "The resource identified by the request is only capable of generating response entities which have content characteristics not acceptable according to thr accept headers sent in the request",
-                  "instance" : "https://datapunt.voorbeeldgemeente.nl/api/v1/resourcenaam?parameter=waarde",
-                  "code" : "notAcceptable"
-                }
-              }
-            }
-          },
-          "500" : {
-            "description" : "Internal Server Error",
-            "headers" : {
-              "api-version" : {
-                "$ref" : "#/components/headers/api_version"
-              }
-            },
-            "content" : {
-              "application/problem+json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Foutbericht"
-                },
-                "example" : {
-                  "type" : "https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.1",
-                  "title" : "Interne server fout.",
-                  "status" : 500,
-                  "detail" : "The server encountered an unexpected condition which prevented it from fulfilling the request.",
-                  "instance" : "https://datapunt.voorbeeldgemeente.nl/api/v1/resourcenaam?parameter=waarde",
-                  "code" : "serverError"
-                }
-              }
-            }
-          },
-          "501" : {
-            "description" : "Not Implemented",
-            "headers" : {
-              "api-version" : {
-                "$ref" : "#/components/headers/api_version"
-              }
-            },
-            "content" : {
-              "application/problem+json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Foutbericht"
-                },
-                "example" : {
-                  "type" : "https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.2",
-                  "title" : "Not Implemented",
-                  "status" : 501,
-                  "detail" : "The server does not support the functionality required to fulfill the request.",
-                  "instance" : "https://datapunt.voorbeeldgemeente.nl/api/v1/resourcenaam?parameter=waarde",
-                  "code" : "notImplemented"
-                }
-              }
-            }
-          },
-          "503" : {
-            "description" : "Service Unavailable",
-            "headers" : {
-              "api-version" : {
-                "$ref" : "#/components/headers/api_version"
-              }
-            },
-            "content" : {
-              "application/problem+json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Foutbericht"
-                },
-                "example" : {
-                  "type" : "https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.4",
-                  "title" : "Bronservice {bron} is tijdelijk niet beschikbaar.",
-                  "status" : 503,
-                  "detail" : "The service is currently unable to handle the request due to a temporary overloading or maintenance of the server.",
-                  "instance" : "https://datapunt.voorbeeldgemeente.nl/api/v1/resourcenaam?parameter=waarde",
-                  "code" : "notAvailable"
-                }
-              }
-            }
-          },
-          "default" : {
-            "description" : "Er is een onverwachte fout opgetreden",
-            "headers" : {
-              "api-version" : {
-                "$ref" : "#/components/headers/api_version"
-              }
-            },
-            "content" : {
-              "application/problem+json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Foutbericht"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/ingeschrevenpersonen/{burgerservicenummer}/verblijfstitelhistorie" : {
-      "get" : {
-        "tags" : [ "BRP historie bevragen" ],
-        "description" : "Zoek de verblijfstitelhistorie van een persoon op de opgegeven peildatum of binnen de opgegeven periode.\nAls je geen peildatum of periode opgeeft, krijg je alle verblijfstitels van de persoon terug. De meest actuele verblijfstitel staat bovenaan.\n",
-        "operationId" : "GetVerblijfstitelhistorie",
-        "parameters" : [ {
-          "name" : "burgerservicenummer",
-          "in" : "path",
-          "description" : "Uniek persoonsnummer\n",
-          "required" : true,
-          "schema" : {
-            "maxLength" : 9,
-            "minLength" : 9,
-            "pattern" : "^[0-9]*$",
-            "type" : "string",
-            "example" : "555555021"
-          }
-        }, {
-          "name" : "fields",
-          "in" : "query",
-          "description" : "Hiermee kun je de inhoud van de resource naar behoefte aanpassen door een door komma's gescheiden lijst van property namen op te geven. Bij opgave van niet-bestaande properties wordt een 400 Bad Request teruggegeven. Wanneer de fields parameter niet is opgegeven, worden alle properties met een waarde teruggegeven. Zie [functionele specificaties](https://github.com/VNG-Realisatie/Haal-Centraal-common/blob/v1.2.0/features/fields.feature)",
-          "required" : false,
-          "schema" : {
-            "type" : "string"
-          }
-        }, {
-          "name" : "peildatum",
-          "in" : "query",
-          "description" : "De datum waarop de resource wordt opgevraagd.",
-          "required" : false,
-          "schema" : {
-            "type" : "string",
-            "format" : "date",
-            "example" : "2018-09-09"
-          }
-        }, {
-          "name" : "datumVan",
-          "in" : "query",
-          "description" : "De begindatum van de periode waarover de resource wordt opgevraagd.",
-          "required" : false,
-          "schema" : {
-            "type" : "string",
-            "format" : "date",
-            "example" : "2018-09-09"
-          }
-        }, {
-          "name" : "datumTotEnMet",
-          "in" : "query",
-          "description" : "De einddatum van de periode waarover de resource wordt opgevraagd.",
-          "required" : false,
-          "schema" : {
-            "type" : "string",
-            "format" : "date",
-            "example" : "2018-10-09"
-          }
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "Zoekactie geslaagd\n",
-            "headers" : {
-              "api-version" : {
-                "$ref" : "#/components/headers/api_version"
-              },
-              "warning" : {
-                "$ref" : "#/components/headers/warning"
-              }
-            },
-            "content" : {
-              "application/hal+json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/VerblijfstitelhistorieHalCollectie"
-                }
-              }
-            }
-          },
-          "400" : {
-            "description" : "Bad Request",
-            "headers" : {
-              "api-version" : {
-                "$ref" : "#/components/headers/api_version"
-              }
-            },
-            "content" : {
-              "application/problem+json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/BadRequestFoutbericht"
-                },
-                "example" : {
-                  "type" : "https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1",
-                  "title" : "Ten minste één parameter moet worden opgegeven.",
-                  "status" : 400,
-                  "detail" : "The request could not be understood by the server due to malformed syntax. The client SHOULD NOT repeat the request without modification.",
-                  "instance" : "https://datapunt.voorbeeldgemeente.nl/api/v1/resourcenaam?parameter=waarde",
-                  "code" : "paramsRequired",
-                  "invalidParams" : [ {
-                    "type" : "https://www.vng.nl/realisatie/api/validaties/integer",
-                    "name" : "verblijfplaats__huisnummer",
-                    "code" : "integer",
-                    "reason" : "Waarde is geen geldige integer."
-                  } ]
-                }
-              }
-            }
-          },
-          "401" : {
-            "description" : "Unauthorized",
-            "headers" : {
-              "api-version" : {
-                "$ref" : "#/components/headers/api_version"
-              }
-            },
-            "content" : {
-              "application/problem+json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Foutbericht"
-                },
-                "example" : {
-                  "type" : "https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2",
-                  "title" : "Niet correct geauthenticeerd.",
-                  "status" : 401,
-                  "detail" : "The request requires user authentication. The response MUST include a WWW-Authenticate header field (section 14.47) containing a challenge applicable to the requested resource.",
-                  "instance" : "https://datapunt.voorbeeldgemeente.nl/api/v1/resourcenaam?parameter=waarde",
-                  "code" : "authentication"
-                }
-              }
-            }
-          },
-          "403" : {
-            "description" : "Forbidden",
-            "headers" : {
-              "api-version" : {
-                "$ref" : "#/components/headers/api_version"
-              }
-            },
-            "content" : {
-              "application/problem+json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Foutbericht"
-                },
-                "example" : {
-                  "type" : "https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.4",
-                  "title" : "U bent niet geautoriseerd voor deze operatie.",
-                  "status" : 403,
-                  "detail" : "The server understood the request, but is refusing to fulfill it.",
-                  "instance" : "https://datapunt.voorbeeldgemeente.nl/api/v1/resourcenaam?parameter=waarde",
-                  "code" : "autorisation"
-                }
-              }
-            }
-          },
-          "404" : {
-            "description" : "Not Found",
-            "headers" : {
-              "api-version" : {
-                "$ref" : "#/components/headers/api_version"
-              }
-            },
-            "content" : {
-              "application/problem+json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Foutbericht"
-                },
-                "example" : {
-                  "type" : "https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5",
-                  "title" : "Opgevraagde resource bestaat niet.",
-                  "status" : 404,
-                  "detail" : "The server has not found anything matching the Request-URI.",
-                  "instance" : "https://datapunt.voorbeeldgemeente.nl/api/v1/resourcenaam?parameter=waarde",
-                  "code" : "notFound"
-                }
-              }
-            }
-          },
-          "406" : {
-            "description" : "Not Acceptable",
-            "headers" : {
-              "api-version" : {
-                "$ref" : "#/components/headers/api_version"
-              }
-            },
-            "content" : {
-              "application/problem+json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Foutbericht"
-                },
-                "example" : {
-                  "type" : "https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.7",
-                  "title" : "Gevraagde contenttype wordt niet ondersteund.",
-                  "status" : 406,
-                  "detail" : "The resource identified by the request is only capable of generating response entities which have content characteristics not acceptable according to thr accept headers sent in the request",
-                  "instance" : "https://datapunt.voorbeeldgemeente.nl/api/v1/resourcenaam?parameter=waarde",
-                  "code" : "notAcceptable"
-                }
-              }
-            }
-          },
-          "500" : {
-            "description" : "Internal Server Error",
-            "headers" : {
-              "api-version" : {
-                "$ref" : "#/components/headers/api_version"
-              }
-            },
-            "content" : {
-              "application/problem+json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Foutbericht"
-                },
-                "example" : {
-                  "type" : "https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.1",
-                  "title" : "Interne server fout.",
-                  "status" : 500,
-                  "detail" : "The server encountered an unexpected condition which prevented it from fulfilling the request.",
-                  "instance" : "https://datapunt.voorbeeldgemeente.nl/api/v1/resourcenaam?parameter=waarde",
-                  "code" : "serverError"
-                }
-              }
-            }
-          },
-          "501" : {
-            "description" : "Not Implemented",
-            "headers" : {
-              "api-version" : {
-                "$ref" : "#/components/headers/api_version"
-              }
-            },
-            "content" : {
-              "application/problem+json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Foutbericht"
-                },
-                "example" : {
-                  "type" : "https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.2",
-                  "title" : "Not Implemented",
-                  "status" : 501,
-                  "detail" : "The server does not support the functionality required to fulfill the request.",
-                  "instance" : "https://datapunt.voorbeeldgemeente.nl/api/v1/resourcenaam?parameter=waarde",
-                  "code" : "notImplemented"
-                }
-              }
-            }
-          },
-          "503" : {
-            "description" : "Service Unavailable",
-            "headers" : {
-              "api-version" : {
-                "$ref" : "#/components/headers/api_version"
-              }
-            },
-            "content" : {
-              "application/problem+json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Foutbericht"
-                },
-                "example" : {
-                  "type" : "https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.4",
-                  "title" : "Bronservice {bron} is tijdelijk niet beschikbaar.",
-                  "status" : 503,
-                  "detail" : "The service is currently unable to handle the request due to a temporary overloading or maintenance of the server.",
-                  "instance" : "https://datapunt.voorbeeldgemeente.nl/api/v1/resourcenaam?parameter=waarde",
-                  "code" : "notAvailable"
-                }
-              }
-            }
-          },
-          "default" : {
-            "description" : "Er is een onverwachte fout opgetreden",
-            "headers" : {
-              "api-version" : {
-                "$ref" : "#/components/headers/api_version"
-              }
-            },
-            "content" : {
-              "application/problem+json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Foutbericht"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/ingeschrevenpersonen/{burgerservicenummer}/nationaliteithistorie" : {
-      "get" : {
-        "tags" : [ "BRP historie bevragen" ],
-        "description" : "Zoek de nationaliteithistorie van een persoon op de opgegeven peildatum of binnen de opgegeven periode.\nAls je geen peildatum of periode opgeeft, krijg je alle nationaliteiten van de persoon terug. De meest actuele nationaliteit staat bovenaan.\n",
-        "operationId" : "GetNationaliteithistorie",
-        "parameters" : [ {
-          "name" : "burgerservicenummer",
-          "in" : "path",
-          "description" : "Uniek persoonsnummer\n",
-          "required" : true,
-          "schema" : {
-            "maxLength" : 9,
-            "minLength" : 9,
-            "pattern" : "^[0-9]*$",
-            "type" : "string",
-            "example" : "555555021"
-          }
-        }, {
-          "name" : "fields",
-          "in" : "query",
-          "description" : "Hiermee kun je de inhoud van de resource naar behoefte aanpassen door een door komma's gescheiden lijst van property namen op te geven. Bij opgave van niet-bestaande properties wordt een 400 Bad Request teruggegeven. Wanneer de fields parameter niet is opgegeven, worden alle properties met een waarde teruggegeven. Zie [functionele specificaties](https://github.com/VNG-Realisatie/Haal-Centraal-common/blob/v1.2.0/features/fields.feature)",
-          "required" : false,
-          "schema" : {
-            "type" : "string"
-          }
-        }, {
-          "name" : "peildatum",
-          "in" : "query",
-          "description" : "De datum waarop de resource wordt opgevraagd.",
-          "required" : false,
-          "schema" : {
-            "type" : "string",
-            "format" : "date",
-            "example" : "2018-09-09"
-          }
-        }, {
-          "name" : "datumVan",
-          "in" : "query",
-          "description" : "De begindatum van de periode waarover de resource wordt opgevraagd.",
-          "required" : false,
-          "schema" : {
-            "type" : "string",
-            "format" : "date",
-            "example" : "2018-09-09"
-          }
-        }, {
-          "name" : "datumTotEnMet",
-          "in" : "query",
-          "description" : "De einddatum van de periode waarover de resource wordt opgevraagd.",
-          "required" : false,
-          "schema" : {
-            "type" : "string",
-            "format" : "date",
-            "example" : "2018-10-09"
-          }
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "Zoekactie geslaagd\n",
-            "headers" : {
-              "api-version" : {
-                "$ref" : "#/components/headers/api_version"
-              },
-              "warning" : {
-                "$ref" : "#/components/headers/warning"
-              }
-            },
-            "content" : {
-              "application/hal+json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/NationaliteithistorieHalCollectie"
-                }
-              }
-            }
-          },
-          "400" : {
-            "description" : "Bad Request",
-            "headers" : {
-              "api-version" : {
-                "$ref" : "#/components/headers/api_version"
-              }
-            },
-            "content" : {
-              "application/problem+json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/BadRequestFoutbericht"
-                },
-                "example" : {
-                  "type" : "https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1",
-                  "title" : "Ten minste één parameter moet worden opgegeven.",
-                  "status" : 400,
-                  "detail" : "The request could not be understood by the server due to malformed syntax. The client SHOULD NOT repeat the request without modification.",
-                  "instance" : "https://datapunt.voorbeeldgemeente.nl/api/v1/resourcenaam?parameter=waarde",
-                  "code" : "paramsRequired",
-                  "invalidParams" : [ {
-                    "type" : "https://www.vng.nl/realisatie/api/validaties/integer",
-                    "name" : "verblijfplaats__huisnummer",
-                    "code" : "integer",
-                    "reason" : "Waarde is geen geldige integer."
-                  } ]
-                }
-              }
-            }
-          },
-          "401" : {
-            "description" : "Unauthorized",
-            "headers" : {
-              "api-version" : {
-                "$ref" : "#/components/headers/api_version"
-              }
-            },
-            "content" : {
-              "application/problem+json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Foutbericht"
-                },
-                "example" : {
-                  "type" : "https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2",
-                  "title" : "Niet correct geauthenticeerd.",
-                  "status" : 401,
-                  "detail" : "The request requires user authentication. The response MUST include a WWW-Authenticate header field (section 14.47) containing a challenge applicable to the requested resource.",
-                  "instance" : "https://datapunt.voorbeeldgemeente.nl/api/v1/resourcenaam?parameter=waarde",
-                  "code" : "authentication"
-                }
-              }
-            }
-          },
-          "403" : {
-            "description" : "Forbidden",
-            "headers" : {
-              "api-version" : {
-                "$ref" : "#/components/headers/api_version"
-              }
-            },
-            "content" : {
-              "application/problem+json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Foutbericht"
-                },
-                "example" : {
-                  "type" : "https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.4",
-                  "title" : "U bent niet geautoriseerd voor deze operatie.",
-                  "status" : 403,
-                  "detail" : "The server understood the request, but is refusing to fulfill it.",
-                  "instance" : "https://datapunt.voorbeeldgemeente.nl/api/v1/resourcenaam?parameter=waarde",
-                  "code" : "autorisation"
-                }
-              }
-            }
-          },
-          "404" : {
-            "description" : "Not Found",
-            "headers" : {
-              "api-version" : {
-                "$ref" : "#/components/headers/api_version"
-              }
-            },
-            "content" : {
-              "application/problem+json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Foutbericht"
-                },
-                "example" : {
-                  "type" : "https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5",
-                  "title" : "Opgevraagde resource bestaat niet.",
-                  "status" : 404,
-                  "detail" : "The server has not found anything matching the Request-URI.",
-                  "instance" : "https://datapunt.voorbeeldgemeente.nl/api/v1/resourcenaam?parameter=waarde",
-                  "code" : "notFound"
-                }
-              }
-            }
-          },
-          "406" : {
-            "description" : "Not Acceptable",
-            "headers" : {
-              "api-version" : {
-                "$ref" : "#/components/headers/api_version"
-              }
-            },
-            "content" : {
-              "application/problem+json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Foutbericht"
-                },
-                "example" : {
-                  "type" : "https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.7",
-                  "title" : "Gevraagde contenttype wordt niet ondersteund.",
-                  "status" : 406,
-                  "detail" : "The resource identified by the request is only capable of generating response entities which have content characteristics not acceptable according to thr accept headers sent in the request",
-                  "instance" : "https://datapunt.voorbeeldgemeente.nl/api/v1/resourcenaam?parameter=waarde",
-                  "code" : "notAcceptable"
-                }
-              }
-            }
-          },
-          "500" : {
-            "description" : "Internal Server Error",
-            "headers" : {
-              "api-version" : {
-                "$ref" : "#/components/headers/api_version"
-              }
-            },
-            "content" : {
-              "application/problem+json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Foutbericht"
-                },
-                "example" : {
-                  "type" : "https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.1",
-                  "title" : "Interne server fout.",
-                  "status" : 500,
-                  "detail" : "The server encountered an unexpected condition which prevented it from fulfilling the request.",
-                  "instance" : "https://datapunt.voorbeeldgemeente.nl/api/v1/resourcenaam?parameter=waarde",
-                  "code" : "serverError"
-                }
-              }
-            }
-          },
-          "501" : {
-            "description" : "Not Implemented",
-            "headers" : {
-              "api-version" : {
-                "$ref" : "#/components/headers/api_version"
-              }
-            },
-            "content" : {
-              "application/problem+json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Foutbericht"
-                },
-                "example" : {
-                  "type" : "https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.2",
-                  "title" : "Not Implemented",
-                  "status" : 501,
-                  "detail" : "The server does not support the functionality required to fulfill the request.",
-                  "instance" : "https://datapunt.voorbeeldgemeente.nl/api/v1/resourcenaam?parameter=waarde",
-                  "code" : "notImplemented"
-                }
-              }
-            }
-          },
-          "503" : {
-            "description" : "Service Unavailable",
-            "headers" : {
-              "api-version" : {
-                "$ref" : "#/components/headers/api_version"
-              }
-            },
-            "content" : {
-              "application/problem+json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Foutbericht"
-                },
-                "example" : {
-                  "type" : "https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.4",
-                  "title" : "Bronservice {bron} is tijdelijk niet beschikbaar.",
+                  "title" : "Bronservice BRP is tijdelijk niet beschikbaar.",
                   "status" : 503,
                   "detail" : "The service is currently unable to handle the request due to a temporary overloading or maintenance of the server.",
                   "instance" : "https://datapunt.voorbeeldgemeente.nl/api/v1/resourcenaam?parameter=waarde",
@@ -1155,246 +274,219 @@
   },
   "components" : {
     "schemas" : {
-      "NationaliteithistorieHalCollectie" : {
+      "VerblijfplaatshistorieQuery" : {
+        "required" : [ "burgerservicenummer", "fields" ],
         "type" : "object",
         "properties" : {
-          "_links" : {
-            "$ref" : "#/components/schemas/HalCollectionLinks"
-          },
-          "_embedded" : {
-            "$ref" : "#/components/schemas/NationaliteithistorieHalCollectieEmbedded"
-          }
-        }
-      },
-      "NationaliteithistorieHalCollectieEmbedded" : {
-        "type" : "object",
-        "properties" : {
-          "nationaliteithistorie" : {
+          "burgerservicenummer" : {
+            "maxItems" : 20,
+            "minItems" : 1,
             "type" : "array",
             "items" : {
-              "$ref" : "#/components/schemas/Nationaliteithistorie"
+              "$ref" : "#/components/schemas/Burgerservicenummer"
             }
+          },
+          "fields" : {
+            "$ref" : "#/components/schemas/Fields"
+          },
+          "peildatum" : {
+            "type" : "string",
+            "description" : "De datum waarop de resource wordt opgevraagd.\n",
+            "format" : "date",
+            "example" : "1964-09-24"
+          },
+          "datumVan" : {
+            "type" : "string",
+            "description" : "De begindatum van de periode waarover de resource wordt opgevraagd.\n",
+            "format" : "date",
+            "example" : "1964-09-24"
+          },
+          "datumTotEnMet" : {
+            "type" : "string",
+            "description" : "De einddatum van de periode waarover de resource wordt opgevraagd.\n",
+            "format" : "date",
+            "example" : "1964-09-24"
           }
         }
       },
-      "Nationaliteithistorie" : {
-        "allOf" : [ {
-          "$ref" : "#/components/schemas/Nationaliteit"
-        }, {
-          "properties" : {
-            "geheimhoudingPersoonsgegevens" : {
-              "title" : "Indicatie geheim",
-              "type" : "boolean",
-              "description" : "Gegevens mogen niet worden verstrekt aan derden / maatschappelijke instellingen.\n"
-            },
-            "datumTot" : {
-              "$ref" : "#/components/schemas/DatumOnvolledig"
-            },
-            "redenBeeindigen" : {
-              "$ref" : "#/components/schemas/Waardetabel"
-            },
-            "indicatieNationaliteitBeeindigd" : {
-              "type" : "boolean",
-              "description" : "Geeft aan dat de nationaliteit beëindigd is.\n",
-              "example" : true
-            }
-          },
-          "description" : "Gegevens over de (historische) nationaliteiten van de persoon.\n* **datumTot**: Datum tot wanneer een nationaliteit geldig was.\n* **datumIngangGeldigheid**: Datum waarop de gegevens over de Nationaliteit geldig zijn geworden.\n* **nationaliteit** : Nationaliteittabel, die aangeeft over welke nationaliteit de ingeschrevene beschikt.\n* **redenOpname** : Tabel Reden opnemen/beëindigen nationaliteit, die aangeeft met welke reden de persoon de Nederlandse nationaliteit heeft verkregen of waarom een niet-Nederlandse nationaliteit is opgenomen.\n* **redenBeeindigen** : Tabel Reden opnemen/beëindigen nationaliteit, die aangeeft met welke reden een nationaliteit is beëindigd.\n"
-        } ]
-      },
-      "VerblijfplaatshistorieHalCollectie" : {
+      "VerblijfplaatshistorieQueryResponse" : {
         "type" : "object",
         "properties" : {
-          "_links" : {
-            "$ref" : "#/components/schemas/HalCollectionLinks"
+          "straat" : {
+            "$ref" : "#/components/schemas/Straat"
           },
-          "_embedded" : {
-            "$ref" : "#/components/schemas/VerblijfplaatshistorieHalCollectieEmbedded"
-          }
-        }
-      },
-      "VerblijfplaatshistorieHalCollectieEmbedded" : {
-        "type" : "object",
-        "properties" : {
-          "verblijfplaatshistorie" : {
-            "type" : "array",
-            "items" : {
-              "$ref" : "#/components/schemas/VerblijfplaatshistorieHal"
-            }
-          }
-        }
-      },
-      "VerblijfplaatshistorieHal" : {
-        "allOf" : [ {
-          "$ref" : "#/components/schemas/Verblijfplaatshistorie"
-        }, {
-          "properties" : {
-            "_links" : {
-              "$ref" : "#/components/schemas/VerblijfplaatshistorieLinks"
-            }
-          }
-        } ]
-      },
-      "Verblijfplaatshistorie" : {
-        "allOf" : [ {
-          "$ref" : "#/components/schemas/Verblijfplaats"
-        }, {
-          "properties" : {
-            "datumTot" : {
-              "$ref" : "#/components/schemas/DatumOnvolledig"
-            },
-            "geheimhoudingPersoonsgegevens" : {
-              "title" : "Indicatie geheim",
-              "type" : "boolean",
-              "description" : "Gegevens mogen niet worden verstrekt aan derden / maatschappelijke instellingen.\n"
-            }
+          "huisnummer" : {
+            "$ref" : "#/components/schemas/Huisnummer"
           },
-          "description" : "Gegevens over de (historische) verblijfplaatsen of de woonlocaties van de persoon.\n* **datumAanvangAdreshuishouding** : de datum van aangifte of ambtshalve melding van verblijf en adres.\n* **datumIngangGeldigheid** : datum waarop de gegevens over de verblijfplaats geldig zijn geworden.\n* **datumInschrijvingInGemeente**: bij inschrijving op grond van een verhuisaangifte door de burger is dit de aangiftedatum. Bij inschrijving op grond van een geboorteakte is dit de geboortedatum. Bij ambtshalve inschrijving is dit de datum waarop het voornemen van ambtshalve opneming schriftelijk aan de persoon is medegedeeld.\n* **datumVestigingInNederland** : datum van inschrijving in Nederland.\n* **landVanWaarIngeschreven** : het land waar de persoon woonde voor (her)vestiging in Nederland.\n* **gemeenteVanInschrijving** : de gemeente waar de persoon verblijft en is ingeschreven. De code kan voorloopnullen bevatten.\"\n* **datumTot** : de datum tot wanneer iemand op deze verblijfplaats of woonlocatie was ingeschreven\n"
-        } ]
-      },
-      "VerblijfplaatshistorieLinks" : {
-        "type" : "object",
-        "properties" : {
-          "adres" : {
-            "$ref" : "#/components/schemas/HalLink"
+          "huisletter" : {
+            "$ref" : "#/components/schemas/Huisletter"
           },
-          "adresseerbaarObject" : {
-            "$ref" : "#/components/schemas/HalLink"
-          }
-        }
-      },
-      "PartnerhistorieHalCollectie" : {
-        "type" : "object",
-        "properties" : {
-          "_links" : {
-            "$ref" : "#/components/schemas/HalCollectionLinks"
+          "huisnummertoevoeging" : {
+            "$ref" : "#/components/schemas/Huisnummertoevoeging"
           },
-          "_embedded" : {
-            "$ref" : "#/components/schemas/PartnerhistorieHalCollectieEmbedded"
-          }
-        }
-      },
-      "PartnerhistorieHalCollectieEmbedded" : {
-        "type" : "object",
-        "properties" : {
-          "partnerhistorie" : {
-            "type" : "array",
-            "items" : {
-              "$ref" : "#/components/schemas/PartnerhistorieHal"
-            }
-          }
-        }
-      },
-      "PartnerhistorieHal" : {
-        "allOf" : [ {
-          "$ref" : "#/components/schemas/Partnerhistorie"
-        }, {
-          "properties" : {
-            "_links" : {
-              "$ref" : "#/components/schemas/PartnerhistorieLinks"
-            }
-          }
-        } ]
-      },
-      "Partnerhistorie" : {
-        "allOf" : [ {
-          "$ref" : "#/components/schemas/Partner"
-        }, {
-          "properties" : {
-            "ontbindingHuwelijkPartnerschap" : {
-              "$ref" : "#/components/schemas/OntbindingHuwelijkPartnerschap"
-            }
+          "postcode" : {
+            "$ref" : "#/components/schemas/Postcode"
           },
-          "description" : "Gegevens over (historische) huwelijken en/of geregistreerd partnerschappen van de persoon.\n"
-        } ]
-      },
-      "OntbindingHuwelijkPartnerschap" : {
-        "type" : "object",
-        "properties" : {
-          "indicatieHuwelijkPartnerschapBeeindigd" : {
-            "type" : "boolean",
-            "description" : "Geeft aan dat het huwelijk is ontbonden of het partnerschap is beëindigd.\n"
+          "woonplaats" : {
+            "$ref" : "#/components/schemas/Woonplaats"
           },
-          "datum" : {
-            "$ref" : "#/components/schemas/DatumOnvolledig"
+          "adresseerbaarObjectIdentificatie" : {
+            "$ref" : "#/components/schemas/AdresseerbaarObjectIdentificatie"
+          },
+          "aanduidingBijHuisnummer" : {
+            "$ref" : "#/components/schemas/Waardetabel"
+          },
+          "nummeraanduidingIdentificatie" : {
+            "$ref" : "#/components/schemas/NummeraanduidingIdentificatie"
+          },
+          "functieAdres" : {
+            "$ref" : "#/components/schemas/Waardetabel"
+          },
+          "indicatieVestigingVanuitBuitenland" : {
+            "$ref" : "#/components/schemas/IndicatieVestigingVanuitBuitenland"
+          },
+          "locatiebeschrijving" : {
+            "$ref" : "#/components/schemas/Locatiebeschrijving"
+          },
+          "korteNaam" : {
+            "$ref" : "#/components/schemas/KorteNaam"
+          },
+          "vanuitVertrokkenOnbekendWaarheen" : {
+            "type" : "boolean"
+          },
+          "datumAanvangAdreshouding" : {
+            "$ref" : "#/components/schemas/AbstractDatum"
+          },
+          "datumIngangGeldigheid" : {
+            "$ref" : "#/components/schemas/AbstractDatum"
+          },
+          "datumInschrijvingInGemeente" : {
+            "$ref" : "#/components/schemas/AbstractDatum"
+          },
+          "datumVestigingInNederland" : {
+            "$ref" : "#/components/schemas/AbstractDatum"
+          },
+          "gemeenteVanInschrijving" : {
+            "$ref" : "#/components/schemas/Waardetabel"
+          },
+          "landVanwaarIngeschreven" : {
+            "$ref" : "#/components/schemas/Waardetabel"
+          },
+          "adresregel1" : {
+            "$ref" : "#/components/schemas/Adresregel1"
+          },
+          "adresregel2" : {
+            "$ref" : "#/components/schemas/Adresregel2"
+          },
+          "adresregel3" : {
+            "$ref" : "#/components/schemas/Adresregel3"
+          },
+          "vertrokkenOnbekendWaarheen" : {
+            "type" : "boolean"
           },
           "land" : {
-            "$ref" : "#/components/schemas/Waardetabel"
-          },
-          "plaats" : {
-            "$ref" : "#/components/schemas/Waardetabel"
-          },
-          "reden" : {
             "$ref" : "#/components/schemas/Waardetabel"
           },
           "inOnderzoek" : {
-            "$ref" : "#/components/schemas/OntbindingHuwelijkInOnderzoek"
-          }
-        }
-      },
-      "OntbindingHuwelijkInOnderzoek" : {
-        "type" : "object",
-        "properties" : {
-          "datum" : {
-            "type" : "boolean"
+            "$ref" : "#/components/schemas/VerblijfplaatsInOnderzoek"
           },
-          "land" : {
-            "type" : "boolean"
+          "datumTot" : {
+            "$ref" : "#/components/schemas/AbstractDatum"
           },
-          "plaats" : {
-            "type" : "boolean"
-          },
-          "reden" : {
-            "type" : "boolean"
-          },
-          "datumIngangOnderzoek" : {
-            "$ref" : "#/components/schemas/DatumOnvolledig"
+          "geheimhoudingPersoonsgegevens" : {
+            "$ref" : "#/components/schemas/GeheimhoudingPersoonsgegevens"
           }
         },
-        "description" : "Geeft aan dat de ontbinding van het huwelijk of de beëindiging van het partnerschap in onderzoek is.\n\n[Zie functionele specificaties](https://github.com/VNG-Realisatie/Bevragingen-ingeschreven-personen/blob/master/features/in_onderzoek.feature)\n"
+        "description" : "Gegevens over de (historische) verblijfplaatsen of de woonlocaties van de persoon.\n* **datumAanvangAdreshuishouding** : de datum van aangifte of ambtshalve melding van verblijf en adres.\n* **datumIngangGeldigheid** : datum waarop de gegevens over de verblijfplaats geldig zijn geworden.\n* **datumInschrijvingInGemeente**: bij inschrijving op grond van een verhuisaangifte door de burger is dit de aangiftedatum. Bij inschrijving op grond van een geboorteakte is dit de geboortedatum. Bij ambtshalve inschrijving is dit de datum waarop het voornemen van ambtshalve opneming schriftelijk aan de persoon is medegedeeld.\n* **datumVestigingInNederland** : datum van inschrijving in Nederland.\n* **landVanWaarIngeschreven** : het land waar de persoon woonde voor (her)vestiging in Nederland.\n* **gemeenteVanInschrijving** : de gemeente waar de persoon verblijft en is ingeschreven. De code kan voorloopnullen bevatten.\"\n* **datumTot** : de datum tot wanneer iemand op deze verblijfplaats of woonlocatie was ingeschreven\n"
       },
-      "PartnerhistorieLinks" : {
-        "type" : "object",
-        "properties" : {
-          "ingeschrevenPersoon" : {
-            "$ref" : "#/components/schemas/HalLink"
-          }
-        }
-      },
-      "VerblijfstitelhistorieHalCollectie" : {
-        "type" : "object",
-        "properties" : {
-          "_links" : {
-            "$ref" : "#/components/schemas/HalCollectionLinks"
-          },
-          "_embedded" : {
-            "$ref" : "#/components/schemas/VerblijfstitelhistorieHalCollectieEmbedded"
-          }
-        }
-      },
-      "VerblijfstitelhistorieHalCollectieEmbedded" : {
-        "type" : "object",
-        "properties" : {
-          "verblijfstitelhistorie" : {
-            "type" : "array",
-            "items" : {
-              "$ref" : "#/components/schemas/Verblijfstitelhistorie"
-            }
-          }
-        }
-      },
-      "Verblijfstitelhistorie" : {
+      "VerblijfplaatsInOnderzoek" : {
         "allOf" : [ {
-          "$ref" : "#/components/schemas/Verblijfstitel"
+          "$ref" : "#/components/schemas/InOnderzoek"
         }, {
+          "type" : "object",
           "properties" : {
+            "straat" : {
+              "type" : "boolean"
+            },
+            "huisnummer" : {
+              "type" : "boolean"
+            },
+            "huisletter" : {
+              "type" : "boolean"
+            },
+            "huisnummertoevoeging" : {
+              "type" : "boolean"
+            },
+            "postcode" : {
+              "type" : "boolean"
+            },
+            "woonplaats" : {
+              "type" : "boolean"
+            },
+            "adresseerbaarObjectIdentificatie" : {
+              "type" : "boolean"
+            },
+            "aanduidingBijHuisnummer" : {
+              "type" : "boolean"
+            },
+            "nummeraanduidingIdentificatie" : {
+              "type" : "boolean"
+            },
+            "functieAdres" : {
+              "type" : "boolean"
+            },
+            "indicatieVestigingVanuitBuitenland" : {
+              "type" : "boolean"
+            },
+            "locatiebeschrijving" : {
+              "type" : "boolean"
+            },
+            "korteNaam" : {
+              "type" : "boolean"
+            },
+            "vanuitVertrokkenOnbekendWaarheen" : {
+              "type" : "boolean"
+            },
+            "datumAanvangAdreshouding" : {
+              "type" : "boolean"
+            },
+            "datumIngangGeldigheid" : {
+              "type" : "boolean"
+            },
+            "datumInschrijvingInGemeente" : {
+              "type" : "boolean"
+            },
+            "datumVestigingInNederland" : {
+              "type" : "boolean"
+            },
+            "gemeenteVanInschrijving" : {
+              "type" : "boolean"
+            },
+            "landVanwaarIngeschreven" : {
+              "type" : "boolean"
+            },
+            "adresregel1" : {
+              "type" : "boolean"
+            },
+            "adresregel2" : {
+              "type" : "boolean"
+            },
+            "adresregel3" : {
+              "type" : "boolean"
+            },
+            "vertrokkenOnbekendWaarheen" : {
+              "type" : "boolean"
+            },
+            "land" : {
+              "type" : "boolean"
+            },
+            "datumTot" : {
+              "type" : "boolean"
+            },
             "geheimhoudingPersoonsgegevens" : {
-              "title" : "Indicatie geheim",
-              "type" : "boolean",
-              "description" : "Gegevens mogen niet worden verstrekt aan derden / maatschappelijke instellingen.\n"
+              "type" : "boolean"
             }
-          },
-          "description" : "Gegevens over de (historische) verblijfsrechtelijke status van de persoon.\n* **datumEinde**: Datum waarop de verblijfstitel niet meer geldig is.\n* **datumIngang**: Datum waarop de verblijfstitel ingaat.\n* **aanduiding** : Verblijfstiteltabel die aangeeft over welke verblijfsrechtelijke status de persoon beschikt.\n"
+          }
         } ]
       },
       "BadRequestFoutbericht" : {
@@ -1422,14 +514,18 @@
             "format" : "uri"
           },
           "title" : {
+            "pattern" : "^[a-zA-Z0-9À-ž \\.\\-]{1,80}$",
             "type" : "string",
             "description" : "Beschrijving van de fout"
           },
           "status" : {
+            "maximum" : 600,
+            "minimum" : 100,
             "type" : "integer",
             "description" : "Http status code"
           },
           "detail" : {
+            "pattern" : "^[a-zA-Z0-9À-ž \\.\\-\\(\\)\\,]{1,200}$",
             "type" : "string",
             "description" : "Details over de fout"
           },
@@ -1440,6 +536,7 @@
           },
           "code" : {
             "minLength" : 1,
+            "pattern" : "^[a-zA-Z0-9]{1,25}$",
             "type" : "string",
             "description" : "Systeemcode die het type fout aangeeft"
           }
@@ -1455,17 +552,20 @@
             "example" : "https://www.vng.nl/realisatie/api/{major-versie}/validaties/integer"
           },
           "name" : {
+            "pattern" : "^[a-zA-Z0-9\\.,_]{1,30}$",
             "type" : "string",
             "description" : "Naam van de parameter",
             "example" : "verblijfplaats__huisnummer"
           },
           "code" : {
             "minLength" : 1,
+            "pattern" : "^[a-zA-Z0-9\\.,_]{1,25}$",
             "type" : "string",
             "description" : "Systeemcode die het type fout aangeeft",
             "example" : "integer"
           },
           "reason" : {
+            "pattern" : "^[a-zA-Z0-9\\.,_ ]{1,80}$",
             "type" : "string",
             "description" : "Beschrijving van de fout op de parameterwaarde",
             "example" : "Waarde is geen geldige integer."
@@ -1473,573 +573,247 @@
         },
         "description" : "Details over fouten in opgegeven parameters"
       },
-      "HalCollectionLinks" : {
-        "type" : "object",
-        "properties" : {
-          "self" : {
-            "$ref" : "#/components/schemas/HalLink"
-          }
-        },
-        "description" : "HalCollectionLinks bevat de self link die elke HAL Resource minimaal moet hebben in zijn _links property\n"
-      },
-      "HalLink" : {
-        "required" : [ "href" ],
-        "type" : "object",
-        "properties" : {
-          "href" : {
-            "$ref" : "#/components/schemas/Href"
-          },
-          "templated" : {
-            "type" : "boolean"
-          },
-          "title" : {
-            "type" : "string",
-            "description" : "Voor mens leesbaar label bij de link"
-          }
-        },
-        "description" : "De Link Object zoals gespecificeerd in https://tools.ietf.org/html/draft-kelly-json-hal-08#section-5; Deze link kan als templated link worden aangeboden. [URI-templating is hier beschreven](https://github.com/VNG-Realisatie/Haal-Centraal-common/blob/v1.2.0/features/uri-templating.feature)."
-      },
-      "Href" : {
+      "Burgerservicenummer" : {
+        "pattern" : "^[0-9]{9}$",
         "type" : "string",
-        "example" : "https://datapunt.voorbeeldgemeente.nl/api/v{major-versie}/resourcename/{resource-identificatie}"
+        "example" : "555555021"
       },
-      "Nationaliteit" : {
-        "type" : "object",
-        "properties" : {
-          "aanduidingBijzonderNederlanderschap" : {
-            "$ref" : "#/components/schemas/AanduidingBijzonderNederlanderschap_enum"
-          },
-          "datumIngangGeldigheid" : {
-            "$ref" : "#/components/schemas/DatumOnvolledig"
-          },
-          "nationaliteit" : {
-            "$ref" : "#/components/schemas/Waardetabel"
-          },
-          "redenOpname" : {
-            "$ref" : "#/components/schemas/Waardetabel"
-          },
-          "inOnderzoek" : {
-            "$ref" : "#/components/schemas/NationaliteitInOnderzoek"
-          }
-        },
-        "description" : "* **redenOpname** : De reden op grond waarvan de persoon de nationaliteit gekregen heeft.\n"
-      },
-      "AanduidingBijzonderNederlanderschap_enum" : {
+      "Fields" : {
+        "maxLength" : 924,
+        "pattern" : "^[a-zA-Z0-9\\.,_]+$",
         "type" : "string",
-        "description" : "Geeft aan dat de persoon behandeld wordt als Nederlander, of dat door de rechter is vastgesteld dat de persoon niet de Nederlandse nationaliteit bezit\n* `behandeld_als_nederlander` - B\n* `vastgesteld_niet_nederlander` - V\n",
-        "enum" : [ "behandeld_als_nederlander", "vastgesteld_niet_nederlander" ]
+        "description" : "Hiermee kun je de inhoud van de resource naar behoefte aanpassen door een door komma's gescheiden lijst van property namen op te geven.\nBij opgave van niet-bestaande properties wordt een 400 Bad Request teruggegeven. Wanneer de fields parameter niet is opgegeven, worden alle properties met een waarde teruggegeven.\nZie [functionele specificaties](https://github.com/VNG-Realisatie/Haal-Centraal-common/blob/v1.2.0/features/fields.feature)\n"
       },
-      "DatumOnvolledig" : {
-        "type" : "object",
-        "properties" : {
-          "dag" : {
-            "maximum" : 31,
-            "minimum" : 1,
-            "type" : "integer",
-            "description" : "Als de dag van de datum bekend is wordt dit element gevuld, ook als de volledige datum bekend is.",
-            "example" : 3
-          },
-          "datum" : {
-            "type" : "string",
-            "description" : "Als de volledige datum bekend is wordt de datum gevuld die in de date definitie past.",
-            "format" : "date",
-            "example" : "1989-05-03"
-          },
-          "jaar" : {
-            "maximum" : 9999,
-            "type" : "integer",
-            "description" : "Als het jaar van de datum bekend is wordt dit element gevuld, ook als de volledige datum bekend is.",
-            "example" : 1989
-          },
-          "maand" : {
-            "maximum" : 12,
-            "minimum" : 1,
-            "type" : "integer",
-            "description" : "Als de maand van een datum bekend is wordt dit element gevuld, ook als de volledige datum bekend is.",
-            "example" : 5
-          }
-        },
-        "description" : "Gegevens over de datums die mogelijk niet volledig zijn."
+      "Straat" : {
+        "maxLength" : 80,
+        "type" : "string",
+        "example" : "Tulpstraat"
+      },
+      "Huisnummer" : {
+        "maximum" : 99999,
+        "minimum" : 1,
+        "type" : "integer",
+        "description" : "Een nummer dat door de gemeente aan een adresseerbaar object is gegeven.\n",
+        "example" : 14
+      },
+      "Huisletter" : {
+        "pattern" : "^[a-zA-Z]{1}$",
+        "type" : "string",
+        "description" : "Een toevoeging aan een huisnummer in de vorm van een letter die door de gemeente aan een adresseerbaar object is gegeven.\n",
+        "example" : "a"
+      },
+      "Huisnummertoevoeging" : {
+        "pattern" : "^[a-zA-Z0-9 \\-]{1,4}$",
+        "type" : "string",
+        "description" : "Een toevoeging aan een huisnummer of een combinatie van huisnummer en huisletter die door de gemeente aan een adresseerbaar object is gegeven.\n",
+        "example" : "bis"
+      },
+      "Postcode" : {
+        "pattern" : "^[1-9]{1}[0-9]{3}[ ]?[A-Za-z]{2}$",
+        "type" : "string",
+        "description" : "De door PostNL vastgestelde code die bij een bepaalde combinatie van een straatnaam en een huisnummer hoort.\n",
+        "example" : "2341SX"
+      },
+      "Woonplaats" : {
+        "title" : "woonplaats naam",
+        "pattern" : "^[a-zA-Z0-9À-ž \\(\\)\\,\\.\\-\\']{1,80}$",
+        "type" : "string",
+        "description" : "Een woonplaats is een gedeelte van het grondgebied van de gemeente met een naam.\n",
+        "example" : "Duiven"
+      },
+      "AdresseerbaarObjectIdentificatie" : {
+        "pattern" : "^[0-9]{16}$",
+        "type" : "string",
+        "description" : "De verblijfplaats van de persoon kan een ligplaats, een standplaats of een verblijfsobject zijn.\n",
+        "example" : "0226010000038820"
       },
       "Waardetabel" : {
         "type" : "object",
         "properties" : {
           "code" : {
+            "pattern" : "^[a-zA-Z0-9 \\.]+$",
             "type" : "string",
             "example" : "6030"
           },
           "omschrijving" : {
+            "pattern" : "^[a-zA-Z0-9À-ž \\'\\,\\(\\)\\.\\-]{1,200}$",
             "type" : "string",
             "example" : "Nederland"
           }
         }
       },
-      "NationaliteitInOnderzoek" : {
+      "NummeraanduidingIdentificatie" : {
+        "pattern" : "^[0-9]{16}$",
+        "type" : "string",
+        "description" : "Unieke identificatie van een nummeraanduiding (en het bijbehorende adres) in de BAG.\n",
+        "example" : "0518200000366054"
+      },
+      "IndicatieVestigingVanuitBuitenland" : {
+        "type" : "boolean",
+        "description" : "Geeft aan dat de persoon zich vanuit het buitenland heeft ingeschreven.\n"
+      },
+      "Locatiebeschrijving" : {
+        "maxLength" : 35,
+        "type" : "string",
+        "description" : "Omschrijving van de ligging van een verblijfsobject, standplaats of ligplaats.\n",
+        "example" : "Naast de derde brug"
+      },
+      "KorteNaam" : {
+        "maxLength" : 24,
+        "type" : "string",
+        "description" : "De officiële openbareruimtenaam uit de Basisregistratie Gebouwen en Adressen (BAG) of een verkorte versie.\n"
+      },
+      "AbstractDatum" : {
+        "required" : [ "type" ],
         "type" : "object",
         "properties" : {
-          "aanduidingBijzonderNederlanderschap" : {
-            "type" : "boolean"
-          },
-          "nationaliteit" : {
-            "type" : "boolean"
-          },
-          "redenOpname" : {
-            "type" : "boolean"
-          },
-          "datumIngangOnderzoek" : {
-            "$ref" : "#/components/schemas/DatumOnvolledig"
+          "type" : {
+            "type" : "string"
           }
         },
-        "description" : "Geeft aan welke gegevens over de nationaliteit in onderzoek zijn. Zie de [functionele specificaties](https://github.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/blob/v1.1.0/features/in_onderzoek.feature)\n"
-      },
-      "Verblijfplaats" : {
-        "allOf" : [ {
-          "$ref" : "#/components/schemas/Adres"
-        }, {
-          "properties" : {
-            "adresseerbaarObjectIdentificatie" : {
-              "type" : "string",
-              "description" : "De verblijfplaats van de persoon kan een ligplaats, een standplaats of een verblijfsobject zijn.\n",
-              "example" : "0226010000038820"
-            },
-            "aanduidingBijHuisnummer" : {
-              "$ref" : "#/components/schemas/AanduidingBijHuisnummer_enum"
-            },
-            "nummeraanduidingIdentificatie" : {
-              "type" : "string",
-              "description" : "Unieke identificatie van een nummeraanduiding (en het bijbehorende adres) in de BAG.\n",
-              "example" : "0518200000366054"
-            },
-            "functieAdres" : {
-              "$ref" : "#/components/schemas/SoortAdres_enum"
-            },
-            "indicatieVestigingVanuitBuitenland" : {
-              "type" : "boolean",
-              "description" : "Geeft aan dat de ingeschreven persoon zich vanuit het buitenland heeft ingeschreven.\n"
-            },
-            "locatiebeschrijving" : {
-              "type" : "string",
-              "description" : "Omschrijving van de ligging van een verblijfsobject, standplaats of ligplaats.\n",
-              "example" : "Naast de derde brug"
-            },
-            "korteNaam" : {
-              "type" : "string",
-              "description" : "De officiële openbareruimtenaam uit de Basisregistratie Gebouwen en Adressen (BAG) of een verkorte versie.\n"
-            },
-            "vanuitVertrokkenOnbekendWaarheen" : {
-              "type" : "boolean",
-              "description" : "Geeft aan dat de persoon is teruggekeerd uit een situatie van 'vertrokken onbekend waarheen.'\n",
-              "example" : true
-            },
-            "datumAanvangAdreshouding" : {
-              "$ref" : "#/components/schemas/DatumOnvolledig"
-            },
-            "datumIngangGeldigheid" : {
-              "$ref" : "#/components/schemas/DatumOnvolledig"
-            },
-            "datumInschrijvingInGemeente" : {
-              "$ref" : "#/components/schemas/DatumOnvolledig"
-            },
-            "datumVestigingInNederland" : {
-              "$ref" : "#/components/schemas/DatumOnvolledig"
-            },
-            "gemeenteVanInschrijving" : {
-              "$ref" : "#/components/schemas/Waardetabel"
-            },
-            "landVanwaarIngeschreven" : {
-              "$ref" : "#/components/schemas/Waardetabel"
-            },
-            "adresregel1" : {
-              "type" : "string",
-              "description" : "Het eerste deel van een adres is een combinatie van de straat en huisnummer.\n",
-              "example" : "Laan van de landinrichtingscommissie Duiven-Westervoort 26A-3"
-            },
-            "adresregel2" : {
-              "type" : "string",
-              "description" : "Het tweede deel van een adres is een combinatie van woonplaats eventueel in combinatie met de postcode.\n",
-              "example" : "1234AA Nootdorp"
-            },
-            "adresregel3" : {
-              "type" : "string",
-              "description" : "Het derde deel van een adres is optioneel. Het gaat om een of meer geografische gebieden van het adres in het buitenland.\n",
-              "example" : "Selangor"
-            },
-            "vertrokkenOnbekendWaarheen" : {
-              "type" : "boolean",
-              "description" : "Indicatie dat de ingeschreven persoon is vertrokken naar het buitenland, maar dat niet bekend is waar naar toe.\n"
-            },
-            "land" : {
-              "$ref" : "#/components/schemas/Waardetabel"
-            },
-            "inOnderzoek" : {
-              "$ref" : "#/components/schemas/VerblijfplaatsInOnderzoek"
-            }
-          },
-          "description" : "Gegevens over het verblijf of de woonlocatie van een persoon.\n* **datumAanvangAdreshuishouding** : de datum van aangifte of ambtshalve melding van verblijf en adres.\n* **datumIngangGeldigheid** : datum waarop de gegevens over de verblijfplaats geldig zijn geworden.\n* **datumInschrijvingInGemeente**: bij inschrijving op grond van een verhuisaangifte door de burger is dit de aangiftedatum. Bij inschrijving op grond van een geboorteakte is dit de geboortedatum. Bij ambtshalve inschrijving is dit de datum waarop het voornemen van ambtshalve opneming schriftelijk aan de persoon is medegedeeld.\n* **datumVestigingInNederland** : datum van inschrijving in Nederland.\n* **landVanWaarIngeschreven** : het land waar de persoon woonde voor (her)vestiging in Nederland.\n* **gemeenteVanInschrijving** : de gemeente waar de persoon verblijft en is ingeschreven. De code kan voorloopnullen bevatten.\"\n"
-        } ]
-      },
-      "Adres" : {
-        "type" : "object",
-        "properties" : {
-          "straat" : {
-            "title" : "openbareruimte naam",
-            "type" : "string",
-            "description" : "Een naam die door de gemeente aan een openbare ruimte is gegeven.",
-            "example" : "Laan van de landinrichtingscommissie Duiven-Westervoort"
-          },
-          "huisnummer" : {
-            "type" : "integer",
-            "description" : "Een nummer dat door de gemeente aan een adresseerbaar object is gegeven.",
-            "example" : 1
-          },
-          "huisletter" : {
-            "type" : "string",
-            "description" : "Een toevoeging aan een huisnummer in de vorm van een letter die door de gemeente aan een adresseerbaar object is gegeven.",
-            "example" : "A"
-          },
-          "huisnummertoevoeging" : {
-            "type" : "string",
-            "description" : "Een toevoeging aan een huisnummer of een combinatie van huisnummer en huisletter die door de gemeente aan een adresseerbaar object is gegeven.",
-            "example" : "bis"
-          },
-          "postcode" : {
-            "type" : "string",
-            "description" : "De door PostNL vastgestelde code die bij een bepaalde combinatie van een straatnaam en een huisnummer hoort.",
-            "example" : "6922KZ"
-          },
-          "woonplaats" : {
-            "title" : "woonplaats naam",
-            "type" : "string",
-            "description" : "Een woonplaats is een gedeelte van het grondgebied van de gemeente met een naam.",
-            "example" : "Duiven"
-          }
-        },
-        "description" : "Eigenschappen van het adres die kunnen worden hergebruikt in andere API's waarin adresgegevens worden opgenomen. "
-      },
-      "AanduidingBijHuisnummer_enum" : {
-        "type" : "string",
-        "description" : "De aanduiding die wordt gebruikt voor adressen die geen straatnaam en huisnummeraanduidingen hebben\n* `tegenover` - to\n* `bij` - by\n",
-        "enum" : [ "tegenover", "bij" ]
-      },
-      "SoortAdres_enum" : {
-        "type" : "string",
-        "description" : "Aanduiding van het soort adres\n* `woonadres` - W - adres waar de persoon woont\n* `briefadres` - B - het adres van een andere persoon of van een instelling (de zogenoemde briefadresgever). Met dit adres van de briefadresgever is de persoon zonder woonadres toch bereikbaar voor de overheid.\n",
-        "enum" : [ "woonadres", "briefadres" ]
-      },
-      "VerblijfplaatsInOnderzoek" : {
-        "type" : "object",
-        "properties" : {
-          "aanduidingBijHuisnummer" : {
-            "type" : "boolean"
-          },
-          "datumAanvangAdreshouding" : {
-            "type" : "boolean"
-          },
-          "datumIngangGeldigheid" : {
-            "type" : "boolean"
-          },
-          "datumInschrijvingInGemeente" : {
-            "type" : "boolean"
-          },
-          "datumVestigingInNederland" : {
-            "type" : "boolean"
-          },
-          "functieAdres" : {
-            "type" : "boolean"
-          },
-          "gemeenteVanInschrijving" : {
-            "type" : "boolean"
-          },
-          "huisletter" : {
-            "type" : "boolean"
-          },
-          "huisnummer" : {
-            "type" : "boolean"
-          },
-          "huisnummertoevoeging" : {
-            "type" : "boolean"
-          },
-          "nummeraanduidingIdentificatie" : {
-            "type" : "boolean"
-          },
-          "adresseerbaarObjectIdentificatie" : {
-            "type" : "boolean"
-          },
-          "landVanwaarIngeschreven" : {
-            "type" : "boolean"
-          },
-          "locatiebeschrijving" : {
-            "type" : "boolean"
-          },
-          "straat" : {
-            "type" : "boolean"
-          },
-          "postcode" : {
-            "type" : "boolean"
-          },
-          "korteNaam" : {
-            "type" : "boolean"
-          },
-          "verblijfBuitenland" : {
-            "type" : "boolean"
-          },
-          "woonplaats" : {
-            "type" : "boolean"
-          },
-          "datumIngangOnderzoek" : {
-            "$ref" : "#/components/schemas/DatumOnvolledig"
-          }
-        },
-        "description" : "Geeft aan welke gegevens over het verblijf en adres van de persoon in onderzoek zijn. Elementen van het GBA-adres zelf (Dat zou eigenlijk een BAG-adres moeten zijn) kunnen niet in onderzoek zijn. Wel de relatie naar de nummeraanduiding. Dat wordt gedaan door de identificatiecodeNummeraanduiding in onderzoek te zetten. Zie de [functionele specificaties](https://github.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/blob/v1.1.0/features/in_onderzoek.feature)\n"
-      },
-      "Partner" : {
-        "type" : "object",
-        "properties" : {
-          "burgerservicenummer" : {
-            "type" : "string",
-            "example" : "555555021"
-          },
-          "geslachtsaanduiding" : {
-            "$ref" : "#/components/schemas/Geslacht_enum"
-          },
-          "soortVerbintenis" : {
-            "$ref" : "#/components/schemas/SoortVerbintenis_enum"
-          },
-          "naam" : {
-            "$ref" : "#/components/schemas/Naam"
-          },
-          "geboorte" : {
-            "$ref" : "#/components/schemas/Geboorte"
-          },
-          "inOnderzoek" : {
-            "$ref" : "#/components/schemas/PartnerInOnderzoek"
-          },
-          "aangaanHuwelijkPartnerschap" : {
-            "$ref" : "#/components/schemas/AangaanHuwelijkPartnerschap"
-          },
-          "geheimhoudingPersoonsgegevens" : {
-            "title" : "Indicatie geheim",
-            "type" : "boolean",
-            "description" : "Gegevens mogen niet worden verstrekt aan derden/ maatschappelijke instellingen.\n"
-          }
-        },
-        "description" : "Gegevens over een gesloten huwelijk/geregistreerd partnerschap van de persoon.\n"
-      },
-      "Geslacht_enum" : {
-        "type" : "string",
-        "description" : "Geeft aan dat de persoon een man of vrouw is, of dat het geslacht (nog) onbekend is\n* `man` - M\n* `vrouw` - V\n* `onbekend` - O\n",
-        "enum" : [ "man", "vrouw", "onbekend" ]
-      },
-      "SoortVerbintenis_enum" : {
-        "type" : "string",
-        "description" : "Soort verbintenis die bij de burgerlijke stand is ingeschreven\n* `huwelijk` - H\n* `geregistreerd_partnerschap` - P\n",
-        "enum" : [ "huwelijk", "geregistreerd_partnerschap" ]
-      },
-      "Naam" : {
-        "type" : "object",
-        "properties" : {
-          "geslachtsnaam" : {
-            "type" : "string",
-            "description" : "De achternaam van een persoon.\n",
-            "example" : "Vries"
-          },
-          "voorletters" : {
-            "type" : "string",
-            "description" : "De voorletters van de persoon, afgeleid van de voornamen.\n",
-            "example" : "P.J."
-          },
-          "voornamen" : {
-            "type" : "string",
-            "description" : "De verzameling namen voor de geslachtsnaam, gescheiden door spaties.\n",
-            "example" : "Pieter Jan"
-          },
-          "voorvoegsel" : {
-            "type" : "string",
-            "example" : "de"
-          },
-          "adellijkeTitelPredikaat" : {
-            "$ref" : "#/components/schemas/Waardetabel"
-          },
-          "inOnderzoek" : {
-            "$ref" : "#/components/schemas/NaamInOnderzoek"
+        "discriminator" : {
+          "propertyName" : "type",
+          "mapping" : {
+            "Datum" : "#/components/schemas/VolledigeDatum",
+            "OnbekendDatum" : "#/components/schemas/OnbekendDatum",
+            "JaarDatum" : "#/components/schemas/JaarDatum",
+            "JaarMaandDatum" : "#/components/schemas/JaarMaandDatum"
           }
         }
       },
-      "NaamInOnderzoek" : {
-        "type" : "object",
-        "properties" : {
-          "geslachtsnaam" : {
-            "type" : "boolean"
-          },
-          "voornamen" : {
-            "type" : "boolean"
-          },
-          "voorvoegsel" : {
-            "type" : "boolean"
-          },
-          "adellijkeTitelPredikaat" : {
-            "type" : "boolean"
-          },
-          "datumIngangOnderzoek" : {
-            "$ref" : "#/components/schemas/DatumOnvolledig"
+      "VolledigeDatum" : {
+        "required" : [ "datum" ],
+        "description" : "Datum conform iso8601",
+        "example" : {
+          "value" : {
+            "type" : "Datum",
+            "datum" : "2018-07-01"
           }
         },
-        "description" : "Geeft aan welke gegevens over de naam in onderzoek zijn. Zie de [functionele specificaties](https://github.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/blob/v1.1.0/features/in_onderzoek.feature)\n"
-      },
-      "Geboorte" : {
         "allOf" : [ {
-          "$ref" : "#/components/schemas/Geboortedatum"
+          "$ref" : "#/components/schemas/AbstractDatum"
         }, {
+          "type" : "object",
           "properties" : {
-            "land" : {
-              "$ref" : "#/components/schemas/Waardetabel"
-            },
-            "plaats" : {
-              "$ref" : "#/components/schemas/Waardetabel"
-            },
-            "inOnderzoek" : {
-              "$ref" : "#/components/schemas/GeboorteInOnderzoek"
+            "datum" : {
+              "type" : "string",
+              "format" : "date"
             }
-          },
-          "description" : "Gegevens over de geboorte.\n* **datum** : datum waarop de persoon is geboren.\n* **land** : land waar de persoon is geboren\n* **plaats** : gemeente waar de persoon is geboren. Is de persoon geboren buiten Nederland, dan bevat het antwoord alleen een buitenlandse plaatsnaam of aanduiding.\n"
+          }
         } ]
       },
-      "Geboortedatum" : {
-        "type" : "object",
-        "properties" : {
-          "datum" : {
-            "$ref" : "#/components/schemas/DatumOnvolledig"
+      "OnbekendDatum" : {
+        "required" : [ "onbekend" ],
+        "description" : "representatie voor een volledig onbekend datum",
+        "example" : {
+          "value" : {
+            "type" : "OnbekendDatum",
+            "onbekend" : true
           }
         },
-        "description" : "Gegevens over de geboorte van respectievelijk de persoon, de ouder, de echtgenoot/geregistreerd partner, de eerdere echtgenoot/geregistreerd partner of het kind.\n* **datum** : Datum waarop de persoon is geboren\n* **land** : Land waar de persoon is geboren\n* **plaats** : De plaats waar de persoon is geboren. Voor een plaats buiten Nederland is gemeentecode=1999 (RNI) en gemeentenaam de buitenlandse plaatsnaam of aanduiding.\n"
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/AbstractDatum"
+        }, {
+          "type" : "object",
+          "properties" : {
+            "onbekend" : {
+              "type" : "boolean",
+              "default" : true
+            }
+          }
+        } ]
       },
-      "GeboorteInOnderzoek" : {
+      "JaarDatum" : {
+        "required" : [ "jaar" ],
+        "description" : "representatie voor een datum waarvan maand en dag onbekend zijn",
+        "example" : {
+          "value" : {
+            "type" : "JaarDatum",
+            "jaar" : 2018
+          }
+        },
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/AbstractDatum"
+        }, {
+          "type" : "object",
+          "properties" : {
+            "jaar" : {
+              "$ref" : "#/components/schemas/Jaar"
+            }
+          }
+        } ]
+      },
+      "Jaar" : {
+        "maximum" : 9999,
+        "minimum" : 1,
+        "type" : "integer",
+        "format" : "int32"
+      },
+      "JaarMaandDatum" : {
+        "required" : [ "jaar", "maand" ],
+        "description" : "representatie voor een datum waarvan de dag onbekend is",
+        "example" : {
+          "value" : {
+            "type" : "JaarMaandDatum",
+            "jaar" : 2018,
+            "maand" : 7
+          }
+        },
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/AbstractDatum"
+        }, {
+          "type" : "object",
+          "properties" : {
+            "jaar" : {
+              "$ref" : "#/components/schemas/Jaar"
+            },
+            "maand" : {
+              "$ref" : "#/components/schemas/Maand"
+            }
+          }
+        } ]
+      },
+      "Maand" : {
+        "maximum" : 12,
+        "minimum" : 1,
+        "type" : "integer",
+        "format" : "int32"
+      },
+      "Adresregel1" : {
+        "maxLength" : 40,
+        "type" : "string",
+        "description" : "Het eerste deel van een adres is een combinatie van de straat en huisnummer.\n",
+        "example" : "Laan van de landinrichtingscommissie Duiven-Westervoort 26A-3"
+      },
+      "Adresregel2" : {
+        "maxLength" : 50,
+        "type" : "string",
+        "description" : "Het tweede deel van een adres is een combinatie van woonplaats eventueel in combinatie met de postcode.\n",
+        "example" : "1234AA Nootdorp"
+      },
+      "Adresregel3" : {
+        "maxLength" : 35,
+        "type" : "string",
+        "description" : "Het derde deel van een adres is optioneel. Het gaat om een of meer geografische gebieden van het adres in het buitenland.\n",
+        "example" : "Selangor"
+      },
+      "GeheimhoudingPersoonsgegevens" : {
+        "type" : "boolean",
+        "description" : "Gegevens mogen niet worden verstrekt aan derden / maatschappelijke instellingen.\n"
+      },
+      "InOnderzoek" : {
         "type" : "object",
         "properties" : {
-          "datum" : {
-            "type" : "boolean"
-          },
-          "land" : {
-            "type" : "boolean"
-          },
-          "plaats" : {
-            "type" : "boolean"
-          },
           "datumIngangOnderzoek" : {
-            "$ref" : "#/components/schemas/DatumOnvolledig"
+            "$ref" : "#/components/schemas/AbstractDatum"
           }
-        },
-        "description" : "Geeft aan welke gegevens over de geboorte van de persoon in onderzoek zijn. Zie de [functionele specificaties](https://github.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/blob/v1.1.0/features/in_onderzoek.feature)\n"
-      },
-      "PartnerInOnderzoek" : {
-        "type" : "object",
-        "properties" : {
-          "burgerservicenummer" : {
-            "type" : "boolean"
-          },
-          "geslachtsaanduiding" : {
-            "type" : "boolean"
-          },
-          "soortVerbintenis" : {
-            "type" : "boolean"
-          },
-          "datumIngangOnderzoek" : {
-            "$ref" : "#/components/schemas/DatumOnvolledig"
-          }
-        },
-        "description" : "Geeft aan welke gegevens over het huwelijk of het partnerschap in onderzoek zijn. Zie de [functionele specificaties](https://github.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/blob/v1.1.0/features/in_onderzoek.feature)\n"
-      },
-      "AangaanHuwelijkPartnerschap" : {
-        "type" : "object",
-        "properties" : {
-          "datum" : {
-            "$ref" : "#/components/schemas/DatumOnvolledig"
-          },
-          "land" : {
-            "$ref" : "#/components/schemas/Waardetabel"
-          },
-          "plaats" : {
-            "$ref" : "#/components/schemas/Waardetabel"
-          },
-          "inOnderzoek" : {
-            "$ref" : "#/components/schemas/AangaanHuwelijkPartnerschapInOnderzoek"
-          }
-        },
-        "description" : "Gegevens over de voltrekking van het huwelijk of het aangaan van het geregistreerd partnerschap.\n* **datum** : De datum waarop het huwelijk is voltrokken of het partnerschap is aangegaan.\n* **land** : Het land waar het huwelijk is voltrokken of het partnerschap is aangegaan.\n* **plaats** : De gemeente waar het huwelijk is voltrokken of het partnerschap is aangegaan. Voor een plaats buiten Nederland bevat het antwoord een buitenlandse plaatsnaam of aanduiding.\n"
-      },
-      "AangaanHuwelijkPartnerschapInOnderzoek" : {
-        "type" : "object",
-        "properties" : {
-          "datum" : {
-            "type" : "boolean"
-          },
-          "land" : {
-            "type" : "boolean"
-          },
-          "plaats" : {
-            "type" : "boolean"
-          },
-          "datumIngangOnderzoek" : {
-            "$ref" : "#/components/schemas/DatumOnvolledig"
-          }
-        },
-        "description" : "Geeft aan welke gegevens over het voltrekken van het huwelijk of aangaan van het partnerschap in onderzoek zijn. Zie de functionele specificaties. Zie de [functionele specificaties](https://github.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/blob/v1.1.0/features/in_onderzoek.feature)\n"
-      },
-      "Verblijfstitel" : {
-        "type" : "object",
-        "properties" : {
-          "aanduiding" : {
-            "$ref" : "#/components/schemas/Waardetabel"
-          },
-          "datumEinde" : {
-            "$ref" : "#/components/schemas/DatumOnvolledig"
-          },
-          "datumIngang" : {
-            "$ref" : "#/components/schemas/DatumOnvolledig"
-          },
-          "inOnderzoek" : {
-            "$ref" : "#/components/schemas/VerblijfstitelInOnderzoek"
-          }
-        },
-        "description" : "Gegevens over de verblijfsrechtelijke status van de persoon.\n* **datumEinde**: Datum waarop de geldigheid van de gegevens over de verblijfstitel is beëindigd.\n* **datumIngang**: Datum waarop de gegevens over de verblijfstitel geldig zijn geworden.\n* **aanduiding** : Verblijfstiteltabel die aangeeft over welke verblijfsrechtelijke status de persoon beschikt.\n"
-      },
-      "VerblijfstitelInOnderzoek" : {
-        "type" : "object",
-        "properties" : {
-          "aanduiding" : {
-            "type" : "boolean"
-          },
-          "datumEinde" : {
-            "type" : "boolean"
-          },
-          "datumIngang" : {
-            "type" : "boolean"
-          },
-          "datumIngangOnderzoek" : {
-            "$ref" : "#/components/schemas/DatumOnvolledig"
-          }
-        },
-        "description" : "Geeft aan welke gegevens over de verblijfstitel in onderzoek zijn. Zie de [functionele specificaties](https://github.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/blob/v1.1.0/features/in_onderzoek.feature)\n"
-      }
-    },
-    "parameters" : {
-      "burgerservicenummer" : {
-        "name" : "burgerservicenummer",
-        "in" : "path",
-        "description" : "Uniek persoonsnummer\n",
-        "required" : true,
-        "schema" : {
-          "maxLength" : 9,
-          "minLength" : 9,
-          "pattern" : "^[0-9]*$",
-          "type" : "string",
-          "example" : "555555021"
         }
       }
     },
     "headers" : {
       "api_version" : {
         "schema" : {
+          "pattern" : "^[1-9][0-9]{0,2}.[0-9]{1,3}.[0-9]{1,3}$",
           "type" : "string",
           "description" : "Geeft een specifieke API-versie aan in de context van een specifieke aanroep.",
           "example" : "1.0.0"
@@ -2047,9 +821,25 @@
       },
       "warning" : {
         "schema" : {
+          "maxLength" : 500,
           "type" : "string",
           "description" : "zie RFC 7234. In het geval een major versie wordt uitgefaseerd, gebruiken we warn-code 299 (\"Miscellaneous Persistent Warning\") en het API end-point (inclusief versienummer) als de warn-agent van de warning, gevolgd door de warn-text met de human-readable waarschuwing",
           "example" : "299 https://service.../api/.../v1 \"Deze versie van de API is verouderd en zal uit dienst worden genomen op 2018-02-01. Raadpleeg voor meer informatie hier de documentatie: https://omgevingswet.../api/.../v1\"."
+        }
+      },
+      "X_Rate_Limit_Limit" : {
+        "schema" : {
+          "type" : "integer"
+        }
+      },
+      "X_Rate_Limit_Remaining" : {
+        "schema" : {
+          "type" : "integer"
+        }
+      },
+      "X_Rate_Limit_Reset" : {
+        "schema" : {
+          "type" : "integer"
         }
       }
     }
