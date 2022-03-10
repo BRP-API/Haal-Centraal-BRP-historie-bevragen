@@ -505,7 +505,7 @@ components:
           description: |
                         Geeft aan dat het huwelijk is ontbonden of het partnerschap is beëindigd.
         datum:
-          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/common.yaml#/components/schemas/DatumOnvolledig"
+          $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/datum.yaml#/components/schemas/AbstractDatum'
         land:
           $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/common.yaml#/components/schemas/Waardetabel"
         plaats:
