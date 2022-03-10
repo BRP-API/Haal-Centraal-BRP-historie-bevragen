@@ -467,6 +467,36 @@ components:
             indicatieOnbekend:
               type: boolean
               default: false
+    PartnerInOnderzoek:
+      description: |
+        Geeft aan welke gegevens over het huwelijk of het partnerschap in onderzoek zijn.
+        Zie de [functionele specificaties](https://github.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/blob/v1.1.0/features/in_onderzoek.feature)
+      allOf:
+        - $ref: '#/components/schemas/InOnderzoek'
+        - type: object
+          properties:
+            burgerservicenummer:
+              type: boolean
+            geslachtsaanduiding:
+              type: boolean
+            soortVerbintenis:
+              type: boolean
+    AangaanHuwelijkPartnerschap:
+      type: object
+      description: |
+        Gegevens over de voltrekking van het huwelijk of het aangaan van het geregistreerd partnerschap.
+        * **datum** : De datum waarop het huwelijk is voltrokken of het partnerschap is aangegaan.
+        * **land** : Het land waar het huwelijk is voltrokken of het partnerschap is aangegaan.
+        * **plaats** : De gemeente waar het huwelijk is voltrokken of het partnerschap is aangegaan. Voor een plaats buiten Nederland bevat het antwoord een buitenlandse plaatsnaam of aanduiding.
+      properties:
+        datum:
+          $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.2.0/api-specificatie/datum.yaml#/components/schemas/AbstractDatum'
+        land:
+          $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.2.0/api-specificatie/common.yaml#/components/schemas/Waardetabel'
+        plaats:
+          $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.2.0/api-specificatie/common.yaml#/components/schemas/Waardetabel'
+        inOnderzoek:
+          $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-common/v1.2.0/api-specificatie/partner.yaml#/components/schemas/AangaanHuwelijkPartnerschapInOnderzoek'
     OntbindingHuwelijkPartnerschap:
       type: object
       properties:
