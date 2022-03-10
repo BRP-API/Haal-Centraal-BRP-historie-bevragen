@@ -444,15 +444,15 @@ components:
         - type: object
           properties:
             burgerservicenummer:
-              $ref: 'persoon.yaml#/components/schemas/Burgerservicenummer'
+              $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/persoon.yaml#/components/schemas/Burgerservicenummer'
             geslachtsaanduiding:
-              $ref: 'common.yaml#/components/schemas/Waardetabel'
+              $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/common.yaml#/components/schemas/Waardetabel'
             soortVerbintenis:
-              $ref: 'common.yaml#/components/schemas/Waardetabel'
+              $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/common.yaml#/components/schemas/Waardetabel'
             naam:
-              $ref: 'naam.yaml#/components/schemas/NaamGerelateerde'
+              $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/naam.yaml#/components/schemas/NaamGerelateerde'
             geboorte:
-              $ref: 'geboorte.yaml#/components/schemas/Geboorte'
+              $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/geboorte.yaml#/components/schemas/Geboorte'
             inOnderzoek:
               $ref: '#/components/schemas/PartnerInOnderzoek'
             aangaanHuwelijkPartnerschap:
