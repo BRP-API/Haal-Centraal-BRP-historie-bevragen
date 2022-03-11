@@ -768,8 +768,11 @@ components:
       required:
       - burgerservicenummer
       - fields
+      - type
       type: object
       properties:
+        type:
+          type: string
         burgerservicenummer:
           maxItems: 20
           minItems: 1
@@ -778,24 +781,44 @@ components:
             $ref: '#/components/schemas/Burgerservicenummer'
         fields:
           $ref: '#/components/schemas/Fields'
-        peildatum:
-          type: string
-          description: |
-            De datum waarop de resource wordt opgevraagd.
-          format: date
-          example: 1964-09-24
-        datumVan:
-          type: string
-          description: |
-            De begindatum van de periode waarover de resource wordt opgevraagd.
-          format: date
-          example: 1964-09-24
-        datumTotEnMet:
-          type: string
-          description: |
-            De einddatum van de periode waarover de resource wordt opgevraagd.
-          format: date
-          example: 1964-09-24
+      discriminator:
+        propertyName: type
+        mapping:
+          RaadpleegMetPeildatum: '#/components/schemas/RaadpleegMetPeildatum'
+          RaadpleegMetPeriode: '#/components/schemas/RaadpleegMetPeriode'
+    RaadpleegMetPeildatum:
+      required:
+      - peildatum
+      allOf:
+      - $ref: '#/components/schemas/HistorieQuery'
+      - type: object
+        properties:
+          peildatum:
+            type: string
+            description: |
+              De datum waarop de resource wordt opgevraagd.
+            format: date
+            example: 1964-09-24
+    RaadpleegMetPeriode:
+      required:
+      - datumTotEnMet
+      - datumVan
+      allOf:
+      - $ref: '#/components/schemas/HistorieQuery'
+      - type: object
+        properties:
+          datumVan:
+            type: string
+            description: |
+              De begindatum van de periode waarover de resource wordt opgevraagd.
+            format: date
+            example: 1964-09-24
+          datumTotEnMet:
+            type: string
+            description: |
+              De einddatum van de periode waarover de resource wordt opgevraagd.
+            format: date
+            example: 1964-09-24
     VerblijfplaatshistorieQueryResponse:
       type: object
       properties:
