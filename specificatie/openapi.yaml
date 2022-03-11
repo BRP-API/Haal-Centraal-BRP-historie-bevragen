@@ -18,7 +18,7 @@ tags:
   - name: BRP historie bevragen
     description: Zoeken historische gegevens
 paths:
-  /verblijfplaatshistorie1:
+  /verblijfplaatshistorie:
     post:
       description: |
         Zoek de verblijfplaatshistorie van een persoon op de opgegeven peildatum of binnen de opgegeven periode.
