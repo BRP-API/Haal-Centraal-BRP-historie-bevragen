@@ -232,38 +232,6 @@ paths:
 # De vraag is of dit de gewenste aanpak is of dat we alle componenten lokaal binnen de openapi.yaml van HC BRP Historie moeten definiëren.
 components:
   schemas:
-#    HistorieQuery:
-#      required:
-#      - burgerservicenummer
-#      - fields
-#      type: object
-#      properties:
-#        burgerservicenummer:
-#          maxItems: 20
-#          minItems: 1
-#          type: array
-#          items:
-#            $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/persoon.yaml#/components/schemas/Burgerservicenummer"
-#        fields:
-#          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/filter.yaml#/components/schemas/Fields"
-#        peildatum:
-#          type: string
-#          description: |
-#            De datum waarop de resource wordt opgevraagd.
-#          format: date
-#          example: 1964-09-24
-#        datumVan:
-#          type: string
-#          description: |
-#            De begindatum van de periode waarover de resource wordt opgevraagd.
-#          format: date
-#          example: 1964-09-24
-#        datumTotEnMet:
-#          type: string
-#          description: |
-#            De einddatum van de periode waarover de resource wordt opgevraagd.
-#          format: date
-#          example: 1964-09-24
     HistorieQuery:
       type: object
       required:
@@ -682,4 +650,3 @@ components:
       properties:
         datumIngangOnderzoek:
           $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/datum.yaml#/components/schemas/AbstractDatum'
-
