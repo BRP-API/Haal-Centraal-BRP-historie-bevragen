@@ -1,0 +1,318 @@
+openapi: 3.0.3
+info:
+  title: Verblijfplaats definities
+  version: 2.0.0
+  contact: {}
+paths: {}
+components:
+  schemas:
+    VerblijfadresBinnenland:
+      type: object
+      properties:
+        straat:
+          $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/verblijfplaats.yaml#/components/schemas/Straat'
+        huisnummer:
+          $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/verblijfplaats.yaml#/components/schemas/Huisnummer'
+        huisletter:
+          $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/verblijfplaats.yaml#/components/schemas/Huisletter'
+        huisnummertoevoeging:
+          $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/verblijfplaats.yaml#/components/schemas/Huisnummertoevoeging'
+        aanduidingBijHuisnummer:
+          $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/common.yaml#/components/schemas/Waardetabel'
+        postcode:
+          $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/verblijfplaats.yaml#/components/schemas/Postcode'
+        woonplaats:
+          $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/verblijfplaats.yaml#/components/schemas/Woonplaats'
+        korteNaam:
+          $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/verblijfplaats.yaml#/components/schemas/KorteNaam'
+        inOnderzoek:
+          $ref: "#/components/schemas/VerblijfadresBinnenlandInOnderzoek"
+    VerblijfadresBuitenland:
+      type: object
+      properties:
+        regel1:
+          $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/verblijfplaats.yaml#/components/schemas/Regel1'
+        regel2:
+          $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/verblijfplaats.yaml#/components/schemas/Regel2'
+        regel3:
+          $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/verblijfplaats.yaml#/components/schemas/Regel3'
+        land:
+          $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/common.yaml#/components/schemas/Waardetabel'
+        inOnderzoek:
+          $ref: "#/components/schemas/VerblijfadresBuitenlandInOnderzoek"
+    VerblijfadresLocatie:
+      type: object
+      properties:
+        locatiebeschrijving:
+          $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/verblijfplaats.yaml#/components/schemas/Locatiebeschrijving'
+        inOnderzoek:
+          $ref: "#/components/schemas/VerblijfadresLocatieInOnderzoek"
+    AbstractVerblijfplaats:
+      type: object
+      description: |
+        Gegevens over het verblijf of de woonlocatie van een persoon.
+      required:
+        - type
+      properties:
+        type:
+          type: string
+      discriminator:
+        propertyName: type
+        mapping:
+          VerblijfplaatsBuitenland: '#/components/schemas/VerblijfplaatsBuitenland'
+          Adres: '#/components/schemas/Adres'
+          VerblijfplaatsOnbekend: '#/components/schemas/VerblijfplaatsOnbekend'
+          Locatie: '#/components/schemas/Locatie'
+    VerblijfplaatsBuitenland:
+      description: |
+        * **gemeenteVanInschrijving** - Wordt gevuld op basis van de waarden die voorkomen in de tabel "Gemeenten" voor een gemeente in Nederland of de omschrijving van een buitenlandse plaats
+        * **land** - land waar de persoon is overleden. Wordt gevuld op basis van de waarden die voorkomen in de tabel 'Landen' uit de Haal-Centraal-BRP-tabellen-bevragen API.
+      allOf:
+      - $ref : '#/components/schemas/AbstractVerblijfplaats'
+      - type: object
+        properties:
+          verblijfadres:
+            $ref: "#/components/schemas/VerblijfadresBuitenland"
+          datumInschrijvingInGemeente:
+            $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/datum.yaml#/components/schemas/AbstractDatum'
+          gemeenteVanInschrijving:
+            $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/common.yaml#/components/schemas/Waardetabel'
+          datumVan:
+            $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/datum.yaml#/components/schemas/AbstractDatum'
+          datumTot:
+            $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/datum.yaml#/components/schemas/AbstractDatum'
+          datumIngangGeldigheid:
+            $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/datum.yaml#/components/schemas/AbstractDatum'
+          inOnderzoek:
+            $ref: '#/components/schemas/VerblijfplaatsBuitenlandInOnderzoek'
+    Adres:
+      description: |
+        Gegevens over het adres van een persoon.
+        * **functieAdres** - Wordt gevuld op basis van de waarden die voorkomen in de tabel 'Functie_Adres' uit de Haal-Centraal-BRP-tabellen-bevragen API.
+        * **aanduidingBijHuisnummer** - Wordt gevuld op basis van de waarden die voorkomen in de tabel 'Aanduiding_Bij_Huisnummer' uit de Haal-Centraal-BRP-tabellen-bevragen API.
+        * **datumVan** : de datum van aangifte of ambtshalve melding van verblijf en adres.
+        * **datumIngangGeldigheid** : datum waarop de gegevens over de verblijfplaats geldig zijn geworden.
+      allOf:
+        - $ref : '#/components/schemas/AbstractVerblijfplaats'
+        - type: object
+          properties:
+            verblijfadres:
+              $ref: "#/components/schemas/VerblijfadresBinnenland"
+            functieAdres:
+              $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/common.yaml#/components/schemas/Waardetabel'
+            adresseerbaarObjectIdentificatie:
+              $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/verblijfplaats.yaml#/components/schemas/AdresseerbaarObjectIdentificatie'
+            nummeraanduidingIdentificatie:
+              $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/verblijfplaats.yaml#/components/schemas/NummeraanduidingIdentificatie'
+            datumInschrijvingInGemeente:
+              $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/datum.yaml#/components/schemas/AbstractDatum'
+            gemeenteVanInschrijving:
+              $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/common.yaml#/components/schemas/Waardetabel'
+            datumVan:
+              $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/datum.yaml#/components/schemas/AbstractDatum'
+            datumTot:
+              $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/datum.yaml#/components/schemas/AbstractDatum'
+            datumIngangGeldigheid:
+              $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/datum.yaml#/components/schemas/AbstractDatum'
+            inOnderzoek:
+              $ref: "#/components/schemas/AdresInOnderzoek"
+    Locatie:
+      description: |
+        * **functieAdres** - Wordt gevuld op basis van de waarden die voorkomen in de tabel 'soortadres' uit de Haal-Centraal-BRP-tabellen-bevragen API.
+        * **gemeenteVanInschrijving** : de gemeente waar de persoon verblijft en is ingeschreven. De code kan voorloopnullen bevatten. Wordt gevuld op basis van de waarden die voorkomen in de tabel "Gemeenten" voor een gemeente in Nederland of de omschrijving van een buitenlandse plaats
+        * **landVanWaarIngeschreven** : het land waar de persoon woonde voor (her)vestiging in Nederland. Wordt gevuld op basis van de waarden die voorkomen in de tabel 'Landen' uit de Haal-Centraal-BRP-tabellen-bevragen API.
+      allOf:
+        - $ref: '#/components/schemas/AbstractVerblijfplaats'
+        - type: object
+          properties:
+            datumVan:
+              $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/datum.yaml#/components/schemas/AbstractDatum'
+            datumTot:
+              $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/datum.yaml#/components/schemas/AbstractDatum'
+            functieAdres:
+              $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/common.yaml#/components/schemas/Waardetabel'
+            verblijfadres:
+              $ref: "#/components/schemas/VerblijfadresLocatie"
+            datumInschrijvingInGemeente:
+              $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/datum.yaml#/components/schemas/AbstractDatum'
+            gemeenteVanInschrijving:
+              $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/common.yaml#/components/schemas/Waardetabel'
+            datumIngangGeldigheid:
+              $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/datum.yaml#/components/schemas/AbstractDatum'
+            inOnderzoek:
+              $ref: '#/components/schemas/LocatieInOnderzoek'
+    VerblijfplaatsOnbekend:
+      description: |
+        * **gemeenteVanInschrijving** : de gemeente waar de persoon verblijft en is ingeschreven. De code kan voorloopnullen bevatten. Wordt gevuld op basis van de waarden die voorkomen in de tabel "Gemeenten" voor een gemeente in Nederland of de omschrijving van een buitenlandse plaats
+      allOf:
+        - $ref: '#/components/schemas/AbstractVerblijfplaats'
+        - type: object
+          properties:
+            functieAdres:
+              $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/common.yaml#/components/schemas/Waardetabel'
+            datumInschrijvingInGemeente:
+              $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/datum.yaml#/components/schemas/AbstractDatum'
+            gemeenteVanInschrijving:
+              $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/common.yaml#/components/schemas/Waardetabel'
+            datumVan:
+              $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/datum.yaml#/components/schemas/AbstractDatum'
+            datumTot:
+              $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/datum.yaml#/components/schemas/AbstractDatum'
+            datumIngangGeldigheid:
+              $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/datum.yaml#/components/schemas/AbstractDatum'
+            inOnderzoek:
+              $ref: '#/components/schemas/VerblijfplaatsOnbekendInOnderzoek'
+    GbaVerblijfplaats:
+      type: object
+      properties:
+        regel1:
+          $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/verblijfplaats.yaml#/components/schemas/Regel1'
+        regel2:
+          $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/verblijfplaats.yaml#/components/schemas/Regel2'
+        regel3:
+          $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/verblijfplaats.yaml#/components/schemas/Regel3'
+        adresseerbaarObjectIdentificatie:
+          $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/verblijfplaats.yaml#/components/schemas/AdresseerbaarObjectIdentificatie'
+        nummeraanduidingIdentificatie:
+          $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/verblijfplaats.yaml#/components/schemas/NummeraanduidingIdentificatie'
+        functieAdres:
+          $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/common.yaml#/components/schemas/Waardetabel'
+        woonplaats:
+          $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/verblijfplaats.yaml#/components/schemas/Woonplaats'
+        straat:
+          $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/verblijfplaats.yaml#/components/schemas/Straat'
+        huisnummer:
+          $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/verblijfplaats.yaml#/components/schemas/Huisnummer'
+        huisletter:
+          $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/verblijfplaats.yaml#/components/schemas/Huisletter'
+        huisnummertoevoeging:
+          $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/verblijfplaats.yaml#/components/schemas/Huisnummertoevoeging'
+        aanduidingBijHuisnummer:
+          $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/common.yaml#/components/schemas/Waardetabel'
+        postcode:
+          $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/verblijfplaats.yaml#/components/schemas/Postcode'
+        locatiebeschrijving:
+          $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/verblijfplaats.yaml#/components/schemas/Locatiebeschrijving'
+        land:
+          $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/common.yaml#/components/schemas/Waardetabel'
+        datumIngangGeldigheid:
+          $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/datum.yaml#/components/schemas/GbaDatum'
+        datumAanvangAdreshouding:
+          $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/datum.yaml#/components/schemas/GbaDatum'
+        datumAanvangAdresBuitenland:
+          $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/datum.yaml#/components/schemas/GbaDatum'
+        naamOpenbareRuimte:
+          $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/verblijfplaats.yaml#/components/schemas/NaamOpenbareRuimte'
+        inOnderzoek:
+          $ref: 'gba-inonderzoek.yaml#/components/schemas/GbaInOnderzoek'
+    VerblijfplaatsBuitenlandInOnderzoek:
+      allOf:
+        - $ref: 'persoon.yaml#/components/schemas/InOnderzoek'
+        - type: object
+          properties:
+            type:
+              type: boolean
+            datumInschrijvingInGemeente:
+              type: boolean
+            gemeenteVanInschrijving:
+              type: boolean
+            datumVan:
+              type: boolean
+            datumIngangGeldigheid:
+              type: boolean
+    VerblijfadresBuitenlandInOnderzoek:
+      allOf:
+        - $ref: 'persoon.yaml#/components/schemas/InOnderzoek'
+        - type: object
+          properties:
+            regel1:
+              type: boolean
+            regel2:
+              type: boolean
+            regel3:
+              type: boolean
+            land:
+              type: boolean
+    VerblijfadresBinnenlandInOnderzoek:
+      allOf:
+        - $ref: 'persoon.yaml#/components/schemas/InOnderzoek'
+        - type: object
+          properties:
+            aanduidingBijHuisnummer:
+              type: boolean
+            huisletter:
+              type: boolean
+            huisnummer:
+              type: boolean
+            huisnummertoevoeging:
+              type: boolean
+            straat:
+              type: boolean
+            postcode:
+              type: boolean
+            korteNaam:
+              type: boolean
+            woonplaats:
+              type: boolean
+    AdresInOnderzoek:
+      allOf:
+        - $ref: 'persoon.yaml#/components/schemas/InOnderzoek'
+        - type: object
+          properties:
+            type:
+              type: boolean
+            datumInschrijvingInGemeente:
+              type: boolean
+            gemeenteVanInschrijving:
+              type: boolean
+            datumVan:
+              type: boolean
+            datumIngangGeldigheid:
+              type: boolean
+            nummeraanduidingIdentificatie:
+              type: boolean
+            adresseerbaarObjectIdentificatie:
+              type: boolean
+            functieAdres:
+              type: boolean
+    VerblijfplaatsOnbekendInOnderzoek:
+      allOf:
+        - $ref: 'persoon.yaml#/components/schemas/InOnderzoek'
+        - type: object
+          properties:
+            type:
+              type: boolean
+            datumInschrijvingInGemeente:
+              type: boolean
+            gemeenteVanInschrijving:
+              type: boolean
+            datumVan:
+              type: boolean
+            functieAdres:
+              type: boolean
+            datumIngangGeldigheid:
+              type: boolean
+    LocatieInOnderzoek:
+      allOf:
+        - $ref: 'persoon.yaml#/components/schemas/InOnderzoek'
+        - type: object
+          properties:
+            type:
+              type: boolean
+            datumInschrijvingInGemeente:
+              type: boolean
+            gemeenteVanInschrijving:
+              type: boolean
+            datumVan:
+              type: boolean
+            functieAdres:
+              type: boolean
+            datumIngangGeldigheid:
+              type: boolean
+    VerblijfadresLocatieInOnderzoek:
+      allOf:
+        - $ref: 'persoon.yaml#/components/schemas/InOnderzoek'
+        - type: object
+          properties:
+            locatiebeschrijving:
+              type: boolean
