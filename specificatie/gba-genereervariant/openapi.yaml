@@ -16,6 +16,7 @@ servers:
   description: APILAB testserver historie
 tags:
 - name: BRP historie bevragen
+  description: Zoeken historische gegevens
 paths:
   /verblijfplaatshistorie:
     post:
@@ -234,7 +235,7 @@ components:
             \ nemen \n([zie functionele specificaties 'fields' properties](https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-historie-bevragen/develop/features/fields.feature)).\
             \ \nDe te gebruiken paden zijn beschreven in [fields-Persoon.csv](https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-historie-bevragen/develop/features/fields-Verblijfplaatshistorie.csv)\
             \ \nwaarbij in de eerste kolom het fields-pad staat en in de tweede kolom\
-            \ het volledige pad naar het gewenste veld.\n"
+            \ het volledige pad naar het gewenste veld. \n"
           items:
             $ref: '#/components/schemas/Field'
       discriminator:
