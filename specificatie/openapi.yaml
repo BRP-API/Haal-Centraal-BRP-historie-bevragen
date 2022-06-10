@@ -25,7 +25,7 @@ paths:
         Als je geen peildatum of periode opgeeft, krijg je alle verblijfplaatsen terug. Het meest actuele adres staat bovenaan.
         
         Zoek met burgerservicenummer
-      operationId: GetVerblijfplaatshistorie
+      operationId: Verblijfplaatshistorie
       requestBody:
         content:
           application/json:
