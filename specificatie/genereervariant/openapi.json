@@ -348,6 +348,9 @@
             "items" : {
               "$ref" : "#/components/schemas/AbstractVerblijfplaats"
             }
+          },
+          "geheimhoudingPersoonsgegevens" : {
+            "$ref" : "#/components/schemas/GbaGeheimhoudingPersoonsgegevens"
           }
         }
       },
@@ -929,6 +932,9 @@
             }
           }
         } ]
+      },
+      "GbaGeheimhoudingPersoonsgegevens" : {
+        "type" : "integer"
       },
       "AdresseringBeperkt" : {
         "type" : "object",

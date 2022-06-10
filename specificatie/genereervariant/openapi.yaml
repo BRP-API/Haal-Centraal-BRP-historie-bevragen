@@ -275,6 +275,8 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/AbstractVerblijfplaats'
+        geheimhoudingPersoonsgegevens:
+          $ref: '#/components/schemas/GbaGeheimhoudingPersoonsgegevens'
     BadRequestFoutbericht:
       allOf:
       - $ref: '#/components/schemas/Foutbericht'
@@ -707,6 +709,8 @@ components:
             type: boolean
           datumIngangGeldigheid:
             type: boolean
+    GbaGeheimhoudingPersoonsgegevens:
+      type: integer
     AdresseringBeperkt:
       type: object
       properties:
