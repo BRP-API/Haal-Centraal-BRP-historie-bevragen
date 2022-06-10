@@ -271,18 +271,18 @@ components:
             format: date
     RaadpleegMetPeriode:
       required:
-      - datumTotEnMet
-      - datumVan
+      - aanvang
+      - tot
       allOf:
       - $ref: '#/components/schemas/HistorieQuery'
       - type: object
         properties:
-          datumVan:
+          aanvang:
             type: string
             description: |
               De begindatum van de periode waarover de resource wordt opgevraagd.
             format: date
-          datumTotEnMet:
+          tot:
             type: string
             description: |
               De einddatum van de periode waarover de resource wordt opgevraagd.
