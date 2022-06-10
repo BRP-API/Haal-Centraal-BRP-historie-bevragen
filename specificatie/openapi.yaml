@@ -142,5 +142,5 @@ components:
           items:
             $ref: 'verblijfplaats.yaml#/components/schemas/AbstractVerblijfplaats'
         geheimhoudingPersoonsgegevens:
-          $ref: 'persoon.yaml#/components/schemas/GbaGeheimhoudingPersoonsgegevens'
+          $ref: 'persoon.yaml#/components/schemas/GeheimhoudingPersoonsgegevens'
             
