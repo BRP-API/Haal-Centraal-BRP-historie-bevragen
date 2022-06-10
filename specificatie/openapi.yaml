@@ -141,3 +141,6 @@ components:
           type: array
           items:
             $ref: 'verblijfplaats.yaml#/components/schemas/AbstractVerblijfplaats'
+        geheimhoudingPersoonsgegevens:
+          $ref: 'persoon.yaml#/components/schemas/GbaGeheimhoudingPersoonsgegevens'
+            
