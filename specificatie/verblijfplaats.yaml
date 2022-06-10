@@ -284,7 +284,7 @@ components:
         land:
           $ref: 'common.yaml#/components/schemas/Waardetabel'
         datumInschrijvingInGemeente:
-          $ref: 'datum.yaml#/components/schemas/AbstractDatum'
+          $ref: 'datum.yaml#/components/schemas/GbaDatum'
         gemeenteVanInschrijving:
           $ref: 'common.yaml#/components/schemas/Waardetabel'
         datumIngangGeldigheid:
