@@ -6,186 +6,198 @@ info:
 paths: {}
 components:
   schemas:
+    ANummer:
+      description: |
+        Het A-nummer van de persoon
+      type: string
+      pattern: ^[0-9]{10}$
+    Burgerservicenummer:
+      type: string
+      pattern: ^[0-9]{9}$
+      example: "555555021"
+    GbaGeheimhoudingPersoonsgegevens:
+      type: integer
+    GeheimhoudingPersoonsgegevens:
+      description: |
+        Gegevens mogen niet worden verstrekt aan derden / maatschappelijke instellingen.
+      type: boolean
     GemeenteVanInschrijving:
       description: |
         Een code die aangeeft in welke gemeente de persoon woont, of de laatste gemeente waar de persoon heeft gewoond, of de gemeente waar de persoon voor het eerst is ingeschreven.
       type: string
       pattern: ^[0-9]{4}$
       example: "0518"
-    GbaPersoonBeperkt:
-      type: object
-      properties:
-        burgerservicenummer:
-          $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/persoon.yaml#/components/schemas/Burgerservicenummer'
-        geboorte:
-          $ref: 'geboorte.yaml#/components/schemas/GbaGeboorteBeperkt'
-        geheimhoudingPersoonsgegevens:
-          $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/persoon.yaml#/components/schemas/GbaGeheimhoudingPersoonsgegevens'
-        geslacht:
-          $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/common.yaml#/components/schemas/Waardetabel'
-        naam:
-          $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/naam.yaml#/components/schemas/GbaNaamBasis'
-        opschortingBijhouding:
-          $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/opschortingbijhouding.yaml#/components/schemas/OpschortingBijhoudingBasis'
-        overlijden:
-          $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/overlijden.yaml#/components/schemas/GbaOverlijdenBasis'
-        gemeenteVanInschrijving:
-          $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/common.yaml#/components/schemas/Waardetabel'
-        verblijfplaats:
-          $ref: 'verblijfplaats.yaml#/components/schemas/GbaVerblijfplaatsBeperkt'
+    IndicatieCurateleRegister:
+      type: boolean
+      description: |
+        Geeft aan dat de persoon onder curatele is gesteld.
+      example: true
+    Leeftijd:
+      type: integer
+      description: |
+        Leeftijd in jaren op het moment van bevragen.
+      example: 34
+      minimum: 0
+      maximum: 150
+    Reisdocumentnummer:
+      type: string
+      pattern: ^[0-9a-zA-Z]{9}$
+      description: |
+        Het nummer van het verstrekte Nederlandse reisdocument.
+      example: "546376728"
     PersoonBeperkt:
       type: object
       description: |
         * **geslachtsaanduiding** - Wordt gevuld op basis van de waarden die voorkomen in de tabel 'Geslacht' uit de Haal-Centraal-BRP-tabellen-bevragen API.
       properties:
         burgerservicenummer:
-          $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/persoon.yaml#/components/schemas/Burgerservicenummer'
+          $ref: '#/components/schemas/Burgerservicenummer'
         geboorte:
-          $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/geboorte.yaml#/components/schemas/GeboorteBeperkt'
+          $ref: 'geboorte.yaml#/components/schemas/GeboorteBeperkt'
         geheimhoudingPersoonsgegevens:
-          $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/persoon.yaml#/components/schemas/GeheimhoudingPersoonsgegevens'
+          $ref: '#/components/schemas/GeheimhoudingPersoonsgegevens'
         geslacht:
-          $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/common.yaml#/components/schemas/Waardetabel'
+          $ref: 'common.yaml#/components/schemas/Waardetabel'
         leeftijd:
-          $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/persoon.yaml#/components/schemas/Leeftijd'
+          $ref: '#/components/schemas/Leeftijd'
         naam:
-          $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/naam.yaml#/components/schemas/NaamBasis'
+          $ref: 'naam.yaml#/components/schemas/NaamBasis'
         opschortingBijhouding:
-          $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/opschortingbijhouding.yaml#/components/schemas/OpschortingBijhoudingBasis'
+          $ref: 'opschortingbijhouding.yaml#/components/schemas/OpschortingBijhoudingBasis'
         overlijden:
-          $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/overlijden.yaml#/components/schemas/OverlijdenBasis'
+          $ref: 'overlijden.yaml#/components/schemas/OverlijdenBasis'
         verblijfplaats:
           $ref: 'verblijfplaats.yaml#/components/schemas/AbstractVerblijfplaatsBeperkt'
         adressering:
-          $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/adressering.yaml#/components/schemas/AdresseringBeperkt'
+          $ref: 'adressering.yaml#/components/schemas/AdresseringBeperkt'
     GbaPersoon:
       type: object
       properties:
         aNummer:
-          $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/persoon.yaml#/components/schemas/ANummer'
+          $ref: '#/components/schemas/ANummer'
         burgerservicenummer:
-          $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/persoon.yaml#/components/schemas/Burgerservicenummer'
+          $ref: '#/components/schemas/Burgerservicenummer'
         datumEersteInschrijvingGBA:
-          $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/datum.yaml#/components/schemas/GbaDatum'
+          $ref: 'datum.yaml#/components/schemas/GbaDatum'
         geheimhoudingPersoonsgegevens:
-          $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/persoon.yaml#/components/schemas/GbaGeheimhoudingPersoonsgegevens'
+          $ref: '#/components/schemas/GbaGeheimhoudingPersoonsgegevens'
         geslacht:
-          $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/common.yaml#/components/schemas/Waardetabel'
+          $ref: 'common.yaml#/components/schemas/Waardetabel'
         inOnderzoek:
           $ref: 'gba-inonderzoek.yaml#/components/schemas/GbaInOnderzoek'
         uitsluitingKiesrecht:
-          $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/kiesrecht.yaml#/components/schemas/GbaUitsluitingKiesrecht'
+          $ref: 'kiesrecht.yaml#/components/schemas/GbaUitsluitingKiesrecht'
         europeesKiesrecht:
-          $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/kiesrecht.yaml#/components/schemas/GbaEuropeesKiesrecht'
+          $ref: 'kiesrecht.yaml#/components/schemas/GbaEuropeesKiesrecht'
         naam:
-          $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/naam.yaml#/components/schemas/GbaNaamPersoon'
+          $ref: 'naam.yaml#/components/schemas/GbaNaamPersoon'
         nationaliteiten:
           type: array
           items:
-            $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/nationaliteit.yaml#/components/schemas/GbaNationaliteit'
+            $ref: 'nationaliteit.yaml#/components/schemas/GbaNationaliteit'
         geboorte:
-          $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/geboorte.yaml#/components/schemas/GbaGeboorte'
+          $ref: 'geboorte.yaml#/components/schemas/GbaGeboorte'
         opschortingBijhouding:
-          $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/opschortingbijhouding.yaml#/components/schemas/GbaOpschortingBijhouding'
+          $ref: 'opschortingbijhouding.yaml#/components/schemas/GbaOpschortingBijhouding'
         overlijden:
-          $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/overlijden.yaml#/components/schemas/GbaOverlijden'
+          $ref: 'overlijden.yaml#/components/schemas/GbaOverlijden'
         verblijfplaats:
           $ref: 'verblijfplaats.yaml#/components/schemas/GbaVerblijfplaats'
         immigratie:
-          $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/immigratie.yaml#/components/schemas/GbaImmigratie'
+          $ref: 'immigratie.yaml#/components/schemas/GbaImmigratie'
         gemeenteVanInschrijving:
-          $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/common.yaml#/components/schemas/Waardetabel'
+          $ref: 'common.yaml#/components/schemas/Waardetabel'
         datumInschrijvingInGemeente:
-          $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/datum.yaml#/components/schemas/GbaDatum'
+          $ref: 'datum.yaml#/components/schemas/GbaDatum'
         indicatieCurateleRegister:
-          $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/persoon.yaml#/components/schemas/IndicatieCurateleRegister'
+          $ref: '#/components/schemas/IndicatieCurateleRegister'
         indicatieGezagMinderjarige:
           $ref: 'common.yaml#/components/schemas/Waardetabel'
         verblijfstitel:
-          $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/verblijfstitel.yaml#/components/schemas/GbaVerblijfstitel'
+          $ref: 'verblijfstitel.yaml#/components/schemas/GbaVerblijfstitel'
         reisdocumentnummers:
           type: array
           items:
-            $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/persoon.yaml#/components/schemas/Reisdocumentnummer'
+            $ref: '#/components/schemas/Reisdocumentnummer'
         kinderen:
           type: array
           items:
-            $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/kind.yaml#/components/schemas/GbaKind'
+            $ref: 'kind.yaml#/components/schemas/GbaKind'
         ouders:
           type: array
           items:
-            $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/ouder.yaml#/components/schemas/GbaOuder'
+            $ref: 'ouder.yaml#/components/schemas/GbaOuder'
         partners:
           type: array
           items:
-            $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/partner.yaml#/components/schemas/GbaPartner'
+            $ref: 'partner.yaml#/components/schemas/GbaPartner'
     Persoon:
       type: object
       description: |
         * **geslachtsaanduiding** - Wordt gevuld op basis van de waarden die voorkomen in de tabel 'Geslacht' uit de Haal-Centraal-BRP-tabellen-bevragen API.
       properties:
         aNummer:
-          $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/persoon.yaml#/components/schemas/ANummer'
+          $ref: '#/components/schemas/ANummer'
         burgerservicenummer:
-          $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/persoon.yaml#/components/schemas/Burgerservicenummer'
+          $ref: '#/components/schemas/Burgerservicenummer'
         datumEersteInschrijvingGBA:
-          $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/datum.yaml#/components/schemas/AbstractDatum'
+          $ref: 'datum.yaml#/components/schemas/AbstractDatum'
         geheimhoudingPersoonsgegevens:
-          $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/persoon.yaml#/components/schemas/GeheimhoudingPersoonsgegevens'
+          $ref: '#/components/schemas/GeheimhoudingPersoonsgegevens'
         geslacht:
-          $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/common.yaml#/components/schemas/Waardetabel'
+          $ref: 'common.yaml#/components/schemas/Waardetabel'
         inOnderzoek:
           $ref: '#/components/schemas/PersoonInOnderzoek'
         uitsluitingKiesrecht:
-          $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/kiesrecht.yaml#/components/schemas/UitsluitingKiesrecht'
+          $ref: 'kiesrecht.yaml#/components/schemas/UitsluitingKiesrecht'
         europeesKiesrecht:
-          $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/kiesrecht.yaml#/components/schemas/EuropeesKiesrecht'
+          $ref: 'kiesrecht.yaml#/components/schemas/EuropeesKiesrecht'
         leeftijd:
-          $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/persoon.yaml#/components/schemas/Leeftijd'
+          $ref: '#/components/schemas/Leeftijd'
         naam:
-          $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/naam.yaml#/components/schemas/NaamPersoon'
+          $ref: 'naam.yaml#/components/schemas/NaamPersoon'
         nationaliteiten:
           type: array
           items:
-            $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/nationaliteit.yaml#/components/schemas/AbstractNationaliteit'
+            $ref: 'nationaliteit.yaml#/components/schemas/AbstractNationaliteit'
         geboorte:
-          $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/geboorte.yaml#/components/schemas/Geboorte'
+          $ref: 'geboorte.yaml#/components/schemas/Geboorte'
         opschortingBijhouding:
-          $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/opschortingbijhouding.yaml#/components/schemas/OpschortingBijhouding'
+          $ref: 'opschortingbijhouding.yaml#/components/schemas/OpschortingBijhouding'
         overlijden:
-          $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/overlijden.yaml#/components/schemas/Overlijden'
+          $ref: 'overlijden.yaml#/components/schemas/Overlijden'
         verblijfplaats:
-          $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/verblijfplaats.yaml#/components/schemas/AbstractVerblijfplaats'
+          $ref: 'verblijfplaats.yaml#/components/schemas/AbstractVerblijfplaats'
         immigratie:
-          $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/immigratie.yaml#/components/schemas/Immigratie'
+          $ref: 'immigratie.yaml#/components/schemas/Immigratie'
         gemeenteVanInschrijving:
-          $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/common.yaml#/components/schemas/Waardetabel'
+          $ref: 'common.yaml#/components/schemas/Waardetabel'
         datumInschrijvingInGemeente:
-          $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/datum.yaml#/components/schemas/AbstractDatum'
+          $ref: 'datum.yaml#/components/schemas/AbstractDatum'
         adressering:
-          $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/adressering.yaml#/components/schemas/Adressering'
+          $ref: 'adressering.yaml#/components/schemas/Adressering'
         indicatieCurateleRegister:
-          $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/persoon.yaml#/components/schemas/IndicatieCurateleRegister'
+          $ref: '#/components/schemas/IndicatieCurateleRegister'
         indicatieGezagMinderjarige:
-          $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/common.yaml#/components/schemas/Waardetabel'
+          $ref: 'common.yaml#/components/schemas/Waardetabel'
         verblijfstitel:
-          $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/verblijfstitel.yaml#/components/schemas/Verblijfstitel'
+          $ref: 'verblijfstitel.yaml#/components/schemas/Verblijfstitel'
         reisdocumentnummers:
           type: array
           items:
-            $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/persoon.yaml#/components/schemas/Reisdocumentnummer'
+            $ref: '#/components/schemas/Reisdocumentnummer'
         kinderen:
           type: array
           items:
-            $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/kind.yaml#/components/schemas/AbstractKind'
+            $ref: 'kind.yaml#/components/schemas/AbstractKind'
         ouders:
           type: array
           items:
-            $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/ouder.yaml#/components/schemas/AbstractOuder'
+            $ref: 'ouder.yaml#/components/schemas/AbstractOuder'
         partners:
           type: array
           items:
-            $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/partner.yaml#/components/schemas/AbstractPartner'
+            $ref: 'partner.yaml#/components/schemas/AbstractPartner'
     PersoonInOnderzoek:
       description: |
         Geeft aan welke gegevens van de persoon in onderzoek zijn. Zie de [functionele specificaties](https://github.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/blob/v1.1.0/features/in_onderzoek.feature).
@@ -211,6 +223,4 @@ components:
       type: object
       properties:
         datumIngangOnderzoek:
-          $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/datum.yaml#/components/schemas/AbstractDatum'
-        datumTot:
-          $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/datum.yaml#/components/schemas/AbstractDatum'
+          $ref: 'datum.yaml#/components/schemas/AbstractDatum'

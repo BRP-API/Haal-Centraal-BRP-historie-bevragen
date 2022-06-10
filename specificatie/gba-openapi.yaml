@@ -3,7 +3,7 @@ servers:
   - description: "APILAB testserver historie"
     url: https://www.haalcentraal.nl/haalcentraal/api/brphistorie
 info:
-  title: BBRP historie bevragen
+  title: BRP historie bevragen
   description: |
                 API voor het zoeken en raadplegen van historische verblijfplaatsen, partners, nationaliteiten en verblijfstitels uit de BRP (inclusief de RNI).
 
@@ -24,12 +24,12 @@ paths:
         Als je geen peildatum of periode opgeeft, krijg je alle verblijfplaatsen terug. Het meest actuele adres staat bovenaan.
         
         Zoek met burgerservicenummer
-      operationId: GetVerblijfplaatshistorie
+      operationId: Verblijfplaatshistorie
       requestBody:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/HistorieQuery"
+              $ref: "openapi.yaml#/components/schemas/HistorieQuery"
       responses:
         '200':
           description: |
@@ -75,64 +75,6 @@ paths:
 # De vraag is of dit de gewenste aanpak is of dat we alle componenten lokaal binnen de openapi.yaml van HC BRP Historie moeten definiëren.
 components:
   schemas:
-    HistorieQuery:
-      type: object
-      required:
-        - type
-        - burgerservicenummer
-        - fields
-      discriminator:
-        propertyName: type
-        mapping:
-          RaadpleegMetPeildatum: '#/components/schemas/RaadpleegMetPeildatum'
-          RaadpleegMetPeriode: '#/components/schemas/RaadpleegMetPeriode'
-      properties:
-        type:
-          type: string
-        burgerservicenummer:
-          $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/persoon.yaml#/components/schemas/Burgerservicenummer"
-        fields:
-          description: |
-            Hiermee kun je de inhoud van de resource naar behoefte aanpassen door een lijst van paden die verwijzen naar de gewenste velden op te nemen ([zie functionele specificaties 'fields' properties](https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/features/fields.feature)). 
-            De te gebruiken paden zijn beschreven in [fields-Persoon.csv](https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/features/fields-Persoon.csv) (voor gebruik fields bij raadplegen) en [fields-PersoonBeperkt.csv](https://github.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/blob/develop/features/fields-PersoonBeperkt.csv) (voor gebruik fields bij zoeken) waarbij in de eerste kolom het fields-pad staat en in de tweede kolom het volledige pad naar het gewenste veld.
-          type: array
-          maxItems: 130
-          minItems: 1
-          items:
-            $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/filter.yaml#/components/schemas/Field'
-    RaadpleegMetPeildatum:
-      required:
-        - peildatum
-      allOf:
-        - $ref: '#/components/schemas/HistorieQuery'
-        - type: object
-          properties:
-            peildatum:
-              type: string
-              description: |
-                De datum waarop de resource wordt opgevraagd.
-              format: date
-              example: 1964-09-24
-    RaadpleegMetPeriode:
-      required:
-        - datumVan
-        - datumTotEnMet
-      allOf:
-        - $ref: '#/components/schemas/HistorieQuery'
-        - type: object
-          properties:
-            datumVan:
-              type: string
-              description: |
-                De begindatum van de periode waarover de resource wordt opgevraagd.
-              format: date
-              example: 1964-09-24
-            datumTotEnMet:
-              type: string
-              description: |
-                De einddatum van de periode waarover de resource wordt opgevraagd.
-              format: date
-              example: 1964-09-24
     VerblijfplaatshistorieQueryResponse:
       type: object
       properties:
@@ -140,3 +82,5 @@ components:
           type: array
           items:
             $ref: 'verblijfplaats.yaml#/components/schemas/GbaVerblijfplaats'
+        geheimhoudingPersoonsgegevens:
+          $ref: 'persoon.yaml#/components/schemas/GbaGeheimhoudingPersoonsgegevens'
