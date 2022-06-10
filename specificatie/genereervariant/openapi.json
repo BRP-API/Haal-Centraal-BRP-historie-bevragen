@@ -350,7 +350,7 @@
             }
           },
           "geheimhoudingPersoonsgegevens" : {
-            "$ref" : "#/components/schemas/GbaGeheimhoudingPersoonsgegevens"
+            "$ref" : "#/components/schemas/GeheimhoudingPersoonsgegevens"
           }
         }
       },
@@ -933,8 +933,9 @@
           }
         } ]
       },
-      "GbaGeheimhoudingPersoonsgegevens" : {
-        "type" : "integer"
+      "GeheimhoudingPersoonsgegevens" : {
+        "type" : "boolean",
+        "description" : "Gegevens mogen niet worden verstrekt aan derden / maatschappelijke instellingen.\n"
       },
       "AdresseringBeperkt" : {
         "type" : "object",

@@ -276,7 +276,7 @@ components:
           items:
             $ref: '#/components/schemas/AbstractVerblijfplaats'
         geheimhoudingPersoonsgegevens:
-          $ref: '#/components/schemas/GbaGeheimhoudingPersoonsgegevens'
+          $ref: '#/components/schemas/GeheimhoudingPersoonsgegevens'
     BadRequestFoutbericht:
       allOf:
       - $ref: '#/components/schemas/Foutbericht'
@@ -709,8 +709,10 @@ components:
             type: boolean
           datumIngangGeldigheid:
             type: boolean
-    GbaGeheimhoudingPersoonsgegevens:
-      type: integer
+    GeheimhoudingPersoonsgegevens:
+      type: boolean
+      description: |
+        Gegevens mogen niet worden verstrekt aan derden / maatschappelijke instellingen.
     AdresseringBeperkt:
       type: object
       properties:
