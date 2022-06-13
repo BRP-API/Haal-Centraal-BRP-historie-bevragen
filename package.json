@@ -14,6 +14,7 @@
     "oas:generate-netcore-client": "npm run oas:generate-client -- -o ./code/netcore -g csharp-netcore --additional-properties=optionalProjectFile=false,optionalAssemblyInfo=false",
     "oas:generate-net-client": "npm run oas:generate-client -- -o ./code/net -g csharp --additional-properties=optionalProjectFile=false,optionalAssemblyInfo=false",
     "oas:generate-python-client": "npm run oas:generate-client -- -o ./code/python -g python --additional-properties=optionalProjectFile=false,optionalAssemblyInfo=false",
+    "preoas:generate-postman-collection": "mkdirp ./test",
     "oas:generate-postman-collection": "openapi2postmanv2 -s ./specificatie/genereervariant/openapi.yaml -o ./test/BRP-historie-Bevragen-postman-collection.json --pretty",
     "oas:lint": "bash scripts/lint-oas.sh",
     "oas:lint-genereervariant": "bash scripts/lint-oas-genereervariant.sh",
@@ -38,12 +39,13 @@
   "devDependencies": {
     "@cucumber/cucumber": "^8.2.0",
     "@openapitools/openapi-generator-cli": "^2.5.1",
-    "@stoplight/spectral-cli": "^6.3.0",
+    "@stoplight/spectral-cli": "^6.4.1",
     "axios": "^0.27.2",
     "chai": "^4.3.6",
     "cucumber-html-reporter": "^5.5.0",
     "deep-equal-in-any-order": "^1.1.17",
     "husky": "^4.3.8",
+    "mkdirp": "^1.0.4",
     "mvn-dl": "^6.0.0",
     "nswag": "^13.15.10",
     "openapi-to-postmanv2": "^3.2.0"
