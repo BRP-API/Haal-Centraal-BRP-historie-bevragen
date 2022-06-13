@@ -29,6 +29,15 @@ nav:
         path: /redoc
       - title: Features
         path: /features
+  - title: Specificaties v. 2.0 (IO)
+    subnav:
+#      - title: User stories
+#        url: https://vng-realisatie.github.io/Haal-Centraal-BRK-bevragen/user-stories-dev
+#        path: /user-stories-dev
+      - title: Historie bevragen API (redoc)
+        path: /redoc-io
+      - title: Historie bevragen API (redoc), GBA variant
+        path: /redoc-gba-io
 plugins:
   - jekyll-redirect-from
   - jekyll-remote-theme
