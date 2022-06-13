@@ -348,12 +348,12 @@
         }, {
           "type" : "object",
           "properties" : {
-            "aanvang" : {
+            "datumVan" : {
               "type" : "string",
               "description" : "De begindatum van de periode waarover de resource wordt opgevraagd.\n",
               "format" : "date"
             },
-            "tot" : {
+            "datumTotEnMet" : {
               "type" : "string",
               "description" : "De einddatum van de periode waarover de resource wordt opgevraagd.\n",
               "format" : "date"
