@@ -20,6 +20,11 @@ components:
               $ref: 'common.yaml#/components/schemas/Waardetabel'
             plaats:
               $ref: 'common.yaml#/components/schemas/Waardetabel'
+    GeboorteBeperkt:
+      type: object
+      properties:
+        datum:
+          $ref: 'datum.yaml#/components/schemas/AbstractDatum'
     Geboorte:
       description: |
         Gegevens over de geboorte.
