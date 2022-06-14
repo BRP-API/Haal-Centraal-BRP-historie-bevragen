@@ -435,8 +435,8 @@ components:
             example: 1964-09-24
     RaadpleegMetPeriode:
       required:
-      - aanvang
-      - tot
+      - datumTotEnMet
+      - datumVan
       allOf:
       - $ref: '#/components/schemas/HistorieQuery'
       - type: object
