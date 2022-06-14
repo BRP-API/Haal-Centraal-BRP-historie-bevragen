@@ -272,8 +272,8 @@ components:
             format: date
     RaadpleegMetPeriode:
       required:
-      - aanvang
-      - tot
+      - datumTotEnMet
+      - datumVan
       allOf:
       - $ref: '#/components/schemas/HistorieQuery'
       - type: object
