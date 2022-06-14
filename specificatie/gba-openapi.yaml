@@ -248,6 +248,8 @@ components:
           type: array
           items:
             $ref: 'partner.yaml#/components/schemas/GbaPartner'
+        geheimhoudingPersoonsgegevens:
+          $ref: 'persoon.yaml#/components/schemas/GbaGeheimhoudingPersoonsgegevens'
     VerblijfstitelhistorieQueryResponse:
       type: object
       properties:
@@ -255,6 +257,8 @@ components:
           type: array
           items:
             $ref: 'verblijfstitel.yaml#/components/schemas/GbaVerblijfstitel'
+        geheimhoudingPersoonsgegevens:
+          $ref: 'persoon.yaml#/components/schemas/GbaGeheimhoudingPersoonsgegevens'
     NationalisatiehistorieQueryResponse:
       type: object
       properties:
@@ -262,3 +266,5 @@ components:
           type: array
           items:
             $ref: 'nationaliteit.yaml#/components/schemas/GbaNationaliteit'
+        geheimhoudingPersoonsgegevens:
+          $ref: 'persoon.yaml#/components/schemas/GbaGeheimhoudingPersoonsgegevens'

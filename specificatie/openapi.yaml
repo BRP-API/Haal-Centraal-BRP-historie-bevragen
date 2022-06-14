@@ -308,6 +308,8 @@ components:
           type: array
           items:
             $ref: 'partner.yaml#/components/schemas/Partner'
+        geheimhoudingPersoonsgegevens:
+          $ref: 'persoon.yaml#/components/schemas/GeheimhoudingPersoonsgegevens'
     VerblijfstitelhistorieQueryResponse:
       type: object
       properties:
@@ -316,6 +318,8 @@ components:
           type: array
           items:
             $ref: 'verblijfstitel.yaml#/components/schemas/Verblijfstitel'
+        geheimhoudingPersoonsgegevens:
+          $ref: 'persoon.yaml#/components/schemas/GeheimhoudingPersoonsgegevens'
     NationalisatiehistorieQueryResponse:
       type: object
       properties:
@@ -323,4 +327,6 @@ components:
           type: array
           items:
             $ref: 'nationaliteit.yaml#/components/schemas/AbstractNationaliteit'
+        geheimhoudingPersoonsgegevens:
+          $ref: 'persoon.yaml#/components/schemas/GeheimhoudingPersoonsgegevens'
             
