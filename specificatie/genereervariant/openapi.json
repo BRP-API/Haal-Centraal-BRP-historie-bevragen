@@ -569,7 +569,7 @@
         } ]
       },
       "RaadpleegMetPeriode" : {
-        "required" : [ "aanvang", "tot" ],
+        "required" : [ "datumTotEnMet", "datumVan" ],
         "allOf" : [ {
           "$ref" : "#/components/schemas/HistorieQuery"
         }, {
