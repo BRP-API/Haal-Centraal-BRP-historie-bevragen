@@ -1046,6 +1046,9 @@
             "items" : {
               "$ref" : "#/components/schemas/GbaPartner"
             }
+          },
+          "geheimhoudingPersoonsgegevens" : {
+            "$ref" : "#/components/schemas/GbaGeheimhoudingPersoonsgegevens"
           }
         }
       },
@@ -1057,6 +1060,9 @@
             "items" : {
               "$ref" : "#/components/schemas/GbaVerblijfstitel"
             }
+          },
+          "geheimhoudingPersoonsgegevens" : {
+            "$ref" : "#/components/schemas/GbaGeheimhoudingPersoonsgegevens"
           }
         }
       },
@@ -1068,6 +1074,9 @@
             "items" : {
               "$ref" : "#/components/schemas/GbaNationaliteit"
             }
+          },
+          "geheimhoudingPersoonsgegevens" : {
+            "$ref" : "#/components/schemas/GbaGeheimhoudingPersoonsgegevens"
           }
         }
       },

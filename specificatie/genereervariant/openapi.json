@@ -1112,6 +1112,9 @@
             "items" : {
               "$ref" : "#/components/schemas/Partner"
             }
+          },
+          "geheimhoudingPersoonsgegevens" : {
+            "$ref" : "#/components/schemas/GeheimhoudingPersoonsgegevens"
           }
         }
       },
@@ -1123,6 +1126,9 @@
             "items" : {
               "$ref" : "#/components/schemas/Verblijfstitel"
             }
+          },
+          "geheimhoudingPersoonsgegevens" : {
+            "$ref" : "#/components/schemas/GeheimhoudingPersoonsgegevens"
           }
         }
       },
@@ -1134,6 +1140,9 @@
             "items" : {
               "$ref" : "#/components/schemas/AbstractNationaliteit"
             }
+          },
+          "geheimhoudingPersoonsgegevens" : {
+            "$ref" : "#/components/schemas/GeheimhoudingPersoonsgegevens"
           }
         }
       },
