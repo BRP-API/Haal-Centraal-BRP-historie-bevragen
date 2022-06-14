@@ -546,6 +546,9 @@
             "items" : {
               "$ref" : "#/components/schemas/GbaPartner"
             }
+          },
+          "geheimhoudingPersoonsgegevens" : {
+            "$ref" : "#/components/schemas/GbaGeheimhoudingPersoonsgegevens"
           }
         }
       },

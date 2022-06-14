@@ -612,6 +612,9 @@
             "items" : {
               "$ref" : "#/components/schemas/Partner"
             }
+          },
+          "geheimhoudingPersoonsgegevens" : {
+            "$ref" : "#/components/schemas/GeheimhoudingPersoonsgegevens"
           }
         }
       },

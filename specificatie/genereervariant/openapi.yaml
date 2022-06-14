@@ -469,6 +469,8 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Partner'
+        geheimhoudingPersoonsgegevens:
+          $ref: '#/components/schemas/GeheimhoudingPersoonsgegevens'
     BadRequestFoutbericht:
       allOf:
       - $ref: '#/components/schemas/Foutbericht'

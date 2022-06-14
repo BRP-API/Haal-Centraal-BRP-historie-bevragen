@@ -408,6 +408,8 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/GbaPartner'
+        geheimhoudingPersoonsgegevens:
+          $ref: '#/components/schemas/GbaGeheimhoudingPersoonsgegevens'
     HistorieQuery:
       required:
       - burgerservicenummer
