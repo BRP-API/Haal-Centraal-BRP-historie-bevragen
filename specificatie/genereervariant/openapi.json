@@ -610,7 +610,7 @@
           "partnerhistorie" : {
             "type" : "array",
             "items" : {
-              "$ref" : "#/components/schemas/AbstractPartner"
+              "$ref" : "#/components/schemas/Partner"
             }
           }
         }
@@ -1198,56 +1198,34 @@
         "type" : "boolean",
         "description" : "Gegevens mogen niet worden verstrekt aan derden / maatschappelijke instellingen.\n"
       },
-      "AbstractPartner" : {
-        "required" : [ "type" ],
+      "Partner" : {
         "type" : "object",
         "properties" : {
-          "type" : {
-            "type" : "string"
-          }
-        },
-        "description" : "Gegevens over het actuele of het laatst ontbonden huwelijk/geregistreerd partnerschap van de persoon.\n",
-        "discriminator" : {
-          "propertyName" : "type",
-          "mapping" : {
-            "Partner" : "#/components/schemas/Partner",
-            "PartnerOnbekend" : "#/components/schemas/PartnerOnbekend"
+          "burgerservicenummer" : {
+            "$ref" : "#/components/schemas/Burgerservicenummer"
+          },
+          "geslacht" : {
+            "$ref" : "#/components/schemas/Waardetabel"
+          },
+          "soortVerbintenis" : {
+            "$ref" : "#/components/schemas/Waardetabel"
+          },
+          "naam" : {
+            "$ref" : "#/components/schemas/NaamGerelateerde"
+          },
+          "geboorte" : {
+            "$ref" : "./geboorte.yaml#/components/schemas/Geboorte"
+          },
+          "inOnderzoek" : {
+            "$ref" : "./partner.yaml#/components/schemas/PartnerInOnderzoek"
+          },
+          "aangaanHuwelijkPartnerschap" : {
+            "$ref" : "./partner.yaml#/components/schemas/AangaanHuwelijkPartnerschap"
+          },
+          "ontbindingHuwelijkPartnerschap" : {
+            "$ref" : "./partner.yaml#/components/schemas/OntbindingHuwelijkPartnerschapBasis"
           }
         }
-      },
-      "Partner" : {
-        "allOf" : [ {
-          "$ref" : "#/components/schemas/AbstractPartner"
-        }, {
-          "type" : "object",
-          "properties" : {
-            "burgerservicenummer" : {
-              "$ref" : "#/components/schemas/Burgerservicenummer"
-            },
-            "geslacht" : {
-              "$ref" : "#/components/schemas/Waardetabel"
-            },
-            "soortVerbintenis" : {
-              "$ref" : "#/components/schemas/Waardetabel"
-            },
-            "naam" : {
-              "$ref" : "#/components/schemas/NaamGerelateerde"
-            },
-            "geboorte" : {
-              "$ref" : "./geboorte.yaml#/components/schemas/Geboorte"
-            },
-            "inOnderzoek" : {
-              "$ref" : "#/components/schemas/PartnerInOnderzoek"
-            },
-            "aangaanHuwelijkPartnerschap" : {
-              "$ref" : "#/components/schemas/AangaanHuwelijkPartnerschap"
-            },
-            "ontbindingHuwelijkPartnerschap" : {
-              "$ref" : "#/components/schemas/OntbindingHuwelijkPartnerschapBasis"
-            }
-          },
-          "description" : "* **geslachtsaanduiding** - Wordt gevuld op basis van de waarden die voorkomen in de tabel 'Geslacht' uit de Haal-Centraal-BRP-tabellen-bevragen API.\n* **soortVerbintenis** - Wordt gevuld op basis van de waarden die voorkomen in de tabel  \"Soort_Verbintenis\" uit de Haal-Centraal-BRP-tabellen-bevragen API.\n"
-        } ]
       },
       "PartnerInOnderzoek" : {
         "description" : "Geeft aan welke gegevens over het huwelijk of het partnerschap in onderzoek zijn.\nZie de [functionele specificaties](https://github.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/blob/v1.1.0/features/in_onderzoek.feature)\n",
@@ -1332,19 +1310,6 @@
             },
             "datum" : {
               "type" : "boolean"
-            }
-          }
-        } ]
-      },
-      "PartnerOnbekend" : {
-        "allOf" : [ {
-          "$ref" : "#/components/schemas/AbstractPartner"
-        }, {
-          "type" : "object",
-          "properties" : {
-            "indicatieOnbekend" : {
-              "type" : "boolean",
-              "default" : false
             }
           }
         } ]
