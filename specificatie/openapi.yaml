@@ -203,5 +203,5 @@ components:
         partnerhistorie:
           type: array
           items:
-            $ref: 'partner.yaml#/components/schemas/AbstractPartner'
+            $ref: 'partner.yaml#/components/schemas/Partner'
             
