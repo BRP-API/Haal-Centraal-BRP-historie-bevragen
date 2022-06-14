@@ -204,4 +204,6 @@ components:
           type: array
           items:
             $ref: 'partner.yaml#/components/schemas/Partner'
+        geheimhoudingPersoonsgegevens:
+          $ref: 'persoon.yaml#/components/schemas/GeheimhoudingPersoonsgegevens'
             

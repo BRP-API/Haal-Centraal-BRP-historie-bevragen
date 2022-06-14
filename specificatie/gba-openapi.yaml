@@ -144,3 +144,5 @@ components:
           type: array
           items:
             $ref: 'partner.yaml#/components/schemas/GbaPartner'
+        geheimhoudingPersoonsgegevens:
+          $ref: 'persoon.yaml#/components/schemas/GbaGeheimhoudingPersoonsgegevens'
