@@ -254,11 +254,11 @@ components:
         verblijfstitelhistorie:
           type: array
           items:
-            $ref: '#/components/schemas/GbaVerblijfstitel'
+            $ref: 'verblijfstitel.yaml#/components/schemas/GbaVerblijfstitel'
     NationalisatiehistorieQueryResponse:
       type: object
       properties:
         nationaliteithistorie:
           type: array
           items:
-            $ref: '#/components/schemas/GbaNationaliteit'
+            $ref: 'nationaliteit.yaml#/components/schemas/GbaNationaliteit'
