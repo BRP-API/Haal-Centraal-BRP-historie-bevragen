@@ -6,6 +6,11 @@ info:
 paths: {}
 components:
   schemas:
+    GbaGeboorteBeperkt:
+      type: object
+      properties:
+        datum:
+          $ref: 'datum.yaml#/components/schemas/GbaDatum'
     GbaGeboorte:
       allOf:
         - $ref: '#/components/schemas/GbaGeboorteBeperkt'
