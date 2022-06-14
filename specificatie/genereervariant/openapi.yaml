@@ -255,13 +255,13 @@ components:
       - $ref: '#/components/schemas/HistorieQuery'
       - type: object
         properties:
-          aanvang:
+          datumVan:
             type: string
             description: |
               De begindatum van de periode waarover de resource wordt opgevraagd.
             format: date
             example: 1964-09-24
-          tot:
+          datumTotEnMet:
             type: string
             description: |
               De einddatum van de periode waarover de resource wordt opgevraagd.
