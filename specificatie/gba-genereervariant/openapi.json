@@ -912,6 +912,15 @@
         "properties" : {
           "datum" : {
             "$ref" : "#/components/schemas/GbaDatum"
+          },
+          "land" : {
+            "$ref" : "#/components/schemas/Waardetabel"
+          },
+          "plaats" : {
+            "$ref" : "#/components/schemas/Waardetabel"
+          },
+          "reden" : {
+            "$ref" : "#/components/schemas/Waardetabel"
           }
         }
       },
