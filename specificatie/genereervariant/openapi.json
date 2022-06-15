@@ -1823,6 +1823,15 @@
           "datum" : {
             "$ref" : "#/components/schemas/AbstractDatum"
           },
+          "land" : {
+            "$ref" : "#/components/schemas/Waardetabel"
+          },
+          "plaats" : {
+            "$ref" : "#/components/schemas/Waardetabel"
+          },
+          "reden" : {
+            "$ref" : "#/components/schemas/Waardetabel"
+          },
           "inOnderzoek" : {
             "$ref" : "#/components/schemas/OntbindingHuwelijkPartnerschapBasisInOnderzoek"
           }
