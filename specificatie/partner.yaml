@@ -109,6 +109,12 @@ components:
       properties:
         datum:
           $ref: 'datum.yaml#/components/schemas/GbaDatum'
+        land:
+          $ref: 'common.yaml#/components/schemas/Waardetabel'
+        plaats:
+          $ref: 'common.yaml#/components/schemas/Waardetabel'
+        reden:
+          $ref: 'common.yaml#/components/schemas/Waardetabel'
     OntbindingHuwelijkPartnerschapBasis:
       type: object
       description: |
@@ -119,6 +125,12 @@ components:
           type: boolean
         datum:
           $ref: 'datum.yaml#/components/schemas/AbstractDatum'
+        land:
+          $ref: 'common.yaml#/components/schemas/Waardetabel'
+        plaats:
+          $ref: 'common.yaml#/components/schemas/Waardetabel'
+        reden:
+          $ref: 'common.yaml#/components/schemas/Waardetabel'
         inOnderzoek:
           $ref: '#/components/schemas/OntbindingHuwelijkPartnerschapBasisInOnderzoek'
     OntbindingHuwelijkPartnerschapBasisInOnderzoek:
