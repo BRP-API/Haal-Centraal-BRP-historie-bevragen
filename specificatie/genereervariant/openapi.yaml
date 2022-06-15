@@ -841,6 +841,8 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Partner'
+        geheimhoudingPersoonsgegevens:
+          $ref: '#/components/schemas/GeheimhoudingPersoonsgegevens'
     VerblijfstitelhistorieQueryResponse:
       type: object
       properties:
@@ -848,6 +850,8 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Verblijfstitel'
+        geheimhoudingPersoonsgegevens:
+          $ref: '#/components/schemas/GeheimhoudingPersoonsgegevens'
     NationalisatiehistorieQueryResponse:
       type: object
       properties:
@@ -855,6 +859,8 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/AbstractNationaliteit'
+        geheimhoudingPersoonsgegevens:
+          $ref: '#/components/schemas/GeheimhoudingPersoonsgegevens'
     BadRequestFoutbericht:
       allOf:
       - $ref: '#/components/schemas/Foutbericht'
