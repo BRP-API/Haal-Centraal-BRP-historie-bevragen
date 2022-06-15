@@ -94,6 +94,8 @@ components:
           pattern: ^(B|V)$
         datumIngangGeldigheid:
           $ref: 'datum.yaml#/components/schemas/GbaDatum'
+        datumTot:
+          $ref: 'datum.yaml#/components/schemas/GbaDatum'
         nationaliteit:
           $ref: 'common.yaml#/components/schemas/Waardetabel'
         redenOpname:
