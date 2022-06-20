@@ -119,8 +119,6 @@ components:
         Gegevens over de ontbinding van het huwelijk of het geregistreerd partnerschap.
         * **datum** : De datum waarop het huwelijk of het partnerschap is ontbonden.
       properties:
-        indicatieHuwelijkPartnerschapBeeindigd:
-          type: boolean
         datum:
           $ref: 'datum.yaml#/components/schemas/AbstractDatum'
         land:
@@ -139,8 +137,6 @@ components:
         - $ref: 'persoon.yaml#/components/schemas/InOnderzoek'
         - type: object
           properties:
-            indicatieHuwelijkPartnerschapBeeindigd:
-              type: boolean
             datum:
               type: boolean
             land:
