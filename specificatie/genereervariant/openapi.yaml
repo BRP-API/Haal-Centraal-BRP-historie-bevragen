@@ -1363,8 +1363,6 @@ components:
     OntbindingHuwelijkPartnerschap:
       type: object
       properties:
-        indicatieHuwelijkPartnerschapBeeindigd:
-          type: boolean
         datum:
           $ref: '#/components/schemas/AbstractDatum'
         land:
@@ -1386,8 +1384,6 @@ components:
       - $ref: '#/components/schemas/InOnderzoek'
       - type: object
         properties:
-          indicatieHuwelijkPartnerschapBeeindigd:
-            type: boolean
           datum:
             type: boolean
           land:

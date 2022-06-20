@@ -1817,9 +1817,6 @@
       "OntbindingHuwelijkPartnerschap" : {
         "type" : "object",
         "properties" : {
-          "indicatieHuwelijkPartnerschapBeeindigd" : {
-            "type" : "boolean"
-          },
           "datum" : {
             "$ref" : "#/components/schemas/AbstractDatum"
           },
@@ -1845,9 +1842,6 @@
         }, {
           "type" : "object",
           "properties" : {
-            "indicatieHuwelijkPartnerschapBeeindigd" : {
-              "type" : "boolean"
-            },
             "datum" : {
               "type" : "boolean"
             },
