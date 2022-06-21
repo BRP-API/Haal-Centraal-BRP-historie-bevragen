@@ -1903,9 +1903,12 @@
           },
           "redenOpname" : {
             "$ref" : "#/components/schemas/Waardetabel"
+          },
+          "redenBeeindigen" : {
+            "$ref" : "#/components/schemas/Waardetabel"
           }
         },
-        "description" : "* **redenOpname** - De reden op grond waarvan de persoon de nationaliteit gekregen heeft. Wordt gevuld op basis van de waarden die voorkomen in de tabel 'Reden_Nationaliteit' uit de Haal-Centraal-BRP-tabellen-bevragen API.\n",
+        "description" : "* **redenOpname** - De reden op grond waarvan de persoon de nationaliteit gekregen heeft. Wordt gevuld op basis van de waarden die voorkomen in de tabel 'Reden_Nationaliteit' uit de Haal-Centraal-BRP-tabellen-bevragen API.\n* **redenBeeindigen** - De reden op grond waarvan de nationaliteit van een persoon beëindigd is. Wordt gevuld op basis van de waarden die voorkomen in de tabel 'Reden_Nationaliteit' uit de Haal-Centraal-BRP-tabellen-bevragen API.\n",
         "discriminator" : {
           "propertyName" : "type",
           "mapping" : {
@@ -1954,6 +1957,9 @@
             },
             "redenOpname" : {
               "type" : "boolean"
+            },
+            "redenBeeindigen" : {
+              "type" : "boolean"
             }
           }
         } ]
@@ -1986,6 +1992,9 @@
               "type" : "boolean"
             },
             "redenOpname" : {
+              "type" : "boolean"
+            },
+            "redenBeeindigen" : {
               "type" : "boolean"
             }
           }
@@ -2039,6 +2048,9 @@
             },
             "redenOpname" : {
               "type" : "boolean"
+            },
+            "redenBeeindigen" : {
+              "type" : "boolean"
             }
           }
         } ]
@@ -2071,6 +2083,9 @@
               "type" : "boolean"
             },
             "redenOpname" : {
+              "type" : "boolean"
+            },
+            "redenBeeindigen" : {
               "type" : "boolean"
             }
           }

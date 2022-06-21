@@ -1430,8 +1430,11 @@ components:
           type: string
         redenOpname:
           $ref: '#/components/schemas/Waardetabel'
+        redenBeeindigen:
+          $ref: '#/components/schemas/Waardetabel'
       description: |
         * **redenOpname** - De reden op grond waarvan de persoon de nationaliteit gekregen heeft. Wordt gevuld op basis van de waarden die voorkomen in de tabel 'Reden_Nationaliteit' uit de Haal-Centraal-BRP-tabellen-bevragen API.
+        * **redenBeeindigen** - De reden op grond waarvan de nationaliteit van een persoon beëindigd is. Wordt gevuld op basis van de waarden die voorkomen in de tabel 'Reden_Nationaliteit' uit de Haal-Centraal-BRP-tabellen-bevragen API.
       discriminator:
         propertyName: type
         mapping:
@@ -1468,6 +1471,8 @@ components:
             type: boolean
           redenOpname:
             type: boolean
+          redenBeeindigen:
+            type: boolean
     BehandeldAlsNederlander:
       allOf:
       - $ref: '#/components/schemas/AbstractNationaliteit'
@@ -1487,6 +1492,8 @@ components:
           type:
             type: boolean
           redenOpname:
+            type: boolean
+          redenBeeindigen:
             type: boolean
     VastgesteldNietNederlander:
       allOf:
@@ -1521,6 +1528,8 @@ components:
             type: boolean
           redenOpname:
             type: boolean
+          redenBeeindigen:
+            type: boolean
     NationaliteitOnbekend:
       allOf:
       - $ref: '#/components/schemas/AbstractNationaliteit'
@@ -1540,6 +1549,8 @@ components:
           type:
             type: boolean
           redenOpname:
+            type: boolean
+          redenBeeindigen:
             type: boolean
     AdresseringBeperkt:
       type: object

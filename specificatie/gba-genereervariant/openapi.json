@@ -1486,6 +1486,9 @@
           "redenOpname" : {
             "$ref" : "#/components/schemas/Waardetabel"
           },
+          "redenBeeindigen" : {
+            "$ref" : "#/components/schemas/Waardetabel"
+          },
           "inOnderzoek" : {
             "$ref" : "#/components/schemas/GbaInOnderzoek"
           }
