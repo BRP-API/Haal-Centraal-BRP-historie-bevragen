@@ -10,12 +10,15 @@ components:
       type: object
       description: |
         * **redenOpname** - De reden op grond waarvan de persoon de nationaliteit gekregen heeft. Wordt gevuld op basis van de waarden die voorkomen in de tabel 'Reden_Nationaliteit' uit de Haal-Centraal-BRP-tabellen-bevragen API.
+        * **redenBeeindigen** - De reden op grond waarvan de nationaliteit van een persoon beëindigd is. Wordt gevuld op basis van de waarden die voorkomen in de tabel 'Reden_Nationaliteit' uit de Haal-Centraal-BRP-tabellen-bevragen API.
       required:
         - type
       properties:
         type:
           type: string
         redenOpname:
+          $ref: 'common.yaml#/components/schemas/Waardetabel'
+        redenBeeindigen:
           $ref: 'common.yaml#/components/schemas/Waardetabel'
       discriminator:
         propertyName: type
@@ -100,6 +103,8 @@ components:
           $ref: 'common.yaml#/components/schemas/Waardetabel'
         redenOpname:
           $ref: 'common.yaml#/components/schemas/Waardetabel'
+        redenBeeindigen:
+          $ref: 'common.yaml#/components/schemas/Waardetabel'
         inOnderzoek:
             $ref: 'gba-inonderzoek.yaml#/components/schemas/GbaInOnderzoek'
     BijzonderNederlanderschapInOnderzoek:
@@ -110,6 +115,8 @@ components:
             type:
               type: boolean
             redenOpname:
+              type: boolean
+            redenBeeindigen:
               type: boolean
     NationaliteitInOnderzoek:
       description: |
@@ -124,6 +131,8 @@ components:
               type: boolean
             redenOpname:
               type: boolean
+            redenBeeindigen:
+              type: boolean
     StaatloosInOnderzoek:
       allOf:
         - $ref: 'persoon.yaml#/components/schemas/InOnderzoek'
@@ -133,6 +142,8 @@ components:
               type: boolean
             redenOpname:
               type: boolean
+            redenBeeindigen:
+              type: boolean
     NationaliteitOnbekendInOnderzoek:
       allOf:
         - $ref: 'persoon.yaml#/components/schemas/InOnderzoek'
@@ -141,4 +152,6 @@ components:
             type:
               type: boolean
             redenOpname:
+              type: boolean
+            redenBeeindigen:
               type: boolean
