@@ -53,7 +53,7 @@ Rule: Bij het zoeken is de peildatum verplicht of zijn de datumVan en datumTotEn
     | naam                | waarde             |
     | type                | RaadpleegMetPeriode|
     | burgerservicenummer | 999994669          |
-    | fields              | regel1, regel2     |
+    | fields              | datumVan, datumTot, datumIngangGeldigheid, adresregel1, land.code     |
     Dan heeft de response een object met de volgende gegevens
     | naam     | waarde                                                      |
     | type     | https://datatracker.ietf.org/doc/html/rfc7231#section-6.5.1 |
@@ -73,8 +73,8 @@ Rule: Bij het zoeken is de peildatum verplicht of zijn de datumVan en datumTotEn
     | naam                | waarde               |
     | type                | RaadpleegMetPeildatum|
     | burgerservicenummer | 999994669            |
-    | fields              | regel1, regel2       |
-    | peildatum           |                      |
+    | fields              | datumVan, datumTot, datumIngangGeldigheid, adresregel1, land.code |
+    | peildatum           | -                    |
     Dan heeft de response een object met de volgende gegevens
     | naam     | waarde                                                      |
     | type     | https://datatracker.ietf.org/doc/html/rfc7231#section-6.5.1 |
@@ -93,7 +93,7 @@ Rule: Bij het zoeken is de peildatum verplicht of zijn de datumVan en datumTotEn
     | naam                | waarde               |
     | type                | RaadpleegMetPeildatum|
     | burgerservicenummer | 999994669            |
-    | fields              | regel1, regel2       |
+    | fields              | datumVan, datumTot, datumIngangGeldigheid, adresregel1, land.code |
     | peildatum           | <peildatum>          |
     Dan heeft de response een object met de volgende gegevens
     | naam     | waarde                                                      |
@@ -119,12 +119,14 @@ Rule: Er kan een verblijfplaats van een persoon geraadpleegd worden op een speci
       | naam                | waarde                |
       | type                | RaadpleegMetPeildatum |
       | burgerservicenummer | <burgerservicenummer> |
-      | fields              | datumAanvangAdreshouding, datumAanvangAdresBuitenland, datumIngangGeldigheid, regel1, land.code |
+      | fields              | datumVan, datumTot, datumIngangGeldigheid, adresregel1, land.code |
       | peildatum           | <peildatum>           |
       Dan heeft de response een verblijfplaats met de volgende gegevens
       | datumAanvangAdreshouding   | datumAanvangAdresBuitenland    | datumIngangGeldigheid   | Straat        | Huisnummer   | Land.code   |
       | <datumAanvangAdreshouding> | <datumAanvangAdresBuitenland>  | <datumIngangGeldigheid> | <Straat>      | <Huisnummer> | <Land.code> |
 
+
+Bij deze voorbeelden moet bij ieder entry ook nog de volgende verblijfplaats opgehaald worden (indien aanwezig)  Moet nig aangepast worden. 
       Voorbeelden
       | burgerservicenummer | peildatum  | datumAanvangAdreshouding | datumAanvangAdresBuitenland | datumIngangGeldigheid | Straat        | Huisnummer | Land.code |
       | 999994669           | 2022-03-03 | 19940508                 | -                           | 20110205              | Beethovenlaan | 23         | 6030      |
@@ -133,13 +135,32 @@ Rule: Er kan een verblijfplaats van een persoon geraadpleegd worden op een speci
       | 999993483           | 2012-03-04 | 00000000                 | -                           | 00000000              | Leyweg        | 61         | 6030      |
       | 999993483           | 1853-07-30 | 00000000                 | -                           | 00000000              | Leyweg        | 61         | 6030      |
 
-  @gba
+  @proxy
+    Abstract Scenario: Verblijfplaats opvragen met een peildatum
+      Als verblijfplaatsen wordt gezocht met de volgende parameters
+      | naam                | waarde                |
+      | type                | RaadpleegMetPeildatum |
+      | burgerservicenummer | <burgerservicenummer> |
+      | fields              | datumVan, datumTot, datumIngangGeldigheid, adresregel1, land.code |
+      | peildatum           | <peildatum>           |
+      Dan heeft de response een verblijfplaats met de volgende gegevens
+      | datumVan   | datumTot   | datumIngangGeldigheid   | Adresregel1        |  Land.code   |
+      | <datumVan> | <datumTot> | <datumIngangGeldigheid> | <Adresregel1>      |  <Land.code> |
+
+      Voorbeelden
+      | burgerservicenummer | peildatum  | datumVan.datum | datumVan.type | datumVan.onbekend | datumTot.datum | datumTot.type | datumIngangGeldigheid.datum | datumIngangGeldigheid.type | datumIngangGeldigheid.onbekend | Adresregel1      | Land.code |
+      | 999994669           | 2022-03-03 | 1994-05-08     | Datum         | -                 | -              | -             | 2011-02-05                  | Datum                      | -                              | Beethovenlaan 23 | 6030      |
+      | 999994669           | 1994-05-07 | 1993-09-10     | Datum         | -                 | 1994-05-08     | Datum         | 1993-09-10                  | Datum                      | -                              | Kerkstraat 83    | 6030      |
+      | 999994669           | 1993-07-01 | 1993-02-15     | Datum         | -                 | 1993-09-10     | Datum         | 1993-02-15                  | Datum                      | -                              | -                | 5010      |
+      | 999993483           | 2012-03-04 | -              | DatumOnbekend | true              | 2012-03-05     | Datum         | -                           | DatumOnbekend              | true                           | Leyweg 61        | 6030      |
+      | 999993483           | 1853-07-30 | -              | DatumOnbekend | true              | 2012-03-05     | Datum         | -                           | DatumOnbekend              | true                           | Leyweg 61        | 6030      |
+
     Scenario: Verblijfplaats opvragen met een peildatum ver in het verleden
       Als verblijfplaatsen wordt gezocht met de volgende parameters
       | naam                | waarde               |
       | type                | RaadpleegMetPeildatum|
       | burgerservicenummer | 999994669            |
-      | fields              | datumAanvangAdreshouding, datumIngangGeldigheid, straat, huisnummer, land.code |
+      | fields              | datumVan, datumTot, datumIngangGeldigheid, adresregel1, land.code |
       | peildatum           | 1961-12-29           |
       Dan heeft de response geen verblijfplaatsen
 
@@ -156,7 +177,7 @@ Rule: Op periode gefilterde gegevens tonen alle verblijfplaatsen waar de persoon
     | naam                | waarde               |
     | type                | RaadpleegMetPeriode  |
     | burgerservicenummer | 999990378           |
-    | fields              | datumAanvangAdreshouding, datumAanvangAdresBuitenland, datumIngangGeldigheid, regel1, land.code |
+    | fields              | datumVan, datumTot, datumIngangGeldigheid, adresregel1, land.code |
     | datumVan            | 1961-07-01         |
     | datumTotEnMet       | 1972-01-01         |
     Dan heeft de response geen verblijfplaatsen
@@ -167,7 +188,7 @@ Rule: Op periode gefilterde gegevens tonen alle verblijfplaatsen waar de persoon
     | naam                | waarde               |
     | type                | RaadpleegMetPeriode  |
     | burgerservicenummer | 999994669            |
-    | fields              | datumAanvangAdreshouding, datumAanvangAdresBuitenland, datumIngangGeldigheid, regel1, land.code |
+    | fields              | datumVan, datumTot, datumIngangGeldigheid, adresregel1, land.code |
     | datumVan            | 1961-07-01         |
     | datumTotEnMet       | 2019-09-11           |
     Dan heeft de response verblijfplaatsen met de volgende gegevens
@@ -183,7 +204,7 @@ Rule: Op periode gefilterde gegevens tonen alle verblijfplaatsen waar de persoon
     | naam                | waarde               |
     | type                | RaadpleegMetPeriode  |
     | burgerservicenummer | 999994669            |
-    | fields              | datumAanvangAdreshouding, datumAanvangAdresBuitenland, datumIngangGeldigheid, regel1, land.code |
+    | fields              | datumVan, datumTot, datumIngangGeldigheid, adresregel1, land.code |
     | datumVan            | 1961-07-01         |
     | datumTotEnMet       | 2019-09-11           |
     Dan heeft de response verblijfplaatsen met de volgende gegevens
@@ -202,7 +223,7 @@ Rule   Wanneer in de registratie voor de persoon meer dan één verblijfplaats, 
     | naam                | waarde               |
     | type                | RaadpleegMetPeriode  |
     | burgerservicenummer | 999994669            |
-    | fields              | datumAanvangAdreshouding, datumIngangGeldigheid, regel1, land.code |
+    | fields              | datumVan, datumTot, datumIngangGeldigheid, adresregel1, land.code |
     | datumVan            | 2012-01-01           |
     | datumTotEnMet       | 2019-09-11           |
     Dan heeft de response een verblijfplaats met de volgende gegevens
@@ -215,7 +236,7 @@ Rule   Wanneer in de registratie voor de persoon meer dan één verblijfplaats, 
     | naam                | waarde               |
     | type                | RaadpleegMetPeriode  |
     | burgerservicenummer | 999994669            |
-    | fields              | datumAanvangAdreshouding, datumIngangGeldigheid, regel1, land.code |
+    | fields              | datumVan, datumTot, datumIngangGeldigheid, adresregel1, land.code |
     | datumVan            | 1995-01-01           |
     | datumTotEnMet       | 1996-01-01           |
     Dan heeft de response een verblijfplaats met de volgende gegevens
@@ -228,7 +249,7 @@ Rule   Wanneer in de registratie voor de persoon meer dan één verblijfplaats, 
     | naam                | waarde               |
     | type                | RaadpleegMetPeriode  |
     | burgerservicenummer | 999994669            |
-    | fields              | datumAanvangAdreshouding, datumIngangGeldigheid, regel1, land.code |
+    | fields              | datumVan, datumTot, datumIngangGeldigheid, adresregel1, land.code |
     | datumVan            | 1993-10-01           |
     | datumTotEnMet       | 1994-01-01           |
     Dan heeft de response een verblijfplaats met de volgende gegevens
@@ -247,7 +268,7 @@ Rule: Wanneer de datum aanvang gedeeltelijk onbekend is, wordt voor de filtering
     | naam                | waarde               |
     | type                | RaadpleegMetPeriode  |
     | burgerservicenummer | 999990451            |
-    | fields              | datumAanvangAdreshouding, datumIngangGeldigheid, regel1, land.code |
+    | fields              | datumVan, datumTot, datumIngangGeldigheid, adresregel1, land.code |
     | datumVan            | 1989-12-01           |
     | datumTotEnMet       | 1996-01-01           |
     Dan heeft de response een verblijfplaats met de volgende gegevens
@@ -262,7 +283,7 @@ Rule: Wanneer van de datum aanvang adreshouding alleen het jaar en de maand beke
     | naam                | waarde               |
     | type                | RaadpleegMetPeriode  |
     | burgerservicenummer | 999990762            |
-    | fields              | datumAanvangAdreshouding, datumIngangGeldigheid, regel1, land.code |
+    | fields              | datumVan, datumTot, datumIngangGeldigheid, adresregel1, land.code |
     | datumVan            | 1989-10-28           |
     | datumTotEnMet       | 1996-01-01           |
     Dan heeft de response een verblijfplaats met de volgende gegevens
@@ -277,7 +298,7 @@ Rule: Wanneer de datum aanvang adreshouding geheel onbekend is, wordt voor de fi
     | naam                | waarde                |
     | type                | RaadpleegMetPeildatum |
     | burgerservicenummer | 999993483             |
-    | fields              | datumAanvangAdreshouding, datumIngangGeldigheid, regel1, land.code |
+    | fields              | datumVan, datumTot, datumIngangGeldigheid, adresregel1, land.code |
     | peildatum           | 1964-01-01            |
     Dan heeft de response verblijfplaatsen met de volgende gegevens
     | datumAanvangAdreshouding | datumIngangGeldigheid | Straat        | Huisnummer | Land.code |
@@ -289,13 +310,26 @@ Rule: Wanneer de datum aanvang adreshouding geheel onbekend is, wordt voor de fi
     | naam                | waarde               |
     | type                | RaadpleegMetPeriode  |
     | burgerservicenummer | 999993483            |
-    | fields              | datumAanvangAdreshouding, datumIngangGeldigheid, regel1, land.code |
+    | fields              | datumVan, datumTot, datumIngangGeldigheid, adresregel1, land.code |
     | datumVan            | 2009-06-01           |
     | datumTotEnMet       | 2014-06-01           |
     Dan heeft de response verblijfplaatsen met de volgende gegevens
     | datumAanvangAdreshouding | datumIngangGeldigheid | Straat        | Huisnummer | Land.code |
     | 20120305                 | 20120305              | Zonegge       | 27         | 6030      |
     | 00000000                 | 00000000              | Leyweg        | 61         | 6030      |
+
+    @gba
+      Scenario: Verblijfplaatsen opvragen in een periode, datumAanvangAdreshuishouding onbekend
+      Als verblijfplaatsen wordt gezocht met de volgende parameters
+      | naam                | waarde               |
+      | type                | RaadpleegMetPeriode  |
+      | burgerservicenummer | 999993483            |
+      | fields              | datumVan, datumTot, datumIngangGeldigheid, adresregel1, land.code |
+      | datumVan            | 1843-01-02           |
+      | datumTotEnMet       | 1914-01-01           |
+      Dan heeft de response een verblijfplaats met de volgende gegevens
+      | datumAanvangAdreshouding | datumIngangGeldigheid | Straat        | Huisnummer | Land.code |
+      | 00000000                 | 00000000              | Leyweg        | 61         | 6030      |
 
 Rule: Wanneer een verblijfplaats, actueel of historisch, in onderzoek is, en dit onderzoek is niet afgerond (Datum einde onderzoek is leeg), wordt inOnderzoek gevuld voor betreffende verblijfplaats.
 
@@ -305,13 +339,27 @@ Rule: Wanneer een verblijfplaats, actueel of historisch, in onderzoek is, en dit
     | naam                | waarde               |
     | type                | RaadpleegMetPeriode  |
     | burgerservicenummer | 999990378            |
-    | fields              | datumAanvangAdreshouding, datumIngangGeldigheid, regel1, land.code |
+    | fields              | datumVan, datumTot, datumIngangGeldigheid, adresregel1, land.code |
     | datumVan            | 2009-06-01           |
     | datumTotEnMet       | 2016-06-01           |
     Dan heeft de response verblijfplaatsen met de volgende gegevens
     | datumAanvangAdreshouding | datumIngangGeldigheid | Straat           | Huisnummer | Land.code | aanduidingGegevensInOnderzoek | datumIngangOnderzoek |
-    | 20150601                 | -                     | Rietzangerstraat | 27         | 6030      |                               |                      |
-    | 19881118                 | -                     | Voorhofdreef     | 30         | 6030      | 580000                        | 19881120
+    | 20150601                 | -                     | Rietzangerstraat | 27         | 6030      | -                             | -                    |
+    | 19881118                 | -                     | Voorhofdreef     | 30         | 6030      | 580000                        | 19881120             |
+
+  @gba
+    Scenario: Verblijfplaatsen opvragen in een periode, veblijfplaats is in onderzoek geweest
+    Als verblijfplaatsen wordt gezocht met de volgende parameters
+    | naam                | waarde               |
+    | type                | RaadpleegMetPeriode  |
+    | burgerservicenummer | 999990263            |
+    | fields              | datumVan, datumTot, datumIngangGeldigheid, adresregel1, land.code |
+    | datumVan            | 2009-06-01           |
+    | datumTotEnMet       | 2016-06-01           |
+    Dan heeft de response verblijfplaatsen met de volgende gegevens
+    | datumAanvangAdreshouding | datumIngangGeldigheid | Straat           | Huisnummer | Land.code | aanduidingGegevensInOnderzoek | datumIngangOnderzoek |
+    | 20150601                 | -                     | Raphaëlstraat    | 1          | 6030      | -                             | -                    |
+    | 19890501                 | -                     | Oudegracht       | 380        | 6030      | -                             | -
 
 @proxy
 Rule: Wanneer een verblijfplaats een buitenlands adres betreft, wordt datumAanvangAdreshouding gevuld met de waarde in Datum aanvang adres buitenland (element 13.20).
@@ -319,24 +367,3 @@ Rule: Wanneer een verblijfplaats een buitenlands adres betreft, wordt datumAanva
 
 @proxy
 Rule: Bij een historische verblijfplaats wordt een datumTot opgenomen, die gelijk is aan de datum aanvang adreshouding van de daarop volgende (actuele of historische) verblijfplaats.
-
-
-
-
-
-
-
-
-
-    Als de ingeschreven persoon met burgerservicenummer 999993483 wordt geraadpleegd met datumVan 1850-01-01 en datumTotEnMet 1900-01-01
-    Dan worden de verblijfplaatsen teruggegeven in de volgorde en met waarden:
-      | # | datumAanvangAdreshouding | datumTot   | datumIngangGeldigheid | Adres            |
-      | 0 | -                        | 2012-03-05 | -                     | Leyweg 61        |
-
-  Scenario: Historische verblijfplaats is in onderzoek
-    Als de ingeschreven persoon met burgerservicenummer 999990378 wordt geraadpleegd met peildatum 2010-01-01
-    Dan bevat verblijfplaats met straatnaam Rapheëlstraat inOnderzoek
-
-  Scenario: Historische verblijfplaats is in onderzoek geweest
-    Als de ingeschreven persoon met burgerservicenummer 999990263 wordt geraadpleegd met peildatum 2010-01-01
-    Dan bevat verblijfplaats met straatnaam Rapheëlstraat geen inOnderzoek
