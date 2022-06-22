@@ -20,7 +20,7 @@ Functionaliteit: Tonen van historishe en actuele verblijfplaatsen
     | 999993483           |
     | 999990378           |
     | 999990263           |
-    En het systeem heeft personen gegeven met de volgende 'verblijfplaats' gegevens
+    En het systeem heeft personen met de volgende 'verblijfplaats' gegevens
     | burgerservicenummer | Categorie | Datum aanvang adreshouding | Datum aanvang adres buitenland | Datum ingang geldigheid | Straat              | Huisnummer | Land | Onderzoek | Datum ingang onderzoek | Datum einde onderzoek |
     | 999994669           | 8         | 19940508                   | -                              | 20110205                | Beethovenlaan       | 23         | 6030 | -         | -                      | -                     |
     | 999994669           | 58        | 19940508                   | -                              | 19940508                | Beethovenlaan       | 5          | 6030 | -         | -                      | -                     |
@@ -430,7 +430,7 @@ Rule: Wanneer de datum aanvang gedeeltelijk onbekend is, wordt voor de filtering
     | datumVan.jaar | datumVan.type | datumVan.onbekend | datumTot.datum | datumTot.type | datumIngangGeldigheid.datum | datumIngangGeldigheid.type | datumIngangGeldigheid.onbekend | Adresregel1      | Land.code |
     | 1989          | JaarDatum     | -                 | 2013-03-01     | Datum         | 2011-02-05                  | Datum                      | -                              | Dennestraat 35   | 6030      |
 
-Rule: Wanneer van de datum aanvang adreshouding alleen het jaar en de maand bekend is, wordt aangenomen dat de persoon de hele maand op deze verblijfplaats heeft verbleven.
+Rule: Wanneer van de datum aanvang adreshouding alleen het jaar en de maand bekend is, wordt voor de filtering aangenomen dat de persoon de hele maand op deze verblijfplaats heeft verbleven.
 
   @gba
     Scenario: Verblijfplaatsen opvragen in een periode, datumAanvangAdreshuishouding alleen jaar en maand benkend
