@@ -45,7 +45,7 @@ Rule: Bij het zoeken is de peildatum verplicht of zijn de datumVan en datumTotEn
 
   @fout-case
   Scenario: Verblijfplaats raadplegen zonder peildatum of periode
-    Als verblijfplaatsen wordt gezocht met de volgende parameters
+    Als verblijfplaatshistorie wordt geraadpleegd met de volgende parameters
     | naam                | waarde             |
     | type                | RaadpleegMetPeriode|
     | burgerservicenummer | 999994669          |
@@ -65,7 +65,7 @@ Rule: Bij het zoeken is de peildatum verplicht of zijn de datumVan en datumTotEn
 
   @fout-case
   Scenario: Verblijfplaats raadplegen met lege peildatum
-    Als verblijfplaatsen wordt gezocht met de volgende parameters
+    Als verblijfplaatshistorie wordt geraadpleegd met de volgende parameters
     | naam                | waarde               |
     | type                | RaadpleegMetPeildatum|
     | burgerservicenummer | 999994669            |
@@ -85,7 +85,7 @@ Rule: Bij het zoeken is de peildatum verplicht of zijn de datumVan en datumTotEn
 
   @fout-case
   Abstract Scenario: Verblijfplaats raadplegen met invalide peildatum
-    Als verblijfplaatsen wordt gezocht met de volgende parameters
+    Als verblijfplaatshistorie wordt geraadpleegd met de volgende parameters
     | naam                | waarde               |
     | type                | RaadpleegMetPeildatum|
     | burgerservicenummer | 999994669            |
@@ -112,7 +112,7 @@ Rule: Bij het zoeken is het burgerservicenummer verplicht.
 
   @fout-case
   Scenario: Verblijfplaats raadplegen zonder burgerservicenummer
-    Als verblijfplaatsen wordt gezocht met de volgende parameters
+    Als verblijfplaatshistorie wordt geraadpleegd met de volgende parameters
     | naam                | waarde                |
     | type                | RaadpleegMetPeildatum |
     | burgerservicenummer | -                     |
@@ -133,7 +133,7 @@ Rule: Bij het zoeken is het burgerservicenummer verplicht.
 
   @gba
     Scenario: Verblijfplaats opvragen met een recente peildatum
-      Als verblijfplaatsen wordt gezocht met de volgende parameters
+      Als verblijfplaatshistorie wordt geraadpleegd met de volgende parameters
       | naam                | waarde                |
       | type                | RaadpleegMetPeildatum |
       | burgerservicenummer | 999994669             |
@@ -145,7 +145,7 @@ Rule: Bij het zoeken is het burgerservicenummer verplicht.
 
   @proxy
     Scenario: Verblijfplaats opvragen met een recente peildatum
-      Als verblijfplaatsen wordt gezocht met de volgende parameters
+      Als verblijfplaatshistorie wordt geraadpleegd met de volgende parameters
       | naam                | waarde                |
       | type                | RaadpleegMetPeildatum |
       | burgerservicenummer | 999994669             |
@@ -157,7 +157,7 @@ Rule: Bij het zoeken is het burgerservicenummer verplicht.
 
   @gba
     Scenario: Verblijfplaats opvragen met een recente peildatum, burger heeft een verblijfplaats met DatumAanvangHuishouding = 00000000
-      Als verblijfplaatsen wordt gezocht met de volgende parameters
+      Als verblijfplaatshistorie wordt geraadpleegd met de volgende parameters
       | naam                | waarde                |
       | type                | RaadpleegMetPeildatum |
       | burgerservicenummer | 999993483             |
@@ -169,7 +169,7 @@ Rule: Bij het zoeken is het burgerservicenummer verplicht.
 
   @proxy
     Scenario: Verblijfplaats opvragen met een recente peildatum, burger heeft een verblijfplaats met DatumAanvangHuishouding = 00000000
-      Als verblijfplaatsen wordt gezocht met de volgende parameters
+      Als verblijfplaatshistorie wordt geraadpleegd met de volgende parameters
       | naam                | waarde                |
       | type                | RaadpleegMetPeildatum |
       | burgerservicenummer | 999993483             |
@@ -181,7 +181,7 @@ Rule: Bij het zoeken is het burgerservicenummer verplicht.
 
   @gba
     Scenario: Verblijfplaats opvragen met een recente peildatum, burger heeft een verblijfplaats met DatumAanvangHuishouding = 00000000
-      Als verblijfplaatsen wordt gezocht met de volgende parameters
+      Als verblijfplaatshistorie wordt geraadpleegd met de volgende parameters
       | naam                | waarde                |
       | type                | RaadpleegMetPeildatum |
       | burgerservicenummer | 999993483             |
@@ -194,7 +194,7 @@ Rule: Bij het zoeken is het burgerservicenummer verplicht.
 
   @proxy
     Scenario: Verblijfplaats opvragen met een recente peildatum, burger heeft een verblijfplaats met DatumAanvangHuishouding = 00000000
-      Als verblijfplaatsen wordt gezocht met de volgende parameters
+      Als verblijfplaatshistorie wordt geraadpleegd met de volgende parameters
       | naam                | waarde                |
       | type                | RaadpleegMetPeildatum |
       | burgerservicenummer | 999993483             |
@@ -206,7 +206,7 @@ Rule: Bij het zoeken is het burgerservicenummer verplicht.
       | -              | DatumOnbekend | true              | 2012-03-05     | Datum         | -                           | DatumOnbekend              | -                              | Leyweg 61        | 6030      |
 
     Scenario: Verblijfplaats opvragen met een peildatum ver in het verleden
-      Als verblijfplaatsen wordt gezocht met de volgende parameters
+      Als verblijfplaatshistorie wordt geraadpleegd met de volgende parameters
       | naam                | waarde               |
       | type                | RaadpleegMetPeildatum|
       | burgerservicenummer | 999994669            |
@@ -216,7 +216,7 @@ Rule: Bij het zoeken is het burgerservicenummer verplicht.
 
     @gba
       Scenario: Verblijfplaats opvragen met een recente peildatum, buitenlandse verblijfplaats
-        Als verblijfplaatsen wordt gezocht met de volgende parameters
+        Als verblijfplaatshistorie wordt geraadpleegd met de volgende parameters
         | naam                | waarde                |
         | type                | RaadpleegMetPeildatum |
         | burgerservicenummer | 999994669             |
@@ -229,7 +229,7 @@ Rule: Bij het zoeken is het burgerservicenummer verplicht.
 
     @gba
       Scenario: Verblijfplaats opvragen met een recente peildatum, adres gecorrigeerd
-        Als verblijfplaatsen wordt gezocht met de volgende parameters
+        Als verblijfplaatshistorie wordt geraadpleegd met de volgende parameters
         | naam                | waarde                |
         | type                | RaadpleegMetPeildatum |
         | burgerservicenummer | 999994669             |
@@ -245,7 +245,7 @@ Rule : Bij een historische verblijfplaats wordt een datumTot opgenomen, die geli
 
     @proxy
       Scenario: Verblijfplaats opvragen met een recente peildatum, adres gecorrigeerd
-        Als verblijfplaatsen wordt gezocht met de volgende parameters
+        Als verblijfplaatshistorie wordt geraadpleegd met de volgende parameters
         | naam                | waarde                |
         | type                | RaadpleegMetPeildatum |
         | burgerservicenummer | 999994669             |
@@ -257,7 +257,7 @@ Rule : Bij een historische verblijfplaats wordt een datumTot opgenomen, die geli
 
     @proxy
       Scenario: Verblijfplaats opvragen met een recente peildatum, burger heeft een verblijfplaats met DatumAanvangHuishouding = 00000000
-        Als verblijfplaatsen wordt gezocht met de volgende parameters
+        Als verblijfplaatshistorie wordt geraadpleegd met de volgende parameters
         | naam                | waarde                |
         | type                | RaadpleegMetPeildatum |
         | burgerservicenummer | 999993483             |
@@ -275,7 +275,7 @@ Rule: Wanneer een verblijfplaats een buitenlands adres betreft, wordt datumAanva
 
   @proxy
     Scenario: Verblijfplaats opvragen met een recente peildatum, buitenlandse verblijfplaats
-      Als verblijfplaatsen wordt gezocht met de volgende parameters
+      Als verblijfplaatshistorie wordt geraadpleegd met de volgende parameters
       | naam                | waarde                |
       | type                | RaadpleegMetPeildatum |
       | burgerservicenummer | 999994669             |
@@ -296,7 +296,7 @@ Rule: Op periode gefilterde gegevens tonen alle verblijfplaatsen waar de persoon
           wordt de verblijfplaats opgenomen in het antwoord.
 
     Scenario: Geen verblijfplaatsen in gevraagde periode
-    Als verblijfplaatsen wordt gezocht met de volgende parameters
+    Als verblijfplaatshistorie wordt geraadpleegd met de volgende parameters
     | naam                | waarde               |
     | type                | RaadpleegMetPeriode  |
     | burgerservicenummer | 999990378            |
@@ -307,7 +307,7 @@ Rule: Op periode gefilterde gegevens tonen alle verblijfplaatsen waar de persoon
 
   @gba
     Scenario: Verblijfplaatsen opvragen in een periode
-    Als verblijfplaatsen wordt gezocht met de volgende parameters
+    Als verblijfplaatshistorie wordt geraadpleegd met de volgende parameters
     | naam                | waarde               |
     | type                | RaadpleegMetPeriode  |
     | burgerservicenummer | 999994669            |
@@ -324,7 +324,7 @@ Rule: Op periode gefilterde gegevens tonen alle verblijfplaatsen waar de persoon
 
   @proxy
     Scenario: Verblijfplaatsen opvragen in een periode
-    Als verblijfplaatsen wordt gezocht met de volgende parameters
+    Als verblijfplaatshistorie wordt geraadpleegd met de volgende parameters
     | naam                | waarde               |
     | type                | RaadpleegMetPeriode  |
     | burgerservicenummer | 999994669            |
@@ -343,7 +343,7 @@ Rule   Wanneer in de registratie voor de persoon meer dan één verblijfplaats, 
           - Dit speelt bijvoorbeeld wanneer er een correctie is uitgevoerd op de verblijfplaats, of wanneer er een adres hernummering is gedaan.
   @gba
     Scenario: Verblijfplaatsen opvragen in een periode, datumVan ligt na de meest recente datumIngangGeldigheid
-    Als verblijfplaatsen wordt gezocht met de volgende parameters
+    Als verblijfplaatshistorie wordt geraadpleegd met de volgende parameters
     | naam                | waarde               |
     | type                | RaadpleegMetPeriode  |
     | burgerservicenummer | 999994669            |
@@ -356,7 +356,7 @@ Rule   Wanneer in de registratie voor de persoon meer dan één verblijfplaats, 
 
   @proxy
     Scenario: Verblijfplaatsen opvragen in een periode, datumVan ligt na de meest recente datumIngangGeldigheid
-    Als verblijfplaatsen wordt gezocht met de volgende parameters
+    Als verblijfplaatshistorie wordt geraadpleegd met de volgende parameters
     | naam                | waarde               |
     | type                | RaadpleegMetPeriode  |
     | burgerservicenummer | 999994669            |
@@ -370,7 +370,7 @@ Rule   Wanneer in de registratie voor de persoon meer dan één verblijfplaats, 
 
   @gba
     Scenario: Verblijfplaatsen opvragen in een periode, datumVan ligt voor de meest recente datumIngangGeldigheid
-    Als verblijfplaatsen wordt gezocht met de volgende parameters
+    Als verblijfplaatshistorie wordt geraadpleegd met de volgende parameters
     | naam                | waarde               |
     | type                | RaadpleegMetPeriode  |
     | burgerservicenummer | 999994669            |
@@ -383,7 +383,7 @@ Rule   Wanneer in de registratie voor de persoon meer dan één verblijfplaats, 
 
   @proxy
     Scenario: Verblijfplaatsen opvragen in een periode, datumVan ligt voor de meest recente datumIngangGeldigheid
-    Als verblijfplaatsen wordt gezocht met de volgende parameters
+    Als verblijfplaatshistorie wordt geraadpleegd met de volgende parameters
     | naam                | waarde               |
     | type                | RaadpleegMetPeriode  |
     | burgerservicenummer | 999994669            |
@@ -396,7 +396,7 @@ Rule   Wanneer in de registratie voor de persoon meer dan één verblijfplaats, 
 
   @gba
     Scenario: Verblijfplaatsen opvragen in een periode, datumTotEnMet ligt voor de meest recente datumIngangGeldigheid van een verblijfplaats
-    Als verblijfplaatsen wordt gezocht met de volgende parameters
+    Als verblijfplaatshistorie wordt geraadpleegd met de volgende parameters
     | naam                | waarde               |
     | type                | RaadpleegMetPeriode  |
     | burgerservicenummer | 999994669            |
@@ -410,7 +410,7 @@ Rule   Wanneer in de registratie voor de persoon meer dan één verblijfplaats, 
 
   @proxy
     Scenario: Verblijfplaatsen opvragen in een periode, datumTotEnMet ligt voor de meest recente datumIngangGeldigheid van een verblijfplaats
-    Als verblijfplaatsen wordt gezocht met de volgende parameters
+    Als verblijfplaatshistorie wordt geraadpleegd met de volgende parameters
     | naam                | waarde               |
     | type                | RaadpleegMetPeriode  |
     | burgerservicenummer | 999994669            |
@@ -428,7 +428,7 @@ Rule: Wanneer de datum aanvang gedeeltelijk onbekend is, wordt voor de filtering
 
   @gba
     Scenario: Verblijfplaatsen opvragen in een periode, datumAanvangAdreshuishouding deels onbekend
-    Als verblijfplaatsen wordt gezocht met de volgende parameters
+    Als verblijfplaatshistorie wordt geraadpleegd met de volgende parameters
     | naam                | waarde               |
     | type                | RaadpleegMetPeriode  |
     | burgerservicenummer | 999990451            |
@@ -442,7 +442,7 @@ Rule: Wanneer de datum aanvang gedeeltelijk onbekend is, wordt voor de filtering
 
   @proxy
     Scenario: Verblijfplaatsen opvragen in een periode, datumAanvangAdreshuishouding deels onbekend
-    Als verblijfplaatsen wordt gezocht met de volgende parameters
+    Als verblijfplaatshistorie wordt geraadpleegd met de volgende parameters
     | naam                | waarde               |
     | type                | RaadpleegMetPeriode  |
     | burgerservicenummer | 999990451            |
@@ -457,7 +457,7 @@ Rule: Wanneer van de datum aanvang adreshouding alleen het jaar en de maand beke
 
   @gba
     Scenario: Verblijfplaatsen opvragen in een periode, datumAanvangAdreshuishouding alleen jaar en maand benkend
-    Als verblijfplaatsen wordt gezocht met de volgende parameters
+    Als verblijfplaatshistorie wordt geraadpleegd met de volgende parameters
     | naam                | waarde               |
     | type                | RaadpleegMetPeriode  |
     | burgerservicenummer | 999990762            |
@@ -471,7 +471,7 @@ Rule: Wanneer van de datum aanvang adreshouding alleen het jaar en de maand beke
 
   @proxy
     Scenario: Verblijfplaatsen opvragen in een periode, datumAanvangAdreshuishouding alleen jaar en maand benkend
-    Als verblijfplaatsen wordt gezocht met de volgende parameters
+    Als verblijfplaatshistorie wordt geraadpleegd met de volgende parameters
     | naam                | waarde               |
     | type                | RaadpleegMetPeriode  |
     | burgerservicenummer | 999990762            |
@@ -487,7 +487,7 @@ Rule: Wanneer de datum aanvang adreshouding geheel onbekend is, wordt voor de fi
 
   @gba
     Scenario: Verblijfplaatsen opvragen in een periode, datumAanvangAdreshuishouding onbekend
-    Als verblijfplaatsen wordt gezocht met de volgende parameters
+    Als verblijfplaatshistorie wordt geraadpleegd met de volgende parameters
     | naam                | waarde                |
     | type                | RaadpleegMetPeildatum |
     | burgerservicenummer | 999993483             |
@@ -500,7 +500,7 @@ Rule: Wanneer de datum aanvang adreshouding geheel onbekend is, wordt voor de fi
 
   @proxy
     Scenario: Verblijfplaatsen opvragen in een periode, datumAanvangAdreshuishouding onbekend
-    Als verblijfplaatsen wordt gezocht met de volgende parameters
+    Als verblijfplaatshistorie wordt geraadpleegd met de volgende parameters
     | naam                | waarde                |
     | type                | RaadpleegMetPeildatum |
     | burgerservicenummer | 999993483             |
@@ -512,7 +512,7 @@ Rule: Wanneer de datum aanvang adreshouding geheel onbekend is, wordt voor de fi
 
   @gba
     Scenario: Verblijfplaatsen opvragen in een periode, datumAanvangAdreshuishouding onbekend
-    Als verblijfplaatsen wordt gezocht met de volgende parameters
+    Als verblijfplaatshistorie wordt geraadpleegd met de volgende parameters
     | naam                | waarde               |
     | type                | RaadpleegMetPeriode  |
     | burgerservicenummer | 999993483            |
@@ -526,7 +526,7 @@ Rule: Wanneer de datum aanvang adreshouding geheel onbekend is, wordt voor de fi
 
   @proxy
     Scenario: Verblijfplaatsen opvragen in een periode, datumAanvangAdreshuishouding onbekend
-    Als verblijfplaatsen wordt gezocht met de volgende parameters
+    Als verblijfplaatshistorie wordt geraadpleegd met de volgende parameters
     | naam                | waarde                |
     | type                | RaadpleegMetPeriode   |
     | burgerservicenummer | 999993483             |
@@ -540,7 +540,7 @@ Rule: Wanneer de datum aanvang adreshouding geheel onbekend is, wordt voor de fi
 
   @gba
     Scenario: Verblijfplaatsen opvragen in een periode, datumAanvangAdreshuishouding onbekend
-    Als verblijfplaatsen wordt gezocht met de volgende parameters
+    Als verblijfplaatshistorie wordt geraadpleegd met de volgende parameters
     | naam                | waarde               |
     | type                | RaadpleegMetPeriode  |
     | burgerservicenummer | 999993483            |
@@ -554,7 +554,7 @@ Rule: Wanneer de datum aanvang adreshouding geheel onbekend is, wordt voor de fi
 
   @proxy
     Scenario: Verblijfplaatsen opvragen in een periode, datumAanvangAdreshuishouding onbekend
-    Als verblijfplaatsen wordt gezocht met de volgende parameters
+    Als verblijfplaatshistorie wordt geraadpleegd met de volgende parameters
     | naam                | waarde                |
     | type                | RaadpleegMetPeriode   |
     | burgerservicenummer | 999993483             |
@@ -570,7 +570,7 @@ Rule: Wanneer een verblijfplaats, actueel of historisch, in onderzoek is, en dit
 
   @gba
     Scenario: Verblijfplaatsen opvragen in een periode, veblijfplaats is in onderzoek
-    Als verblijfplaatsen wordt gezocht met de volgende parameters
+    Als verblijfplaatshistorie wordt geraadpleegd met de volgende parameters
     | naam                | waarde               |
     | type                | RaadpleegMetPeriode  |
     | burgerservicenummer | 999990378            |
@@ -585,7 +585,7 @@ Rule: Wanneer een verblijfplaats, actueel of historisch, in onderzoek is, en dit
 
   @proxy
     Scenario: Verblijfplaatsen opvragen in een periode, veblijfplaats is in onderzoek
-    Als verblijfplaatsen wordt gezocht met de volgende parameters
+    Als verblijfplaatshistorie wordt geraadpleegd met de volgende parameters
     | naam                | waarde               |
     | type                | RaadpleegMetPeriode  |
     | burgerservicenummer | 999990378            |
@@ -599,7 +599,7 @@ Rule: Wanneer een verblijfplaats, actueel of historisch, in onderzoek is, en dit
 
   @gba
     Scenario: Verblijfplaatsen opvragen in een periode, veblijfplaats is in onderzoek geweest
-    Als verblijfplaatsen wordt gezocht met de volgende parameters
+    Als verblijfplaatshistorie wordt geraadpleegd met de volgende parameters
     | naam                | waarde               |
     | type                | RaadpleegMetPeriode  |
     | burgerservicenummer | 999990263            |
@@ -613,7 +613,7 @@ Rule: Wanneer een verblijfplaats, actueel of historisch, in onderzoek is, en dit
 
   @proxy
     Scenario: Verblijfplaatsen opvragen in een periode, veblijfplaats is in onderzoek geweest
-    Als verblijfplaatsen wordt gezocht met de volgende parameters
+    Als verblijfplaatshistorie wordt geraadpleegd met de volgende parameters
     | naam                | waarde               |
     | type                | RaadpleegMetPeriode  |
     | burgerservicenummer | 999990263            |
