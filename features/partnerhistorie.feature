@@ -236,7 +236,7 @@ Rule: Wanneer de sluiting/aangaan geheel onbekend is, wordt voor de filtering aa
 
 Rule : Als een huwelijk/partnerschap, actueel of ontbonden, in onderzoek is, en dit onderzoek is niet afgerond (Datum einde onderzoek is leeg), wordt inOnderzoek gevuld voor betreffende huwelijk/partnerschap.
   @gba
-  Scenario: Raadpleeg op periode,  onbekende datum aangaan huwelijk/partnerschap
+  Scenario: Raadpleeg op periode,  gegevens in onderzoek
     Als de partnerhistorie wordt geraadpleegd met de volgende parameters
     | naam                | waarde                |
     | type                | RaadpleegMetPeriode   |
@@ -247,3 +247,16 @@ Rule : Als een huwelijk/partnerschap, actueel of ontbonden, in onderzoek is, en 
     Dan worden de huwelijken/partners teruggegeven in de volgorde en met waarden:
     | naam.voornamen | aangaanHuwelijkPartnerschap.datum | ontbindingHuwelijkPartnerschap.datum | datumIngangOnderzoek | aanduidingGegevensInOnderzoek |
     | Jennifer       | 20140123                          |                                      | 20160403             | 050000                        |
+
+  @proxy
+  Scenario: Raadpleeg op periode,  gegevens in onderzoek
+    Als de partnerhistorie wordt geraadpleegd met de volgende parameters
+    | naam                | waarde                |
+    | type                | RaadpleegMetPeriode   |
+    | burgerservicenummer | 999992409             |
+    | fields              | naam.voornamen, aangaanHuwelijkPartnerschap.datum.datum, ontbindingHuwelijkPartnerschap.datum.datum |
+    | DatumVan            | 2015-01-01            |
+    | DatumTot            | 2017-01-01            |
+    Dan worden de huwelijken/partners teruggegeven in de volgorde en met waarden:
+    | naam.voornamen | aangaanHuwelijkPartnerschap.datum.datum | ontbindingHuwelijkPartnerschap.datum.datum | aangaanHuwelijkPartnerschap.inOnderzoek.datumIngangOnderzoek.datum | aangaangHuwelijkPartnerschap.inOnderzoek.datum |
+    | Jennifer       | 2014-01-23                              |                                            | 2016-04-03                                                         | true                                           |
