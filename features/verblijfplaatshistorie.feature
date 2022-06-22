@@ -41,7 +41,7 @@ Functionaliteit: Tonen van historishe en actuele verblijfplaatsen
     | 999990762           | 58        | 19891000                   | -                              | 19930203                | Cypresstraat        | 14         | 6030 | -         | -                      |                       |
 
 
-Rule: Bij het zoeken is de peildatum verplicht of zijn de datumVan en datumTotEnMet verplicht
+Rule: Bij het zoeken is de peildatum verplicht of zijn de datumVan en datumTotEnMet verplicht.
 
   @fout-case
   Scenario: Verblijfplaats raadplegen zonder peildatum of periode
@@ -107,6 +107,29 @@ Rule: Bij het zoeken is de peildatum verplicht of zijn de datumVan en datumTotEn
     | peildatum     |
     | 19830526      |
     | 26 mei 2014   |
+
+Rule: Bij het zoeken is het burgerservicenummer verplicht.
+
+  @fout-case
+  Scenario: Verblijfplaats raadplegen zonder burgerservicenummer
+    Als verblijfplaatsen wordt gezocht met de volgende parameters
+    | naam                | waarde                |
+    | type                | RaadpleegMetPeildatum |
+    | burgerservicenummer | -                     |
+    | fields              | datumVan, datumTot, datumIngangGeldigheid, adresregel1, land.code     |
+    | peildatum           | 2012-02-03            |
+    Dan heeft de response een object met de volgende gegevens
+    | naam     | waarde                                                      |
+    | type     | https://datatracker.ietf.org/doc/html/rfc7231#section-6.5.1 |
+    | title    | Minimale combinatie van parameters moet worden opgegeven.   |
+    | status   | 400                                                         |
+    | detail   | De foutieve parameter(s) zijn: burgerservicenummer          |
+    | code     | paramsCombination                                           |
+    | instance | /haalcentraal/api/brp/verblijfplaatshistorie                |
+    En heeft het object de volgende 'invalidParams' gegevens
+    | code     | name                | reason                  |
+    | required | burgerservicenummer | Parameter is verplicht. |
+
 
   @gba
     Scenario: Verblijfplaats opvragen met een recente peildatum
