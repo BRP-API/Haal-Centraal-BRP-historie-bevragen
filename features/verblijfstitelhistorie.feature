@@ -35,115 +35,186 @@
   Als wel het einde van de periode (datumTotEnMet) wordt opgegeven, maar geen begin van de periode (datumVan), dan worden alle verblijfstitels tot en met de datumTotEnMet in het antwoord opgenomen.
 
   Achtergrond:
-    Gegeven de gevraagde persoon heeft de volgende verblijfstitels in de registratie
-      | categorie | Aanduiding (39.10) | Datum einde (39.20) | Ingangsdatum (39.30) | Testsituatie                                            |
-      | 10        | 42                 | 20190901            | 20160901             |                                                         |
-      | 60        | 24                 | 20120405            | 20090512             | ingangsdatum is eerder dan datum einde vorige           |
-      | 60        | 26                 | 20091129            | 20081129             |                                                         |
-      | 60        | 25                 |                     | 20050219             | datumEinde wordt ingevuld met ingangsdatum volgende     |
-      | 60        | 33                 | 20050327            | 20030327             | Overschrijft vorige verblijfstitel                      |
-      | 60        | 34                 | 20060327            | 20030327             |                                                         |
-      | 60        | 11                 | 20011205            | 20011205             | Ingangsdatum = datum einde                              |
+    Gegeven het systeem heeft een persoon met de volgende gegevens
+    | burgerservicenummer |
+    | 999991553           |
+    En de persoon heeft de volgende verblijfstitels gegevens
+    | categorie | Aanduiding (39.10) | Datum einde (39.20) | Ingangsdatum (39.30) | Testsituatie                                            |
+    | 10        | 42                 | 20190901            | 20160901             |                                                         |
+    | 60        | 24                 | 20120405            | 20090512             | ingangsdatum is eerder dan datum einde vorige           |
+    | 60        | 26                 | 20091129            | 20081129             |                                                         |
+    | 60        | 25                 |                     | 20050219             | datumEinde wordt ingevuld met ingangsdatum volgende     |
+    | 60        | 33                 | 20050327            | 20030327             | Overschrijft vorige verblijfstitel                      |
+    | 60        | 34                 | 20060327            | 20030327             |                                                         |
+    | 60        | 11                 | 20011205            | 20011205             | Ingangsdatum = datum einde                              |
 
-  Scenario: verblijfstitelhistorie zonder peildatum noch periode
-    Als de verblijfstitelhistorie wordt opgevraagd
-    Dan wordt de volgende verblijfstitelhistorie teruggegeven
-      | aanduiding | datumIngang | datumEinde |
-      | 42         | 2016-09-01  | 2019-09-01 |
-      | 24         | 2009-05-12  | 2012-04-05 |
-      | 26         | 2008-11-29  | 2009-05-12 |
-      | 25         | 2005-02-19  | 2008-11-29 |
-      | 33         | 2003-03-27  | 2005-02-19 |
+  @gba
+  Scenario: Raadpleeg de verblijfstitelhistorie met peildatum na datum einde laatste verblijfstitel
+    Als de verblijfstitelhistorie wordt geraadpleegd met de volgende parameters
+    | naam                | waarde                |
+    | type                | RaadpleegMetPeildatum |
+    | burgerservicenummer | 999991553             |
+    | fields              | aanduiding, datumEinde, datumIngang |
+    | peildatum           | 2019-09-28            |
+    Dan heeft de response geen verblijfstitelhistorie
 
-  Scenario: verblijfstitelhistorie met peildatum na datum einde laatste verblijfstitel
-    Als de verblijfstitelhistorie wordt opgevraagd met voor peildatum de waarde "2019-09-28"
-    Dan bevat het antwoord geen enkel voorkomen van verblijfstitelhistorie
+  @gba
+  Scenario: Raadpleeg de verblijfstitelhistorie met peildatum voor de ingangsdatum van de eerste verblijfstitel
+    Als de verblijfstitelhistorie wordt geraadpleegd met de volgende parameters
+    | naam                | waarde                |
+    | type                | RaadpleegMetPeildatum |
+    | burgerservicenummer | 999991553             |
+    | fields              | aanduiding, datumEinde, datumIngang |
+    | peildatum           | 2019-09-28            |
+    Dan heeft de response geen verblijfstitelhistorie
 
-  Scenario: verblijfstitelhistorie met peildatum voor de ingangsdatum van de eerste verblijfstitel
-    Als de verblijfstitelhistorie wordt opgevraagd met voor peildatum de waarde "2003-03-26"
-    Dan bevat het antwoord geen enkel voorkomen van verblijfstitelhistorie
+  @gba
+  Scenario: Raadpleeg de verblijfstitelhistorie met peildatum gelijk aan de datum einde van een verblijfstitel
+    Als de verblijfstitelhistorie wordt geraadpleegd met de volgende parameters
+    | naam                | waarde                |
+    | type                | RaadpleegMetPeildatum |
+    | burgerservicenummer | 999991553             |
+    | fields              | aanduiding, datumEinde, datumIngang |
+    | peildatum           | 2019-09-01            |
+    Dan heeft de response geen verblijfstitelhistorie
 
-  Scenario: verblijfstitelhistorie met peildatum gelijk aan de datum einde van een verblijfstitel
-    Als de verblijfstitelhistorie wordt opgevraagd met voor peildatum de waarde "2019-09-01"
-    Dan bevat het antwoord geen enkel voorkomen van verblijfstitelhistorie
+  @gba
+  Scenario: Raadpleeg de verblijfstitelhistorie met peildatum in de actuele verblijfstitel
+    Als de verblijfstitelhistorie wordt geraadpleegd met de volgende parameters
+    | naam                | waarde                |
+    | type                | RaadpleegMetPeildatum |
+    | burgerservicenummer | 999991553             |
+    | fields              | aanduiding.code, datumEinde, datumIngang |
+    | peildatum           | 2019-01-01            |
+    Dan heeft de response een verblijfstitelhistorie met de waarden
+    | aanduiding.code | datumIngang | datumEinde |
+    | 42              | 20160901    | 20190901   |
 
-  Scenario: verblijfstitelhistorie met peildatum in de actuele verblijfstitel
-    Als de verblijfstitelhistorie wordt opgevraagd met voor peildatum de waarde "2019-01-01"
-    Dan wordt de volgende verblijfstitelhistorie teruggegeven
-      | aanduiding | datumIngang | datumEinde |
-      | 42         | 2016-09-01  | 2019-09-01 |
+  @gba
+  Scenario: Raadpleeg de verblijfstitelhistorie met peildatum in een historische verblijfstitel
+    Als de verblijfstitelhistorie wordt geraadpleegd met de volgende parameters
+    | naam                | waarde                |
+    | type                | RaadpleegMetPeildatum |
+    | burgerservicenummer | 999991553             |
+    | fields              | aanduiding.code, datumEinde, datumIngang |
+    | peildatum           | 2010-01-01            |
+    Dan heeft de response een verblijfstitelhistorie met de waarden
+    | aanduiding.code  | datumIngang | datumEinde |
+    | 24               | 20090512    | 20120405   |
 
-  Scenario: verblijfstitelhistorie met peildatum in een historische verblijfstitel
-    Als de verblijfstitelhistorie wordt opgevraagd met voor peildatum de waarde "2010-01-01"
-    Dan wordt de volgende verblijfstitelhistorie teruggegeven
-      | aanduiding | datumIngang | datumEinde |
-      | 24         | 2009-05-12  | 2012-04-05 |
+  @gba
+  Scenario: Raadpleeg de verblijfstitelhistorie met periode en datumVan ligt na datum einde laatste verblijfstitel
+    Als de verblijfstitelhistorie wordt geraadpleegd met de volgende parameters
+    | naam                | waarde                |
+    | type                | RaadpleegMetPeriode   |
+    | burgerservicenummer | 999991553             |
+    | fields              | aanduiding.code, datumEinde, datumIngang |
+    | datumVan            | 2019-09-28            |
+    | datumTot            | 2022-01-01            |
+    Dan heeft de response geen verblijfstitelhistorie
 
-  Scenario: verblijfstitelhistorie met periode na datum einde laatste verblijfstitel
-    Als de verblijfstitelhistorie wordt opgevraagd met voor datumVan de waarde "2019-09-28"
-    Dan bevat het antwoord geen enkel voorkomen van verblijfstitelhistorie
+  @gba
+  Scenario: Raadpleeg de verblijfstitelhistorie met periode en datumTot ligt voor ingangsdatum eerste verblijfstitel
+    Als de verblijfstitelhistorie wordt geraadpleegd met de volgende parameters
+    | naam                | waarde                |
+    | type                | RaadpleegMetPeriode   |
+    | burgerservicenummer | 999991553             |
+    | fields              | aanduiding.code, datumEinde, datumIngang |
+    | datumVan            | 2002-01-01            |
+    | datumTot            | 2003-03-26            |
+    Dan heeft de response geen verblijfstitelhistorie
 
-  Scenario: verblijfstitelhistorie met periode voor de ingangsdatum van de eerste verblijfstitel
-    Als de verblijfstitelhistorie wordt opgevraagd met voor datumTotEnMet de waarde "2003-03-26"
-    Dan bevat het antwoord geen enkel voorkomen van verblijfstitelhistorie
+  @gba
+  Scenario: Raadpleeg de verblijfstitelhistorie met periode en datumVan is gelijk een datumEinde van een verblijfstitel
+    Als de verblijfstitelhistorie wordt geraadpleegd met de volgende parameters
+    | naam                | waarde                |
+    | type                | RaadpleegMetPeriode   |
+    | burgerservicenummer | 999991553             |
+    | fields              | aanduiding.code, datumEinde, datumIngang |
+    | datumVan            | 2019-09-01            |
+    | datumTot            | 2022-01-01            |
+    Dan heeft de response geen verblijfstitelhistorie
 
-  Scenario: verblijfstitelhistorie met periode die start op de datum einde van een verblijfstitel
-    Als de verblijfstitelhistorie wordt opgevraagd met voor datumVan de waarde "2019-09-01"
-    Dan bevat het antwoord geen enkel voorkomen van verblijfstitelhistorie
+  @gba
+  Scenario: Raadpleeg de verblijfstitelhistorie met periode binnen de actuele verblijfstitel
+    Als de verblijfstitelhistorie wordt geraadpleegd met de volgende parameters
+    | naam                | waarde                |
+    | type                | RaadpleegMetPeildatum |
+    | burgerservicenummer | 999991553             |
+    | fields              | aanduiding.code, datumEinde, datumIngang |
+    | datumVan            | 2019-09-01            |
+    | datumTot            | 2019-06-30            |
+    Dan heeft de response een verblijfstitelhistorie met de waarden
+    | aanduiding.code  | datumIngang | datumEinde |
+    | 42               | 20160901    | 20190901   |
 
-  Scenario: verblijfstitelhistorie met periode binnen de actuele verblijfstitel
-    Als de verblijfstitelhistorie wordt opgevraagd met voor datumVan de waarde "2019-01-01" en datumTotEnMet de waarde "2019-06-30"
-    Dan wordt de volgende verblijfstitelhistorie teruggegeven
-      | aanduiding | datumIngang | datumEinde |
-      | 42         | 2016-09-01  | 2019-09-01 |
+  @gba
+  Scenario: Raadpleeg de verblijfstitelhistorie met periode binnen een historische verblijfstitel
+    Als de verblijfstitelhistorie wordt geraadpleegd met de volgende parameters
+    | naam                | waarde                |
+    | type                | RaadpleegMetPeildatum |
+    | burgerservicenummer | 999991553             |
+    | fields              | aanduiding.code, datumEinde, datumIngang |
+    | datumVan            | 2010-01-01            |
+    | datumTot            | 2010-12-31            |
+    Dan heeft de response een verblijfstitelhistorie met de waarden
+    | aanduiding.code  | datumIngang | datumEinde |
+    | 24               | 20090512    | 20120405   |
 
-  Scenario: verblijfstitelhistorie met peildatum binnen een historische verblijfstitel
-    Als de verblijfstitelhistorie wordt opgevraagd met voor peildatum de waarde "2010-01-01" en datumTotEnMet de waarde "2010-12-31"
-    Dan wordt de volgende verblijfstitelhistorie teruggegeven
-      | aanduiding | datumIngang | datumEinde |
-      | 24         | 2009-05-12  | 2012-04-05 |
+  @gba
+  Scenario: Raadpleeg de verblijfstitelhistorie met periode over meerdere verblijfstitels
+    Als de verblijfstitelhistorie wordt geraadpleegd met de volgende parameters
+    | naam                | waarde                |
+    | type                | RaadpleegMetPeildatum |
+    | burgerservicenummer | 999991553             |
+    | fields              | aanduiding.code, datumEinde, datumIngang |
+    | datumVan            | 2009-01-01            |
+    | datumTot            | 2009-06-30            |
+    Dan heeft de response een verblijfstitelhistorie met de waarden
+    | aanduiding.code  | datumIngang | datumEinde |
+    | 24               | 20090512    | 20120405   |
+    | 26               | 20081129    | 20090512   |
 
-  Scenario: verblijfstitelhistorie met periode over meerdere verblijfstitels
-    Als de verblijfstitelhistorie wordt opgevraagd met voor datumVan de waarde "2009-01-01" en datumTotEnMet de waarde "2009-06-30"
-    Dan wordt de volgende verblijfstitelhistorie teruggegeven
-      | aanduiding | datumIngang | datumEinde |
-      | 24         | 2009-05-12  | 2012-04-05 |
-      | 26         | 2008-11-29  | 2009-05-12 |
+  @gba
+  Scenario: Raadpleeg de verblijfstitelhistorie met vervallen of ingetrokken verblijfstitel
+    Gegeven het systeem kent een persoon met de volgende gegevens
+    | burgerservicenummer |
+    | 999995182           |
+    En de persoon heeft de volgende verblijfstitel-gegevens
+    | categorie | Aanduiding (39.10) | Datum einde (39.20) | Ingangsdatum (39.30) | Datum geldigheid (85.10) |
+    | 10        | 42                 | 20190901            | 20160901             | 20160905                 |
+    | 60        |                    |                     |                      | 20150723                 |
+    | 60        | 26                 | 00000000            | 20091129             | 20091203                 |
+    Als de verblijfstitelhistorie wordt geraadpleegd met de volgende parameters
+    | naam                | waarde                |
+    | type                | RaadpleegMetPeildatum |
+    | burgerservicenummer | 999991553             |
+    | fields              | aanduiding.code, datumEinde, datumIngang |
+    | datumVan            | 2009-01-01            |
+    | datumTot            | 2018-01-01            |
+    Dan heeft de response een verblijfstitelhistorie met de waarden
+    | aanduiding.code  | datumIngang | datumEinde |
+    | 42               | 20160901    | 20190901   |
+    | 26               | 20091129    | 00000000   |
 
-  Scenario: verblijfstitelhistorie met alleen begin van de periode
-    Als de verblijfstitelhistorie wordt opgevraagd met voor datumVan de waarde "2009-01-01" en geen datumTotEnMet
-    Dan wordt de volgende verblijfstitelhistorie teruggegeven
-      | aanduiding | datumIngang | datumEinde |
-      | 42         | 2016-09-01  | 2019-09-01 |
-      | 24         | 2009-05-12  | 2012-04-05 |
-      | 26         | 2008-11-29  | 2009-05-12 |
-
-  Scenario: verblijfstitelhistorie met alleen einde van de periode
-    Als de verblijfstitelhistorie wordt opgevraagd met voor datumTotEnMet de waarde "2009-01-01" en geen datumVan
-    Dan wordt de volgende verblijfstitelhistorie teruggegeven
-      | aanduiding | datumIngang | datumEinde |
-      | 26         | 2008-11-29  | 2009-05-12 |
-      | 25         | 2005-02-19  | 2008-11-29 |
-      | 33         | 2003-03-27  | 2005-02-19 |
-
-  Scenario: verblijfstitelhistorie met periode én peildatum
-    Als de verblijfstitelhistorie wordt opgevraagd met voor datumVan de waarde "2009-01-01" en datumTotEnMet de waarde "2009-06-30" en voor peildatum de waarde "2009-03-19"
-    Dan wordt de volgende verblijfstitelhistorie teruggegeven
-      | aanduiding | datumIngang | datumEinde |
-      | 26         | 2008-11-29  | 2009-05-12 |
-
-  Scenario: verblijfstitelhistorie met periode én peildatum buiten de opgegeven periode
-    Als de verblijfstitelhistorie wordt opgevraagd met voor datumVan de waarde "2009-01-01" en datumTotEnMet de waarde "2009-06-30" en voor peildatum de waarde "2019-03-19"
-    Dan bevat het antwoord geen enkel voorkomen van verblijfstitelhistorie
-
-  Scenario: vervallen of ingetrokken verblijfstitel
-    Gegeven de persoon kent de volgende verblijfstitels in de registratie
-      | categorie | Aanduiding (39.10) | Datum einde (39.20) | Ingangsdatum (39.30) | Datum geldigheid (85.10) |
-      | 10        | 42                 | 20190901            | 20160901             | 20160905                 |
-      | 60        |                    |                     |                      | 20150723                 |
-      | 60        | 26                 | 00000000            | 20091129             | 20091203                 |
-    Als de verblijfstitelhistorie wordt opgevraagd
-    Dan wordt de volgende verblijfstitelhistorie teruggegeven
-      | aanduiding | datumIngang | datumEinde |
-      | 42         | 2016-09-01  | 2019-09-01 |
-      | 26         | 2009-11-29  | 2015-07-23 |
+  @proxy
+  Scenario: Raadpleeg de verblijfstitelhistorie met vervallen of ingetrokken verblijfstitel
+    Gegeven het systeem kent een persoon met de volgende gegevens
+    | burgerservicenummer |
+    | 999995182           |
+    En de persoon heeft de volgende verblijfstitel-gegevens
+    | categorie | Aanduiding (39.10) | Datum einde (39.20) | Ingangsdatum (39.30) | Datum geldigheid (85.10) |
+    | 10        | 42                 | 20190901            | 20160901             | 20160905                 |
+    | 60        |                    |                     |                      | 20150723                 |
+    | 60        | 26                 | 00000000            | 20091129             | 20091203                 |
+    Als de verblijfstitelhistorie wordt geraadpleegd met de volgende parameters
+    | naam                | waarde                |
+    | type                | RaadpleegMetPeildatum |
+    | burgerservicenummer | 999991553             |
+    | fields              | aanduiding.code, datumEinde, datumIngang |
+    | datumVan            | 2009-01-01            |
+    | datumTot            | 2018-01-01            |
+    Dan heeft de response een verblijfstitelhistorie met de waarden
+    | aanduiding.code  | datumIngang.datum | datumIngang.type |datumIngang.langFormaat | datumEinde.datum | datumIngang.type | datumIngang.langFormaat | datumEinde.onbekend |
+    | 42               | 2016-09-01        | datum            | 1 september 2016       | 2019-09-01       | Datum            | 1 september 2019        |                     |
+    | 26               | 2009-11-29        | datum            | 29 november 2009       |                  | DatumOnbekend    |                         | true                |
