@@ -1,38 +1,15 @@
 # language: nl
 
  Functionaliteit: Tonen van verblijfstitelhistorie
-  Huidige en historische verblijfstitels van ingeschreven personen kunnen worden geraadpleegd.
+  - Huidige en historische verblijfstitels van ingeschreven personen kunnen worden geraadpleegd.
+  - Filteren op peildatum of periode wordt gedaan op basis Ingangsdatum verblijfstitel (39.30) en Datum einde verblijfstitel (39.20). Datum einde verblijfstitel is de datum waarop de verblijfstitel niet meer geldig is
 
-  De gebruiker kan de verblijfstitel raadplegen op een specifieke peildatum (in het verleden).
-  De gebruiker kan de verblijfstitels raadplegen over een specifieke periode.
-  Filteren op peildatum of periode wordt gedaan op basis Ingangsdatum verblijfstitel (39.30) en Datum einde verblijfstitel (39.20). Datum einde verblijfstitel is de datum waarop de verblijfstitel niet meer geldig is
-  .
-  Op periode gefilterde gegevens tonen alle verblijfstitels die de persoon gedurende de periode heeft gehad.
-  Als de persoon al voor de periode een verblijfstitel had die binnen (een deel van) de gevraagde periode nog steeds geldig was, dan wordt de verblijfstitel opgenomen in het antwoord.
-  Als de persoon tijdens (een deel van) de periode een verblijfstitel kreeg die na de gevraagde periode nog steeds geldig was, dan wordt de verblijfstitel opgenomen in het antwoord.
-  Als de persoon tijdens de periode een verblijfstitel kreeg die voor het einde van de gevraagde periode zijn geldigheid verloor, dan wordt de verblijfstitel opgenomen in het antwoord.
+  - Op periode gefilterde gegevens tonen alle verblijfstitels die de persoon gedurende de periode heeft gehad.
 
-  Er kan op enig moment in de tijd maximaal één verblijfstitel geldig zijn.
-  Als de datum einde geldigheid van een verblijfstitel ligt na de ingangsdatum van een volgende verblijfstitel, dan wordt voor de eerste verblijfstitel datumEinde gevuld met de ingangsdatum van de volgende verblijfstitel.
-  Als de datum einde geldigheid van een verblijfstitel leeg is en er is een volgende verblijfstitel, dan wordt voor de eerste verblijfstitel datumEinde gevuld met de ingangsdatum van de volgende verblijfstitel.
-  Als er meerdere (historische) verblijfstitels zijn met dezelfde ingangsdatum, dan wordt alleen de meest de meest recente opgenomen in het antwoord. Dat is de meest recente datum opneming, of eerste/bovenste in GBA-V antwoord.
-  Als er een verblijfstitel geldig is over de hele geldigheid van een eerder opgevoerde verblijfstitel, dan wordt alleen de meest de meest recente opgenomen in het antwoord. Dat is de meest recente datum opneming, of eerste/bovenste in GBA-V antwoord.
+  - Historische voorkomens die onjuist zijn worden niet opgenomen in de response.
 
-  Als voor een verblijfstitel groep 39 niet is gevuld, maar geldigheid (85.10) of opneming (86.10) wel, dan wordt deze niet opgenomen in het antwoord. Als de einddatum (39.20) van de voorgaande verblijfstitel leeg is, 00000000 of na de geldigheidsdatum van genoemde verblijfstitel ligt, dan wordt voor de voorgaande verblijfstitel als datumEinde de waarde in 85.10 van de lege verblijfstitel genomen.
-
-  Als voor een verblijfstitel de aanduiding gelijk is aan 98 "geen verblijfstitel (meer)", dan wordt deze verblijfstitel niet opgenomen in het antwoord. Als de einddatum (39.20) van de voorgaande verblijfstitel leeg is, 00000000 of na de geldigheidsdatum van de verblijfstitel met aanduiding 98 ligt, dan wordt voor de voorgaande verblijfstitel als datumEinde de waarde in 39.30 (ingangsdatum) van de verblijfstitel met aanduiding 98 genomen.
-
-  Als voor een verblijfstitel ingangsdatum gelijk is aan datum einde, dan wordt deze verblijfstitel niet opgenomen in het antwoord.
-
-  Historische voorkomens die onjuist zijn worden niet opgenomen in het antwoord.
-
-  De verblijfstitels worden in het antwoord aflopend gesorteerd op ingangsdatum, zodat de meest actuele bovenaan staat.
-  Als er een actuele verblijfstitel is (categorie 10) staat deze als eerste verblijfstitel in het antwoord.
-
-  Als een verblijfstitel, actueel of historisch, in onderzoek is, en dit onderzoek is niet afgerond (Datum einde onderzoek is leeg), wordt inOnderzoek gevuld voor betreffende verblijfstitel.
-
-  Als wel het begin van de periode (datumVan) wordt opgegeven, maar geen einde van de periode (datumTotEnMet), dan worden alle verblijfstitels vanaf de datumVan in het antwoord opgenomen.
-  Als wel het einde van de periode (datumTotEnMet) wordt opgegeven, maar geen begin van de periode (datumVan), dan worden alle verblijfstitels tot en met de datumTotEnMet in het antwoord opgenomen.
+  De verblijfstitels worden in de response aflopend gesorteerd op ingangsdatum, zodat de meest actuele bovenaan staat.
+  Als er een actuele verblijfstitel is (categorie 10) staat deze als eerste verblijfstitel in de response.
 
   Achtergrond:
     Gegeven het systeem heeft een persoon met de volgende gegevens
@@ -47,6 +24,8 @@
     | 60        | 33                 | 20050327            | 20030327             | Overschrijft vorige verblijfstitel                      |
     | 60        | 34                 | 20060327            | 20030327             |                                                         |
     | 60        | 11                 | 20011205            | 20011205             | Ingangsdatum = datum einde                              |
+
+Rule: Als de peildatum waarmee geraadpleegd wordt in de geldigheidsperiode van een verblijfstitel van een persoon valt wordt die verblijfstitel opgenomen in de response.
 
   @gba
   Scenario: Raadpleeg de verblijfstitelhistorie met peildatum na datum einde laatste verblijfstitel
@@ -79,6 +58,18 @@
     Dan heeft de response geen verblijfstitelhistorie
 
   @gba
+  Scenario: Raadpleeg de verblijfstitelhistorie met peildatum gelijk aan de datum ingang van een verblijfstitel
+    Als de verblijfstitelhistorie wordt geraadpleegd met de volgende parameters
+    | naam                | waarde                |
+    | type                | RaadpleegMetPeildatum |
+    | burgerservicenummer | 999991553             |
+    | fields              | aanduiding.code, datumEinde, datumIngang |
+    | peildatum           | 20160901              |
+    Dan heeft de response een verblijfstitelhistorie met de waarden
+    | aanduiding.code | datumIngang | datumEinde |
+    | 42              | 20160901    | 20190901   |
+
+  @gba
   Scenario: Raadpleeg de verblijfstitelhistorie met peildatum in de actuele verblijfstitel
     Als de verblijfstitelhistorie wordt geraadpleegd met de volgende parameters
     | naam                | waarde                |
@@ -101,6 +92,8 @@
     Dan heeft de response een verblijfstitelhistorie met de waarden
     | aanduiding.code  | datumIngang | datumEinde |
     | 24               | 20090512    | 20120405   |
+
+Rule: Als de periode waarmee geraadpleegd wordt (deels) overlapt met de geldigheidsperiode van een verblijfstitel van een persoon valt wordt die verblijfstitel opgenomen in de response.
 
   @gba
   Scenario: Raadpleeg de verblijfstitelhistorie met periode en datumVan ligt na datum einde laatste verblijfstitel
@@ -136,7 +129,7 @@
     Dan heeft de response geen verblijfstitelhistorie
 
   @gba
-  Scenario: Raadpleeg de verblijfstitelhistorie met periode binnen de actuele verblijfstitel
+  Scenario: Raadpleeg de verblijfstitelhistorie met periode binnen de geldigheidsperiode van actuele verblijfstitel
     Als de verblijfstitelhistorie wordt geraadpleegd met de volgende parameters
     | naam                | waarde                |
     | type                | RaadpleegMetPeildatum |
@@ -149,7 +142,7 @@
     | 42               | 20160901    | 20190901   |
 
   @gba
-  Scenario: Raadpleeg de verblijfstitelhistorie met periode binnen een historische verblijfstitel
+  Scenario: Raadpleeg de verblijfstitelhistorie met periode binnen de geldigheidsperiode van een historische verblijfstitel
     Als de verblijfstitelhistorie wordt geraadpleegd met de volgende parameters
     | naam                | waarde                |
     | type                | RaadpleegMetPeildatum |
@@ -162,7 +155,7 @@
     | 24               | 20090512    | 20120405   |
 
   @gba
-  Scenario: Raadpleeg de verblijfstitelhistorie met periode over meerdere verblijfstitels
+  Scenario: Raadpleeg de verblijfstitelhistorie met periode over de geldigheidsperiodes van meerdere verblijfstitels
     Als de verblijfstitelhistorie wordt geraadpleegd met de volgende parameters
     | naam                | waarde                |
     | type                | RaadpleegMetPeildatum |
@@ -174,6 +167,19 @@
     | aanduiding.code  | datumIngang | datumEinde |
     | 24               | 20090512    | 20120405   |
     | 26               | 20081129    | 20090512   |
+
+  @gba
+  Scenario: Als voor een verblijfstitel ingangsdatum gelijk is aan datum einde, dan wordt deze verblijfstitel niet opgenomen in de response.
+    Als de verblijfstitelhistorie wordt geraadpleegd met de volgende parameters
+    | naam                | waarde                |
+    | type                | RaadpleegMetPeildatum |
+    | burgerservicenummer | 999991553             |
+    | fields              | aanduiding.code, datumEinde, datumIngang |
+    | datumVan            | 2001-01-01            |
+    | datumTot            | 2002-01-02            |
+    Dan heeft de response geen verblijfstitelhistorie
+
+Rule: Een vervallen of een ingetrokken verblijfstitel wordt niet opgenomen in de response
 
   @gba
   Scenario: Raadpleeg de verblijfstitelhistorie met vervallen of ingetrokken verblijfstitel
@@ -218,3 +224,17 @@
     | aanduiding.code  | datumIngang.datum | datumIngang.type |datumIngang.langFormaat | datumEinde.datum | datumIngang.type | datumIngang.langFormaat | datumEinde.onbekend |
     | 42               | 2016-09-01        | datum            | 1 september 2016       | 2019-09-01       | Datum            | 1 september 2019        |                     |
     | 26               | 2009-11-29        | datum            | 29 november 2009       |                  | DatumOnbekend    |                         | true                |
+
+Rule: Als een verblijfstitel, actueel of historisch, in onderzoek is, en dit onderzoek is niet afgerond (Datum einde onderzoek is leeg), wordt inOnderzoek gevuld voor betreffende verblijfstitel.
+
+Rule:   Er kan op enig moment in de tijd maximaal één verblijfstitel geldig zijn.
+  Scenario: Als de datum einde geldigheid van een verblijfstitel ligt na de ingangsdatum van een volgende verblijfstitel, dan wordt voor de eerste verblijfstitel datumEinde gevuld met de ingangsdatum van de volgende verblijfstitel.
+  Scenario: Als de datum einde geldigheid van een verblijfstitel leeg is en er is een volgende verblijfstitel, dan wordt voor de eerste verblijfstitel datumEinde gevuld met de ingangsdatum van de volgende verblijfstitel.
+  Scenario: Als er meerdere (historische) verblijfstitels zijn met dezelfde ingangsdatum, dan wordt alleen de meest de meest recente opgenomen in de response. Dat is de meest recente datum opneming, of eerste/bovenste in GBA-V antwoord.
+  Scenario: Als er een verblijfstitel geldig is over de hele geldigheid van een eerder opgevoerde verblijfstitel, dan wordt alleen de meest de meest recente opgenomen in de response. Dat is de meest recente datum opneming, of eerste/bovenste in GBA-V antwoord.
+
+Rule: Als voor een verblijfstitel groep 39 niet is gevuld, maar geldigheid (85.10) of opneming (86.10) wel, dan wordt deze niet opgenomen in de response.
+      Als de einddatum (39.20) van de voorgaande verblijfstitel leeg is, 00000000 of na de geldigheidsdatum van genoemde verblijfstitel ligt, dan wordt voor de voorgaande verblijfstitel als datumEinde de waarde in 85.10 van de lege verblijfstitel genomen.
+
+Rule: Als voor een verblijfstitel de aanduiding gelijk is aan 98 "geen verblijfstitel (meer)", dan wordt deze verblijfstitel niet opgenomen in de response.
+      Als de einddatum (39.20) van de voorgaande verblijfstitel leeg is, 00000000 of na de geldigheidsdatum van de verblijfstitel met aanduiding 98 ligt, dan wordt voor de voorgaande verblijfstitel als datumEinde de waarde in 39.30 (ingangsdatum) van de verblijfstitel met aanduiding 98 genomen.
