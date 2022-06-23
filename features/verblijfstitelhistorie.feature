@@ -179,8 +179,7 @@ Rule: Als de periode waarmee geraadpleegd wordt (deels) overlapt met de geldighe
     | datumTot            | 2002-01-02            |
     Dan heeft de response geen verblijfstitelhistorie
 
-Rule: Een vervallen of een ingetrokken verblijfstitel wordt niet opgenomen in de response
-
+Rule: Als de datum einde geldigheid van een verblijfstitel leeg of onbekend is en er is een volgende verblijfstitel, dan wordt voor de eerste verblijfstitel datumEinde gevuld met de ingangsdatum van de volgende verblijfstitel.
   @gba
   Scenario: Raadpleeg de verblijfstitelhistorie met vervallen of ingetrokken verblijfstitel
     Gegeven het systeem kent een persoon met de volgende gegevens
@@ -189,7 +188,6 @@ Rule: Een vervallen of een ingetrokken verblijfstitel wordt niet opgenomen in de
     En de persoon heeft de volgende verblijfstitel-gegevens
     | categorie | Aanduiding (39.10) | Datum einde (39.20) | Ingangsdatum (39.30) | Datum geldigheid (85.10) |
     | 10        | 42                 | 20190901            | 20160901             | 20160905                 |
-    | 60        |                    |                     |                      | 20150723                 |
     | 60        | 26                 | 00000000            | 20091129             | 20091203                 |
     Als de verblijfstitelhistorie wordt geraadpleegd met de volgende parameters
     | naam                | waarde                |
@@ -211,7 +209,6 @@ Rule: Een vervallen of een ingetrokken verblijfstitel wordt niet opgenomen in de
     En de persoon heeft de volgende verblijfstitel-gegevens
     | categorie | Aanduiding (39.10) | Datum einde (39.20) | Ingangsdatum (39.30) | Datum geldigheid (85.10) |
     | 10        | 42                 | 20190901            | 20160901             | 20160905                 |
-    | 60        |                    |                     |                      | 20150723                 |
     | 60        | 26                 | 00000000            | 20091129             | 20091203                 |
     Als de verblijfstitelhistorie wordt geraadpleegd met de volgende parameters
     | naam                | waarde                |
@@ -221,15 +218,82 @@ Rule: Een vervallen of een ingetrokken verblijfstitel wordt niet opgenomen in de
     | datumVan            | 2009-01-01            |
     | datumTot            | 2018-01-01            |
     Dan heeft de response een verblijfstitelhistorie met de waarden
-    | aanduiding.code  | datumIngang.datum | datumIngang.type |datumIngang.langFormaat | datumEinde.datum | datumIngang.type | datumIngang.langFormaat | datumEinde.onbekend |
-    | 42               | 2016-09-01        | datum            | 1 september 2016       | 2019-09-01       | Datum            | 1 september 2019        |                     |
-    | 26               | 2009-11-29        | datum            | 29 november 2009       |                  | DatumOnbekend    |                         | true                |
+    | aanduiding.code  | datumIngang.datum | datumIngang.type |datumIngang.langFormaat | datumEinde.datum | datumEinde.type | datumEinde.langFormaat |
+    | 42               | 2016-09-01        | datum            | 1 september 2016       | 2019-09-01       | Datum           | 1 september 2019       |
+    | 26               | 2009-11-29        | datum            | 29 november 2009       | 2016-09-01       | Datum           | 1 september 2016       |
+      
+
+Rule: Een vervallen of een ingetrokken verblijfstitel wordt niet opgenomen in de response
+  @gba
+  Scenario: Raadpleeg de verblijfstitelhistorie met vervallen of ingetrokken verblijfstitel
+    Gegeven het systeem kent een persoon met de volgende gegevens
+    | burgerservicenummer |
+    | 999995182           |
+    En de persoon heeft de volgende verblijfstitel-gegevens
+    | categorie | Aanduiding (39.10) | Datum einde (39.20) | Ingangsdatum (39.30) | Datum geldigheid (85.10) |
+    | 10        | 42                 | 20190901            | 20160901             | 20160905                 |
+    | 60        |                    |                     |                      | 20150723                 |
+    | 60        | 26                 | 20120202            | 20091129             | 20091203                 |
+    Als de verblijfstitelhistorie wordt geraadpleegd met de volgende parameters
+    | naam                | waarde                |
+    | type                | RaadpleegMetPeildatum |
+    | burgerservicenummer | 999991553             |
+    | fields              | aanduiding.code, datumEinde, datumIngang |
+    | datumVan            | 2009-01-01            |
+    | datumTot            | 2018-01-01            |
+    Dan heeft de response een verblijfstitelhistorie met de waarden
+    | aanduiding.code  | datumIngang | datumEinde |
+    | 42               | 20160901    | 20190901   |
+    | 26               | 20091129    | 20120202   |
+
+  @proxy
+  Scenario: Raadpleeg de verblijfstitelhistorie met vervallen of ingetrokken verblijfstitel
+    Gegeven het systeem kent een persoon met de volgende gegevens
+    | burgerservicenummer |
+    | 999995182           |
+    En de persoon heeft de volgende verblijfstitel-gegevens
+    | categorie | Aanduiding (39.10) | Datum einde (39.20) | Ingangsdatum (39.30) | Datum geldigheid (85.10) |
+    | 10        | 42                 | 20190901            | 20160901             | 20160905                 |
+    | 60        |                    |                     |                      | 20150723                 |
+    | 60        | 26                 | 20120202            | 20091129             | 20091203                 |
+    Als de verblijfstitelhistorie wordt geraadpleegd met de volgende parameters
+    | naam                | waarde                |
+    | type                | RaadpleegMetPeildatum |
+    | burgerservicenummer | 999991553             |
+    | fields              | aanduiding.code, datumEinde, datumIngang |
+    | datumVan            | 2009-01-01            |
+    | datumTot            | 2018-01-01            |
+    Dan heeft de response een verblijfstitelhistorie met de waarden
+    | aanduiding.code  | datumIngang.datum | datumIngang.type |datumIngang.langFormaat | datumEinde.datum | datumIngang.type | datumIngang.langFormaat |
+    | 42               | 2016-09-01        | datum            | 1 september 2016       | 2019-09-01       | Datum            | 1 september 2019        |
+    | 26               | 2009-11-29        | datum            | 29 november 2009       | 2012-02-02       | Datum            | 2 februari 2012         |
 
 Rule: Als een verblijfstitel, actueel of historisch, in onderzoek is, en dit onderzoek is niet afgerond (Datum einde onderzoek is leeg), wordt inOnderzoek gevuld voor betreffende verblijfstitel.
 
+  @gba
+  Scenario: Raadpleeg de verblijfstitelhistorie met een historische verblijstitel in onderzoek
+    Gegeven het systeem kent een persoon met de volgende gegevens
+    | burgerservicenummer |
+    | 999992409           |
+    En de persoon heeft de volgende verblijfstitel-gegevens
+    | categorie | Aanduiding (39.10) | Datum einde (39.20) | Ingangsdatum (39.30) | Datum geldigheid (85.10) | Datum ingang onderzoek |
+    | 10        | 42                 | 20190901            | 20160901             | 20160905                 |
+    | 60        | 26                 | 00000000            | 20091129             | 20091203                 |
+    Als de verblijfstitelhistorie wordt geraadpleegd met de volgende parameters
+    | naam                | waarde                |
+    | type                | RaadpleegMetPeildatum |
+    | burgerservicenummer | 999991553             |
+    | fields              | aanduiding.code, datumEinde, datumIngang |
+    | datumVan            | 2009-01-01            |
+    | datumTot            | 2018-01-01            |
+    Dan heeft de response een verblijfstitelhistorie met de waarden
+    | aanduiding.code  | datumIngang | datumEinde |
+    | 42               | 20160901    | 20190901   |
+    | 26               | 20091129    | 00000000   |
+
 Rule:   Er kan op enig moment in de tijd maximaal één verblijfstitel geldig zijn.
   Scenario: Als de datum einde geldigheid van een verblijfstitel ligt na de ingangsdatum van een volgende verblijfstitel, dan wordt voor de eerste verblijfstitel datumEinde gevuld met de ingangsdatum van de volgende verblijfstitel.
-  Scenario: Als de datum einde geldigheid van een verblijfstitel leeg is en er is een volgende verblijfstitel, dan wordt voor de eerste verblijfstitel datumEinde gevuld met de ingangsdatum van de volgende verblijfstitel.
+
   Scenario: Als er meerdere (historische) verblijfstitels zijn met dezelfde ingangsdatum, dan wordt alleen de meest de meest recente opgenomen in de response. Dat is de meest recente datum opneming, of eerste/bovenste in GBA-V antwoord.
   Scenario: Als er een verblijfstitel geldig is over de hele geldigheid van een eerder opgevoerde verblijfstitel, dan wordt alleen de meest de meest recente opgenomen in de response. Dat is de meest recente datum opneming, of eerste/bovenste in GBA-V antwoord.
 
