@@ -22,23 +22,23 @@ Functionaliteit: Tonen van historishe en actuele verblijfplaatsen
     | 999990263           |
     En het systeem heeft personen met de volgende 'verblijfplaats' gegevens
     | burgerservicenummer | Categorie | Datum aanvang adreshouding | Datum aanvang adres buitenland | Datum ingang geldigheid | Straat              | Huisnummer | Land | Onderzoek | Datum ingang onderzoek | Datum einde onderzoek |
-    | 999994669           | 8         | 19940508                   | -                              | 20110205                | Beethovenlaan       | 23         | 6030 | -         | -                      | -                     |
-    | 999994669           | 58        | 19940508                   | -                              | 19940508                | Beethovenlaan       | 5          | 6030 | -         | -                      | -                     |
-    | 999994669           | 58        | 19930910                   | -                              | 19930910                | Kerkstraat          | 83         | 6030 | -         | -                      | -                     |
-    | 999994669           | 58        | -                          | 19930215                       | 19930215                | -                   | -          | 5010 | -         | -                      | -                     |
-    | 999994669           | 58        | 19611230                   | -                              | 19611230                | Javaplein           | 11         | 6030 | -         | -                      | -                     |
-    | 999992338           | 58        | -                          | 19960000                       | 19960000                | -                   | -          | 5010 | -         | -                      | -                     |
-    | 999992338           | 8         | 20010508                   | -                              | 20010508                | Leyweg              | 61         | 6030 | -         | -                      | -                     |
-    | 999993483           | 8         | 20120305                   | -                              | 20120305                | Zonegge             | 27         | 6030 | -         | -                      | -                     |
-    | 999993483           | 58        | 00000000                   | -                              | 00000000                | Leyweg              | 61         | 6030 | -         | -                      | -                     |
-    | 999990378           | 8         | 20150601                   | -                              | -                       | Rietzangerstraat    | 20         | 6030 | -         | -                      | -                     |
-    | 999990378           | 58        | 19881118                   | -                              | -                       | Voorhofdreef        | 30         | 6030 | 580000    | 19881120               | -                     |
-    | 999990263           | 8         | 20150601                   | -                              | -                       | Rapheëlstraat       | 1          | 6030 | -         | -                      | 20120305              |
-    | 999990263           | 58        | 19890501                   | -                              | -                       | Oudegracht          | 380        | 6030 | 580000    | -                      | 19920102              |
-    | 999990451           | 8         | 20130301                   | -                              | 20130302                | Chilidreef          | 14         | 6030 | -         | -                      |                       |
-    | 999990451           | 58        | 19890000                   | -                              | 20120302                | Dennestraat         | 35         | 6030 | -         | -                      |                       |
-    | 999990762           | 8         | 20140203                   | -                              | 20140203                | Jan Provostlaan     | 172        | 6030 | -         | -                      |                       |
-    | 999990762           | 58        | 19891000                   | -                              | 19930203                | Cypresstraat        | 14         | 6030 | -         | -                      |                       |
+    | 999994669           | 8         | 19940508                   |                                | 20110205                | Beethovenlaan       | 23         | 6030 |           |                        |                       |
+    | 999994669           | 58        | 19940508                   |                                | 19940508                | Beethovenlaan       | 5          | 6030 |           |                        |                       |
+    | 999994669           | 58        | 19930910                   |                                | 19930910                | Kerkstraat          | 83         | 6030 |           |                        |                       |
+    | 999994669           | 58        |                            | 19930215                       | 19930215                |                     |            | 5010 |           |                        |                       |
+    | 999994669           | 58        | 19611230                   |                                | 19611230                | Javaplein           | 11         | 6030 |           |                        |                       |
+    | 999992338           | 58        |                            | 19960000                       | 19960000                |                     |            | 5010 |           |                        |                       |
+    | 999992338           | 8         | 20010508                   |                                | 20010508                | Leyweg              | 61         | 6030 |           |                        |                       |
+    | 999993483           | 8         | 20120305                   |                                | 20120305                | Zonegge             | 27         | 6030 |           |                        |                       |
+    | 999993483           | 58        | 00000000                   |                                | 00000000                | Leyweg              | 61         | 6030 |           |                        |                       |
+    | 999990378           | 8         | 20150601                   |                                |                         | Rietzangerstraat    | 20         | 6030 |           |                        |                       |
+    | 999990378           | 58        | 19881118                   |                                |                         | Voorhofdreef        | 30         | 6030 | 580000    | 19881120               |                       |
+    | 999990263           | 8         | 20150601                   |                                |                         | Rapheëlstraat       | 1          | 6030 |           |                        | 20120305              |
+    | 999990263           | 58        | 19890501                   |                                |                         | Oudegracht          | 380        | 6030 | 580000    |                        | 19920102              |
+    | 999990451           | 8         | 20130301                   |                                | 20130302                | Chilidreef          | 14         | 6030 |           |                        |                       |
+    | 999990451           | 58        | 19890000                   |                                | 20120302                | Dennestraat         | 35         | 6030 |           |                        |                       |
+    | 999990762           | 8         | 20140203                   |                                | 20140203                | Jan Provostlaan     | 172        | 6030 |           |                        |                       |
+    | 999990762           | 58        | 19891000                   |                                | 19930203                | Cypresstraat        | 14         | 6030 |           |                        |                       |
 
 
 Rule: Bij het zoeken is de peildatum verplicht of zijn de datumVan en datumTotEnMet verplicht.
@@ -140,8 +140,8 @@ Rule: Bij het zoeken is het burgerservicenummer verplicht.
       | fields              | datumVan, datumTot, datumIngangGeldigheid, adresregel1, land.code |
       | peildatum           | 2022-03-03            |
       Dan heeft de response een verblijfplaats met de volgende gegevens
-      | datumAanvangAdreshouding   | datumAanvangAdresBuitenland    | datumIngangGeldigheid   | Straat        | Huisnummer   | Land.code   |
-      | 19940508                   | -                              | 20110205                | Beethovenlaan | 23           | 6030        |
+      | datumAanvangAdreshouding   | datumIngangGeldigheid   | Straat        | Huisnummer   | Land.code   |
+      | 19940508                   | 20110205                | Beethovenlaan | 23           | 6030        |
 
   @proxy
     Scenario: Verblijfplaats opvragen met een recente peildatum
@@ -152,8 +152,8 @@ Rule: Bij het zoeken is het burgerservicenummer verplicht.
       | fields              | datumVan, datumTot, datumIngangGeldigheid, adresregel1, land.code |
       | peildatum           | 2022-03-03            |
       Dan heeft de response een verblijfplaats met de volgende gegevens
-      | datumVan.datum | datumVan.type | datumVan.onbekend | datumTot.datum | datumTot.type | datumIngangGeldigheid.datum | datumIngangGeldigheid.type | datumIngangGeldigheid.onbekend | Adresregel1      | Land.code |
-      | 1994-05-08     | Datum         | -                 | -              | -             | 2011-02-05                  | Datum                      | -                              | Beethovenlaan 23 | 6030      |
+      | datumVan.datum | datumVan.type |  datumIngangGeldigheid.datum | datumIngangGeldigheid.type | Adresregel1      | Land.code |
+      | 1994-05-08     | Datum         |  2011-02-05                  | Datum                      | Beethovenlaan 23 | 6030      |
 
   @gba
     Scenario: Verblijfplaats opvragen met een recente peildatum, burger heeft een verblijfplaats met DatumAanvangHuishouding = 00000000
@@ -164,8 +164,8 @@ Rule: Bij het zoeken is het burgerservicenummer verplicht.
       | fields              | datumVan, datumTot, datumIngangGeldigheid, adresregel1, land.code |
       | peildatum           | 2012-04-05            |
       Dan heeft de response verblijfplaatsen met de volgende gegevens
-      | datumAanvangAdreshouding   | datumAanvangAdresBuitenland    | datumIngangGeldigheid   | Straat        | Huisnummer   | Land.code   |
-      | 20120305                   | -                              | 20120305                | Zonegge       | 27           | 6030        |
+      | datumAanvangAdreshouding | datumIngangGeldigheid   | Straat        | Huisnummer   | Land.code   |
+      | 20120305                 | 20120305                | Zonegge       | 27           | 6030        |
 
   @proxy
     Scenario: Verblijfplaats opvragen met een recente peildatum, burger heeft een verblijfplaats met DatumAanvangHuishouding = 00000000
@@ -176,8 +176,8 @@ Rule: Bij het zoeken is het burgerservicenummer verplicht.
       | fields              | datumVan, datumTot, datumIngangGeldigheid, adresregel1, land.code |
       | peildatum           | 2012-04-05            |
       Dan heeft de response een verblijfplaats met de volgende gegevens
-      | datumVan.datum | datumVan.type | datumVan.onbekend | datumTot.datum | datumTot.type | datumIngangGeldigheid.datum | datumIngangGeldigheid.type | datumIngangGeldigheid.onbekend | Adresregel1      | Land.code |
-      | 2012-03-05     | Datum         | -                 | -              | -             | 2012-03-05                  | Datum                      | -                              | Zonegge27        | 6030      |
+      | datumVan.datum | datumVan.type | datumIngangGeldigheid.datum | datumIngangGeldigheid.type | Adresregel1      | Land.code |
+      | 2012-03-05     | Datum         | 2012-03-05                  | Datum                      | Zonegge27        | 6030      |
 
   @gba
     Scenario: Verblijfplaats opvragen met een recente peildatum, burger heeft een verblijfplaats met DatumAanvangHuishouding = 00000000
@@ -188,9 +188,9 @@ Rule: Bij het zoeken is het burgerservicenummer verplicht.
       | fields              | datumVan, datumTot, datumIngangGeldigheid, adresregel1, land.code |
       | peildatum           | 1853-07-30            |
       Dan heeft de response verblijfplaatsen met de volgende gegevens
-      | datumAanvangAdreshouding   | datumAanvangAdresBuitenland    | datumIngangGeldigheid   | Straat        | Huisnummer   | Land.code   |
-      | 20120305                   | -                              | 20120305                | Zonegge       | 27           | 6030        |
-      | 00000000                   | -                              | 00000000                | Leyweg        | 61           | 6030        |
+      | datumAanvangAdreshouding   | datumIngangGeldigheid   | Straat        | Huisnummer   | Land.code   |
+      | 20120305                   | 20120305                | Zonegge       | 27           | 6030        |
+      | 00000000                   | 00000000                | Leyweg        | 61           | 6030        |
 
   @proxy
     Scenario: Verblijfplaats opvragen met een recente peildatum, burger heeft een verblijfplaats met DatumAanvangHuishouding = 00000000
@@ -202,8 +202,8 @@ Rule: Bij het zoeken is het burgerservicenummer verplicht.
       | peildatum           | 1853-07-30            |
       Dan heeft de response een verblijfplaats met de volgende gegevens
       | datumVan.datum | datumVan.type | datumVan.onbekend | datumTot.datum | datumTot.type | datumIngangGeldigheid.datum | datumIngangGeldigheid.type | datumIngangGeldigheid.onbekend | Adresregel1      | Land.code |
-      | 2012-03-05     | Datum         | -                 | -              | -             | 2012-03-05                  | Datum                      | -                              | Zonegge 27       | 6030      |
-      | -              | DatumOnbekend | true              | 2012-03-05     | Datum         | -                           | DatumOnbekend              | -                              | Leyweg 61        | 6030      |
+      | 2012-03-05     | Datum         |                   |                |               | 2012-03-05                  | Datum                      |                                | Zonegge 27       | 6030      |
+      |                | DatumOnbekend | true              | 2012-03-05     | Datum         |                             | DatumOnbekend              |                                | Leyweg 61        | 6030      |
 
     Scenario: Verblijfplaats opvragen met een peildatum ver in het verleden
       Als verblijfplaatshistorie wordt geraadpleegd met de volgende parameters
@@ -224,8 +224,8 @@ Rule: Bij het zoeken is het burgerservicenummer verplicht.
         | peildatum           | 1993-07-01            |
         Dan heeft de response verblijfplaatsen met de volgende gegevens
         | datumAanvangAdreshouding   | datumAanvangAdresBuitenland    | datumIngangGeldigheid   | Straat        | Huisnummer   | Land.code   |
-        | 19930910                   | -                              | 19930910                | Kerkstraat    | 83           | 6030        |
-        | -                          | 19930215                       | 19930215                | -             | -            | 5010        |
+        | 19930910                   |                                | 19930910                | Kerkstraat    | 83           | 6030        |
+        |                            | 19930215                       | 19930215                |               |              | 5010        |
 
     @gba
       Scenario: Verblijfplaats opvragen met een recente peildatum, adres gecorrigeerd
@@ -236,10 +236,10 @@ Rule: Bij het zoeken is het burgerservicenummer verplicht.
         | fields              | datumVan, datumTot, datumIngangGeldigheid, adresregel1, land.code |
         | peildatum           | 1994-05-07            |
         Dan heeft de response verblijfplaatsen met de volgende gegevens
-        | datumAanvangAdreshouding   | datumAanvangAdresBuitenland    | datumIngangGeldigheid   | Straat        | Huisnummer   | Land.code   |
-        | 19940508                   | -                              | 20110205                | Beethovenlaan | 23           | 6030        |
-        | 19940508                   | -                              | 19940508                | Beethovenlaan | 5            | 6030        |      --> Dit is ng even een vraag of die dan geleverd moet worden.
-        | 19930910                   | -                              | 19930910                | Kerkstraat    | 83           | 6030        |
+        | datumAanvangAdreshouding | datumIngangGeldigheid   | Straat        | Huisnummer   | Land.code   |
+        | 19940508                 | 20110205                | Beethovenlaan | 23           | 6030        |
+        | 19940508                 | 19940508                | Beethovenlaan | 5            | 6030        |      --> Dit is ng even een vraag of die dan geleverd moet worden.
+        | 19930910                 | 19930910                | Kerkstraat    | 83           | 6030        |
 
 Rule : Bij een historische verblijfplaats wordt een datumTot opgenomen, die gelijk is aan de datum aanvang adreshouding van de daarop volgende (actuele of historische) verblijfplaats.
 
@@ -252,8 +252,8 @@ Rule : Bij een historische verblijfplaats wordt een datumTot opgenomen, die geli
         | fields              | datumVan, datumTot, datumIngangGeldigheid, adresregel1, land.code |
         | peildatum           | 1994-05-07            |
         Dan heeft de response verblijfplaatsen met de volgende gegevens
-        | datumVan.datum | datumVan.type | datumVan.onbekend | datumTot.datum | datumTot.type | datumIngangGeldigheid.datum | datumIngangGeldigheid.type | datumIngangGeldigheid.onbekend | Adresregel1      | Land.code |
-        | 1993-09-10     | Datum         |                   | 1994-05-08     | Datum         | 1993-09-10                  | Datum                      | -                              | Kerkstraat 83    | 6030      |
+        | datumVan.datum | datumVan.type | datumTot.datum | datumTot.type | datumIngangGeldigheid.datum | datumIngangGeldigheid.type | Adresregel1      | Land.code |
+        | 1993-09-10     | Datum         | 1994-05-08     | Datum         | 1993-09-10                  | Datum                      | Kerkstraat 83    | 6030      |
 
     @proxy
       Scenario: Verblijfplaats opvragen met een recente peildatum, burger heeft een verblijfplaats met DatumAanvangHuishouding = 00000000
@@ -265,8 +265,8 @@ Rule : Bij een historische verblijfplaats wordt een datumTot opgenomen, die geli
         | peildatum           | 1853-07-30            |
         Dan heeft de response een verblijfplaats met de volgende gegevens
         | datumVan.datum | datumVan.type | datumVan.onbekend | datumTot.datum | datumTot.type | datumIngangGeldigheid.datum | datumIngangGeldigheid.type | datumIngangGeldigheid.onbekend | Adresregel1      | Land.code |
-        | 2012-03-05     | Datum         | -                 | -              | -             | 2012-03-05                  | Datum                      | -                              | Zonegge 27       | 6030      |
-        | -              | DatumOnbekend | true              | 2012-03-05     | Datum         | -                           | DatumOnbekend              | -                              | Leyweg 61        | 6030      |
+        | 2012-03-05     | Datum         |                   |                |               | 2012-03-05                  | Datum                      |                                | Zonegge 27       | 6030      |
+        |                | DatumOnbekend | true              | 2012-03-05     | Datum         |                             | DatumOnbekend              |                                | Leyweg 61        | 6030      |
 
 
 Rule: Wanneer een verblijfplaats een buitenlands adres betreft, wordt datumAanvangAdreshouding gevuld met de waarde in Datum aanvang adres buitenland (element 13.20).
@@ -282,9 +282,9 @@ Rule: Wanneer een verblijfplaats een buitenlands adres betreft, wordt datumAanva
       | fields              | datumVan, datumTot, datumIngangGeldigheid, adresregel1, land.code |
       | peildatum           | 1993-07-01            |
       Dan heeft de response een verblijfplaats met de volgende gegevens
-      | datumVan.datum | datumVan.type | datumVan.onbekend | datumTot.datum | datumTot.type | datumIngangGeldigheid.datum | datumIngangGeldigheid.type | datumIngangGeldigheid.onbekend | Adresregel1      | Land.code |
-      | 1993-09-10     | Datum         | -                 | -              | -             | 1993-09-10                  | Datum                      | -                              | Kerkstraat 83    | 6030      |
-      | 1993-02-15     | Datum         | -                 | 1993-09-10     | Datum         | 1993-02-15                  | Datum                      | -                              | -                | 5010      |
+      | datumVan.datum | datumVan.type | datumTot.datum | datumTot.type | datumIngangGeldigheid.datum | datumIngangGeldigheid.type | Adresregel1      | Land.code |
+      | 1993-09-10     | Datum         |                |               | 1993-09-10                  | Datum                      | Kerkstraat 83    | 6030      |
+      | 1993-02-15     | Datum         | 1993-09-10     | Datum         | 1993-02-15                  | Datum                      |                  | 5010      |
 
 
 
@@ -316,11 +316,11 @@ Rule: Op periode gefilterde gegevens tonen alle verblijfplaatsen waar de persoon
     | datumTotEnMet       | 2019-09-11           |
     Dan heeft de response verblijfplaatsen met de volgende gegevens
     | datumAanvangAdreshouding | datumAanvangAdresBuitenland | datumIngangGeldigheid | Straat        | Huisnummer | Land.code |
-    | 19940508                 | -                           | 20110205              | Beethovenlaan | 23         | 6030      |
-    | 19940508                 | -                           | 19940508              | Beethovenlaan | 5          | 6030      |    --> Wordt deze geleverd door de GBA-variant ???
-    | 19930910                 | -                           | 19930910              | Kerkstraat    | 83         | 6030      |
-    |                          | 19930215                    | 19930215              | -             | -          | 5010      |
-    | 19611230                 | -                           | 19611230              | Javaplein     | 11         | 6030      |
+    | 19940508                 |                             | 20110205              | Beethovenlaan | 23         | 6030      |
+    | 19940508                 |                             | 19940508              | Beethovenlaan | 5          | 6030      |    --> Wordt deze geleverd door de GBA-variant ???
+    | 19930910                 |                             | 19930910              | Kerkstraat    | 83         | 6030      |
+    |                          | 19930215                    | 19930215              |               |            | 5010      |
+    | 19611230                 |                             | 19611230              | Javaplein     | 11         | 6030      |
 
   @proxy
     Scenario: Verblijfplaatsen opvragen in een periode
@@ -332,11 +332,11 @@ Rule: Op periode gefilterde gegevens tonen alle verblijfplaatsen waar de persoon
     | datumVan            | 1961-07-01         |
     | datumTotEnMet       | 2019-09-11           |
     Dan heeft de response verblijfplaatsen met de volgende gegevens
-    | datumVan.datum | datumVan.type | datumVan.onbekend | datumTot.datum | datumTot.type | datumIngangGeldigheid.datum | datumIngangGeldigheid.type | datumIngangGeldigheid.onbekend | Adresregel1      | Land.code |
-    | 1994-05-08     | Datum         | -                 | -              | -             | 2011-02-05                  | Datum                      | -                              | Beethovenlaan 23 | 6030      |
-    | 1993-09-10     | Datum         | -                 | 1994-05-08     | Datum         | 1993-09-10                  | Datum                      | -                              | Kerkstraat 83    | 6030      |
-    | 1993-02-15     | Datum         | -                 | 1993-09-10     | Datum         | 1993-02-15                  | Datum                      | -                              |                  | 5010      |
-    | 1961-12-30     | Datum         | -                 | 1993-02-15     | Datum         | 1961-12-30                  | Datum                      | -                              | Javaplein 11     | 6030      |
+    | datumVan.datum | datumVan.type | datumTot.datum | datumTot.type | datumIngangGeldigheid.datum | datumIngangGeldigheid.type | Adresregel1      | Land.code |
+    | 1994-05-08     | Datum         |                |               | 2011-02-05                  | Datum                      | Beethovenlaan 23 | 6030      |
+    | 1993-09-10     | Datum         | 1994-05-08     | Datum         | 1993-09-10                  | Datum                      | Kerkstraat 83    | 6030      |
+    | 1993-02-15     | Datum         | 1993-09-10     | Datum         | 1993-02-15                  | Datum                      |                  | 5010      |
+    | 1961-12-30     | Datum         | 1993-02-15     | Datum         | 1961-12-30                  | Datum                      | Javaplein 11     | 6030      |
 
 Rule   Wanneer in de registratie voor de persoon meer dan één verblijfplaats, actueel (categorie 8) of historisch (categorie 58), bevat met exact
        dezelfde datum aanvang adreshouding, dan wordt alleen het voorkomen met de meest recente datum ingang geldigheid opgenomen.
@@ -364,8 +364,8 @@ Rule   Wanneer in de registratie voor de persoon meer dan één verblijfplaats, 
     | datumVan            | 2012-01-01           |
     | datumTotEnMet       | 2019-09-11           |
     Dan heeft de response een verblijfplaats met de volgende gegevens
-    | datumVan.datum | datumVan.type | datumVan.onbekend | datumTot.datum | datumTot.type | datumIngangGeldigheid.datum | datumIngangGeldigheid.type | datumIngangGeldigheid.onbekend | Adresregel1      | Land.code |
-    | 1994-05-08     | Datum         | -                 | -              | -             | 2011-02-05                  | Datum                      | -                              | Beethovenlaan 23 | 6030      |
+    | datumVan.datum | datumVan.type | datumIngangGeldigheid.datum | datumIngangGeldigheid.type | Adresregel1      | Land.code |
+    | 1994-05-08     | Datum         | 2011-02-05                  | Datum                      | Beethovenlaan 23 | 6030      |
 
 
   @gba
@@ -391,8 +391,8 @@ Rule   Wanneer in de registratie voor de persoon meer dan één verblijfplaats, 
     | datumVan            | 1995-01-01           |
     | datumTotEnMet       | 1996-01-01           |
     Dan heeft de response een verblijfplaats met de volgende gegevens
-    | datumVan.datum | datumVan.type | datumVan.onbekend | datumTot.datum | datumTot.type | datumIngangGeldigheid.datum | datumIngangGeldigheid.type | datumIngangGeldigheid.onbekend | Adresregel1      | Land.code |
-    | 1994-05-08     | Datum         | -                 | -              | -             | 2011-02-05                  | Datum                      | -                              | Beethovenlaan 23 | 6030      |
+    | datumVan.datum | datumVan.type | datumIngangGeldigheid.datum | datumIngangGeldigheid.type | Adresregel1      | Land.code |
+    | 1994-05-08     | Datum         | 2011-02-05                  | Datum                      |                                | Beethovenlaan 23 | 6030      |
 
   @gba
     Scenario: Verblijfplaatsen opvragen in een periode, datumTotEnMet ligt voor de meest recente datumIngangGeldigheid van een verblijfplaats
@@ -418,9 +418,9 @@ Rule   Wanneer in de registratie voor de persoon meer dan één verblijfplaats, 
     | datumVan            | 1993-10-01           |
     | datumTotEnMet       | 1994-01-01           |
     Dan heeft de response een verblijfplaats met de volgende gegevens
-    | datumVan.datum | datumVan.type | datumVan.onbekend | datumTot.datum | datumTot.type | datumIngangGeldigheid.datum | datumIngangGeldigheid.type | datumIngangGeldigheid.onbekend | Adresregel1      | Land.code |
-    | 1994-05-08     | Datum         | -                 | -              | -             | 2011-02-05                  | Datum                      | -                              | Beethovenlaan 23 | 6030      |
-    | 1993-09-10     | Datum         | -                 | 1994-05-08     | Datum         | 1993-09-10                  | Datum                      | -                              | Kerkstraat 83    | 6030      |
+    | datumVan.datum | datumVan.type | datumTot.datum | datumTot.type | datumIngangGeldigheid.datum | datumIngangGeldigheid.type | Adresregel1      | Land.code |
+    | 1994-05-08     | Datum         |                |               | 2011-02-05                  | Datum                      | Beethovenlaan 23 | 6030      |
+    | 1993-09-10     | Datum         | 1994-05-08     | Datum         | 1993-09-10                  | Datum                      | Kerkstraat 83    | 6030      |
 
 Rule: Wanneer de datum aanvang gedeeltelijk onbekend is, wordt voor de filtering aangenomen dat de persoon gedurende de gehele onzekerheidstijd
       op het adres heeft verbleven.
@@ -450,8 +450,8 @@ Rule: Wanneer de datum aanvang gedeeltelijk onbekend is, wordt voor de filtering
     | datumVan            | 1989-12-01           |
     | datumTotEnMet       | 1996-01-01           |
     Dan heeft de response een verblijfplaats met de volgende gegevens
-    | datumVan.jaar | datumVan.type | datumVan.onbekend | datumTot.datum | datumTot.type | datumIngangGeldigheid.datum | datumIngangGeldigheid.type | datumIngangGeldigheid.onbekend | Adresregel1      | Land.code |
-    | 1989          | JaarDatum     | -                 | 2013-03-01     | Datum         | 2011-02-05                  | Datum                      | -                              | Dennestraat 35   | 6030      |
+    | datumVan.jaar | datumVan.type | datumTot.datum | datumTot.type | datumIngangGeldigheid.datum | datumIngangGeldigheid.type | Adresregel1      | Land.code |
+    | 1989          | JaarDatum     | 2013-03-01     | Datum         | 2011-02-05                  | Datum                      | Dennestraat 35   | 6030      |
 
 Rule: Wanneer van de datum aanvang adreshouding alleen het jaar en de maand bekend is, wordt voor de filtering aangenomen dat de persoon de hele maand op deze verblijfplaats heeft verbleven.
 
@@ -479,8 +479,8 @@ Rule: Wanneer van de datum aanvang adreshouding alleen het jaar en de maand beke
     | datumVan            | 1989-10-28           |
     | datumTotEnMet       | 1996-01-01           |
     Dan heeft de response een verblijfplaats met de volgende gegevens
-    | datumVan.jaar | datumVan.maand | datumVan.type  | datumVan.onbekend | datumTot.datum | datumTot.type | datumIngangGeldigheid.datum | datumIngangGeldigheid.type | datumIngangGeldigheid.onbekend | Adresregel1      | Land.code |
-    | 1989          | 10             | JaarMaandDatum | -                 | 2014-02-03     | Datum         | 2014-02-03                  | Datum                      | -                              | Cypresstraat 14  | 6030      |
+    | datumVan.jaar | datumVan.maand | datumVan.type  | datumTot.datum | datumTot.type | datumIngangGeldigheid.datum | datumIngangGeldigheid.type | Adresregel1      | Land.code |
+    | 1989          | 10             | JaarMaandDatum | 2014-02-03     | Datum         | 2014-02-03                  | Datum                      | Cypresstraat 14  | 6030      |
 
 
 Rule: Wanneer de datum aanvang adreshouding geheel onbekend is, wordt voor de filtering aangenomen dat de persoon daar altijd al woonde.
@@ -507,8 +507,8 @@ Rule: Wanneer de datum aanvang adreshouding geheel onbekend is, wordt voor de fi
     | fields              | datumVan, datumTot, datumIngangGeldigheid, adresregel1, land.code |
     | peildatum           | 1964-01-01            |
     Dan heeft de response verblijfplaatsen met de volgende gegevens
-    | datumVan.datum | datumVan.type  | datumVan.onbekend | datumTot.datum | datumTot.type | datumIngangGeldigheid.datum | datumIngangGeldigheid.type | datumIngangGeldigheid.onbekend | Adresregel1      | Land.code |
-    | -              | DatumOnbekend  | true              | 2012-03-05     | Datum         | -                           | DatumOnbekend              | true                           | Leyweg 61        | 6030      |
+    | datumVan.type  | datumVan.onbekend | datumTot.datum | datumTot.type | datumIngangGeldigheid.type | datumIngangGeldigheid.onbekend | Adresregel1      | Land.code |
+    | DatumOnbekend  | true              | 2012-03-05     | Datum         | DatumOnbekend              | true                           | Leyweg 61        | 6030      |
 
   @gba
     Scenario: Verblijfplaatsen opvragen in een periode, datumAanvangAdreshuishouding onbekend
@@ -535,8 +535,8 @@ Rule: Wanneer de datum aanvang adreshouding geheel onbekend is, wordt voor de fi
     | datumTotEnMet       | 2014-06-01           |
     Dan heeft de response verblijfplaatsen met de volgende gegevens
     | datumVan.datum | datumVan.type  | datumVan.onbekend | datumTot.datum | datumTot.type | datumIngangGeldigheid.datum | datumIngangGeldigheid.type | datumIngangGeldigheid.onbekend | Adresregel1      | Land.code |
-    | 2012-03-05     | Datum          | -                 | -              | -             | 2012-03-05                  | Datum                      | -                              | Zonegge 27       | 6030      |
-    | -              | DatumOnbekend  | true              | 2012-03-05     | Datum         | -                           | DatumOnbekend              | true                           | Leyweg 61        | 6030      |
+    | 2012-03-05     | Datum          |                   |                |               | 2012-03-05                  | Datum                      |                                | Zonegge 27       | 6030      |
+    |                | DatumOnbekend  | true              | 2012-03-05     | Datum         |                             | DatumOnbekend              | true                           | Leyweg 61        | 6030      |
 
   @gba
     Scenario: Verblijfplaatsen opvragen in een periode, datumAanvangAdreshuishouding onbekend
@@ -563,8 +563,8 @@ Rule: Wanneer de datum aanvang adreshouding geheel onbekend is, wordt voor de fi
     | datumTotEnMet       | 1914-01-01            |
     Dan heeft de response verblijfplaatsen met de volgende gegevens
     | datumVan.datum | datumVan.type  | datumVan.onbekend | datumTot.datum | datumTot.type | datumIngangGeldigheid.datum | datumIngangGeldigheid.type | datumIngangGeldigheid.onbekend | Adresregel1      | Land.code |
-    | 2012-03-05     | Datum          | -                 | -              | -             | 2012-03-05                  | Datum                      | -                              | Zonegge 27       | 6030      |
-    | -              | DatumOnbekend  | true              | 2012-03-05     | Datum         | -                           | DatumOnbekend              | true                           | Leyweg 61        | 6030      |
+    | 2012-03-05     | Datum          |                   |                |               | 2012-03-05                  | Datum                      |                                | Zonegge 27       | 6030      |
+    |                | DatumOnbekend  | true              | 2012-03-05     | Datum         |                             | DatumOnbekend              | true                           | Leyweg 61        | 6030      |
 
 Rule: Wanneer een verblijfplaats, actueel of historisch, in onderzoek is, en dit onderzoek is niet afgerond (Datum einde onderzoek is leeg), wordt inOnderzoek gevuld voor betreffende verblijfplaats.
 
@@ -578,9 +578,9 @@ Rule: Wanneer een verblijfplaats, actueel of historisch, in onderzoek is, en dit
     | datumVan            | 2009-06-01           |
     | datumTotEnMet       | 2016-06-01           |
     Dan heeft de response verblijfplaatsen met de volgende gegevens
-    | datumAanvangAdreshouding | datumIngangGeldigheid | Straat           | Huisnummer | Land.code | aanduidingGegevensInOnderzoek | datumIngangOnderzoek |
-    | 20150601                 | -                     | Rietzangerstraat | 27         | 6030      | -                             | -                    |
-    | 19881118                 | -                     | Voorhofdreef     | 30         | 6030      | 580000                        | 19881120             |
+    | datumAanvangAdreshouding | Straat           | Huisnummer | Land.code | aanduidingGegevensInOnderzoek | datumIngangOnderzoek |
+    | 20150601                 | Rietzangerstraat | 27         | 6030      |                               |                      |
+    | 19881118                 | Voorhofdreef     | 30         | 6030      | 580000                        | 19881120             |
 
 
   @proxy
@@ -593,9 +593,9 @@ Rule: Wanneer een verblijfplaats, actueel of historisch, in onderzoek is, en dit
     | datumVan            | 2009-06-01           |
     | datumTotEnMet       | 2016-06-01           |
     Dan heeft de response verblijfplaatsen met de volgende gegevens
-    | datumVan.datum | datumVan.type  | datumVan.onbekend | datumTot.datum | datumTot.type | datumIngangGeldigheid.datum | datumIngangGeldigheid.type | datumIngangGeldigheid.onbekend | Adresregel1          | Land.code | inOnderzoek.datumIngangOnderzoek.datum | inOnderzoek.datumIngangOnderzoek.type | inOnderzoek.type | inOnderzoek.datumVan | inOnderzoek.datumIngangGeldigheid |
-    | 2015-06-01     | Datum          | -                 | -              | -             | -                           | -                          | -                              | Rietzangerstraat 27  | 6030      | -                                      | -                                     | -                |  -                    | -                                 |
-    | 1988-11-18     | Datum          | -                 | 2015-06-01     | Datum         | -                           | -                          | -                              | Voorhofdreef 30      | 6030      | 1988-11-20                             | Datum                                 | true             |  true                 | true                              |
+    | datumVan.datum | datumVan.type | datumTot.datum | datumTot.type | Adresregel1          | Land.code | inOnderzoek.datumIngangOnderzoek.datum | inOnderzoek.datumIngangOnderzoek.type | inOnderzoek.type | inOnderzoek.datumVan | inOnderzoek.datumIngangGeldigheid |
+    | 2015-06-01     | Datum         |                |               | Rietzangerstraat 27  | 6030      |                                        | -                                     |                  |                      |                                   |
+    | 1988-11-18     | Datum         | 2015-06-01     | Datum         | Voorhofdreef 30      | 6030      | 1988-11-20                             | Datum                                 | true             |  true                | true                              |
 
   @gba
     Scenario: Verblijfplaatsen opvragen in een periode, veblijfplaats is in onderzoek geweest
@@ -607,9 +607,9 @@ Rule: Wanneer een verblijfplaats, actueel of historisch, in onderzoek is, en dit
     | datumVan            | 2009-06-01           |
     | datumTotEnMet       | 2016-06-01           |
     Dan heeft de response verblijfplaatsen met de volgende gegevens
-    | datumAanvangAdreshouding | datumIngangGeldigheid | Straat           | Huisnummer | Land.code | aanduidingGegevensInOnderzoek | datumIngangOnderzoek |
-    | 20150601                 | -                     | Raphaëlstraat    | 1          | 6030      | -                             | -                    |
-    | 19890501                 | -                     | Oudegracht       | 380        | 6030      | -                             | -                    |
+    | datumAanvangAdreshouding | Straat           | Huisnummer | Land.code |
+    | 20150601                 | Raphaëlstraat    | 1          | 6030      |
+    | 19890501                 | Oudegracht       | 380        | 6030      |
 
   @proxy
     Scenario: Verblijfplaatsen opvragen in een periode, veblijfplaats is in onderzoek geweest
@@ -621,6 +621,6 @@ Rule: Wanneer een verblijfplaats, actueel of historisch, in onderzoek is, en dit
     | datumVan            | 2009-06-01           |
     | datumTotEnMet       | 2016-06-01           |
     Dan heeft de response verblijfplaatsen met de volgende gegevens
-    | datumVan.datum | datumVan.type  | datumVan.onbekend | datumTot.datum | datumTot.type | datumIngangGeldigheid.datum | datumIngangGeldigheid.type | datumIngangGeldigheid.onbekend | Adresregel1          | Land.code | inOnderzoek.datumIngangOnderzoek.datum | inOnderzoek.datumIngangOnderzoek.type | inOnderzoek.type |  inOnderzoek.datumVan | inOnderzoek.datumIngangGeldigheid |
-    | 2015-06-01     | Datum          | -                 | -              | -             | -                           | -                          | -                              | Raphaëlstraat 1      | 6030      | -                                      | -                                     | -                |  -                    | -                                 |
-    | 1989-05-01     | Datum          | -                 | 2015-06-01     | Datum         | -                           | -                          | -                              | Oudergracht 380      | 6030      | -                                      | -                                     | -                |  -                    | -                                 |
+    | datumVan.datum | datumVan.type  | datumTot.datum | datumTot.type | datumIngangGeldigheid.datum | datumIngangGeldigheid.type | datumIngangGeldigheid.onbekend | Adresregel1          | Land.code |
+    | 2015-06-01     | Datum          |                |               | -                           | -                          | -                              | Raphaëlstraat 1      | 6030      |
+    | 1989-05-01     | Datum          | 2015-06-01     | Datum         | -                           | -                          | -                              | Oudergracht 380      | 6030      |
