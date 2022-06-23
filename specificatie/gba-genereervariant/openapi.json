@@ -1134,7 +1134,7 @@
         } ]
       },
       "RaadpleegMetPeriode" : {
-        "required" : [ "datumTotEnMet", "datumVan" ],
+        "required" : [ "datumTot", "datumVan" ],
         "allOf" : [ {
           "$ref" : "#/components/schemas/HistorieQuery"
         }, {
@@ -1145,7 +1145,7 @@
               "description" : "De begindatum van de periode waarover de resource wordt opgevraagd.\n",
               "format" : "date"
             },
-            "datumTotEnMet" : {
+            "datumTot" : {
               "type" : "string",
               "description" : "De einddatum van de periode waarover de resource wordt opgevraagd.\n",
               "format" : "date"

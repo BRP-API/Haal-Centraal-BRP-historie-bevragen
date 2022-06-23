@@ -857,7 +857,7 @@ components:
             format: date
     RaadpleegMetPeriode:
       required:
-      - datumTotEnMet
+      - datumTot
       - datumVan
       allOf:
       - $ref: '#/components/schemas/HistorieQuery'
@@ -868,7 +868,7 @@ components:
             description: |
               De begindatum van de periode waarover de resource wordt opgevraagd.
             format: date
-          datumTotEnMet:
+          datumTot:
             type: string
             description: |
               De einddatum van de periode waarover de resource wordt opgevraagd.
