@@ -16,14 +16,16 @@
     | burgerservicenummer |
     | 999991553           |
     En de persoon heeft de volgende verblijfstitels gegevens
-    | categorie | Aanduiding (39.10) | Datum einde (39.20) | Ingangsdatum (39.30) | Testsituatie                                            |
-    | 10        | 42                 | 20190901            | 20160901             |                                                         |
-    | 60        | 24                 | 20120405            | 20090512             | ingangsdatum is eerder dan datum einde vorige           |
-    | 60        | 26                 | 20091129            | 20081129             |                                                         |
-    | 60        | 25                 |                     | 20050219             | datumEinde wordt ingevuld met ingangsdatum volgende     |
-    | 60        | 33                 | 20050327            | 20030327             | Overschrijft vorige verblijfstitel                      |
-    | 60        | 34                 | 20060327            | 20030327             |                                                         |
-    | 60        | 11                 | 20011205            | 20011205             | Ingangsdatum = datum einde                              |
+    | categorie | Aanduiding (39.10) | Datum einde (39.20) | Ingangsdatum (39.30) | Datum Opneming (86.10) | Testsituatie                                            |
+    | 10        | 42                 | 20190901            | 20160901             | 20160901               |                                                         |
+    | 60        | 24                 | 20120405            | 20090512             | 20090512               | ingangsdatum is eerder dan datum einde vorige           |
+    | 60        | 26                 | 20091129            | 20081129             | 20081129               |                                                         |
+    | 60        | 25                 |                     | 20050219             | 20050219               | datumEinde wordt ingevuld met ingangsdatum volgende     |
+    | 60        | 33                 | 20050327            | 20030327             | 20050327               | Overschrijft vorige verblijfstitel                      |
+    | 60        | 34                 | 20060327            | 20030327             | 20030327               |                                                         |
+    | 60        | 11                 | 20011205            | 20011205             | 20011205               | Ingangsdatum = datum einde                              |
+    | 60        | 29                 | 20011101            | 20010801             | 20011001               |                                                         |
+    | 60        | 30                 | 20011001            | 20010901             | 20010901               |                                                         |
 
 Rule: Als de peildatum waarmee geraadpleegd wordt in de geldigheidsperiode van een verblijfstitel van een persoon valt wordt die verblijfstitel opgenomen in de response.
 
@@ -179,6 +181,33 @@ Rule: Als de periode waarmee geraadpleegd wordt (deels) overlapt met de geldighe
     | datumTot            | 2002-01-02            |
     Dan heeft de response geen verblijfstitelhistorie
 
+Rule: Als er meerdere al dan niet historische verblijfstitels elkaar in geldigheidsperiode overlappen dan wordt alleen de verblijfstitel met de m,eest recente datum opneming opgenomen in de response.
+
+  @gba
+  Scenario: Als er meerdere (historische) verblijfstitels zijn met dezelfde ingangsdatum, dan wordt alleen de meest de meest recente opgenomen in de response. Dat is de meest recente datum opneming, of eerste/bovenste in GBA-V antwoord.
+    Als de verblijfstitelhistorie wordt geraadpleegd met de volgende parameters
+    | naam                | waarde                |
+    | type                | RaadpleegMetPeildatum |
+    | burgerservicenummer | 999991553             |
+    | fields              | aanduiding.code, datumEinde, datumIngang |
+    | datumVan            | 2003-01-01            |
+    | datumTot            | 2005-01-01            |
+    Dan heeft de response een verblijfstitelhistorie met de waarden
+    | aanduiding.code  | datumIngang | datumEinde |
+    | 33               | 20030327    | 20050327   |
+
+  @gba
+  Scenario: Als er een verblijfstitel geldig is over de hele geldigheid van een eerder opgevoerde verblijfstitel, dan wordt alleen de meest de meest recente opgenomen in de response. Dat is de meest recente datum opneming, of eerste/bovenste in GBA-V antwoord.
+    Als de verblijfstitelhistorie wordt geraadpleegd met de volgende parameters
+    | type                | RaadpleegMetPeildatum |
+    | burgerservicenummer | 999991553             |
+    | fields              | aanduiding.code, datumEinde, datumIngang |
+    | datumVan            | 2001-01-01            |
+    | datumTot            | 2002-01-01            |
+    Dan heeft de response een verblijfstitelhistorie met de waarden
+    | aanduiding.code  | datumIngang | datumEinde |
+    | 29               | 20011101    | 20010801   |
+
 Rule: Als de datum einde geldigheid van een verblijfstitel leeg of onbekend is en er is een volgende verblijfstitel, dan wordt voor de eerste verblijfstitel datumEinde gevuld met de ingangsdatum van de volgende verblijfstitel.
   @gba
   Scenario: Raadpleeg de verblijfstitelhistorie met vervallen of ingetrokken verblijfstitel
@@ -221,7 +250,7 @@ Rule: Als de datum einde geldigheid van een verblijfstitel leeg of onbekend is e
     | aanduiding.code  | datumIngang.datum | datumIngang.type |datumIngang.langFormaat | datumEinde.datum | datumEinde.type | datumEinde.langFormaat |
     | 42               | 2016-09-01        | datum            | 1 september 2016       | 2019-09-01       | Datum           | 1 september 2019       |
     | 26               | 2009-11-29        | datum            | 29 november 2009       | 2016-09-01       | Datum           | 1 september 2016       |
-      
+
 
 Rule: Een vervallen of een ingetrokken verblijfstitel wordt niet opgenomen in de response
   @gba
