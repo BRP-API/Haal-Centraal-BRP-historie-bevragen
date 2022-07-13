@@ -6,8 +6,8 @@ Functionaliteit: als gebruiker van de API wil ik dat zoekresultaten worden gesor
 
 Rule: Partners worden in het antwoord aflopend gesorteerd op Datum huwelijkssluiting/aangaan geregistreerd partnerschap, zodat het laatst gesloten huwelijk/partnerschap bovenaan staat
 
-	Scenario: Ontbonden en actueel huwelijk/partnerschap
-	  Gegeven de persoon met burgerservicenummer 555550001 heeft de volgende huwelijken/partnerschappen in de registratie
+    Scenario: Ontbonden en actueel huwelijk/partnerschap
+      Gegeven de persoon met burgerservicenummer 555550001 heeft de volgende huwelijken/partnerschappen in de registratie
       | Categorie | Burgerservicenummer (01.20) | Datum aangaan (06.10) | Datum ontbinding (07.10) | 
       | 5         | 555550002                   | 20171103              |                          | 
       | 55        | 555550003                   | 20101022              | 20140315                 | 
@@ -21,12 +21,12 @@ Rule: Partners worden in het antwoord aflopend gesorteerd op Datum huwelijksslui
       | datumTot            | 20181231                        |
       Dan heeft de response de partnerhistorie in de volgende volgorde
       | burgerservicenummer |
-	  | 555550002           |
-	  | 555550003           |
-	  | 555550004           |
+      | 555550002           |
+      | 555550003           |
+      | 555550004           |
 
-	Scenario: Twee ontbonden huwelijken
-	  Gegeven de persoon met burgerservicenummer 555550001 heeft de volgende huwelijken/partnerschappen in de registratie
+    Scenario: Twee ontbonden huwelijken
+      Gegeven de persoon met burgerservicenummer 555550001 heeft de volgende huwelijken/partnerschappen in de registratie
       | Categorie | Burgerservicenummer (01.20) | Datum aangaan (06.10) | Datum ontbinding (07.10) | 
       | 5         | 555550003                   | 20101022              | 20140315                 | 
       | 55        | 555550004                   | 20021111              | 20090427                 | 
@@ -39,11 +39,11 @@ Rule: Partners worden in het antwoord aflopend gesorteerd op Datum huwelijksslui
       | datumTot            | 20181231                        |
       Dan heeft de response de partnerhistorie in de volgende volgorde
       | burgerservicenummer |
-	  | 555550003           |
-	  | 555550004           |
+      | 555550003           |
+      | 555550004           |
 
-	Scenario: poligamie (twee actuele partners)
-	  Gegeven de persoon met burgerservicenummer 555550001 heeft de volgende huwelijken/partnerschappen in de registratie
+    Scenario: poligamie (twee actuele partners)
+      Gegeven de persoon met burgerservicenummer 555550001 heeft de volgende huwelijken/partnerschappen in de registratie
       | Categorie | Burgerservicenummer (01.20) | Datum aangaan (06.10) | Datum ontbinding (07.10) | 
       | 5         | 555550002                   | 20171103              |                          | 
       | 5         | 555550003                   | 20101022              |                          | 
@@ -56,5 +56,5 @@ Rule: Partners worden in het antwoord aflopend gesorteerd op Datum huwelijksslui
       | datumTot            | 20181231                        |
       Dan heeft de response de partnerhistorie in de volgende volgorde
       | burgerservicenummer |
-	  | 555550002           |
-	  | 555550003           |
+      | 555550002           |
+      | 555550003           |
