@@ -35,7 +35,7 @@ Rule: Bij vragen van partnerhistorie op peildatum wordt de partner geleverd waar
       En de 'partner' heeft de volgende 'ontbindingHuwelijkPartnerschap' gegevens
       | naam  | waarde   |
       | datum | 20140315 |
-      En de 'partner' met de volgende historische gegevens
+      En de 'partner' heeft de volgende historische gegevens
       | naam                | waarde    |
       | burgerservicenummer | 555550003 |
       En de 'partner' heeft de volgende historische 'aangaanHuwelijkPartnerschap' gegevens
@@ -88,10 +88,7 @@ Rule: Bij vragen van partnerhistorie op peildatum wordt de partner geleverd waar
       En de persoon heeft een 'partner' met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 555550003 |
-      En de 'partner' heeft de volgende 'ontbindingHuwelijkPartnerschap' gegevens
-      | naam  | waarde   |
-      | datum | 20140315 |
-      En de 'partner' met de volgende historische gegevens
+      En de 'partner' heeft de volgende historische gegevens
       | naam                | waarde    |
       | burgerservicenummer | 555550003 |
       En de 'partner' heeft de volgende historische 'aangaanHuwelijkPartnerschap' gegevens
@@ -129,99 +126,144 @@ Rule: Bij vragen van partnerhistorie op peildatum wordt de partner geleverd waar
       | peildatum           | 2016-10-21            |
       Dan heeft de response een lege array
 
-
-
-
     Scenario: Peildatum is gelijk aan Datum huwelijkssluiting/aangaan geregistreerd partnerschap
-      Gegeven de persoon met burgerservicenummer 555550001 heeft de volgende huwelijken/partnerschappen in de registratie
-      | Categorie | Burgerservicenummer (01.20) | Datum aangaan (06.10) | Datum ontbinding (07.10) | 
-      | 5         | 555550002                   | 20171103              |                          | 
-      | 55        | 555550003                   | 20101022              | 20140315                 | 
+      Gegeven het systeem heeft een persoon met de volgende gegevens
+      | naam                | waarde    |
+      | burgerservicenummer | 555550001 |
+      En de persoon heeft een 'partner' met de volgende gegevens
+      | naam                | waarde    |
+      | burgerservicenummer | 555550002 |
+      En de 'partner' heeft de volgende 'aangaanHuwelijkPartnerschap' gegevens
+      | naam  | waarde   |
+      | datum | 20171103 |
       Als partnerhistorie wordt gezocht met de volgende parameters
-      | naam                | waarde                          |
-      | type                | RaadpleegMetBurgerservicenummer |
-      | burgerservicenummer | 555550001                       |
-      | fields              | burgerservicenummer             |
-      | peildatum           | 20171103                        |
+      | naam                | waarde                |
+      | type                | RaadpleegMetPeildatum |
+      | burgerservicenummer | 555550001             |
+      | fields              | burgerservicenummer   |
+      | peildatum           | 2017-11-03            |
       Dan heeft de response een partnerhistorie met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 555550002 |
 
     Scenario: Peildatum is gelijk aan Datum ontbinding huwelijk/geregistreerd partnerschap
-      Gegeven de persoon met burgerservicenummer 555550001 heeft de volgende huwelijken/partnerschappen in de registratie
-      | Categorie | Burgerservicenummer (01.20) | Datum aangaan (06.10) | Datum ontbinding (07.10) | 
-      | 5         | 555550002                   | 20171103              |                          | 
-      | 55        | 555550003                   | 20101022              | 20140315                 | 
+      Gegeven het systeem heeft een persoon met de volgende gegevens
+      | naam                | waarde    |
+      | burgerservicenummer | 555550001 |
+      En de persoon heeft een 'partner' met de volgende gegevens
+      | naam                | waarde    |
+      | burgerservicenummer | 555550003 |
+      En de 'partner' heeft de volgende 'ontbindingHuwelijkPartnerschap' gegevens
+      | naam  | waarde   |
+      | datum | 20140315 |
       Als partnerhistorie wordt gezocht met de volgende parameters
-      | naam                | waarde                          |
-      | type                | RaadpleegMetBurgerservicenummer |
-      | burgerservicenummer | 555550001                       |
-      | fields              | burgerservicenummer             |
-      | peildatum           | 20140315                        |
+      | naam                | waarde                |
+      | type                | RaadpleegMetPeildatum |
+      | burgerservicenummer | 555550001             |
+      | fields              | burgerservicenummer   |
+      | peildatum           | 2014-03-15            |
       Dan heeft de response een lege array
 
 Rule: Bij vragen van partnerhistorie op periode worden alleen de partners geleverd waarbij de Datum huwelijkssluiting/aangaan geregistreerd partnerschap niet op of na de datumTot ligt of de eventuele Datum ontbinding huwelijk/geregistreerd partnerschap niet voor of op de datumVan ligt.
 
     Scenario: Periode in actuele huwelijk/partnerschap
-      Gegeven de persoon met burgerservicenummer 555550001 heeft de volgende huwelijken/partnerschappen in de registratie
-      | Categorie | Burgerservicenummer (01.20) | Datum aangaan (06.10) | Datum ontbinding (07.10) | 
-      | 5         | 555550002                   | 20171103              |                          | 
-      | 55        | 555550003                   | 20101022              | 20140315                 | 
+      Gegeven het systeem heeft een persoon met de volgende gegevens
+      | naam                | waarde    |
+      | burgerservicenummer | 555550001 |
+      En de persoon heeft een 'partner' met de volgende gegevens
+      | naam                | waarde    |
+      | burgerservicenummer | 555550002 |
+      En de 'partner' heeft de volgende 'aangaanHuwelijkPartnerschap' gegevens
+      | naam  | waarde   |
+      | datum | 20171103 |
       Als partnerhistorie wordt gezocht met de volgende parameters
-      | naam                | waarde                          |
-      | type                | RaadpleegMetBurgerservicenummer |
-      | burgerservicenummer | 555550001                       |
-      | fields              | burgerservicenummer             |
-      | datumVan            | 20180101                        |
-      | datumTot            | 20181231                        |
+      | naam                | waarde              |
+      | type                | RaadpleegMetPeriode |
+      | burgerservicenummer | 555550001           |
+      | fields              | burgerservicenummer |
+      | datumVan            | 2018-01-01          |
+      | datumTot            | 2018-12-31          |
       Dan heeft de response een partnerhistorie met  de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 555550002 |
 
     Scenario: Periode overlapt met actuele huwelijk/partnerschap
-      Gegeven de persoon met burgerservicenummer 555550001 heeft de volgende huwelijken/partnerschappen in de registratie
-      | Categorie | Burgerservicenummer (01.20) | Datum aangaan (06.10) | Datum ontbinding (07.10) | 
-      | 5         | 555550002                   | 20171103              |                          | 
-      | 55        | 555550003                   | 20101022              | 20140315                 | 
+      Gegeven het systeem heeft een persoon met de volgende gegevens
+      | naam                | waarde    |
+      | burgerservicenummer | 555550001 |
+      En de persoon heeft een 'partner' met de volgende gegevens
+      | naam                | waarde    |
+      | burgerservicenummer | 555550002 |
+      En de 'partner' heeft de volgende 'aangaanHuwelijkPartnerschap' gegevens
+      | naam  | waarde   |
+      | datum | 20171103 |
       Als partnerhistorie wordt gezocht met de volgende parameters
-      | naam                | waarde                          |
-      | type                | RaadpleegMetBurgerservicenummer |
-      | burgerservicenummer | 555550001                       |
-      | fields              | burgerservicenummer             |
-      | datumVan            | 20160101                        |
-      | datumTot            | 20181231                        |
+      | naam                | waarde              |
+      | type                | RaadpleegMetPeriode |
+      | burgerservicenummer | 555550001           |
+      | fields              | burgerservicenummer |
+      | datumVan            | 2016-01-01          |
+      | datumTot            | 2018-12-31          |
       Dan heeft de response een partnerhistorie met  de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 555550002 |
 
     Scenario: Periode overlapt met ontbonden huwelijk/partnerschap
-      Gegeven de persoon met burgerservicenummer 555550001 heeft de volgende huwelijken/partnerschappen in de registratie
-      | Categorie | Burgerservicenummer (01.20) | Datum aangaan (06.10) | Datum ontbinding (07.10) | 
-      | 5         | 555550002                   | 20171103              |                          | 
-      | 55        | 555550003                   | 20101022              | 20140315                 | 
+      Gegeven het systeem heeft een persoon met de volgende gegevens
+      | naam                | waarde    |
+      | burgerservicenummer | 555550001 |
+      En de persoon heeft een 'partner' met de volgende gegevens
+      | naam                | waarde    |
+      | burgerservicenummer | 555550003 |
+      En de 'partner' heeft de volgende 'ontbindingHuwelijkPartnerschap' gegevens
+      | naam  | waarde   |
+      | datum | 20140315 |
+      En de 'partner' heeft de volgende historische gegevens
+      | naam                | waarde    |
+      | burgerservicenummer | 555550003 |
+      En de 'partner' heeft de volgende historische 'aangaanHuwelijkPartnerschap' gegevens
+      | naam  | waarde   |
+      | datum | 20101022 |
       Als partnerhistorie wordt gezocht met de volgende parameters
-      | naam                | waarde                          |
-      | type                | RaadpleegMetBurgerservicenummer |
-      | burgerservicenummer | 555550001                       |
-      | fields              | burgerservicenummer             |
-      | datumVan            | 20090101                        |
-      | datumTot            | 20131231                        |
+      | naam                | waarde              |
+      | type                | RaadpleegMetPeriode |
+      | burgerservicenummer | 555550001           |
+      | fields              | burgerservicenummer |
+      | datumVan            | 2009-01-01          |
+      | datumTot            | 2015-12-31          |
       Dan heeft de response een partnerhistorie met de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 555550003 |
 
     Scenario: Periode overlapt met actuele en ontbonden huwelijk/partnerschap
-      Gegeven de persoon met burgerservicenummer 555550001 heeft de volgende huwelijken/partnerschappen in de registratie
-      | Categorie | Burgerservicenummer (01.20) | Datum aangaan (06.10) | Datum ontbinding (07.10) | 
-      | 5         | 555550002                   | 20171103              |                          | 
-      | 55        | 555550003                   | 20101022              | 20140315                 | 
+      Gegeven het systeem heeft een persoon met de volgende gegevens
+      | naam                | waarde    |
+      | burgerservicenummer | 555550001 |
+      En de persoon heeft een 'partner' met de volgende gegevens
+      | naam                | waarde    |
+      | burgerservicenummer | 555550002 |
+      En de 'partner' heeft de volgende 'aangaanHuwelijkPartnerschap' gegevens
+      | naam  | waarde   |
+      | datum | 20171103 |
+      En de persoon heeft een 'partner' met de volgende gegevens
+      | naam                | waarde    |
+      | burgerservicenummer | 555550003 |
+      En de 'partner' heeft de volgende 'ontbindingHuwelijkPartnerschap' gegevens
+      | naam  | waarde   |
+      | datum | 20140315 |
+      En de 'partner' heeft de volgende historische gegevens
+      | naam                | waarde    |
+      | burgerservicenummer | 555550003 |
+      En de 'partner' heeft de volgende historische 'aangaanHuwelijkPartnerschap' gegevens
+      | naam  | waarde   |
+      | datum | 20101022 |
       Als partnerhistorie wordt gezocht met de volgende parameters
-      | naam                | waarde                          |
-      | type                | RaadpleegMetBurgerservicenummer |
-      | burgerservicenummer | 555550001                       |
-      | fields              | burgerservicenummer             |
-      | datumVan            | 20110101                        |
-      | datumTot            | 20181231                        |
+      | naam                | waarde              |
+      | type                | RaadpleegMetPeriode |
+      | burgerservicenummer | 555550001           |
+      | fields              | burgerservicenummer |
+      | datumVan            | 2011-01-01          |
+      | datumTot            | 2018-12-31          |
       Dan heeft de response een partnerhistorie met  de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 555550002 |
@@ -230,18 +272,46 @@ Rule: Bij vragen van partnerhistorie op periode worden alleen de partners geleve
       | burgerservicenummer | 555550003 |
 
     Scenario: Periode overlapt met actuele en ontbonden huwelijken/partnerschappen
-      Gegeven de persoon met burgerservicenummer 555550001 heeft de volgende huwelijken/partnerschappen in de registratie
-      | Categorie | Burgerservicenummer (01.20) | Datum aangaan (06.10) | Datum ontbinding (07.10) | 
-      | 5         | 555550002                   | 20171103              |                          | 
-      | 55        | 555550003                   | 20101022              | 20140315                 | 
-      | 55        | 555550004                   | 19970703              | 20050828                 | 
+      Gegeven het systeem heeft een persoon met de volgende gegevens
+      | naam                | waarde    |
+      | burgerservicenummer | 555550001 |
+      En de persoon heeft een 'partner' met de volgende gegevens
+      | naam                | waarde    |
+      | burgerservicenummer | 555550002 |
+      En de 'partner' heeft de volgende 'aangaanHuwelijkPartnerschap' gegevens
+      | naam  | waarde   |
+      | datum | 20171103 |
+      En de persoon heeft een 'partner' met de volgende gegevens
+      | naam                | waarde    |
+      | burgerservicenummer | 555550003 |
+      En de 'partner' heeft de volgende 'ontbindingHuwelijkPartnerschap' gegevens
+      | naam  | waarde   |
+      | datum | 20140315 |
+      En de 'partner' heeft de volgende historische gegevens
+      | naam                | waarde    |
+      | burgerservicenummer | 555550003 |
+      En de 'partner' heeft de volgende historische 'aangaanHuwelijkPartnerschap' gegevens
+      | naam  | waarde   |
+      | datum | 20101022 |
+      En de persoon heeft een 'partner' met de volgende gegevens
+      | naam                | waarde    |
+      | burgerservicenummer | 555550004 |
+      En de 'partner' heeft de volgende 'ontbindingHuwelijkPartnerschap' gegevens
+      | naam  | waarde   |
+      | datum | 20050828 |
+      En de 'partner' heeft de volgende historische gegevens
+      | naam                | waarde    |
+      | burgerservicenummer | 555550003 |
+      En de 'partner' heeft de volgende historische 'aangaanHuwelijkPartnerschap' gegevens
+      | naam  | waarde   |
+      | datum | 19970703 |
       Als partnerhistorie wordt gezocht met de volgende parameters
-      | naam                | waarde                          |
-      | type                | RaadpleegMetBurgerservicenummer |
-      | burgerservicenummer | 555550001                       |
-      | fields              | burgerservicenummer             |
-      | datumVan            | 19990101                        |
-      | datumTot            | 20181231                        |
+      | naam                | waarde              |
+      | type                | RaadpleegMetPeriode |
+      | burgerservicenummer | 555550001           |
+      | fields              | burgerservicenummer |
+      | datumVan            | 1999-01-01          |
+      | datumTot            | 2018-12-31          |
       Dan heeft de response een partnerhistorie met  de volgende gegevens
       | naam                | waarde    |
       | burgerservicenummer | 555550002 |
@@ -253,56 +323,89 @@ Rule: Bij vragen van partnerhistorie op periode worden alleen de partners geleve
       | burgerservicenummer | 555550004 |
 
     Scenario: Periode voor huwelijkssluiting
-      Gegeven de persoon met burgerservicenummer 555550001 heeft de volgende huwelijken/partnerschappen in de registratie
-      | Categorie | Burgerservicenummer (01.20) | Datum aangaan (06.10) | Datum ontbinding (07.10) | 
-      | 5         | 555550002                   | 20171103              |                          | 
+      Gegeven het systeem heeft een persoon met de volgende gegevens
+      | naam                | waarde    |
+      | burgerservicenummer | 555550001 |
+      En de persoon heeft een 'partner' met de volgende gegevens
+      | naam                | waarde    |
+      | burgerservicenummer | 555550002 |
+      En de 'partner' heeft de volgende 'aangaanHuwelijkPartnerschap' gegevens
+      | naam  | waarde   |
+      | datum | 20171103 |
       Als partnerhistorie wordt gezocht met de volgende parameters
-      | naam                | waarde                          |
-      | type                | RaadpleegMetBurgerservicenummer |
-      | burgerservicenummer | 555550001                       |
-      | fields              | burgerservicenummer             |
-      | datumVan            | 19990101                        |
-      | datumTot            | 20101231                        |
+      | naam                | waarde              |
+      | type                | RaadpleegMetPeriode |
+      | burgerservicenummer | 555550001           |
+      | fields              | burgerservicenummer |
+      | datumVan            | 1999-01-01          |
+      | datumTot            | 2010-12-31          |
       Dan heeft de response een lege array
 
     Scenario: Periode tussen twee partners
-      Gegeven de persoon met burgerservicenummer 555550001 heeft de volgende huwelijken/partnerschappen in de registratie
-      | Categorie | Burgerservicenummer (01.20) | Datum aangaan (06.10) | Datum ontbinding (07.10) | 
-      | 5         | 555550002                   | 20171103              |                          | 
-      | 55        | 555550003                   | 20101022              | 20140315                 | 
+      Gegeven het systeem heeft een persoon met de volgende gegevens
+      | naam                | waarde    |
+      | burgerservicenummer | 555550001 |
+      En de persoon heeft een 'partner' met de volgende gegevens
+      | naam                | waarde    |
+      | burgerservicenummer | 555550002 |
+      En de 'partner' heeft de volgende 'aangaanHuwelijkPartnerschap' gegevens
+      | naam  | waarde   |
+      | datum | 20171103 |
+      En de persoon heeft een 'partner' met de volgende gegevens
+      | naam                | waarde    |
+      | burgerservicenummer | 555550003 |
+      En de 'partner' heeft de volgende 'ontbindingHuwelijkPartnerschap' gegevens
+      | naam  | waarde   |
+      | datum | 20140315 |
+      En de 'partner' heeft de volgende historische gegevens
+      | naam                | waarde    |
+      | burgerservicenummer | 555550003 |
+      En de 'partner' heeft de volgende historische 'aangaanHuwelijkPartnerschap' gegevens
+      | naam  | waarde   |
+      | datum | 20101022 |
       Als partnerhistorie wordt gezocht met de volgende parameters
-      | naam                | waarde                          |
-      | type                | RaadpleegMetBurgerservicenummer |
-      | burgerservicenummer | 555550001                       |
-      | fields              | burgerservicenummer             |
-      | datumVan            | 20150101                        |
-      | datumTot            | 20161231                        |
+      | naam                | waarde              |
+      | type                | RaadpleegMetPeriode |
+      | burgerservicenummer | 555550001           |
+      | fields              | burgerservicenummer |
+      | datumVan            | 2015-01-01          |
+      | datumTot            | 2016-12-31          |
       Dan heeft de response een lege array
 
     Scenario: datumTot is gelijk aan Datum huwelijkssluiting/aangaan geregistreerd partnerschap
-      Gegeven de persoon met burgerservicenummer 555550001 heeft de volgende huwelijken/partnerschappen in de registratie
-      | Categorie | Burgerservicenummer (01.20) | Datum aangaan (06.10) | Datum ontbinding (07.10) | 
-      | 5         | 555550002                   | 20171103              |                          | 
-      | 55        | 555550003                   | 20101022              | 20140315                 | 
+      Gegeven het systeem heeft een persoon met de volgende gegevens
+      | naam                | waarde    |
+      | burgerservicenummer | 555550001 |
+      En de persoon heeft een 'partner' met de volgende gegevens
+      | naam                | waarde    |
+      | burgerservicenummer | 555550002 |
+      En de 'partner' heeft de volgende 'aangaanHuwelijkPartnerschap' gegevens
+      | naam  | waarde   |
+      | datum | 20171103 |
       Als partnerhistorie wordt gezocht met de volgende parameters
-      | naam                | waarde                          |
-      | type                | RaadpleegMetBurgerservicenummer |
-      | burgerservicenummer | 555550001                       |
-      | fields              | burgerservicenummer             |
-      | datumVan            | 20150101                        |
-      | datumTot            | 20171103                        |
+      | naam                | waarde              |
+      | type                | RaadpleegMetPeriode |
+      | burgerservicenummer | 555550001           |
+      | fields              | burgerservicenummer |
+      | datumVan            | 2015-01-01          |
+      | datumTot            | 2017-11-03          |
       Dan heeft de response een lege array
 
     Scenario: datumVan is gelijk aan Datum ontbinding huwelijk/geregistreerd partnerschap
-      Gegeven de persoon met burgerservicenummer 555550001 heeft de volgende huwelijken/partnerschappen in de registratie
-      | Categorie | Burgerservicenummer (01.20) | Datum aangaan (06.10) | Datum ontbinding (07.10) | 
-      | 5         | 555550002                   | 20171103              |                          | 
-      | 55        | 555550003                   | 20101022              | 20140315                 | 
+      Gegeven het systeem heeft een persoon met de volgende gegevens
+      | naam                | waarde    |
+      | burgerservicenummer | 555550001 |
+      En de persoon heeft een 'partner' met de volgende gegevens
+      | naam                | waarde    |
+      | burgerservicenummer | 555550003 |
+      En de 'partner' heeft de volgende 'ontbindingHuwelijkPartnerschap' gegevens
+      | naam  | waarde   |
+      | datum | 20140315 |
       Als partnerhistorie wordt gezocht met de volgende parameters
-      | naam                | waarde                          |
-      | type                | RaadpleegMetBurgerservicenummer |
-      | burgerservicenummer | 555550001                       |
-      | fields              | burgerservicenummer             |
-      | datumVan            | 20140315                        |
-      | datumTot            | 20161231                        |
+      | naam                | waarde              |
+      | type                | RaadpleegMetPeriode |
+      | burgerservicenummer | 555550001           |
+      | fields              | burgerservicenummer |
+      | datumVan            | 2014-03-15          |
+      | datumTot            | 2016-12-31          |
       Dan heeft de response een lege array
