@@ -1,7 +1,7 @@
 # language: nl
 
 @post-assert
-Functionaliteit: Selecteer het/de correcte (historische) huwelijken geregistreerde partnerschappen.
+Functionaliteit: Selecteer (historische) huwelijken/geregistreerde partnerschappen.
 
 Rule: Bij vragen van partnerhistorie op peildatum wordt de partner geleverd waarbij de Datum huwelijkssluiting/aangaan geregistreerd partnerschap op of voor de peildatum ligt én de eventuele Datum ontbinding huwelijk/geregistreerd partnerschap na de peildatum.
 
