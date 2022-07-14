@@ -29,9 +29,9 @@ Rule: Wanneer Datum huwelijkssluiting/aangaan geregistreerd partnerschap geheel 
       Dan heeft de response een partnerhistorie met alleen de volgende gegevens
       | naam                                          | waarde        |
       | burgerservicenummer                           | 555550002     |
-	  | aangaanHuwelijkPartnerschap.datum.type        | DatumOnbekend |
-	  | aangaanHuwelijkPartnerschap.datum.langformaat | onbekend      |
-	  | aangaanHuwelijkPartnerschap.datum.onbekend    | true          |
+      | aangaanHuwelijkPartnerschap.datum.type        | DatumOnbekend |
+      | aangaanHuwelijkPartnerschap.datum.langformaat | onbekend      |
+      | aangaanHuwelijkPartnerschap.datum.onbekend    | true          |
 
     Scenario: Peildatum ligt na ontbinden huwelijk bij datum huwelijkssluiting volledig onbekend
       Gegeven het systeem heeft een persoon met de volgende gegevens
@@ -85,12 +85,12 @@ Rule: Wanneer Datum ontbinding huwelijk/geregistreerd partnerschap geheel onbeke
       Dan heeft de response een partnerhistorie met de volgende gegevens
       | naam                                             | waarde          |
       | burgerservicenummer                              | 555550002       |
-	  | aangaanHuwelijkPartnerschap.datum.type           | Datum           |
-	  | aangaanHuwelijkPartnerschap.datum.langformaat    | 3 november 2017 |
-	  | aangaanHuwelijkPartnerschap.datum.datum          | 2017-11-03      |
-	  | ontbindingHuwelijkPartnerschap.datum.type        | DatumOnbekend   |
-	  | ontbindingHuwelijkPartnerschap.datum.langformaat | onbekend        |
-	  | ontbindingHuwelijkPartnerschap.datum.onbekend    | true            |
+      | aangaanHuwelijkPartnerschap.datum.type           | Datum           |
+      | aangaanHuwelijkPartnerschap.datum.langformaat    | 3 november 2017 |
+      | aangaanHuwelijkPartnerschap.datum.datum          | 2017-11-03      |
+      | ontbindingHuwelijkPartnerschap.datum.type        | DatumOnbekend   |
+      | ontbindingHuwelijkPartnerschap.datum.langformaat | onbekend        |
+      | ontbindingHuwelijkPartnerschap.datum.onbekend    | true            |
 	  
     Scenario: Peildatum ligt voor datum huwelijkssluiting bij datum ontbinding huwelijk volledig onbekend
 	  Gegeven de persoon met burgerservicenummer 555550001 heeft de volgende huwelijken/partnerschappen in de registratie
@@ -131,9 +131,9 @@ Rule: Wanneer Datum huwelijkssluiting/aangaan geregistreerd partnerschap gedeelt
       Dan heeft de response een partnerhistorie met de volgende gegevens
       | naam                                             | waarde    |
       | burgerservicenummer                              | 555550002 |
-	  | aangaanHuwelijkPartnerschap.datum.type           | JaarDatum |
-	  | aangaanHuwelijkPartnerschap.datum.langformaat    | 2017      |
-	  | aangaanHuwelijkPartnerschap.datum.jaar           | 2017      |
+      | aangaanHuwelijkPartnerschap.datum.type           | JaarDatum |
+      | aangaanHuwelijkPartnerschap.datum.langformaat    | 2017      |
+      | aangaanHuwelijkPartnerschap.datum.jaar           | 2017      |
 
     Scenario: Peildatum is 1e dag van maand datum huwelijkssluiting met dag onbekend
 	  Gegeven de persoon met burgerservicenummer 555550001 heeft de volgende huwelijken/partnerschappen in de registratie
@@ -148,10 +148,10 @@ Rule: Wanneer Datum huwelijkssluiting/aangaan geregistreerd partnerschap gedeelt
       Dan heeft de response een partnerhistorie met de volgende gegevens
       | naam                                             | waarde         |
       | burgerservicenummer                              | 555550002      |
-	  | aangaanHuwelijkPartnerschap.datum.type           | JaarMaandDatum |
-	  | aangaanHuwelijkPartnerschap.datum.langformaat    | mei 2017       |
+      | aangaanHuwelijkPartnerschap.datum.type           | JaarMaandDatum |
+      | aangaanHuwelijkPartnerschap.datum.langformaat    | mei 2017       |
 	  | aangaanHuwelijkPartnerschap.datum.jaar           | 2017           |
-	  | aangaanHuwelijkPartnerschap.datum.maand          | 5              |
+      | aangaanHuwelijkPartnerschap.datum.maand          | 5              |
 
     Scenario: datumTot is 1 januari van jaar datum huwelijkssluiting met maand en dag onbekend
 	  Gegeven de persoon met burgerservicenummer 555550001 heeft de volgende huwelijken/partnerschappen in de registratie
@@ -163,7 +163,7 @@ Rule: Wanneer Datum huwelijkssluiting/aangaan geregistreerd partnerschap gedeelt
       | burgerservicenummer | 555550001                                       |
       | fields              | burgerservicenummer,aangaanHuwelijkPartnerschap |
       | datumVan            | 2016-01-01                                      |
-	  | datumTot            | 2017-01-01
+      | datumTot            | 2017-01-01
       Dan heeft de response een lege array
 
     Scenario: datumTot is 2 januari van jaar datum huwelijkssluiting met maand en dag onbekend
@@ -180,9 +180,9 @@ Rule: Wanneer Datum huwelijkssluiting/aangaan geregistreerd partnerschap gedeelt
       Dan heeft de response een partnerhistorie met de volgende gegevens
       | naam                                             | waarde    |
       | burgerservicenummer                              | 555550002 |
-	  | aangaanHuwelijkPartnerschap.datum.type           | JaarDatum |
-	  | aangaanHuwelijkPartnerschap.datum.langformaat    | 2017      |
-	  | aangaanHuwelijkPartnerschap.datum.jaar           | 2017      |
+      | aangaanHuwelijkPartnerschap.datum.type           | JaarDatum |
+      | aangaanHuwelijkPartnerschap.datum.langformaat    | 2017      |
+      | aangaanHuwelijkPartnerschap.datum.jaar           | 2017      |
 
     Scenario: datumTot is 1e dag van maand datum huwelijkssluiting met dag onbekend
 	  Gegeven de persoon met burgerservicenummer 555550001 heeft de volgende huwelijken/partnerschappen in de registratie
@@ -211,10 +211,10 @@ Rule: Wanneer Datum huwelijkssluiting/aangaan geregistreerd partnerschap gedeelt
       Dan heeft de response een partnerhistorie met de volgende gegevens
       | naam                                             | waarde         |
       | burgerservicenummer                              | 555550002      |
-	  | aangaanHuwelijkPartnerschap.datum.type           | JaarMaandDatum |
-	  | aangaanHuwelijkPartnerschap.datum.langformaat    | mei 2017       |
-	  | aangaanHuwelijkPartnerschap.datum.jaar           | 2017           |
-	  | aangaanHuwelijkPartnerschap.datum.maand          | 5              |
+      | aangaanHuwelijkPartnerschap.datum.type           | JaarMaandDatum |
+      | aangaanHuwelijkPartnerschap.datum.langformaat    | mei 2017       |
+      | aangaanHuwelijkPartnerschap.datum.jaar           | 2017           |
+      | aangaanHuwelijkPartnerschap.datum.maand          | 5              |
 	
 Rule: Wanneer Datum ontbinding huwelijk/geregistreerd partnerschap gedeeltelijk onbekend is, wordt voor de filtering aangenomen dat de persoon deze partner gedurende de gehele onzekerheidsperiode heeft gehad.
 
@@ -263,16 +263,16 @@ Rule: Wanneer Datum ontbinding huwelijk/geregistreerd partnerschap gedeeltelijk 
       Dan heeft de response een partnerhistorie met de volgende gegevens
       | naam                                             | waarde          |
       | burgerservicenummer                              | 555550002       |
-	  | aangaanHuwelijkPartnerschap.datum.type           | Datum           |
-	  | aangaanHuwelijkPartnerschap.datum.langformaat    | 3 november 2017 |
-	  | aangaanHuwelijkPartnerschap.datum.datum          | 2017-11-03      |
-	  | ontbindingHuwelijkPartnerschap.datum.type        | JaarMaandDatum  |
-	  | ontbindingHuwelijkPartnerschap.datum.langformaat | april 2019      |
-	  | ontbindingHuwelijkPartnerschap.datum.jaar        | 2019            |
-	  | aangaanHuwelijkPartnerschap.datum.type           | JaarMaandDatum |
-	  | aangaanHuwelijkPartnerschap.datum.langformaat    | mei 2017       |
-	  | aangaanHuwelijkPartnerschap.datum.jaar           | 2017           |
-	  | aangaanHuwelijkPartnerschap.datum.maand          | 5              |
+      | aangaanHuwelijkPartnerschap.datum.type           | Datum           |
+      | aangaanHuwelijkPartnerschap.datum.langformaat    | 3 november 2017 |
+      | aangaanHuwelijkPartnerschap.datum.datum          | 2017-11-03      |
+      | ontbindingHuwelijkPartnerschap.datum.type        | JaarMaandDatum  |
+      | ontbindingHuwelijkPartnerschap.datum.langformaat | april 2019      |
+      | ontbindingHuwelijkPartnerschap.datum.jaar        | 2019            |
+      | aangaanHuwelijkPartnerschap.datum.type           | JaarMaandDatum |
+      | aangaanHuwelijkPartnerschap.datum.langformaat    | mei 2017       |
+      | aangaanHuwelijkPartnerschap.datum.jaar           | 2017           |
+      | aangaanHuwelijkPartnerschap.datum.maand          | 5              |
 
     Scenario: datumVan is 31 december van jaar datum ontbinding huwelijk met maand en dag onbekend
     Scenario: datumVan is 1 januari van jaar na datum ontbinding huwelijk met maand en dag onbekend
