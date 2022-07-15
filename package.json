@@ -6,10 +6,10 @@
   "devDependencies": {
     "@openapitools/openapi-generator-cli": "^2.5.1",
     "@stoplight/spectral-cli": "^6.4.1",
-    "husky": "^4.3.8",
+    "husky": "^8.0.1",
     "mkdirp": "^1.0.4",
     "mvn-dl": "^6.0.0",
-    "openapi-to-postmanv2": "^3.2.0"
+    "openapi-to-postmanv2": "^4.0.0"
   },
   "scripts": {
     "oas:generate-client": "openapi-generator-cli generate -i ./specificatie/genereervariant/openapi.yaml --global-property=modelTests=false,apiTests=false,modelDocs=false,apiDocs=false",
@@ -24,14 +24,10 @@
     "preoas:resolve": "mvn-dl io.swagger.codegen.v3:swagger-codegen-cli:3.0.19 -f swagger-codegen-cli.jar",
     "oas:resolve": "java -jar swagger-codegen-cli.jar generate -i ./specificatie/openapi.yaml -l openapi-yaml -o ./specificatie/genereervariant && java -jar swagger-codegen-cli.jar generate -i ./specificatie/openapi.yaml -l openapi -o ./specificatie/genereervariant",
     "postoas:resolve": "rm swagger-codegen-cli.jar",
-    "unstage-generated": "git reset HEAD ./specificatie/genereervariant/openapi.* ./test/BRP-Historie-Bevragen-postman-collection.json ./code/**",
-    "rollback-generated": "git checkout ./specificatie/genereervariant/openapi.* ./test/BRP-Historie-Bevragen-postman-collection.json ./code/**"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run oas:lint && npm run oas:resolve && npm run oas:lint-genereervariant && npm run unstage-generated",
-      "post-commit": "npm run rollback-generated"
-    }
+    "unstage-generated": "git reset HEAD ./specificatie/genereervariant/openapi.* ./test/BRP-Historie-Bevragen-postman-collection.json",
+    "rollback-generated": "git checkout ./specificatie/genereervariant/openapi.* ./test/BRP-Historie-Bevragen-postman-collection.json",
+    "prepare": "husky install",
+    "pre-commit": "npm run oas:lint && npm run oas:resolve && npm run oas:lint-genereervariant && npm run unstage-generated"
   },
   "repository": {
     "type": "git",
