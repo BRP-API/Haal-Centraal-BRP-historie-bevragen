@@ -36,8 +36,8 @@ Achtergrond:
   | 999992409           | 5         | Jennifer  | 20140123              |                          | 20160403             | 050000                        |
 
 Rule: Gegevens van (ex-)partners kunnen geraadpleegd worden op een specifieke peildatum (in het verleden).
-        - Filteren op peildatum wordt gedaan op basis Datum huwelijkssluiting/aangaan geregistreerd partnerschap (06.10) en Datum ontbinding huwelijk/geregistreerd partnerschap (07.10).
-
+        - Als partnerhistorie wordt gevraagd met peildatum gelijk aan de Datum ontbinding huwelijk/geregistreerd partnerschap van een huwelijk/partnerschap, dan wordt dat huwelijk of partnerschap niet opgenomen in het antwoord.
+        - Bij vragen van partnerhistorie op peildatum wordt de partner geleverd waarbij de datum huwelijkssluiting (06.10) op of voor de peildatum ligt én de eventuele datum ontbinding (07.10) na de peildatum.  
   @gba
   Scenario: Raadpleeg op peildatum met ontbonden huwelijk/partnerschap
     Als de partnerhistorie wordt geraadpleegd met de volgende parameters
