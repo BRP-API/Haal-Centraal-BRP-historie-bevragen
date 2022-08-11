@@ -29,7 +29,7 @@ Functionaliteit: Tonen van Nationaliteithistorie
     # Wat wordt bedoeld met ongewijzigd? Wordt 'geen historische gegevens' bedoeld?
     # zou in dit geval 'persoon heeft op peildatum een nationaliteit zonder historische gegevens' geen betere titel zijn?
     # in de response is 'nationaliteiten' gebruikt als veld naam ipv nationaliteitHistorie zoals gespecificeerd in de OAS
-    Scenario: persoon heeft alleen één actueel nationaliteit
+    Scenario: persoon heeft alleen één actuele nationaliteit
       Gegeven een persoon met burgerservicenummer '000009830' heeft een 'nationaliteit' met de volgende gegevens
       | nationaliteit (05.10) | datum ingang geldigheid (85.10) |
       | 0001                  | 19750707                        |
