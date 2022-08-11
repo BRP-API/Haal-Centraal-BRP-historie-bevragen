@@ -5,11 +5,11 @@
   "main": "index.js",
   "devDependencies": {
     "@openapitools/openapi-generator-cli": "^2.5.1",
-    "@stoplight/spectral-cli": "^6.4.1",
+    "@stoplight/spectral-cli": "^6.5.0",
     "husky": "^8.0.1",
     "mkdirp": "^1.0.4",
     "mvn-dl": "^6.0.0",
-    "openapi-to-postmanv2": "^4.0.0"
+    "openapi-to-postmanv2": "^4.2.0"
   },
   "scripts": {
     "oas:generate-client": "openapi-generator-cli generate -i ./specificatie/genereervariant/openapi.yaml --global-property=modelTests=false,apiTests=false,modelDocs=false,apiDocs=false",
