@@ -17,11 +17,11 @@ jobs:
           echo -e '---\nlayout: page-with-side-nav\ntitle: User Stories in Ontwikkeling\n---\n' >> user-stories-dev.md
           echo -e '# User stories\n' >> user-stories-dev.md
 
-      - name: List 'v1.1' user stories
+      - name: List 'v2.0' user stories
         uses: lee-dohm/select-matching-issues@v1.2.0
         with:
           format: list
-          query:  label:"v1.1" label:"User Story"
+          query:  label:"v2.0" label:"User Story"
           token: ${{ secrets.GITHUB_TOKEN }}
           path: issues-tmp.md
       - run: |
@@ -30,8 +30,8 @@ jobs:
         
       - name: Create User Stories Prod
         run: |
-          echo -e '---\nlayout: page-with-side-nav\ntitle: User Stories in Productie\n---\n' >> user-stories-prod.md
-          echo -e '# User stories\n' >> user-stories-prod.md
+          echo -e '---\nlayout: page-with-side-nav\ntitle: User Stories in Productie\n---\n' >> user-stories.md
+          echo -e '# User stories\n' >> user-stories.md
           
       - name: List 'v1.0' user stories
         uses: lee-dohm/select-matching-issues@v1.2.0
@@ -41,24 +41,26 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           path: issues-tmp.md
       - run: |
-          cat issues-tmp.md >> user-stories-prod.md
-          echo -e '\n' >> user-stories-prod.md
+          echo -e '## Vanaf versie 1.0\n' >> user-stories.md
+          cat issues-tmp.md >> user-stories.md
+          echo -e '\n' >> user-stories.md
           
-      - name: target=_blank toevoegen, move naar ./docs en committen
+      - name: target=_blank toevoegen aan issue link
         run: |
           sed -i 's/)$/){:target="_blank" rel="noopener"}/' user-stories-dev.md
-          sed -i 's/)$/){:target="_blank" rel="noopener"}/' user-stories-prod.md
-
+          sed -i 's/)$/){:target="_blank" rel="noopener"}/' user-stories.md
+      - name: move user-stories markdown bestanden naar ./docs
+        run: |
           mv user-stories-dev.md ./docs/user-stories-dev.md
-          mv user-stories-prod.md ./docs/user-stories-prod.md
-
+          mv user-stories.md ./docs/user-stories.md
+      - name: commit & push user-stories markdown bestanden
+        run: |
           if [ -n "$(git status ./docs/user-stories-dev.md --porcelain)" ]; then
             git add ./docs/user-stories-dev.md
           fi
-          if [ -n "$(git status ./docs/user-stories-prod.md --porcelain)" ]; then
-            git add ./docs/user-stories-prod.md
+          if [ -n "$(git status ./docs/user-stories.md --porcelain)" ]; then
+            git add ./docs/user-stories.md
           fi
-
           if [ -n "$(git status ./docs --porcelain)" ]; then
             git config user.name "$GITHUB_ACTOR"
             git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
