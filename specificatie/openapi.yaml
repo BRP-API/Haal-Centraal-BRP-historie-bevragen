@@ -23,7 +23,7 @@ paths:
       description: |
         Raadpleeg de verblijfplaatshistorie van een persoon op de opgegeven peildatum of binnen de opgegeven periode.
         Het meest actuele adres staat bovenaan.
-        
+
         Zoek met burgerservicenummer
       operationId: Verblijfplaatshistorie
       requestBody:
@@ -75,7 +75,7 @@ paths:
       description: |
         Raadpleeg de partnerhistorie van een persoon op de opgegeven peildatum of binnen de opgegeven periode.
         De meest actuele partner staat bovenaan.
-        
+
         Zoek met burgerservicenummer
       operationId: Partnerhistorie
       requestBody:
@@ -127,7 +127,7 @@ paths:
       description: |
         Raadpleeg de verblijfstitelhistorie van een persoon op de opgegeven peildatum of binnen de opgegeven periode.
         De meest actuele verblijfstitel staat bovenaan.
-        
+
         Zoek met burgerservicenummer
       operationId: Verblijfstitelhistorie
       requestBody:
@@ -179,7 +179,7 @@ paths:
       description: |
         Raadpleeg de nationaliteithistorie van een persoon op de opgegeven peildatum of binnen de opgegeven periode.
         De meest actuele nationaliteit staat bovenaan.
-        
+
         Zoek met burgerservicenummer
       operationId: Nationaliteithistorie
       requestBody:
@@ -205,7 +205,7 @@ paths:
           content:
             application/hal+json:
               schema:
-                $ref: '#/components/schemas/NationalisatiehistorieQueryResponse'
+                $ref: '#/components/schemas/NationaliteithistorieQueryResponse'
         '400':
           $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/common.yaml#/components/responses/400"
         '401':
@@ -226,7 +226,7 @@ paths:
           $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/common.yaml#/components/responses/default"
       tags:
         - BRP historie bevragen
-# Daar waar mogelijk wordt nu verwezen naar componenten die in HC BRP Personen zijn gedefinieerd. Dat is echter alleen mogelijk als betreffende componenten zelf niet ook een $ref bevatten. 
+# Daar waar mogelijk wordt nu verwezen naar componenten die in HC BRP Personen zijn gedefinieerd. Dat is echter alleen mogelijk als betreffende componenten zelf niet ook een $ref bevatten.
 # Daar waar dat wel het geval is zijn de componenten in de openapi.yaml van HC BRP Historie gekopieerd.
 
 # De vraag is of dit de gewenste aanpak is of dat we alle componenten lokaal binnen de openapi.yaml van HC BRP Historie moeten definiëren.
@@ -250,10 +250,10 @@ components:
           $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/persoon.yaml#/components/schemas/Burgerservicenummer"
         fields:
           description: |
-            Hiermee kun je de inhoud van de resource naar behoefte aanpassen door een lijst van paden die verwijzen naar de gewenste velden op te nemen 
-            ([zie functionele specificaties 'fields' properties](https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-historie-bevragen/develop/features/fields.feature)). 
-            De te gebruiken paden zijn beschreven in [fields-Persoon.csv](https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-historie-bevragen/develop/features/fields-Verblijfplaatshistorie.csv) 
-            waarbij in de eerste kolom het fields-pad staat en in de tweede kolom het volledige pad naar het gewenste veld. 
+            Hiermee kun je de inhoud van de resource naar behoefte aanpassen door een lijst van paden die verwijzen naar de gewenste velden op te nemen
+            ([zie functionele specificaties 'fields' properties](https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-historie-bevragen/develop/features/fields.feature)).
+            De te gebruiken paden zijn beschreven in [fields-Persoon.csv](https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-historie-bevragen/develop/features/fields-Verblijfplaatshistorie.csv)
+            waarbij in de eerste kolom het fields-pad staat en in de tweede kolom het volledige pad naar het gewenste veld.
           type: array
           maxItems: 130
           minItems: 1
@@ -320,7 +320,7 @@ components:
             $ref: 'verblijfstitel.yaml#/components/schemas/Verblijfstitel'
         geheimhoudingPersoonsgegevens:
           $ref: 'persoon.yaml#/components/schemas/GeheimhoudingPersoonsgegevens'
-    NationalisatiehistorieQueryResponse:
+    NationaliteithistorieQueryResponse:
       type: object
       properties:
         nationaliteithistorie:
@@ -329,4 +329,3 @@ components:
             $ref: 'nationaliteit.yaml#/components/schemas/AbstractNationaliteit'
         geheimhoudingPersoonsgegevens:
           $ref: 'persoon.yaml#/components/schemas/GeheimhoudingPersoonsgegevens'
-            
