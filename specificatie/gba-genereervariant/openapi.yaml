@@ -815,12 +815,11 @@ components:
           maxItems: 130
           minItems: 1
           type: array
-          description: "Hiermee kun je de inhoud van de resource naar behoefte aanpassen\
-            \ door een lijst van paden die verwijzen naar de gewenste velden op te\
-            \ nemen \n([zie functionele specificaties 'fields' properties](https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-historie-bevragen/develop/features/fields.feature)).\
-            \ \nDe te gebruiken paden zijn beschreven in [fields-Persoon.csv](https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-historie-bevragen/develop/features/fields-Verblijfplaatshistorie.csv)\
-            \ \nwaarbij in de eerste kolom het fields-pad staat en in de tweede kolom\
-            \ het volledige pad naar het gewenste veld. \n"
+          description: |
+            Hiermee kun je de inhoud van de resource naar behoefte aanpassen door een lijst van paden die verwijzen naar de gewenste velden op te nemen
+            ([zie functionele specificaties 'fields' properties](https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-historie-bevragen/develop/features/fields.feature)).
+            De te gebruiken paden zijn beschreven in [fields-Persoon.csv](https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-historie-bevragen/develop/features/fields-Verblijfplaatshistorie.csv)
+            waarbij in de eerste kolom het fields-pad staat en in de tweede kolom het volledige pad naar het gewenste veld.
           items:
             $ref: '#/components/schemas/Field'
       discriminator:
