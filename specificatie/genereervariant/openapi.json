@@ -306,7 +306,7 @@
               }
             },
             "content" : {
-              "application/hal+json" : {
+              "application/json" : {
                 "schema" : {
                   "$ref" : "#/components/schemas/PartnerhistorieQueryResponse"
                 }
@@ -556,7 +556,7 @@
               }
             },
             "content" : {
-              "application/hal+json" : {
+              "application/json" : {
                 "schema" : {
                   "$ref" : "#/components/schemas/VerblijfstitelhistorieQueryResponse"
                 }
@@ -806,7 +806,7 @@
               }
             },
             "content" : {
-              "application/hal+json" : {
+              "application/json" : {
                 "schema" : {
                   "$ref" : "#/components/schemas/NationaliteithistorieQueryResponse"
                 }

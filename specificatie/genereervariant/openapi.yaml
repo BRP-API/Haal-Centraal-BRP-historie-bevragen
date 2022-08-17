@@ -235,7 +235,7 @@ paths:
             X-Rate-Limit-Reset:
               $ref: '#/components/headers/X_Rate_Limit_Reset'
           content:
-            application/hal+json:
+            application/json:
               schema:
                 $ref: '#/components/schemas/PartnerhistorieQueryResponse'
         "400":
@@ -421,7 +421,7 @@ paths:
             X-Rate-Limit-Reset:
               $ref: '#/components/headers/X_Rate_Limit_Reset'
           content:
-            application/hal+json:
+            application/json:
               schema:
                 $ref: '#/components/schemas/VerblijfstitelhistorieQueryResponse'
         "400":
@@ -607,7 +607,7 @@ paths:
             X-Rate-Limit-Reset:
               $ref: '#/components/headers/X_Rate_Limit_Reset'
           content:
-            application/hal+json:
+            application/json:
               schema:
                 $ref: '#/components/schemas/NationaliteithistorieQueryResponse'
         "400":
