@@ -1402,6 +1402,10 @@ components:
           $ref: '#/components/schemas/AbstractDatum'
         inOnderzoek:
           $ref: '#/components/schemas/VerblijfstitelInOnderzoek'
+        rni:
+          $ref: '#/components/schemas/RniDeelnemer'
+        verificatie:
+          $ref: '#/components/schemas/Verificatie'
       description: |
         Gegevens over de verblijfsrechtelijke status van de persoon.
         * **datumEinde**: Datum waarop de geldigheid van de gegevens over de verblijfstitel is beëindigd.
@@ -1796,6 +1800,30 @@ components:
             type: boolean
           plaats:
             type: boolean
+    RniDeelnemer:
+      type: object
+      properties:
+        deelnemer:
+          $ref: '#/components/schemas/Waardetabel'
+        omschrijvingVerdrag:
+          $ref: '#/components/schemas/OmschrijvingVerdrag'
+    OmschrijvingVerdrag:
+      pattern: ^[a-zA-Z0-9À-ž \.\-\']{1,50}$
+      type: string
+      description: |
+        Omschrijving van het verdrag op basis waarvan een zusterorganisatie in het buitenland de gegevens bij de RNI-deelnemer heeft aangeleverd.
+    Verificatie:
+      type: object
+      properties:
+        datum:
+          $ref: '#/components/schemas/AbstractDatum'
+        omschrijving:
+          $ref: '#/components/schemas/OmschrijvingVerificatie'
+    OmschrijvingVerificatie:
+      pattern: ^[a-zA-Z0-9À-ž \.\-\']{1,50}$
+      type: string
+      description: |
+        Omschrijving van de verificatie van de rni-gegevens
   headers:
     api_version:
       schema:

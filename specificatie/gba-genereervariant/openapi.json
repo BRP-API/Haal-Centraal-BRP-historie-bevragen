@@ -1463,6 +1463,12 @@
           },
           "inOnderzoek" : {
             "$ref" : "#/components/schemas/GbaInOnderzoek"
+          },
+          "rni" : {
+            "$ref" : "#/components/schemas/RniDeelnemer"
+          },
+          "verificatie" : {
+            "$ref" : "#/components/schemas/GbaVerificatie"
           }
         },
         "description" : "Gegevens over de verblijfsrechtelijke status van de persoon.\n* **datumEinde**: Datum waarop de geldigheid van de gegevens over de verblijfstitel is beëindigd.\n* **datumIngang**: Datum waarop de gegevens over de verblijfstitel geldig zijn geworden.\n* **aanduiding** : Verblijfstiteltabel die aangeeft over welke verblijfsrechtelijke status de persoon beschikt.\n"
@@ -1607,6 +1613,38 @@
             "$ref" : "#/components/schemas/GbaDatum"
           }
         }
+      },
+      "RniDeelnemer" : {
+        "type" : "object",
+        "properties" : {
+          "deelnemer" : {
+            "$ref" : "#/components/schemas/Waardetabel"
+          },
+          "omschrijvingVerdrag" : {
+            "$ref" : "#/components/schemas/OmschrijvingVerdrag"
+          }
+        }
+      },
+      "OmschrijvingVerdrag" : {
+        "pattern" : "^[a-zA-Z0-9À-ž \\.\\-\\']{1,50}$",
+        "type" : "string",
+        "description" : "Omschrijving van het verdrag op basis waarvan een zusterorganisatie in het buitenland de gegevens bij de RNI-deelnemer heeft aangeleverd.\n"
+      },
+      "GbaVerificatie" : {
+        "type" : "object",
+        "properties" : {
+          "datum" : {
+            "$ref" : "#/components/schemas/GbaDatum"
+          },
+          "omschrijving" : {
+            "$ref" : "#/components/schemas/OmschrijvingVerificatie"
+          }
+        }
+      },
+      "OmschrijvingVerificatie" : {
+        "pattern" : "^[a-zA-Z0-9À-ž \\.\\-\\']{1,50}$",
+        "type" : "string",
+        "description" : "Omschrijving van de verificatie van de rni-gegevens\n"
       }
     },
     "headers" : {

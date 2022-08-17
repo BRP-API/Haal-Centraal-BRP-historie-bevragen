@@ -1871,6 +1871,12 @@
           },
           "inOnderzoek" : {
             "$ref" : "#/components/schemas/VerblijfstitelInOnderzoek"
+          },
+          "rni" : {
+            "$ref" : "#/components/schemas/RniDeelnemer"
+          },
+          "verificatie" : {
+            "$ref" : "#/components/schemas/Verificatie"
           }
         },
         "description" : "Gegevens over de verblijfsrechtelijke status van de persoon.\n* **datumEinde**: Datum waarop de geldigheid van de gegevens over de verblijfstitel is beëindigd.\n* **datumIngang**: Datum waarop de gegevens over de verblijfstitel geldig zijn geworden.\n* **aanduiding** : Verblijfstiteltabel die aangeeft over welke verblijfsrechtelijke status de persoon beschikt. Wordt gevuld op basis van de waarden die voorkomen in de tabel 'Verblijfstitel' uit de Haal-Centraal-BRP-tabellen-bevragen API.\n"
@@ -2412,6 +2418,38 @@
             }
           }
         } ]
+      },
+      "RniDeelnemer" : {
+        "type" : "object",
+        "properties" : {
+          "deelnemer" : {
+            "$ref" : "#/components/schemas/Waardetabel"
+          },
+          "omschrijvingVerdrag" : {
+            "$ref" : "#/components/schemas/OmschrijvingVerdrag"
+          }
+        }
+      },
+      "OmschrijvingVerdrag" : {
+        "pattern" : "^[a-zA-Z0-9À-ž \\.\\-\\']{1,50}$",
+        "type" : "string",
+        "description" : "Omschrijving van het verdrag op basis waarvan een zusterorganisatie in het buitenland de gegevens bij de RNI-deelnemer heeft aangeleverd.\n"
+      },
+      "Verificatie" : {
+        "type" : "object",
+        "properties" : {
+          "datum" : {
+            "$ref" : "#/components/schemas/AbstractDatum"
+          },
+          "omschrijving" : {
+            "$ref" : "#/components/schemas/OmschrijvingVerificatie"
+          }
+        }
+      },
+      "OmschrijvingVerificatie" : {
+        "pattern" : "^[a-zA-Z0-9À-ž \\.\\-\\']{1,50}$",
+        "type" : "string",
+        "description" : "Omschrijving van de verificatie van de rni-gegevens\n"
       }
     },
     "headers" : {
