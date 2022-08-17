@@ -833,6 +833,8 @@ components:
             $ref: '#/components/schemas/AbstractVerblijfplaats'
         geheimhoudingPersoonsgegevens:
           $ref: '#/components/schemas/GeheimhoudingPersoonsgegevens'
+        verificatie:
+          $ref: '#/components/schemas/Verificatie'
     PartnerhistorieQueryResponse:
       type: object
       properties:
@@ -842,6 +844,8 @@ components:
             $ref: '#/components/schemas/Partner'
         geheimhoudingPersoonsgegevens:
           $ref: '#/components/schemas/GeheimhoudingPersoonsgegevens'
+        verificatie:
+          $ref: '#/components/schemas/Verificatie'
     VerblijfstitelhistorieQueryResponse:
       type: object
       properties:
@@ -851,6 +855,8 @@ components:
             $ref: '#/components/schemas/Verblijfstitel'
         geheimhoudingPersoonsgegevens:
           $ref: '#/components/schemas/GeheimhoudingPersoonsgegevens'
+        verificatie:
+          $ref: '#/components/schemas/Verificatie'
     NationaliteithistorieQueryResponse:
       type: object
       properties:
@@ -860,6 +866,8 @@ components:
             $ref: '#/components/schemas/AbstractNationaliteit'
         geheimhoudingPersoonsgegevens:
           $ref: '#/components/schemas/GeheimhoudingPersoonsgegevens'
+        verificatie:
+          $ref: '#/components/schemas/Verificatie'
     BadRequestFoutbericht:
       allOf:
       - $ref: '#/components/schemas/Foutbericht'
@@ -982,8 +990,6 @@ components:
             $ref: '#/components/schemas/VerblijfplaatsBuitenlandInOnderzoek'
           rni:
             $ref: '#/components/schemas/RniDeelnemer'
-          verificatie:
-            $ref: '#/components/schemas/Verificatie'
     VerblijfadresBuitenland:
       type: object
       properties:
@@ -1078,8 +1084,6 @@ components:
             $ref: '#/components/schemas/AdresInOnderzoek'
           rni:
             $ref: '#/components/schemas/RniDeelnemer'
-          verificatie:
-            $ref: '#/components/schemas/Verificatie'
     VerblijfadresBinnenland:
       type: object
       properties:
@@ -1221,8 +1225,6 @@ components:
             $ref: '#/components/schemas/VerblijfplaatsOnbekendInOnderzoek'
           rni:
             $ref: '#/components/schemas/RniDeelnemer'
-          verificatie:
-            $ref: '#/components/schemas/Verificatie'
     VerblijfplaatsOnbekendInOnderzoek:
       allOf:
       - $ref: '#/components/schemas/InOnderzoek'
@@ -1269,8 +1271,6 @@ components:
             $ref: '#/components/schemas/LocatieInOnderzoek'
           rni:
             $ref: '#/components/schemas/RniDeelnemer'
-          verificatie:
-            $ref: '#/components/schemas/Verificatie'
     VerblijfadresLocatie:
       type: object
       properties:
@@ -1312,6 +1312,18 @@ components:
       type: boolean
       description: |
         Gegevens mogen niet worden verstrekt aan derden / maatschappelijke instellingen.
+    Verificatie:
+      type: object
+      properties:
+        datum:
+          $ref: '#/components/schemas/AbstractDatum'
+        omschrijving:
+          $ref: '#/components/schemas/OmschrijvingVerificatie'
+    OmschrijvingVerificatie:
+      pattern: ^[a-zA-Z0-9À-ž \.\-\']{1,50}$
+      type: string
+      description: |
+        Omschrijving van de verificatie van de rni-gegevens
     Partner:
       type: object
       properties:
@@ -1333,8 +1345,6 @@ components:
           $ref: '#/components/schemas/OntbindingHuwelijkPartnerschap'
         rni:
           $ref: '#/components/schemas/RniDeelnemer'
-        verificatie:
-          $ref: '#/components/schemas/Verificatie'
     PartnerInOnderzoek:
       description: |
         Geeft aan welke gegevens over het huwelijk of het partnerschap in onderzoek zijn.
@@ -1424,8 +1434,6 @@ components:
           $ref: '#/components/schemas/VerblijfstitelInOnderzoek'
         rni:
           $ref: '#/components/schemas/RniDeelnemer'
-        verificatie:
-          $ref: '#/components/schemas/Verificatie'
       description: |
         Gegevens over de verblijfsrechtelijke status van de persoon.
         * **datumEinde**: Datum waarop de geldigheid van de gegevens over de verblijfstitel is beëindigd.
@@ -1457,8 +1465,6 @@ components:
           $ref: '#/components/schemas/Waardetabel'
         rni:
           $ref: '#/components/schemas/RniDeelnemer'
-        verificatie:
-          $ref: '#/components/schemas/Verificatie'
       description: |
         * **redenOpname** - De reden op grond waarvan de persoon de nationaliteit gekregen heeft. Wordt gevuld op basis van de waarden die voorkomen in de tabel 'Reden_Nationaliteit' uit de Haal-Centraal-BRP-tabellen-bevragen API.
         * **redenBeeindigen** - De reden op grond waarvan de nationaliteit van een persoon beëindigd is. Wordt gevuld op basis van de waarden die voorkomen in de tabel 'Reden_Nationaliteit' uit de Haal-Centraal-BRP-tabellen-bevragen API.
@@ -1724,18 +1730,6 @@ components:
       type: string
       description: |
         Omschrijving van het verdrag op basis waarvan een zusterorganisatie in het buitenland de gegevens bij de RNI-deelnemer heeft aangeleverd.
-    Verificatie:
-      type: object
-      properties:
-        datum:
-          $ref: '#/components/schemas/AbstractDatum'
-        omschrijving:
-          $ref: '#/components/schemas/OmschrijvingVerificatie'
-    OmschrijvingVerificatie:
-      pattern: ^[a-zA-Z0-9À-ž \.\-\']{1,50}$
-      type: string
-      description: |
-        Omschrijving van de verificatie van de rni-gegevens
     InOnderzoek:
       type: object
       properties:

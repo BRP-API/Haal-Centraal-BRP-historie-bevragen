@@ -773,6 +773,8 @@ components:
             $ref: '#/components/schemas/GbaVerblijfplaats'
         geheimhoudingPersoonsgegevens:
           $ref: '#/components/schemas/GbaGeheimhoudingPersoonsgegevens'
+        verificatie:
+          $ref: '#/components/schemas/GbaVerificatie'
     PartnerhistorieQueryResponse:
       type: object
       properties:
@@ -782,6 +784,8 @@ components:
             $ref: '#/components/schemas/GbaPartner'
         geheimhoudingPersoonsgegevens:
           $ref: '#/components/schemas/GbaGeheimhoudingPersoonsgegevens'
+        verificatie:
+          $ref: '#/components/schemas/GbaVerificatie'
     VerblijfstitelhistorieQueryResponse:
       type: object
       properties:
@@ -791,6 +795,8 @@ components:
             $ref: '#/components/schemas/GbaVerblijfstitel'
         geheimhoudingPersoonsgegevens:
           $ref: '#/components/schemas/GbaGeheimhoudingPersoonsgegevens'
+        verificatie:
+          $ref: '#/components/schemas/GbaVerificatie'
     NationalisatiehistorieQueryResponse:
       type: object
       properties:
@@ -800,6 +806,8 @@ components:
             $ref: '#/components/schemas/GbaNationaliteit'
         geheimhoudingPersoonsgegevens:
           $ref: '#/components/schemas/GbaGeheimhoudingPersoonsgegevens'
+        verificatie:
+          $ref: '#/components/schemas/GbaVerificatie'
     HistorieQuery:
       required:
       - burgerservicenummer
@@ -986,8 +994,6 @@ components:
           $ref: '#/components/schemas/GbaInOnderzoek'
         rni:
           $ref: '#/components/schemas/RniDeelnemer'
-        verificatie:
-          $ref: '#/components/schemas/GbaVerificatie'
     Regel1:
       maxLength: 40
       type: string
@@ -1065,6 +1071,18 @@ components:
       type: string
     GbaGeheimhoudingPersoonsgegevens:
       type: integer
+    GbaVerificatie:
+      type: object
+      properties:
+        datum:
+          $ref: '#/components/schemas/GbaDatum'
+        omschrijving:
+          $ref: '#/components/schemas/OmschrijvingVerificatie'
+    OmschrijvingVerificatie:
+      pattern: ^[a-zA-Z0-9À-ž \.\-\']{1,50}$
+      type: string
+      description: |
+        Omschrijving van de verificatie van de rni-gegevens
     GbaPartner:
       type: object
       properties:
@@ -1086,8 +1104,6 @@ components:
           $ref: '#/components/schemas/GbaOntbindingHuwelijkPartnerschap'
         rni:
           $ref: '#/components/schemas/RniDeelnemer'
-        verificatie:
-          $ref: '#/components/schemas/GbaVerificatie'
     GbaAangaanHuwelijkPartnerschap:
       type: object
       properties:
@@ -1126,8 +1142,6 @@ components:
           $ref: '#/components/schemas/GbaInOnderzoek'
         rni:
           $ref: '#/components/schemas/RniDeelnemer'
-        verificatie:
-          $ref: '#/components/schemas/GbaVerificatie'
       description: |
         Gegevens over de verblijfsrechtelijke status van de persoon.
         * **datumEinde**: Datum waarop de geldigheid van de gegevens over de verblijfstitel is beëindigd.
@@ -1153,8 +1167,6 @@ components:
           $ref: '#/components/schemas/GbaInOnderzoek'
         rni:
           $ref: '#/components/schemas/RniDeelnemer'
-        verificatie:
-          $ref: '#/components/schemas/GbaVerificatie'
     Waardetabel:
       type: object
       properties:
@@ -1193,18 +1205,6 @@ components:
       type: string
       description: |
         Omschrijving van het verdrag op basis waarvan een zusterorganisatie in het buitenland de gegevens bij de RNI-deelnemer heeft aangeleverd.
-    GbaVerificatie:
-      type: object
-      properties:
-        datum:
-          $ref: '#/components/schemas/GbaDatum'
-        omschrijving:
-          $ref: '#/components/schemas/OmschrijvingVerificatie'
-    OmschrijvingVerificatie:
-      pattern: ^[a-zA-Z0-9À-ž \.\-\']{1,50}$
-      type: string
-      description: |
-        Omschrijving van de verificatie van de rni-gegevens
     GbaNaamBasis:
       type: object
       properties:
