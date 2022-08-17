@@ -347,3 +347,34 @@ components:
           type: "string"
           pattern: ^[a-zA-Z0-9À-ž \'\,\(\)\.\-]{1,200}$
           example: "Nederland"
+    OmschrijvingVerdrag:
+      type: string
+      description: |
+        Omschrijving van het verdrag op basis waarvan een zusterorganisatie in het buitenland de gegevens bij de RNI-deelnemer heeft aangeleverd.
+      pattern: ^[a-zA-Z0-9À-ž \.\-\']{1,50}$
+    OmschrijvingVerificatie:
+      type: string
+      description: |
+        Omschrijving van de verificatie van de rni-gegevens
+      pattern: ^[a-zA-Z0-9À-ž \.\-\']{1,50}$
+    GbaVerificatie:
+      type: object
+      properties:
+        datum:
+          $ref: 'datum.yaml#/components/schemas/GbaDatum'
+        omschrijving:
+          $ref: '#/components/schemas/OmschrijvingVerificatie'
+    Verificatie:
+      type: object
+      properties:
+        datum:
+          $ref: 'datum.yaml#/components/schemas/AbstractDatum'
+        omschrijving:
+          $ref: '#/components/schemas/OmschrijvingVerificatie'
+    RniDeelnemer:
+      type: object
+      properties:
+        deelnemer:
+          $ref: '#/components/schemas/Waardetabel'
+        omschrijvingVerdrag:
+          $ref: '#/components/schemas/OmschrijvingVerdrag'
