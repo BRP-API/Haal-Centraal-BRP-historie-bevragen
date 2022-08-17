@@ -1305,6 +1305,12 @@
           },
           "inOnderzoek" : {
             "$ref" : "#/components/schemas/GbaInOnderzoek"
+          },
+          "rni" : {
+            "$ref" : "#/components/schemas/RniDeelnemer"
+          },
+          "verificatie" : {
+            "$ref" : "#/components/schemas/GbaVerificatie"
           }
         }
       },
@@ -1533,6 +1539,38 @@
           }
         }
       },
+      "RniDeelnemer" : {
+        "type" : "object",
+        "properties" : {
+          "deelnemer" : {
+            "$ref" : "#/components/schemas/Waardetabel"
+          },
+          "omschrijvingVerdrag" : {
+            "$ref" : "#/components/schemas/OmschrijvingVerdrag"
+          }
+        }
+      },
+      "OmschrijvingVerdrag" : {
+        "pattern" : "^[a-zA-Z0-9À-ž \\.\\-\\']{1,50}$",
+        "type" : "string",
+        "description" : "Omschrijving van het verdrag op basis waarvan een zusterorganisatie in het buitenland de gegevens bij de RNI-deelnemer heeft aangeleverd.\n"
+      },
+      "GbaVerificatie" : {
+        "type" : "object",
+        "properties" : {
+          "datum" : {
+            "$ref" : "#/components/schemas/GbaDatum"
+          },
+          "omschrijving" : {
+            "$ref" : "#/components/schemas/OmschrijvingVerificatie"
+          }
+        }
+      },
+      "OmschrijvingVerificatie" : {
+        "pattern" : "^[a-zA-Z0-9À-ž \\.\\-\\']{1,50}$",
+        "type" : "string",
+        "description" : "Omschrijving van de verificatie van de rni-gegevens\n"
+      },
       "GbaNaamBasis" : {
         "type" : "object",
         "properties" : {
@@ -1613,38 +1651,6 @@
             "$ref" : "#/components/schemas/GbaDatum"
           }
         }
-      },
-      "RniDeelnemer" : {
-        "type" : "object",
-        "properties" : {
-          "deelnemer" : {
-            "$ref" : "#/components/schemas/Waardetabel"
-          },
-          "omschrijvingVerdrag" : {
-            "$ref" : "#/components/schemas/OmschrijvingVerdrag"
-          }
-        }
-      },
-      "OmschrijvingVerdrag" : {
-        "pattern" : "^[a-zA-Z0-9À-ž \\.\\-\\']{1,50}$",
-        "type" : "string",
-        "description" : "Omschrijving van het verdrag op basis waarvan een zusterorganisatie in het buitenland de gegevens bij de RNI-deelnemer heeft aangeleverd.\n"
-      },
-      "GbaVerificatie" : {
-        "type" : "object",
-        "properties" : {
-          "datum" : {
-            "$ref" : "#/components/schemas/GbaDatum"
-          },
-          "omschrijving" : {
-            "$ref" : "#/components/schemas/OmschrijvingVerificatie"
-          }
-        }
-      },
-      "OmschrijvingVerificatie" : {
-        "pattern" : "^[a-zA-Z0-9À-ž \\.\\-\\']{1,50}$",
-        "type" : "string",
-        "description" : "Omschrijving van de verificatie van de rni-gegevens\n"
       }
     },
     "headers" : {

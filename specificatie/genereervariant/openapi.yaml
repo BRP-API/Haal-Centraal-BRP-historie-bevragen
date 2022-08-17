@@ -980,6 +980,10 @@ components:
             $ref: '#/components/schemas/AbstractDatum'
           inOnderzoek:
             $ref: '#/components/schemas/VerblijfplaatsBuitenlandInOnderzoek'
+          rni:
+            $ref: '#/components/schemas/RniDeelnemer'
+          verificatie:
+            $ref: '#/components/schemas/Verificatie'
     VerblijfadresBuitenland:
       type: object
       properties:
@@ -1072,6 +1076,10 @@ components:
             $ref: '#/components/schemas/AbstractDatum'
           inOnderzoek:
             $ref: '#/components/schemas/AdresInOnderzoek'
+          rni:
+            $ref: '#/components/schemas/RniDeelnemer'
+          verificatie:
+            $ref: '#/components/schemas/Verificatie'
     VerblijfadresBinnenland:
       type: object
       properties:
@@ -1211,6 +1219,10 @@ components:
             $ref: '#/components/schemas/AbstractDatum'
           inOnderzoek:
             $ref: '#/components/schemas/VerblijfplaatsOnbekendInOnderzoek'
+          rni:
+            $ref: '#/components/schemas/RniDeelnemer'
+          verificatie:
+            $ref: '#/components/schemas/Verificatie'
     VerblijfplaatsOnbekendInOnderzoek:
       allOf:
       - $ref: '#/components/schemas/InOnderzoek'
@@ -1255,6 +1267,10 @@ components:
             $ref: '#/components/schemas/AbstractDatum'
           inOnderzoek:
             $ref: '#/components/schemas/LocatieInOnderzoek'
+          rni:
+            $ref: '#/components/schemas/RniDeelnemer'
+          verificatie:
+            $ref: '#/components/schemas/Verificatie'
     VerblijfadresLocatie:
       type: object
       properties:
@@ -1688,6 +1704,30 @@ components:
           pattern: ^[a-zA-Z0-9À-ž \'\,\(\)\.\-]{1,200}$
           type: string
           example: Nederland
+    RniDeelnemer:
+      type: object
+      properties:
+        deelnemer:
+          $ref: '#/components/schemas/Waardetabel'
+        omschrijvingVerdrag:
+          $ref: '#/components/schemas/OmschrijvingVerdrag'
+    OmschrijvingVerdrag:
+      pattern: ^[a-zA-Z0-9À-ž \.\-\']{1,50}$
+      type: string
+      description: |
+        Omschrijving van het verdrag op basis waarvan een zusterorganisatie in het buitenland de gegevens bij de RNI-deelnemer heeft aangeleverd.
+    Verificatie:
+      type: object
+      properties:
+        datum:
+          $ref: '#/components/schemas/AbstractDatum'
+        omschrijving:
+          $ref: '#/components/schemas/OmschrijvingVerificatie'
+    OmschrijvingVerificatie:
+      pattern: ^[a-zA-Z0-9À-ž \.\-\']{1,50}$
+      type: string
+      description: |
+        Omschrijving van de verificatie van de rni-gegevens
     InOnderzoek:
       type: object
       properties:
@@ -1800,30 +1840,6 @@ components:
             type: boolean
           plaats:
             type: boolean
-    RniDeelnemer:
-      type: object
-      properties:
-        deelnemer:
-          $ref: '#/components/schemas/Waardetabel'
-        omschrijvingVerdrag:
-          $ref: '#/components/schemas/OmschrijvingVerdrag'
-    OmschrijvingVerdrag:
-      pattern: ^[a-zA-Z0-9À-ž \.\-\']{1,50}$
-      type: string
-      description: |
-        Omschrijving van het verdrag op basis waarvan een zusterorganisatie in het buitenland de gegevens bij de RNI-deelnemer heeft aangeleverd.
-    Verificatie:
-      type: object
-      properties:
-        datum:
-          $ref: '#/components/schemas/AbstractDatum'
-        omschrijving:
-          $ref: '#/components/schemas/OmschrijvingVerificatie'
-    OmschrijvingVerificatie:
-      pattern: ^[a-zA-Z0-9À-ž \.\-\']{1,50}$
-      type: string
-      description: |
-        Omschrijving van de verificatie van de rni-gegevens
   headers:
     api_version:
       schema:
