@@ -1331,6 +1331,10 @@ components:
           $ref: '#/components/schemas/AangaanHuwelijkPartnerschap'
         ontbindingHuwelijkPartnerschap:
           $ref: '#/components/schemas/OntbindingHuwelijkPartnerschap'
+        rni:
+          $ref: '#/components/schemas/RniDeelnemer'
+        verificatie:
+          $ref: '#/components/schemas/Verificatie'
     PartnerInOnderzoek:
       description: |
         Geeft aan welke gegevens over het huwelijk of het partnerschap in onderzoek zijn.
@@ -1451,6 +1455,10 @@ components:
           $ref: '#/components/schemas/Waardetabel'
         redenBeeindigen:
           $ref: '#/components/schemas/Waardetabel'
+        rni:
+          $ref: '#/components/schemas/RniDeelnemer'
+        verificatie:
+          $ref: '#/components/schemas/Verificatie'
       description: |
         * **redenOpname** - De reden op grond waarvan de persoon de nationaliteit gekregen heeft. Wordt gevuld op basis van de waarden die voorkomen in de tabel 'Reden_Nationaliteit' uit de Haal-Centraal-BRP-tabellen-bevragen API.
         * **redenBeeindigen** - De reden op grond waarvan de nationaliteit van een persoon beëindigd is. Wordt gevuld op basis van de waarden die voorkomen in de tabel 'Reden_Nationaliteit' uit de Haal-Centraal-BRP-tabellen-bevragen API.
