@@ -827,7 +827,7 @@ components:
     VerblijfplaatshistorieQueryResponse:
       type: object
       properties:
-        verblijfplaatshistorie:
+        verblijfplaatsen:
           type: array
           items:
             $ref: '#/components/schemas/AbstractVerblijfplaats'
@@ -836,7 +836,7 @@ components:
     PartnerhistorieQueryResponse:
       type: object
       properties:
-        partnerhistorie:
+        partners:
           type: array
           items:
             $ref: '#/components/schemas/Partner'
@@ -845,7 +845,7 @@ components:
     VerblijfstitelhistorieQueryResponse:
       type: object
       properties:
-        verblijfstitelhistorie:
+        verblijfstitels:
           type: array
           items:
             $ref: '#/components/schemas/Verblijfstitel'
@@ -854,7 +854,7 @@ components:
     NationaliteithistorieQueryResponse:
       type: object
       properties:
-        nationaliteithistorie:
+        nationaliteiten:
           type: array
           items:
             $ref: '#/components/schemas/AbstractNationaliteit'
