@@ -203,9 +203,9 @@ paths:
             X-Rate-Limit-Reset:
               $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/common.yaml#/components/headers/X_Rate_Limit_Reset"
           content:
-            application/hal+json:
+            application/json:
               schema:
-                $ref: '#/components/schemas/NationalisatiehistorieQueryResponse'
+                $ref: '#/components/schemas/NationaliteithistorieQueryResponse'
         '400':
           $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/common.yaml#/components/responses/400"
         '401':
@@ -259,7 +259,7 @@ components:
             $ref: 'verblijfstitel.yaml#/components/schemas/GbaVerblijfstitel'
         geheimhoudingPersoonsgegevens:
           $ref: 'persoon.yaml#/components/schemas/GbaGeheimhoudingPersoonsgegevens'
-    NationalisatiehistorieQueryResponse:
+    NationaliteithistorieQueryResponse:
       type: object
       properties:
         nationaliteiten:
