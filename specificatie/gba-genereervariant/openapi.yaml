@@ -607,9 +607,9 @@ paths:
             X-Rate-Limit-Reset:
               $ref: '#/components/headers/X_Rate_Limit_Reset'
           content:
-            application/hal+json:
+            application/json:
               schema:
-                $ref: '#/components/schemas/NationalisatiehistorieQueryResponse'
+                $ref: '#/components/schemas/NationaliteithistorieQueryResponse'
         "400":
           description: Bad Request
           headers:
@@ -791,7 +791,7 @@ components:
             $ref: '#/components/schemas/GbaVerblijfstitel'
         geheimhoudingPersoonsgegevens:
           $ref: '#/components/schemas/GbaGeheimhoudingPersoonsgegevens'
-    NationalisatiehistorieQueryResponse:
+    NationaliteithistorieQueryResponse:
       type: object
       properties:
         nationaliteiten:

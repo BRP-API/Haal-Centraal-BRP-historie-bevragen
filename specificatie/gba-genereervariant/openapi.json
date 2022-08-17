@@ -806,9 +806,9 @@
               }
             },
             "content" : {
-              "application/hal+json" : {
+              "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/NationalisatiehistorieQueryResponse"
+                  "$ref" : "#/components/schemas/NationaliteithistorieQueryResponse"
                 }
               }
             }
@@ -1066,7 +1066,7 @@
           }
         }
       },
-      "NationalisatiehistorieQueryResponse" : {
+      "NationaliteithistorieQueryResponse" : {
         "type" : "object",
         "properties" : {
           "nationaliteiten" : {
