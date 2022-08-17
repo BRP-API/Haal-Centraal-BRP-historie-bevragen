@@ -25,6 +25,10 @@ components:
           $ref: '#/components/schemas/GbaAangaanHuwelijkPartnerschap'
         ontbindingHuwelijkPartnerschap:
           $ref: "#/components/schemas/GbaOntbindingHuwelijkPartnerschap"
+        rni:
+          $ref: 'common.yaml#/components/schemas/RniDeelnemer'
+        verificatie:
+          $ref: 'common.yaml#/components/schemas/GbaVerificatie'
     Partner:
       type: object
       properties:
@@ -44,6 +48,10 @@ components:
           $ref: '#/components/schemas/AangaanHuwelijkPartnerschap'
         ontbindingHuwelijkPartnerschap:
           $ref: "#/components/schemas/OntbindingHuwelijkPartnerschap"
+        rni:
+          $ref: 'common.yaml#/components/schemas/RniDeelnemer'
+        verificatie:
+          $ref: 'common.yaml#/components/schemas/Verificatie'
     PartnerInOnderzoek:
       description: |
         Geeft aan welke gegevens over het huwelijk of het partnerschap in onderzoek zijn.
