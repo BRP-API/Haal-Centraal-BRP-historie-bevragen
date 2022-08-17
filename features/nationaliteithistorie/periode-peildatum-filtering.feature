@@ -10,11 +10,11 @@ Functionaliteit: Selecteer nationaliteiten op een peildatum of in een periode
     | nationaliteit (05.10) | reden opnemen (63.10) | datum ingang geldigheid (85.10) |
     | 0001                  | 001                   | 19750707                        |
     Als nationaliteithistorie wordt geraadpleegd met de volgende parameters
-    | naam                | waarde                                                                                 |
-    | type                | RaadpleegMetPeildatum                                                                  |
-    | burgerservicenummer | 000009830                                                                              |
-    | peildatum           | <peildatum>                                                                            |
-    | fields              | nationaliteiten.nationaliteit.code,nationaliteiten.nationaliteit.datumIngangGeldigheid |
+    | naam                | waarde                                                                   |
+    | type                | RaadpleegMetPeildatum                                                    |
+    | burgerservicenummer | 000009830                                                                |
+    | peildatum           | <peildatum>                                                              |
+    | fields              | nationaliteiten.nationaliteit.code,nationaliteiten.datumIngangGeldigheid |
     Dan heeft de response de volgende 'nationaliteiten'
     | type          | nationaliteit.code | datumIngangGeldigheid.type | datumIngangGeldigheid.datum | datumIngangGeldigheid.langFormaat |
     | Nationaliteit | 0001               | Datum                      | 1975-07-07                  | 7 juli 1975                       |
@@ -29,11 +29,11 @@ Functionaliteit: Selecteer nationaliteiten op een peildatum of in een periode
     | nationaliteit (05.10) | reden opnemen (63.10) | datum ingang geldigheid (85.10) |
     | 0001                  | 001                   | 19750707                        |
     Als nationaliteithistorie wordt geraadpleegd met de volgende parameters
-    | naam                | waarde                                                                                 |
-    | type                | RaadpleegMetPeildatum                                                                  |
-    | burgerservicenummer | 000009830                                                                              |
-    | peildatum           | 1975-07-06                                                                             |
-    | fields              | nationaliteiten.nationaliteit.code,nationaliteiten.nationaliteit.datumIngangGeldigheid |
+    | naam                | waarde                                                                   |
+    | type                | RaadpleegMetPeildatum                                                    |
+    | burgerservicenummer | 000009830                                                                |
+    | peildatum           | 1975-07-06                                                               |
+    | fields              | nationaliteiten.nationaliteit.code,nationaliteiten.datumIngangGeldigheid |
     Dan heeft de response een leeg 'nationaliteiten' array
 
   Abstract Scenario: persoon heeft een niet-beëindigde nationaliteit, <sub-titel>
@@ -41,12 +41,12 @@ Functionaliteit: Selecteer nationaliteiten op een peildatum of in een periode
     | nationaliteit (05.10) | reden opnemen (63.10) | datum ingang geldigheid (85.10) |
     | 0001                  | 001                   | 19750707                        |
     Als nationaliteithistorie wordt geraadpleegd met de volgende parameters
-    | naam                | waarde                                                                                 |
-    | type                | RaadpleegMetPeriode                                                                    |
-    | burgerservicenummer | 000009830                                                                              |
-    | datumVan            | <datumVan>                                                                             |
-    | datumTot            | <datumTot>                                                                             |
-    | fields              | nationaliteiten.nationaliteit.code,nationaliteiten.nationaliteit.datumIngangGeldigheid |
+    | naam                | waarde                                                                   |
+    | type                | RaadpleegMetPeriode                                                      |
+    | burgerservicenummer | 000009830                                                                |
+    | datumVan            | <datumVan>                                                               |
+    | datumTot            | <datumTot>                                                               |
+    | fields              | nationaliteiten.nationaliteit.code,nationaliteiten.datumIngangGeldigheid |
     Dan heeft de response de volgende 'nationaliteiten'
     | type          | nationaliteit.code | datumIngangGeldigheid.type | datumIngangGeldigheid.datum | datumIngangGeldigheid.langFormaat |
     | Nationaliteit | 0001               | Datum                      | 1975-07-07                  | 7 juli 1975                       |
@@ -63,12 +63,12 @@ Functionaliteit: Selecteer nationaliteiten op een peildatum of in een periode
     | nationaliteit (05.10) | reden opnemen (63.10) | datum ingang geldigheid (85.10) |
     | 0001                  | 001                   | 19750707                        |
     Als nationaliteithistorie wordt geraadpleegd met de volgende parameters
-    | naam                | waarde                                                                                 |
-    | type                | RaadpleegMetPeriode                                                                    |
-    | burgerservicenummer | 000009830                                                                              |
-    | datumVan            | <datumVan>                                                                             |
-    | datumTot            | <datumTot>                                                                             |
-    | fields              | nationaliteiten.nationaliteit.code,nationaliteiten.nationaliteit.datumIngangGeldigheid |
+    | naam                | waarde                                                                   |
+    | type                | RaadpleegMetPeriode                                                      |
+    | burgerservicenummer | 000009830                                                                |
+    | datumVan            | <datumVan>                                                               |
+    | datumTot            | <datumTot>                                                               |
+    | fields              | nationaliteiten.nationaliteit.code,nationaliteiten.datumIngangGeldigheid |
     Dan heeft de response een leeg 'nationaliteiten' array
 
     Voorbeelden:
@@ -82,11 +82,11 @@ Functionaliteit: Selecteer nationaliteiten op een peildatum of in een periode
     |                       |                       | 404                      | 20050131                        |
     | 0131                  | 301                   |                          | 19750501                        |
     Als nationaliteithistorie wordt geraadpleegd met de volgende parameters
-    | naam                | waarde                                                                                                                        |
-    | type                | RaadpleegMetPeildatum                                                                                                         |
-    | burgerservicenummer | 999993008                                                                                                                     |
-    | peildatum           | <peildatum>                                                                                                                   |
-    | fields              | nationaliteiten.nationaliteit.code,nationaliteiten.nationaliteit.datumIngangGeldigheid,nationaliteiten.nationaliteit.datumTot |
+    | naam                | waarde                                                                                                          |
+    | type                | RaadpleegMetPeildatum                                                                                           |
+    | burgerservicenummer | 999993008                                                                                                       |
+    | peildatum           | <peildatum>                                                                                                     |
+    | fields              | nationaliteiten.nationaliteit.code,nationaliteiten.datumIngangGeldigheid,nationaliteiten.nationaliteit.datumTot |
     Dan heeft de response de volgende 'nationaliteiten'
     | type          | nationaliteit.code | datumIngangGeldigheid.type | datumIngangGeldigheid.datum | datumIngangGeldigheid.langFormaat | datumTot.type | datumTot.datum | datumTot.langFormaat |
     | Nationaliteit | 0131               | Datum                      | 1975-05-01                  | 1 mei 1975                        | Datum         | 2005-01-31     | 31 januari 2005      |
@@ -103,11 +103,11 @@ Functionaliteit: Selecteer nationaliteiten op een peildatum of in een periode
     |                       |                       | 404                      | 20050131                        |
     | 0131                  | 301                   |                          | 19750501                        |
     Als nationaliteithistorie wordt geraadpleegd met de volgende parameters
-    | naam                | waarde                                                                                                                        |
-    | type                | RaadpleegMetPeildatum                                                                                                         |
-    | burgerservicenummer | 999993008                                                                                                                     |
-    | peildatum           | <peildatum>                                                                                                                   |
-    | fields              | nationaliteiten.nationaliteit.code,nationaliteiten.nationaliteit.datumIngangGeldigheid,nationaliteiten.nationaliteit.datumTot |
+    | naam                | waarde                                                                                                          |
+    | type                | RaadpleegMetPeildatum                                                                                           |
+    | burgerservicenummer | 999993008                                                                                                       |
+    | peildatum           | <peildatum>                                                                                                     |
+    | fields              | nationaliteiten.nationaliteit.code,nationaliteiten.datumIngangGeldigheid,nationaliteiten.nationaliteit.datumTot |
     Dan heeft de response een leeg 'nationaliteiten' array
 
     Voorbeelden:
@@ -121,12 +121,12 @@ Functionaliteit: Selecteer nationaliteiten op een peildatum of in een periode
     |                       |                       | 404                      | 20050131                        |
     | 0131                  | 301                   |                          | 19750501                        |
     Als nationaliteithistorie wordt geraadpleegd met de volgende parameters
-    | naam                | waarde                                                                                                                        |
-    | type                | RaadpleegMetPeriode                                                                                                           |
-    | burgerservicenummer | 999993008                                                                                                                     |
-    | datumVan            | <datumVan>                                                                                                                    |
-    | datumTot            | <datumTot>                                                                                                                    |
-    | fields              | nationaliteiten.nationaliteit.code,nationaliteiten.nationaliteit.datumIngangGeldigheid,nationaliteiten.nationaliteit.datumTot |
+    | naam                | waarde                                                                                                          |
+    | type                | RaadpleegMetPeriode                                                                                             |
+    | burgerservicenummer | 999993008                                                                                                       |
+    | datumVan            | <datumVan>                                                                                                      |
+    | datumTot            | <datumTot>                                                                                                      |
+    | fields              | nationaliteiten.nationaliteit.code,nationaliteiten.datumIngangGeldigheid,nationaliteiten.nationaliteit.datumTot |
     Dan heeft de response de volgende 'nationaliteiten'
     | type          | nationaliteit.code | datumIngangGeldigheid.type | datumIngangGeldigheid.datum | datumIngangGeldigheid.langFormaat | datumTot.type | datumTot.datum | datumTot.langFormaat |
     | Nationaliteit | 0131               | Datum                      | 1975-05-01                  | 1 mei 1975                        | Datum         | 2005-01-31     | 31 januari 2005      |
@@ -146,12 +146,12 @@ Functionaliteit: Selecteer nationaliteiten op een peildatum of in een periode
     |                       |                       | 404                      | 20050131                        |
     | 0131                  | 301                   |                          | 19750501                        |
     Als nationaliteithistorie wordt geraadpleegd met de volgende parameters
-    | naam                | waarde                                                                                 |
-    | type                | RaadpleegMetPeriode                                                                    |
-    | burgerservicenummer | 999993008                                                                              |
-    | datumVan            | <datumVan>                                                                             |
-    | datumTot            | <datumTot>                                                                             |
-    | fields              | nationaliteiten.nationaliteit.code,nationaliteiten.nationaliteit.datumIngangGeldigheid |
+    | naam                | waarde                                                                   |
+    | type                | RaadpleegMetPeriode                                                      |
+    | burgerservicenummer | 999993008                                                                |
+    | datumVan            | <datumVan>                                                               |
+    | datumTot            | <datumTot>                                                               |
+    | fields              | nationaliteiten.nationaliteit.code,nationaliteiten.datumIngangGeldigheid |
     Dan heeft de response een leeg 'nationaliteiten' array
 
     Voorbeelden:
