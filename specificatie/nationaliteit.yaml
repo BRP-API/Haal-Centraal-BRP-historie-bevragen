@@ -22,8 +22,6 @@ components:
           $ref: 'common.yaml#/components/schemas/Waardetabel'
         rni:
           $ref: 'common.yaml#/components/schemas/RniDeelnemer'
-        verificatie:
-          $ref: 'common.yaml#/components/schemas/Verificatie'
       discriminator:
         propertyName: type
         mapping:
@@ -113,8 +111,6 @@ components:
           $ref: 'gba-inonderzoek.yaml#/components/schemas/GbaInOnderzoek'
         rni:
           $ref: 'common.yaml#/components/schemas/RniDeelnemer'
-        verificatie:
-          $ref: 'common.yaml#/components/schemas/GbaVerificatie'
     BijzonderNederlanderschapInOnderzoek:
       allOf:
         - $ref: 'persoon.yaml#/components/schemas/InOnderzoek'

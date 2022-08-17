@@ -301,6 +301,8 @@ components:
             $ref: 'verblijfplaats.yaml#/components/schemas/AbstractVerblijfplaats'
         geheimhoudingPersoonsgegevens:
           $ref: 'persoon.yaml#/components/schemas/GeheimhoudingPersoonsgegevens'
+        verificatie:
+          $ref: 'common.yaml#/components/schemas/Verificatie'
     PartnerhistorieQueryResponse:
       type: object
       properties:
@@ -310,6 +312,8 @@ components:
             $ref: 'partner.yaml#/components/schemas/Partner'
         geheimhoudingPersoonsgegevens:
           $ref: 'persoon.yaml#/components/schemas/GeheimhoudingPersoonsgegevens'
+        verificatie:
+          $ref: 'common.yaml#/components/schemas/Verificatie'
     VerblijfstitelhistorieQueryResponse:
       type: object
       properties:
@@ -320,6 +324,8 @@ components:
             $ref: 'verblijfstitel.yaml#/components/schemas/Verblijfstitel'
         geheimhoudingPersoonsgegevens:
           $ref: 'persoon.yaml#/components/schemas/GeheimhoudingPersoonsgegevens'
+        verificatie:
+          $ref: 'common.yaml#/components/schemas/Verificatie'
     NationaliteithistorieQueryResponse:
       type: object
       properties:
@@ -329,3 +335,5 @@ components:
             $ref: 'nationaliteit.yaml#/components/schemas/AbstractNationaliteit'
         geheimhoudingPersoonsgegevens:
           $ref: 'persoon.yaml#/components/schemas/GeheimhoudingPersoonsgegevens'
+        verificatie:
+          $ref: 'common.yaml#/components/schemas/Verificatie'

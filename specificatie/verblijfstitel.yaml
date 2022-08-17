@@ -24,8 +24,6 @@ components:
           $ref: 'gba-inonderzoek.yaml#/components/schemas/GbaInOnderzoek'
         rni:
           $ref: 'common.yaml#/components/schemas/RniDeelnemer'
-        verificatie:
-          $ref: 'common.yaml#/components/schemas/GbaVerificatie'
     Verblijfstitel:
       type: object
       description: |
@@ -44,8 +42,6 @@ components:
           $ref: '#/components/schemas/VerblijfstitelInOnderzoek'
         rni:
           $ref: 'common.yaml#/components/schemas/RniDeelnemer'
-        verificatie:
-          $ref: 'common.yaml#/components/schemas/Verificatie'
     VerblijfstitelInOnderzoek:
       description: |
         Geeft aan welke gegevens over de verblijfstitel in onderzoek zijn. Zie de [functionele specificaties](https://github.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/blob/v1.1.0/features/in_onderzoek.feature)

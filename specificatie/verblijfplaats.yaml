@@ -169,8 +169,6 @@ components:
             $ref: '#/components/schemas/VerblijfplaatsBuitenlandInOnderzoek'
           rni:
             $ref: 'common.yaml#/components/schemas/RniDeelnemer'
-          verificatie:
-            $ref: 'common.yaml#/components/schemas/Verificatie'
     Adres:
       description: |
         Gegevens over het adres van een persoon.
@@ -206,8 +204,6 @@ components:
               $ref: "#/components/schemas/AdresInOnderzoek"
             rni:
               $ref: 'common.yaml#/components/schemas/RniDeelnemer'
-            verificatie:
-              $ref: 'common.yaml#/components/schemas/Verificatie'
     Locatie:
       description: |
         * **functieAdres** - Wordt gevuld op basis van de waarden die voorkomen in de tabel 'soortadres' uit de Haal-Centraal-BRP-tabellen-bevragen API.
@@ -237,8 +233,6 @@ components:
               $ref: '#/components/schemas/LocatieInOnderzoek'
             rni:
               $ref: 'common.yaml#/components/schemas/RniDeelnemer'
-            verificatie:
-              $ref: 'common.yaml#/components/schemas/Verificatie'
     VerblijfplaatsOnbekend:
       description: |
         * **gemeenteVanInschrijving** : de gemeente waar de persoon verblijft en is ingeschreven. De code kan voorloopnullen bevatten. Wordt gevuld op basis van de waarden die voorkomen in de tabel "Gemeenten" voor een gemeente in Nederland of de omschrijving van een buitenlandse plaats
@@ -264,8 +258,6 @@ components:
               $ref: '#/components/schemas/VerblijfplaatsOnbekendInOnderzoek'
             rni:
               $ref: 'common.yaml#/components/schemas/RniDeelnemer'
-            verificatie:
-              $ref: 'common.yaml#/components/schemas/Verificatie'
     GbaVerblijfplaats:
       type: object
       properties:
@@ -315,8 +307,6 @@ components:
           $ref: 'gba-inonderzoek.yaml#/components/schemas/GbaInOnderzoek'
         rni:
           $ref: 'common.yaml#/components/schemas/RniDeelnemer'
-        verificatie:
-          $ref: 'common.yaml#/components/schemas/GbaVerificatie'
     VerblijfplaatsBuitenlandInOnderzoek:
       allOf:
         - $ref: 'persoon.yaml#/components/schemas/InOnderzoek'

@@ -16,14 +16,14 @@ info:
     url: https://eupl.eu/1.2/nl/
 tags:
   - name: BRP historie bevragen
-    description: Zoeken historische gegevens 
+    description: Zoeken historische gegevens
 paths:
   /verblijfplaatshistorie:
     post:
       description: |
         Raadpleeg de verblijfplaatshistorie van een persoon op de opgegeven peildatum of binnen de opgegeven periode.
         Het meest actuele adres staat bovenaan.
-        
+
         Zoek met burgerservicenummer
       operationId: Verblijfplaatshistorie
       requestBody:
@@ -75,7 +75,7 @@ paths:
       description: |
         Raadpleeg de partnerhistorie van een persoon op de opgegeven peildatum of binnen de opgegeven periode.
         De meest actuele partner staat bovenaan.
-        
+
         Zoek met burgerservicenummer
       operationId: Partnerhistorie
       requestBody:
@@ -127,7 +127,7 @@ paths:
       description: |
         Raadpleeg de verblijfstitelhistorie van een persoon op de opgegeven peildatum of binnen de opgegeven periode.
         De meest actuele verblijfstitel staat bovenaan.
-        
+
         Zoek met burgerservicenummer
       operationId: Verblijfstitelhistorie
       requestBody:
@@ -179,7 +179,7 @@ paths:
       description: |
         Radpleeg de nationaliteithistorie van een persoon op de opgegeven peildatum of binnen de opgegeven periode.
         De meest actuele nationaliteit staat bovenaan.
-        
+
         Zoek met burgerservicenummer
       operationId: Nationaliteithistorie
       requestBody:
@@ -226,7 +226,7 @@ paths:
           $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/common.yaml#/components/responses/default"
       tags:
         - BRP historie bevragen
-# Daar waar mogelijk wordt nu verwezen naar componenten die in HC BRP Personen zijn gedefinieerd. Dat is echter alleen mogelijk als betreffende componenten zelf niet ook een $ref bevatten. 
+# Daar waar mogelijk wordt nu verwezen naar componenten die in HC BRP Personen zijn gedefinieerd. Dat is echter alleen mogelijk als betreffende componenten zelf niet ook een $ref bevatten.
 # Daar waar dat wel het geval is zijn de componenten in de openapi.yaml van HC BRP Historie gekopieerd.
 
 # De vraag is of dit de gewenste aanpak is of dat we alle componenten lokaal binnen de openapi.yaml van HC BRP Historie moeten definiëren.
@@ -241,6 +241,8 @@ components:
             $ref: 'verblijfplaats.yaml#/components/schemas/GbaVerblijfplaats'
         geheimhoudingPersoonsgegevens:
           $ref: 'persoon.yaml#/components/schemas/GbaGeheimhoudingPersoonsgegevens'
+        verificatie:
+          $ref: 'common.yaml#/components/schemas/GbaVerificatie'
     PartnerhistorieQueryResponse:
       type: object
       properties:
@@ -250,6 +252,8 @@ components:
             $ref: 'partner.yaml#/components/schemas/GbaPartner'
         geheimhoudingPersoonsgegevens:
           $ref: 'persoon.yaml#/components/schemas/GbaGeheimhoudingPersoonsgegevens'
+        verificatie:
+          $ref: 'common.yaml#/components/schemas/GbaVerificatie'
     VerblijfstitelhistorieQueryResponse:
       type: object
       properties:
@@ -259,6 +263,8 @@ components:
             $ref: 'verblijfstitel.yaml#/components/schemas/GbaVerblijfstitel'
         geheimhoudingPersoonsgegevens:
           $ref: 'persoon.yaml#/components/schemas/GbaGeheimhoudingPersoonsgegevens'
+        verificatie:
+          $ref: 'common.yaml#/components/schemas/GbaVerificatie'
     NationalisatiehistorieQueryResponse:
       type: object
       properties:
@@ -268,3 +274,5 @@ components:
             $ref: 'nationaliteit.yaml#/components/schemas/GbaNationaliteit'
         geheimhoudingPersoonsgegevens:
           $ref: 'persoon.yaml#/components/schemas/GbaGeheimhoudingPersoonsgegevens'
+        verificatie:
+          $ref: 'common.yaml#/components/schemas/GbaVerificatie'
