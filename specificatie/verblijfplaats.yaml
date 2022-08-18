@@ -51,7 +51,7 @@ components:
       example: "bis"
     KorteNaam:
       description: |
-        De offici�le openbareruimtenaam uit de Basisregistratie Gebouwen en Adressen (BAG) of een verkorte versie.
+        De officiële openbareruimtenaam uit de Basisregistratie Gebouwen en Adressen (BAG) of een verkorte versie.
       type: string
       maxLength: 24
     Locatiebeschrijving:
@@ -84,7 +84,7 @@ components:
         Een woonplaats is een gedeelte van het grondgebied van de gemeente met een naam.
       title: woonplaats naam
       type: string
-      pattern: ^[a-zA-Z0-9�-� \(\)\,\.\-\']{1,80}$
+      pattern: ^[a-zA-Z0-9Á-ž \(\)\,\.\-\']{1,80}$
       example: "Duiven"
     VerblijfadresBinnenland:
       type: object
