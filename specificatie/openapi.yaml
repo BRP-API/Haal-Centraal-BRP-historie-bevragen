@@ -99,7 +99,7 @@ paths:
             X-Rate-Limit-Reset:
               $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/common.yaml#/components/headers/X_Rate_Limit_Reset"
           content:
-            application/hal+json:
+            application/json:
               schema:
                 $ref: '#/components/schemas/PartnerhistorieQueryResponse'
         '400':
@@ -151,7 +151,7 @@ paths:
             X-Rate-Limit-Reset:
               $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/common.yaml#/components/headers/X_Rate_Limit_Reset"
           content:
-            application/hal+json:
+            application/json:
               schema:
                 $ref: '#/components/schemas/VerblijfstitelhistorieQueryResponse'
         '400':
@@ -203,7 +203,7 @@ paths:
             X-Rate-Limit-Reset:
               $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/common.yaml#/components/headers/X_Rate_Limit_Reset"
           content:
-            application/hal+json:
+            application/json:
               schema:
                 $ref: '#/components/schemas/NationaliteithistorieQueryResponse'
         '400':
@@ -295,7 +295,7 @@ components:
     VerblijfplaatshistorieQueryResponse:
       type: object
       properties:
-        verblijfplaatshistorie:
+        verblijfplaatsen:
           type: array
           items:
             $ref: 'verblijfplaats.yaml#/components/schemas/AbstractVerblijfplaats'
@@ -304,7 +304,7 @@ components:
     PartnerhistorieQueryResponse:
       type: object
       properties:
-        partnerhistorie:
+        partners:
           type: array
           items:
             $ref: 'partner.yaml#/components/schemas/Partner'
@@ -314,7 +314,7 @@ components:
       type: object
       properties:
         # De vraag is of aan verblijfstitelhistorie niet ook 'geheimhoudingPersoonsgegevens' moet worden toegevoegd.
-        verblijfstitelhistorie:
+        verblijfstitels:
           type: array
           items:
             $ref: 'verblijfstitel.yaml#/components/schemas/Verblijfstitel'
@@ -323,7 +323,7 @@ components:
     NationaliteithistorieQueryResponse:
       type: object
       properties:
-        nationaliteithistorie:
+        nationaliteiten:
           type: array
           items:
             $ref: 'nationaliteit.yaml#/components/schemas/AbstractNationaliteit'

@@ -306,7 +306,7 @@
               }
             },
             "content" : {
-              "application/hal+json" : {
+              "application/json" : {
                 "schema" : {
                   "$ref" : "#/components/schemas/PartnerhistorieQueryResponse"
                 }
@@ -556,7 +556,7 @@
               }
             },
             "content" : {
-              "application/hal+json" : {
+              "application/json" : {
                 "schema" : {
                   "$ref" : "#/components/schemas/VerblijfstitelhistorieQueryResponse"
                 }
@@ -806,7 +806,7 @@
               }
             },
             "content" : {
-              "application/hal+json" : {
+              "application/json" : {
                 "schema" : {
                   "$ref" : "#/components/schemas/NationaliteithistorieQueryResponse"
                 }
@@ -1093,7 +1093,7 @@
       "VerblijfplaatshistorieQueryResponse" : {
         "type" : "object",
         "properties" : {
-          "verblijfplaatshistorie" : {
+          "verblijfplaatsen" : {
             "type" : "array",
             "items" : {
               "$ref" : "#/components/schemas/AbstractVerblijfplaats"
@@ -1107,7 +1107,7 @@
       "PartnerhistorieQueryResponse" : {
         "type" : "object",
         "properties" : {
-          "partnerhistorie" : {
+          "partners" : {
             "type" : "array",
             "items" : {
               "$ref" : "#/components/schemas/Partner"
@@ -1121,7 +1121,7 @@
       "VerblijfstitelhistorieQueryResponse" : {
         "type" : "object",
         "properties" : {
-          "verblijfstitelhistorie" : {
+          "verblijfstitels" : {
             "type" : "array",
             "items" : {
               "$ref" : "#/components/schemas/Verblijfstitel"
@@ -1135,7 +1135,7 @@
       "NationaliteithistorieQueryResponse" : {
         "type" : "object",
         "properties" : {
-          "nationaliteithistorie" : {
+          "nationaliteiten" : {
             "type" : "array",
             "items" : {
               "$ref" : "#/components/schemas/AbstractNationaliteit"

@@ -235,7 +235,7 @@ paths:
             X-Rate-Limit-Reset:
               $ref: '#/components/headers/X_Rate_Limit_Reset'
           content:
-            application/hal+json:
+            application/json:
               schema:
                 $ref: '#/components/schemas/PartnerhistorieQueryResponse'
         "400":
@@ -421,7 +421,7 @@ paths:
             X-Rate-Limit-Reset:
               $ref: '#/components/headers/X_Rate_Limit_Reset'
           content:
-            application/hal+json:
+            application/json:
               schema:
                 $ref: '#/components/schemas/VerblijfstitelhistorieQueryResponse'
         "400":
@@ -607,7 +607,7 @@ paths:
             X-Rate-Limit-Reset:
               $ref: '#/components/headers/X_Rate_Limit_Reset'
           content:
-            application/hal+json:
+            application/json:
               schema:
                 $ref: '#/components/schemas/NationaliteithistorieQueryResponse'
         "400":
@@ -827,7 +827,7 @@ components:
     VerblijfplaatshistorieQueryResponse:
       type: object
       properties:
-        verblijfplaatshistorie:
+        verblijfplaatsen:
           type: array
           items:
             $ref: '#/components/schemas/AbstractVerblijfplaats'
@@ -836,7 +836,7 @@ components:
     PartnerhistorieQueryResponse:
       type: object
       properties:
-        partnerhistorie:
+        partners:
           type: array
           items:
             $ref: '#/components/schemas/Partner'
@@ -845,7 +845,7 @@ components:
     VerblijfstitelhistorieQueryResponse:
       type: object
       properties:
-        verblijfstitelhistorie:
+        verblijfstitels:
           type: array
           items:
             $ref: '#/components/schemas/Verblijfstitel'
@@ -854,7 +854,7 @@ components:
     NationaliteithistorieQueryResponse:
       type: object
       properties:
-        nationaliteithistorie:
+        nationaliteiten:
           type: array
           items:
             $ref: '#/components/schemas/AbstractNationaliteit'
