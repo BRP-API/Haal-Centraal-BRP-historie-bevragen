@@ -10,6 +10,8 @@ Functionaliteit: Lever de juiste gegevens over een nationaliteit
   Voor een nationaliteit die is beëindigd, is de "actuele" situatie dat er geen nationaliteit meer is, waardoor de gegevens over die (beëindigde) nationaliteit niet "actueel" zijn en dus in historische categorievoorkomen(s) staan.
   Alleen gegevens over het beëindigen van de nationaliteit staan dan in het "actuele" categorievoorkomen.
 
+  Daar waar in onderstaande scenario's in de Gegeven stap de tabel meer dan 1 rij waarden bevat, staat de meest actuele bovenaan en de oudste status onderaan.
+
   Rule: Voor een niet-beëindigde nationaliteit wordt de nationaliteit gevuld met de nationaliteit (05.10) in de actuele categorie (04).
     - een nationaliteit is niet beëindigd wanneer reden beëindigen (64.10) leeg is of geen waarde heeft.
 

@@ -20,6 +20,8 @@ Functionaliteit: Lever de juiste nationaliteit na verlies Nederlanderschap
   
   In het tweede geval is de beëindiging onjuist en kan deze volledig genegeerd worden, als was de vreemde nationaliteit is nooit beëindigd geweest.
 
+  Daar waar in onderstaande scenario's in de Gegeven stap de tabel meer dan 1 rij waarden bevat, staat de meest actuele bovenaan en de oudste status onderaan.
+
   Rule: Wanneer (registratie van) een nationaliteit is beëindigd en daarna weer wordt opgenomen, worden beide periodes dat de nationaliteit geldig was opgenomen.
 
     Scenario: verlies Nederlanderschap verwerkt als actualisering vreemde nationaliteit met een nieuwe datum geldigheid

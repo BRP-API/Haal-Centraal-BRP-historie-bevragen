@@ -10,6 +10,8 @@ Functionaliteit: Lever de juiste datum ingang geldigheid van een nationaliteit
   Voor een nationaliteit die is beëindigd, is de "actuele" situatie dat er geen nationaliteit meer is, waardoor de gegevens over die (beëindigde) nationaliteit niet "actueel" zijn en dus in historische categorievoorkomen(s) staan.
   Alleen gegevens over het beëindigen van de nationaliteit staan dan in het "actuele" categorievoorkomen.
 
+  Daar waar in onderstaande scenario's in de Gegeven stap de tabel meer dan 1 rij waarden bevat, staat de meest actuele bovenaan en de oudste status onderaan.
+
   Rule: Voor een niet-beëindigde nationaliteit of bijzonder Nederlanderschap wordt de datumIngangGeldigheid gevuld met de datum geldigheid (85.10) in de actuele categorie (04).
     - een nationaliteit of bijzonder Nederlanderschap is niet beëindigd wanneer reden beëindigen (64.10) leeg is of geen waarde heeft.
 

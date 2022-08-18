@@ -10,6 +10,8 @@ Functionaliteit: Lever het juiste type van een nationaliteit
   Voor een nationaliteit die is beëindigd, is de "actuele" situatie dat er geen nationaliteit meer is, waardoor de gegevens over die (beëindigde) nationaliteit niet "actueel" zijn en dus in historische categorievoorkomen(s) staan.
   Alleen gegevens over het beëindigen van de nationaliteit staan dan in het "actuele" categorievoorkomen.
 
+  Daar waar in onderstaande scenario's in de Gegeven stap de tabel meer dan 1 rij waarden bevat, staat de meest actuele bovenaan en de oudste status onderaan.
+
   Rule: de type wordt gevuld op basis van het voorkomen van nationaliteit of aanduidingBijzonderNederlanderschap
     - wanneer nationaliteit voorkomt met een waarde gelijk aan "0000" (onbekend), dan wordt type opgenomen met de waarde "NationaliteitOnbekend"
     - wanneer nationaliteit voorkomt met een waarde gelijk aan "0002", dan wordt type opgenomen met de waarde "BehandeldAlsNederlander"

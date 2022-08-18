@@ -4,6 +4,8 @@ Functionaliteit: Lever de juiste gegevens over een nationaliteit
 
   Als consumer van de BRP
   Wil ik alleen de nationaliteiten van een persoon ontvangen die de persoon daadwerkelijk heeft of had
+
+  Daar waar in onderstaande scenario's in de Gegeven stap de tabel meer dan 1 rij waarden bevat, staat de meest actuele bovenaan en de oudste status onderaan.
   
   
   Rule: Een beëindigde nationaliteit met reden beëindigen "Correctie in verband met ten onrechte BE opgenomen gegevens" (405) wordt niet opgenomen
