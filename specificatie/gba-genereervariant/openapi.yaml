@@ -1026,7 +1026,7 @@ components:
       example: "0518200000366054"
     Woonplaats:
       title: woonplaats naam
-      pattern: ^[a-zA-Z0-9�-� \(\)\,\.\-\']{1,80}$
+      pattern: ^[a-zA-Z0-9Á-ž \(\)\,\.\-\']{1,80}$
       type: string
       description: |
         Een woonplaats is een gedeelte van het grondgebied van de gemeente met een naam.

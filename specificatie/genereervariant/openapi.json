@@ -1501,7 +1501,7 @@
       },
       "Woonplaats" : {
         "title" : "woonplaats naam",
-        "pattern" : "^[a-zA-Z0-9�-� \\(\\)\\,\\.\\-\\']{1,80}$",
+        "pattern" : "^[a-zA-Z0-9Á-ž \\(\\)\\,\\.\\-\\']{1,80}$",
         "type" : "string",
         "description" : "Een woonplaats is een gedeelte van het grondgebied van de gemeente met een naam.\n",
         "example" : "Duiven"
@@ -1509,7 +1509,7 @@
       "KorteNaam" : {
         "maxLength" : 24,
         "type" : "string",
-        "description" : "De offici�le openbareruimtenaam uit de Basisregistratie Gebouwen en Adressen (BAG) of een verkorte versie.\n"
+        "description" : "De officiële openbareruimtenaam uit de Basisregistratie Gebouwen en Adressen (BAG) of een verkorte versie.\n"
       },
       "VerblijfadresBinnenlandInOnderzoek" : {
         "allOf" : [ {
