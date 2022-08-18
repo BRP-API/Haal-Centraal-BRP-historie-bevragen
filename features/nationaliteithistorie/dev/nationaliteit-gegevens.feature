@@ -13,7 +13,7 @@ Functionaliteit: Lever de juiste gegevens over een nationaliteit
   Rule: Voor een niet-beëindigde nationaliteit of bijzonder Nederlanderschap wordt de datumIngangGeldigheid gevuld met de datum geldigheid (85.10) in de actuele categorie (04).
     - een nationaliteit of bijzonder Nederlanderschap is niet beëindigd wanneer reden beëindigen (64.10) leeg is of geen waarde heeft.
 
-    Scenario: persoon heeft een niet-beëindigde nationaliteit, <sub-titel>
+    Scenario: persoon heeft een niet-beëindigde nationaliteit
       Gegeven de persoon met burgerservicenummer '000009830' heeft een 'nationaliteit' met de volgende gegevens
       | nationaliteit (05.10) | reden opnemen (63.10) | datum ingang geldigheid (85.10) |
       | 0001                  | 001                   | 19750707                        |
@@ -61,7 +61,7 @@ Functionaliteit: Lever de juiste gegevens over een nationaliteit
       | BehandeldAlsNederlander | 310              | Datum                      | 2001-03-19                  | 19 maart 2001                     |
 
     Scenario: persoon heeft een beëindigde nationaliteit met gecorrigeerde reden beëindigen
-      Gegeven de persoon met burgerservicenummer '999994657' een 'nationaliteit' met de volgende gegevens
+      Gegeven de persoon met burgerservicenummer '999994657' heeft een 'nationaliteit' met de volgende gegevens
       | nationaliteit (05.10) | reden opnemen (63.10) | reden beëindigen (64.10) | datum ingang geldigheid (85.10) |
       |                       |                       | 404                      | 20140601                        |
       |                       |                       | 401                      | 19940601                        |
@@ -77,7 +77,7 @@ Functionaliteit: Lever de juiste gegevens over een nationaliteit
       | Nationaliteit | 0100               | 301              | Datum                      | 1975-05-01                  | 1 mei 1975                        |
 
     Scenario: persoon heeft een beëindigde nationaliteit met gecorrigeerde ingangsdatum geldigheid
-      Gegeven de persoon met burgerservicenummer '555550002' een 'nationaliteit' met de volgende gegevens
+      Gegeven de persoon met burgerservicenummer '555550002' heeft een 'nationaliteit' met de volgende gegevens
       | nationaliteit (05.10) | reden opnemen (63.10) | reden beëindigen (64.10) | datum ingang geldigheid (85.10) |
       |                       |                       | 404                      | 20200305                        |
       | 0400                  | 301                   |                          | 20170415                        |
@@ -95,7 +95,7 @@ Functionaliteit: Lever de juiste gegevens over een nationaliteit
   Rule: Voor een beëindigde nationaliteit of beëindigd bijzonder Nederlanderschap wordt de redenBeeindigen overgenomen uit de actuele categorie (04).
 
     Scenario: persoon heeft een beëindigde nationaliteit met gecorrigeerde reden beëindigen
-      Gegeven de persoon met burgerservicenummer '999994657' een 'nationaliteit' met de volgende gegevens
+      Gegeven de persoon met burgerservicenummer '999994657' heeft een 'nationaliteit' met de volgende gegevens
       | nationaliteit (05.10) | reden opnemen (63.10) | reden beëindigen (64.10) | datum ingang geldigheid (85.10) |
       |                       |                       | 404                      | 20140601                        |
       |                       |                       | 401                      | 19940601                        |
@@ -113,7 +113,7 @@ Functionaliteit: Lever de juiste gegevens over een nationaliteit
   Rule: Voor een beëindigde nationaliteit wordt datumTot gevuld met de datum geldigheid (85.10) uit de actuele categorie (04).
 
     Scenario: persoon heeft een beëindigde nationaliteit met gecorrigeerde reden beëindigen
-      Gegeven de persoon met burgerservicenummer '999994657' een 'nationaliteit' met de volgende gegevens
+      Gegeven de persoon met burgerservicenummer '999994657' heeft een 'nationaliteit' met de volgende gegevens
       | nationaliteit (05.10) | reden opnemen (63.10) | reden beëindigen (64.10) | datum ingang geldigheid (85.10) |
       |                       |                       | 404                      | 20140601                        |
       |                       |                       | 401                      | 19940601                        |

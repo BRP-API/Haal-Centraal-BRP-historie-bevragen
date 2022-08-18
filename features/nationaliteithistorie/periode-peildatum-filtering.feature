@@ -98,7 +98,7 @@ Functionaliteit: Selecteer nationaliteiten op een peildatum of in een periode
     | peildatum is gelijk aan datumTot - 1 dag        | 2005-01-30 |
 
   Abstract Scenario: persoon heeft een beëindigde nationaliteit, <sub-titel>
-    Gegeven de persoon met burgerservicenummer '999993008' heeft 'nationaliteiten' met de volgende gegevens
+    Gegeven de persoon met burgerservicenummer '999993008' heeft een 'nationaliteit' met de volgende gegevens
     | nationaliteit (05.10) | reden opnemen (63.10) | reden beëindigen (64.10) | datum ingang geldigheid (85.10) |
     |                       |                       | 404                      | 20050131                        |
     | 0131                  | 301                   |                          | 19750501                        |
@@ -116,7 +116,7 @@ Functionaliteit: Selecteer nationaliteiten op een peildatum of in een periode
     | peildatum is gelijk aan datumTot            | 2005-01-31 |
 
   Abstract Scenario: persoon heeft een beëindigde nationaliteit, <sub-titel>
-    Gegeven de persoon met burgerservicenummer '999993008' heeft 'nationaliteiten' met de volgende gegevens
+    Gegeven de persoon met burgerservicenummer '999993008' heeft een 'nationaliteit' met de volgende gegevens
     | nationaliteit (05.10) | reden opnemen (63.10) | reden beëindigen (64.10) | datum ingang geldigheid (85.10) |
     |                       |                       | 404                      | 20050131                        |
     | 0131                  | 301                   |                          | 19750501                        |
@@ -141,7 +141,7 @@ Functionaliteit: Selecteer nationaliteiten op een peildatum of in een periode
     | datumTot raadpleeg periode is gelijk aan datum ingang geldigheid van nationaliteit + 1 dag | 1975-01-01 | 1975-05-02 |
 
   Abstract Scenario: persoon heeft een beëindigde nationaliteit, <sub-titel>
-    Gegeven de persoon met burgerservicenummer '999993008' heeft 'nationaliteiten' met de volgende gegevens
+    Gegeven de persoon met burgerservicenummer '999993008' heeft een 'nationaliteit' met de volgende gegevens
     | nationaliteit (05.10) | reden opnemen (63.10) | reden beëindigen (64.10) | datum ingang geldigheid (85.10) |
     |                       |                       | 404                      | 20050131                        |
     | 0131                  | 301                   |                          | 19750501                        |
