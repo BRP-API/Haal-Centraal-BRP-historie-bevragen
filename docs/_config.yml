@@ -18,10 +18,10 @@ nav:
       - title: Getting started
         path: /getting-started
       - title: User stories
-        path: /user-stories-prod
+        path: /user-stories
       - title: User stories  (afgeschermd)
         url: https://gitlab.com/vng-realisatie/haal-centraal-brp-afgeschermd/-/issues?label_name%5B%5D=historie
-        path: /user-stories
+        path: /user-stories-afgeschermd
         target: blank
       - title: Bevragen API (swagger-ui)
         path: /swagger-ui
@@ -31,9 +31,8 @@ nav:
         path: /features
   - title: Specificaties v. 2.0 (IO)
     subnav:
-#      - title: User stories
-#        url: https://vng-realisatie.github.io/Haal-Centraal-BRK-bevragen/user-stories-dev
-#        path: /user-stories-dev
+      - title: User stories
+        path: /user-stories-dev
       - title: Historie bevragen API (redoc)
         path: /redoc-io
       - title: Historie bevragen API (redoc), GBA variant

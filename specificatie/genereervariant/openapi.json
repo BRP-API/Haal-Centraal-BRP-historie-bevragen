@@ -306,7 +306,7 @@
               }
             },
             "content" : {
-              "application/hal+json" : {
+              "application/json" : {
                 "schema" : {
                   "$ref" : "#/components/schemas/PartnerhistorieQueryResponse"
                 }
@@ -556,7 +556,7 @@
               }
             },
             "content" : {
-              "application/hal+json" : {
+              "application/json" : {
                 "schema" : {
                   "$ref" : "#/components/schemas/VerblijfstitelhistorieQueryResponse"
                 }
@@ -806,9 +806,9 @@
               }
             },
             "content" : {
-              "application/hal+json" : {
+              "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/NationalisatiehistorieQueryResponse"
+                  "$ref" : "#/components/schemas/NationaliteithistorieQueryResponse"
                 }
               }
             }
@@ -1038,7 +1038,7 @@
             "maxItems" : 130,
             "minItems" : 1,
             "type" : "array",
-            "description" : "Hiermee kun je de inhoud van de resource naar behoefte aanpassen door een lijst van paden die verwijzen naar de gewenste velden op te nemen \n([zie functionele specificaties 'fields' properties](https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-historie-bevragen/develop/features/fields.feature)). \nDe te gebruiken paden zijn beschreven in [fields-Persoon.csv](https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-historie-bevragen/develop/features/fields-Verblijfplaatshistorie.csv) \nwaarbij in de eerste kolom het fields-pad staat en in de tweede kolom het volledige pad naar het gewenste veld. \n",
+            "description" : "Hiermee kun je de inhoud van de resource naar behoefte aanpassen door een lijst van paden die verwijzen naar de gewenste velden op te nemen\n([zie functionele specificaties 'fields' properties](https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-historie-bevragen/develop/features/fields.feature)).\nDe te gebruiken paden zijn beschreven in [fields-Persoon.csv](https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-historie-bevragen/develop/features/fields-Verblijfplaatshistorie.csv)\nwaarbij in de eerste kolom het fields-pad staat en in de tweede kolom het volledige pad naar het gewenste veld.\n",
             "items" : {
               "$ref" : "#/components/schemas/Field"
             }
@@ -1093,7 +1093,7 @@
       "VerblijfplaatshistorieQueryResponse" : {
         "type" : "object",
         "properties" : {
-          "verblijfplaatshistorie" : {
+          "verblijfplaatsen" : {
             "type" : "array",
             "items" : {
               "$ref" : "#/components/schemas/AbstractVerblijfplaats"
@@ -1107,7 +1107,7 @@
       "PartnerhistorieQueryResponse" : {
         "type" : "object",
         "properties" : {
-          "partnerhistorie" : {
+          "partners" : {
             "type" : "array",
             "items" : {
               "$ref" : "#/components/schemas/Partner"
@@ -1121,7 +1121,7 @@
       "VerblijfstitelhistorieQueryResponse" : {
         "type" : "object",
         "properties" : {
-          "verblijfstitelhistorie" : {
+          "verblijfstitels" : {
             "type" : "array",
             "items" : {
               "$ref" : "#/components/schemas/Verblijfstitel"
@@ -1132,10 +1132,10 @@
           }
         }
       },
-      "NationalisatiehistorieQueryResponse" : {
+      "NationaliteithistorieQueryResponse" : {
         "type" : "object",
         "properties" : {
-          "nationaliteithistorie" : {
+          "nationaliteiten" : {
             "type" : "array",
             "items" : {
               "$ref" : "#/components/schemas/AbstractNationaliteit"
