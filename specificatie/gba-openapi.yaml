@@ -99,7 +99,7 @@ paths:
             X-Rate-Limit-Reset:
               $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/common.yaml#/components/headers/X_Rate_Limit_Reset"
           content:
-            application/hal+json:
+            application/json:
               schema:
                 $ref: '#/components/schemas/PartnerhistorieQueryResponse'
         '400':
@@ -151,7 +151,7 @@ paths:
             X-Rate-Limit-Reset:
               $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/common.yaml#/components/headers/X_Rate_Limit_Reset"
           content:
-            application/hal+json:
+            application/json:
               schema:
                 $ref: '#/components/schemas/VerblijfstitelhistorieQueryResponse'
         '400':
@@ -203,9 +203,9 @@ paths:
             X-Rate-Limit-Reset:
               $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/common.yaml#/components/headers/X_Rate_Limit_Reset"
           content:
-            application/hal+json:
+            application/json:
               schema:
-                $ref: '#/components/schemas/NationalisatiehistorieQueryResponse'
+                $ref: '#/components/schemas/NationaliteithistorieQueryResponse'
         '400':
           $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/common.yaml#/components/responses/400"
         '401':
@@ -226,8 +226,7 @@ paths:
           $ref: "https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/develop/specificatie/common.yaml#/components/responses/default"
       tags:
         - BRP historie bevragen
-# Daar waar mogelijk wordt nu verwezen naar componenten die in HC BRP Personen zijn gedefinieerd. Dat is echter alleen mogelijk als betreffende componenten zelf niet ook een $ref bevatten.
-# Daar waar dat wel het geval is zijn de componenten in de openapi.yaml van HC BRP Historie gekopieerd.
+# Waar mogelijk wordt verwezen naar componenten uit HC BRP Personen. Dat kan alleen als deze zelf niet ook een $ref bevatten. In dat geval zijn de componenten in de openapi.yaml van HC BRP Historie gekopieerd.
 
 # De vraag is of dit de gewenste aanpak is of dat we alle componenten lokaal binnen de openapi.yaml van HC BRP Historie moeten definiëren.
 components:
@@ -235,7 +234,7 @@ components:
     VerblijfplaatshistorieQueryResponse:
       type: object
       properties:
-        verblijfplaatshistorie:
+        verblijfplaatsen:
           type: array
           items:
             $ref: 'verblijfplaats.yaml#/components/schemas/GbaVerblijfplaats'
@@ -246,7 +245,7 @@ components:
     PartnerhistorieQueryResponse:
       type: object
       properties:
-        partnerhistorie:
+        partners:
           type: array
           items:
             $ref: 'partner.yaml#/components/schemas/GbaPartner'
@@ -257,7 +256,7 @@ components:
     VerblijfstitelhistorieQueryResponse:
       type: object
       properties:
-        verblijfstitelhistorie:
+        verblijfstitels:
           type: array
           items:
             $ref: 'verblijfstitel.yaml#/components/schemas/GbaVerblijfstitel'
@@ -265,10 +264,10 @@ components:
           $ref: 'persoon.yaml#/components/schemas/GbaGeheimhoudingPersoonsgegevens'
         verificatie:
           $ref: 'common.yaml#/components/schemas/GbaVerificatie'
-    NationalisatiehistorieQueryResponse:
+    NationaliteithistorieQueryResponse:
       type: object
       properties:
-        nationaliteithistorie:
+        nationaliteiten:
           type: array
           items:
             $ref: 'nationaliteit.yaml#/components/schemas/GbaNationaliteit'

@@ -306,7 +306,7 @@
               }
             },
             "content" : {
-              "application/hal+json" : {
+              "application/json" : {
                 "schema" : {
                   "$ref" : "#/components/schemas/PartnerhistorieQueryResponse"
                 }
@@ -556,7 +556,7 @@
               }
             },
             "content" : {
-              "application/hal+json" : {
+              "application/json" : {
                 "schema" : {
                   "$ref" : "#/components/schemas/VerblijfstitelhistorieQueryResponse"
                 }
@@ -806,9 +806,9 @@
               }
             },
             "content" : {
-              "application/hal+json" : {
+              "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/NationalisatiehistorieQueryResponse"
+                  "$ref" : "#/components/schemas/NationaliteithistorieQueryResponse"
                 }
               }
             }
@@ -1027,7 +1027,7 @@
       "VerblijfplaatshistorieQueryResponse" : {
         "type" : "object",
         "properties" : {
-          "verblijfplaatshistorie" : {
+          "verblijfplaatsen" : {
             "type" : "array",
             "items" : {
               "$ref" : "#/components/schemas/GbaVerblijfplaats"
@@ -1044,7 +1044,7 @@
       "PartnerhistorieQueryResponse" : {
         "type" : "object",
         "properties" : {
-          "partnerhistorie" : {
+          "partners" : {
             "type" : "array",
             "items" : {
               "$ref" : "#/components/schemas/GbaPartner"
@@ -1061,7 +1061,7 @@
       "VerblijfstitelhistorieQueryResponse" : {
         "type" : "object",
         "properties" : {
-          "verblijfstitelhistorie" : {
+          "verblijfstitels" : {
             "type" : "array",
             "items" : {
               "$ref" : "#/components/schemas/GbaVerblijfstitel"
@@ -1075,10 +1075,10 @@
           }
         }
       },
-      "NationalisatiehistorieQueryResponse" : {
+      "NationaliteithistorieQueryResponse" : {
         "type" : "object",
         "properties" : {
-          "nationaliteithistorie" : {
+          "nationaliteiten" : {
             "type" : "array",
             "items" : {
               "$ref" : "#/components/schemas/GbaNationaliteit"
