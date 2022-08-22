@@ -20,6 +20,8 @@ components:
           $ref: 'common.yaml#/components/schemas/Waardetabel'
         redenBeeindigen:
           $ref: 'common.yaml#/components/schemas/Waardetabel'
+        rni:
+          $ref: 'common.yaml#/components/schemas/RniDeelnemer'
       discriminator:
         propertyName: type
         mapping:
@@ -106,7 +108,9 @@ components:
         redenBeeindigen:
           $ref: 'common.yaml#/components/schemas/Waardetabel'
         inOnderzoek:
-            $ref: 'gba-inonderzoek.yaml#/components/schemas/GbaInOnderzoek'
+          $ref: 'gba-inonderzoek.yaml#/components/schemas/GbaInOnderzoek'
+        rni:
+          $ref: 'common.yaml#/components/schemas/RniDeelnemer'
     BijzonderNederlanderschapInOnderzoek:
       allOf:
         - $ref: 'persoon.yaml#/components/schemas/InOnderzoek'

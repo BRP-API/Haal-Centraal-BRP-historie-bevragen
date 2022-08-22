@@ -1102,6 +1102,8 @@
           "geheimhoudingPersoonsgegevens" : {
             "$ref" : "#/components/schemas/GeheimhoudingPersoonsgegevens"
           },
+          "verificatie" : {
+            "$ref" : "#/components/schemas/Verificatie"
           "opschortingBijhouding" : {
             "$ref" : "#/components/schemas/OpschortingBijhouding"
           }
@@ -1136,6 +1138,8 @@
           "geheimhoudingPersoonsgegevens" : {
             "$ref" : "#/components/schemas/GeheimhoudingPersoonsgegevens"
           },
+          "verificatie" : {
+            "$ref" : "#/components/schemas/Verificatie"
           "opschortingBijhouding" : {
             "$ref" : "#/components/schemas/OpschortingBijhouding"
           }
@@ -1153,6 +1157,8 @@
           "geheimhoudingPersoonsgegevens" : {
             "$ref" : "#/components/schemas/GeheimhoudingPersoonsgegevens"
           },
+          "verificatie" : {
+            "$ref" : "#/components/schemas/Verificatie"
           "opschortingBijhouding" : {
             "$ref" : "#/components/schemas/OpschortingBijhouding"
           }
@@ -1301,6 +1307,9 @@
             },
             "inOnderzoek" : {
               "$ref" : "#/components/schemas/VerblijfplaatsBuitenlandInOnderzoek"
+            },
+            "rni" : {
+              "$ref" : "#/components/schemas/RniDeelnemer"
             }
           }
         } ]
@@ -1427,6 +1436,9 @@
             },
             "inOnderzoek" : {
               "$ref" : "#/components/schemas/AdresInOnderzoek"
+            },
+            "rni" : {
+              "$ref" : "#/components/schemas/RniDeelnemer"
             }
           }
         } ]
@@ -1495,7 +1507,7 @@
       },
       "Woonplaats" : {
         "title" : "woonplaats naam",
-        "pattern" : "^[a-zA-Z0-9�-� \\(\\)\\,\\.\\-\\']{1,80}$",
+        "pattern" : "^[a-zA-Z0-9Á-ž \\(\\)\\,\\.\\-\\']{1,80}$",
         "type" : "string",
         "description" : "Een woonplaats is een gedeelte van het grondgebied van de gemeente met een naam.\n",
         "example" : "Duiven"
@@ -1503,7 +1515,7 @@
       "KorteNaam" : {
         "maxLength" : 24,
         "type" : "string",
-        "description" : "De offici�le openbareruimtenaam uit de Basisregistratie Gebouwen en Adressen (BAG) of een verkorte versie.\n"
+        "description" : "De officiële openbareruimtenaam uit de Basisregistratie Gebouwen en Adressen (BAG) of een verkorte versie.\n"
       },
       "VerblijfadresBinnenlandInOnderzoek" : {
         "allOf" : [ {
@@ -1613,6 +1625,9 @@
             },
             "inOnderzoek" : {
               "$ref" : "#/components/schemas/VerblijfplaatsOnbekendInOnderzoek"
+            },
+            "rni" : {
+              "$ref" : "#/components/schemas/RniDeelnemer"
             }
           }
         } ]
@@ -1677,6 +1692,9 @@
             },
             "inOnderzoek" : {
               "$ref" : "#/components/schemas/LocatieInOnderzoek"
+            },
+            "rni" : {
+              "$ref" : "#/components/schemas/RniDeelnemer"
             }
           }
         } ]
@@ -1741,6 +1759,21 @@
         "type" : "boolean",
         "description" : "Gegevens mogen niet worden verstrekt aan derden / maatschappelijke instellingen.\n"
       },
+      "Verificatie" : {
+        "type" : "object",
+        "properties" : {
+          "datum" : {
+            "$ref" : "#/components/schemas/AbstractDatum"
+          },
+          "omschrijving" : {
+            "$ref" : "#/components/schemas/OmschrijvingVerificatie"
+          }
+        }
+      },
+      "OmschrijvingVerificatie" : {
+        "pattern" : "^[a-zA-Z0-9À-ž \\.\\-\\']{1,50}$",
+        "type" : "string",
+        "description" : "Omschrijving van de verificatie van de rni-gegevens\n"
       "OpschortingBijhouding" : {
         "allOf" : [ {
           "$ref" : "#/components/schemas/OpschortingBijhoudingBasis"
@@ -1905,6 +1938,9 @@
           },
           "inOnderzoek" : {
             "$ref" : "#/components/schemas/VerblijfstitelInOnderzoek"
+          },
+          "rni" : {
+            "$ref" : "#/components/schemas/RniDeelnemer"
           }
         },
         "description" : "Gegevens over de verblijfsrechtelijke status van de persoon.\n* **datumEinde**: Datum waarop de geldigheid van de gegevens over de verblijfstitel is beëindigd.\n* **datumIngang**: Datum waarop de gegevens over de verblijfstitel geldig zijn geworden.\n* **aanduiding** : Verblijfstiteltabel die aangeeft over welke verblijfsrechtelijke status de persoon beschikt. Wordt gevuld op basis van de waarden die voorkomen in de tabel 'Verblijfstitel' uit de Haal-Centraal-BRP-tabellen-bevragen API.\n"
@@ -1940,6 +1976,9 @@
           },
           "redenBeeindigen" : {
             "$ref" : "#/components/schemas/Waardetabel"
+          },
+          "rni" : {
+            "$ref" : "#/components/schemas/RniDeelnemer"
           }
         },
         "description" : "* **redenOpname** - De reden op grond waarvan de persoon de nationaliteit gekregen heeft. Wordt gevuld op basis van de waarden die voorkomen in de tabel 'Reden_Nationaliteit' uit de Haal-Centraal-BRP-tabellen-bevragen API.\n* **redenBeeindigen** - De reden op grond waarvan de nationaliteit van een persoon beëindigd is. Wordt gevuld op basis van de waarden die voorkomen in de tabel 'Reden_Nationaliteit' uit de Haal-Centraal-BRP-tabellen-bevragen API.\n",
@@ -2298,6 +2337,22 @@
             "example" : "Nederland"
           }
         }
+      },
+      "RniDeelnemer" : {
+        "type" : "object",
+        "properties" : {
+          "deelnemer" : {
+            "$ref" : "#/components/schemas/Waardetabel"
+          },
+          "omschrijvingVerdrag" : {
+            "$ref" : "#/components/schemas/OmschrijvingVerdrag"
+          }
+        }
+      },
+      "OmschrijvingVerdrag" : {
+        "pattern" : "^[a-zA-Z0-9À-ž \\.\\-\\']{1,50}$",
+        "type" : "string",
+        "description" : "Omschrijving van het verdrag op basis waarvan een zusterorganisatie in het buitenland de gegevens bij de RNI-deelnemer heeft aangeleverd.\n"
       },
       "InOnderzoek" : {
         "type" : "object",

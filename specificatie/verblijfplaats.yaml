@@ -51,7 +51,7 @@ components:
       example: "bis"
     KorteNaam:
       description: |
-        De officiÎle openbareruimtenaam uit de Basisregistratie Gebouwen en Adressen (BAG) of een verkorte versie.
+        De offici√´le openbareruimtenaam uit de Basisregistratie Gebouwen en Adressen (BAG) of een verkorte versie.
       type: string
       maxLength: 24
     Locatiebeschrijving:
@@ -84,7 +84,7 @@ components:
         Een woonplaats is een gedeelte van het grondgebied van de gemeente met een naam.
       title: woonplaats naam
       type: string
-      pattern: ^[a-zA-Z0-9¿-û \(\)\,\.\-\']{1,80}$
+      pattern: ^[a-zA-Z0-9√Å-≈æ \(\)\,\.\-\']{1,80}$
       example: "Duiven"
     VerblijfadresBinnenland:
       type: object
@@ -167,6 +167,8 @@ components:
             $ref: 'datum.yaml#/components/schemas/AbstractDatum'
           inOnderzoek:
             $ref: '#/components/schemas/VerblijfplaatsBuitenlandInOnderzoek'
+          rni:
+            $ref: 'common.yaml#/components/schemas/RniDeelnemer'
     Adres:
       description: |
         Gegevens over het adres van een persoon.
@@ -200,6 +202,8 @@ components:
               $ref: 'datum.yaml#/components/schemas/AbstractDatum'
             inOnderzoek:
               $ref: "#/components/schemas/AdresInOnderzoek"
+            rni:
+              $ref: 'common.yaml#/components/schemas/RniDeelnemer'
     Locatie:
       description: |
         * **functieAdres** - Wordt gevuld op basis van de waarden die voorkomen in de tabel 'soortadres' uit de Haal-Centraal-BRP-tabellen-bevragen API.
@@ -227,6 +231,8 @@ components:
               $ref: 'datum.yaml#/components/schemas/AbstractDatum'
             inOnderzoek:
               $ref: '#/components/schemas/LocatieInOnderzoek'
+            rni:
+              $ref: 'common.yaml#/components/schemas/RniDeelnemer'
     VerblijfplaatsOnbekend:
       description: |
         * **gemeenteVanInschrijving** : de gemeente waar de persoon verblijft en is ingeschreven. De code kan voorloopnullen bevatten. Wordt gevuld op basis van de waarden die voorkomen in de tabel "Gemeenten" voor een gemeente in Nederland of de omschrijving van een buitenlandse plaats
@@ -250,6 +256,8 @@ components:
               $ref: 'datum.yaml#/components/schemas/AbstractDatum'
             inOnderzoek:
               $ref: '#/components/schemas/VerblijfplaatsOnbekendInOnderzoek'
+            rni:
+              $ref: 'common.yaml#/components/schemas/RniDeelnemer'
     GbaVerblijfplaats:
       type: object
       properties:
@@ -297,6 +305,8 @@ components:
           $ref: '#/components/schemas/NaamOpenbareRuimte'
         inOnderzoek:
           $ref: 'gba-inonderzoek.yaml#/components/schemas/GbaInOnderzoek'
+        rni:
+          $ref: 'common.yaml#/components/schemas/RniDeelnemer'
     VerblijfplaatsBuitenlandInOnderzoek:
       allOf:
         - $ref: 'persoon.yaml#/components/schemas/InOnderzoek'

@@ -773,6 +773,8 @@ components:
             $ref: '#/components/schemas/GbaVerblijfplaats'
         geheimhoudingPersoonsgegevens:
           $ref: '#/components/schemas/GbaGeheimhoudingPersoonsgegevens'
+        verificatie:
+          $ref: '#/components/schemas/GbaVerificatie'
         opschortingBijhouding:
           $ref: '#/components/schemas/GbaOpschortingBijhouding'
     PartnerhistorieQueryResponse:
@@ -795,6 +797,8 @@ components:
             $ref: '#/components/schemas/GbaVerblijfstitel'
         geheimhoudingPersoonsgegevens:
           $ref: '#/components/schemas/GbaGeheimhoudingPersoonsgegevens'
+        verificatie:
+          $ref: '#/components/schemas/GbaVerificatie'
         opschortingBijhouding:
           $ref: '#/components/schemas/GbaOpschortingBijhouding'
     NationaliteithistorieQueryResponse:
@@ -806,6 +810,8 @@ components:
             $ref: '#/components/schemas/GbaNationaliteit'
         geheimhoudingPersoonsgegevens:
           $ref: '#/components/schemas/GbaGeheimhoudingPersoonsgegevens'
+        verificatie:
+          $ref: '#/components/schemas/GbaVerificatie'
         opschortingBijhouding:
           $ref: '#/components/schemas/GbaOpschortingBijhouding'
     HistorieQuery:
@@ -977,6 +983,8 @@ components:
           $ref: '#/components/schemas/NaamOpenbareRuimte'
         inOnderzoek:
           $ref: '#/components/schemas/GbaInOnderzoek'
+        rni:
+          $ref: '#/components/schemas/RniDeelnemer'
     Regel1:
       maxLength: 40
       type: string
@@ -1009,7 +1017,7 @@ components:
       example: "0518200000366054"
     Woonplaats:
       title: woonplaats naam
-      pattern: ^[a-zA-Z0-9�-� \(\)\,\.\-\']{1,80}$
+      pattern: ^[a-zA-Z0-9Á-ž \(\)\,\.\-\']{1,80}$
       type: string
       description: |
         Een woonplaats is een gedeelte van het grondgebied van de gemeente met een naam.
@@ -1054,6 +1062,18 @@ components:
       type: string
     GbaGeheimhoudingPersoonsgegevens:
       type: integer
+    GbaVerificatie:
+      type: object
+      properties:
+        datum:
+          $ref: '#/components/schemas/GbaDatum'
+        omschrijving:
+          $ref: '#/components/schemas/OmschrijvingVerificatie'
+    OmschrijvingVerificatie:
+      pattern: ^[a-zA-Z0-9À-ž \.\-\']{1,50}$
+      type: string
+      description: |
+        Omschrijving van de verificatie van de rni-gegevens
     GbaOpschortingBijhouding:
       allOf:
       - $ref: '#/components/schemas/OpschortingBijhoudingBasis'
@@ -1125,6 +1145,8 @@ components:
           $ref: '#/components/schemas/GbaDatum'
         inOnderzoek:
           $ref: '#/components/schemas/GbaInOnderzoek'
+        rni:
+          $ref: '#/components/schemas/RniDeelnemer'
       description: |
         Gegevens over de verblijfsrechtelijke status van de persoon.
         * **datumEinde**: Datum waarop de geldigheid van de gegevens over de verblijfstitel is beëindigd.
@@ -1148,6 +1170,8 @@ components:
           $ref: '#/components/schemas/Waardetabel'
         inOnderzoek:
           $ref: '#/components/schemas/GbaInOnderzoek'
+        rni:
+          $ref: '#/components/schemas/RniDeelnemer'
     Burgerservicenummer:
       pattern: ^[0-9]{9}$
       type: string
@@ -1188,6 +1212,18 @@ components:
           type: string
         datumIngangOnderzoek:
           $ref: '#/components/schemas/GbaDatum'
+    RniDeelnemer:
+      type: object
+      properties:
+        deelnemer:
+          $ref: '#/components/schemas/Waardetabel'
+        omschrijvingVerdrag:
+          $ref: '#/components/schemas/OmschrijvingVerdrag'
+    OmschrijvingVerdrag:
+      pattern: ^[a-zA-Z0-9À-ž \.\-\']{1,50}$
+      type: string
+      description: |
+        Omschrijving van het verdrag op basis waarvan een zusterorganisatie in het buitenland de gegevens bij de RNI-deelnemer heeft aangeleverd.
     GbaNaamBasis:
       type: object
       properties:

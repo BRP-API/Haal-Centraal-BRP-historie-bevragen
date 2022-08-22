@@ -1036,6 +1036,8 @@
           "geheimhoudingPersoonsgegevens" : {
             "$ref" : "#/components/schemas/GbaGeheimhoudingPersoonsgegevens"
           },
+          "verificatie" : {
+            "$ref" : "#/components/schemas/GbaVerificatie"
           "opschortingBijhouding" : {
             "$ref" : "#/components/schemas/GbaOpschortingBijhouding"
           }
@@ -1070,6 +1072,8 @@
           "geheimhoudingPersoonsgegevens" : {
             "$ref" : "#/components/schemas/GbaGeheimhoudingPersoonsgegevens"
           },
+          "verificatie" : {
+            "$ref" : "#/components/schemas/GbaVerificatie"
           "opschortingBijhouding" : {
             "$ref" : "#/components/schemas/GbaOpschortingBijhouding"
           }
@@ -1087,6 +1091,8 @@
           "geheimhoudingPersoonsgegevens" : {
             "$ref" : "#/components/schemas/GbaGeheimhoudingPersoonsgegevens"
           },
+          "verificatie" : {
+            "$ref" : "#/components/schemas/GbaVerificatie"
           "opschortingBijhouding" : {
             "$ref" : "#/components/schemas/GbaOpschortingBijhouding"
           }
@@ -1307,6 +1313,9 @@
           },
           "inOnderzoek" : {
             "$ref" : "#/components/schemas/GbaInOnderzoek"
+          },
+          "rni" : {
+            "$ref" : "#/components/schemas/RniDeelnemer"
           }
         }
       },
@@ -1342,7 +1351,7 @@
       },
       "Woonplaats" : {
         "title" : "woonplaats naam",
-        "pattern" : "^[a-zA-Z0-9�-� \\(\\)\\,\\.\\-\\']{1,80}$",
+        "pattern" : "^[a-zA-Z0-9Á-ž \\(\\)\\,\\.\\-\\']{1,80}$",
         "type" : "string",
         "description" : "Een woonplaats is een gedeelte van het grondgebied van de gemeente met een naam.\n",
         "example" : "Duiven"
@@ -1390,6 +1399,21 @@
       "GbaGeheimhoudingPersoonsgegevens" : {
         "type" : "integer"
       },
+      "GbaVerificatie" : {
+        "type" : "object",
+        "properties" : {
+          "datum" : {
+            "$ref" : "#/components/schemas/GbaDatum"
+          },
+          "omschrijving" : {
+            "$ref" : "#/components/schemas/OmschrijvingVerificatie"
+          }
+        }
+      },
+      "OmschrijvingVerificatie" : {
+        "pattern" : "^[a-zA-Z0-9À-ž \\.\\-\\']{1,50}$",
+        "type" : "string",
+        "description" : "Omschrijving van de verificatie van de rni-gegevens\n"
       "GbaOpschortingBijhouding" : {
         "allOf" : [ {
           "$ref" : "#/components/schemas/OpschortingBijhoudingBasis"
@@ -1487,6 +1511,9 @@
           },
           "inOnderzoek" : {
             "$ref" : "#/components/schemas/GbaInOnderzoek"
+          },
+          "rni" : {
+            "$ref" : "#/components/schemas/RniDeelnemer"
           }
         },
         "description" : "Gegevens over de verblijfsrechtelijke status van de persoon.\n* **datumEinde**: Datum waarop de geldigheid van de gegevens over de verblijfstitel is beëindigd.\n* **datumIngang**: Datum waarop de gegevens over de verblijfstitel geldig zijn geworden.\n* **aanduiding** : Verblijfstiteltabel die aangeeft over welke verblijfsrechtelijke status de persoon beschikt.\n"
@@ -1515,6 +1542,9 @@
           },
           "inOnderzoek" : {
             "$ref" : "#/components/schemas/GbaInOnderzoek"
+          },
+          "rni" : {
+            "$ref" : "#/components/schemas/RniDeelnemer"
           }
         }
       },
@@ -1560,6 +1590,22 @@
             "$ref" : "#/components/schemas/GbaDatum"
           }
         }
+      },
+      "RniDeelnemer" : {
+        "type" : "object",
+        "properties" : {
+          "deelnemer" : {
+            "$ref" : "#/components/schemas/Waardetabel"
+          },
+          "omschrijvingVerdrag" : {
+            "$ref" : "#/components/schemas/OmschrijvingVerdrag"
+          }
+        }
+      },
+      "OmschrijvingVerdrag" : {
+        "pattern" : "^[a-zA-Z0-9À-ž \\.\\-\\']{1,50}$",
+        "type" : "string",
+        "description" : "Omschrijving van het verdrag op basis waarvan een zusterorganisatie in het buitenland de gegevens bij de RNI-deelnemer heeft aangeleverd.\n"
       },
       "GbaNaamBasis" : {
         "type" : "object",
