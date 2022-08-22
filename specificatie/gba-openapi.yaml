@@ -251,8 +251,6 @@ components:
             $ref: 'partner.yaml#/components/schemas/GbaPartner'
         geheimhoudingPersoonsgegevens:
           $ref: 'persoon.yaml#/components/schemas/GbaGeheimhoudingPersoonsgegevens'
-        verificatie:
-          $ref: 'common.yaml#/components/schemas/GbaVerificatie'
     VerblijfstitelhistorieQueryResponse:
       type: object
       properties:

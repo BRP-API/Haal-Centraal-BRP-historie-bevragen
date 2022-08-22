@@ -312,8 +312,6 @@ components:
             $ref: 'partner.yaml#/components/schemas/Partner'
         geheimhoudingPersoonsgegevens:
           $ref: 'persoon.yaml#/components/schemas/GeheimhoudingPersoonsgegevens'
-        verificatie:
-          $ref: 'common.yaml#/components/schemas/Verificatie'
     VerblijfstitelhistorieQueryResponse:
       type: object
       properties:
