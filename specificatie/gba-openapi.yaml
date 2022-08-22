@@ -240,6 +240,8 @@ components:
             $ref: 'verblijfplaats.yaml#/components/schemas/GbaVerblijfplaats'
         geheimhoudingPersoonsgegevens:
           $ref: 'persoon.yaml#/components/schemas/GbaGeheimhoudingPersoonsgegevens'
+        opschortingBijhouding:
+          $ref: 'opschortingbijhouding.yaml#/components/schemas/GbaOpschortingBijhouding'
     PartnerhistorieQueryResponse:
       type: object
       properties:
@@ -249,6 +251,8 @@ components:
             $ref: 'partner.yaml#/components/schemas/GbaPartner'
         geheimhoudingPersoonsgegevens:
           $ref: 'persoon.yaml#/components/schemas/GbaGeheimhoudingPersoonsgegevens'
+        opschortingBijhouding:
+          $ref: 'opschortingbijhouding.yaml#/components/schemas/GbaOpschortingBijhouding'
     VerblijfstitelhistorieQueryResponse:
       type: object
       properties:
@@ -258,6 +262,8 @@ components:
             $ref: 'verblijfstitel.yaml#/components/schemas/GbaVerblijfstitel'
         geheimhoudingPersoonsgegevens:
           $ref: 'persoon.yaml#/components/schemas/GbaGeheimhoudingPersoonsgegevens'
+        opschortingBijhouding:
+          $ref: 'opschortingbijhouding.yaml#/components/schemas/GbaOpschortingBijhouding'
     NationaliteithistorieQueryResponse:
       type: object
       properties:
@@ -267,3 +273,5 @@ components:
             $ref: 'nationaliteit.yaml#/components/schemas/GbaNationaliteit'
         geheimhoudingPersoonsgegevens:
           $ref: 'persoon.yaml#/components/schemas/GbaGeheimhoudingPersoonsgegevens'
+        opschortingBijhouding:
+          $ref: 'opschortingbijhouding.yaml#/components/schemas/GbaOpschortingBijhouding'

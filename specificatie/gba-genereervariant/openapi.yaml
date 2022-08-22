@@ -773,6 +773,8 @@ components:
             $ref: '#/components/schemas/GbaVerblijfplaats'
         geheimhoudingPersoonsgegevens:
           $ref: '#/components/schemas/GbaGeheimhoudingPersoonsgegevens'
+        opschortingBijhouding:
+          $ref: '#/components/schemas/GbaOpschortingBijhouding'
     PartnerhistorieQueryResponse:
       type: object
       properties:
@@ -782,6 +784,8 @@ components:
             $ref: '#/components/schemas/GbaPartner'
         geheimhoudingPersoonsgegevens:
           $ref: '#/components/schemas/GbaGeheimhoudingPersoonsgegevens'
+        opschortingBijhouding:
+          $ref: '#/components/schemas/GbaOpschortingBijhouding'
     VerblijfstitelhistorieQueryResponse:
       type: object
       properties:
@@ -791,6 +795,8 @@ components:
             $ref: '#/components/schemas/GbaVerblijfstitel'
         geheimhoudingPersoonsgegevens:
           $ref: '#/components/schemas/GbaGeheimhoudingPersoonsgegevens'
+        opschortingBijhouding:
+          $ref: '#/components/schemas/GbaOpschortingBijhouding'
     NationaliteithistorieQueryResponse:
       type: object
       properties:
@@ -800,6 +806,8 @@ components:
             $ref: '#/components/schemas/GbaNationaliteit'
         geheimhoudingPersoonsgegevens:
           $ref: '#/components/schemas/GbaGeheimhoudingPersoonsgegevens'
+        opschortingBijhouding:
+          $ref: '#/components/schemas/GbaOpschortingBijhouding'
     HistorieQuery:
       required:
       - burgerservicenummer
@@ -1061,6 +1069,22 @@ components:
       type: string
     GbaGeheimhoudingPersoonsgegevens:
       type: integer
+    GbaOpschortingBijhouding:
+      allOf:
+      - $ref: '#/components/schemas/OpschortingBijhoudingBasis'
+      - type: object
+        properties:
+          datum:
+            $ref: '#/components/schemas/GbaDatum'
+        description: |
+          * **datum**: de datum waarop de bijhouding van de persoonsgegevens is gestaakt.
+    OpschortingBijhoudingBasis:
+      type: object
+      properties:
+        reden:
+          $ref: '#/components/schemas/Waardetabel'
+      description: |
+        * **reden** - wordt gevuld met waarden uit de tabel 'redenopschortingbijhouding' (zie Haal-Centraal-BRP-tabellen-bevragen API).
     GbaPartner:
       type: object
       properties:

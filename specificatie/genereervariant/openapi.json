@@ -1101,6 +1101,9 @@
           },
           "geheimhoudingPersoonsgegevens" : {
             "$ref" : "#/components/schemas/GeheimhoudingPersoonsgegevens"
+          },
+          "opschortingBijhouding" : {
+            "$ref" : "#/components/schemas/OpschortingBijhouding"
           }
         }
       },
@@ -1115,6 +1118,9 @@
           },
           "geheimhoudingPersoonsgegevens" : {
             "$ref" : "#/components/schemas/GeheimhoudingPersoonsgegevens"
+          },
+          "opschortingBijhouding" : {
+            "$ref" : "#/components/schemas/OpschortingBijhouding"
           }
         }
       },
@@ -1129,6 +1135,9 @@
           },
           "geheimhoudingPersoonsgegevens" : {
             "$ref" : "#/components/schemas/GeheimhoudingPersoonsgegevens"
+          },
+          "opschortingBijhouding" : {
+            "$ref" : "#/components/schemas/OpschortingBijhouding"
           }
         }
       },
@@ -1143,6 +1152,9 @@
           },
           "geheimhoudingPersoonsgegevens" : {
             "$ref" : "#/components/schemas/GeheimhoudingPersoonsgegevens"
+          },
+          "opschortingBijhouding" : {
+            "$ref" : "#/components/schemas/OpschortingBijhouding"
           }
         }
       },
@@ -1728,6 +1740,28 @@
       "GeheimhoudingPersoonsgegevens" : {
         "type" : "boolean",
         "description" : "Gegevens mogen niet worden verstrekt aan derden / maatschappelijke instellingen.\n"
+      },
+      "OpschortingBijhouding" : {
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/OpschortingBijhoudingBasis"
+        }, {
+          "type" : "object",
+          "properties" : {
+            "datum" : {
+              "$ref" : "#/components/schemas/AbstractDatum"
+            }
+          },
+          "description" : "* **datum**: de datum waarop de bijhouding van de persoonsgegevens is gestaakt.\n"
+        } ]
+      },
+      "OpschortingBijhoudingBasis" : {
+        "type" : "object",
+        "properties" : {
+          "reden" : {
+            "$ref" : "#/components/schemas/Waardetabel"
+          }
+        },
+        "description" : "* **reden** - wordt gevuld met waarden uit de tabel 'redenopschortingbijhouding' (zie Haal-Centraal-BRP-tabellen-bevragen API).\n"
       },
       "Partner" : {
         "type" : "object",

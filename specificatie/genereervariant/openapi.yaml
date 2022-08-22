@@ -833,6 +833,8 @@ components:
             $ref: '#/components/schemas/AbstractVerblijfplaats'
         geheimhoudingPersoonsgegevens:
           $ref: '#/components/schemas/GeheimhoudingPersoonsgegevens'
+        opschortingBijhouding:
+          $ref: '#/components/schemas/OpschortingBijhouding'
     PartnerhistorieQueryResponse:
       type: object
       properties:
@@ -842,6 +844,8 @@ components:
             $ref: '#/components/schemas/Partner'
         geheimhoudingPersoonsgegevens:
           $ref: '#/components/schemas/GeheimhoudingPersoonsgegevens'
+        opschortingBijhouding:
+          $ref: '#/components/schemas/OpschortingBijhouding'
     VerblijfstitelhistorieQueryResponse:
       type: object
       properties:
@@ -851,6 +855,8 @@ components:
             $ref: '#/components/schemas/Verblijfstitel'
         geheimhoudingPersoonsgegevens:
           $ref: '#/components/schemas/GeheimhoudingPersoonsgegevens'
+        opschortingBijhouding:
+          $ref: '#/components/schemas/OpschortingBijhouding'
     NationaliteithistorieQueryResponse:
       type: object
       properties:
@@ -860,6 +866,8 @@ components:
             $ref: '#/components/schemas/AbstractNationaliteit'
         geheimhoudingPersoonsgegevens:
           $ref: '#/components/schemas/GeheimhoudingPersoonsgegevens'
+        opschortingBijhouding:
+          $ref: '#/components/schemas/OpschortingBijhouding'
     BadRequestFoutbericht:
       allOf:
       - $ref: '#/components/schemas/Foutbericht'
@@ -1296,6 +1304,22 @@ components:
       type: boolean
       description: |
         Gegevens mogen niet worden verstrekt aan derden / maatschappelijke instellingen.
+    OpschortingBijhouding:
+      allOf:
+      - $ref: '#/components/schemas/OpschortingBijhoudingBasis'
+      - type: object
+        properties:
+          datum:
+            $ref: '#/components/schemas/AbstractDatum'
+        description: |
+          * **datum**: de datum waarop de bijhouding van de persoonsgegevens is gestaakt.
+    OpschortingBijhoudingBasis:
+      type: object
+      properties:
+        reden:
+          $ref: '#/components/schemas/Waardetabel'
+      description: |
+        * **reden** - wordt gevuld met waarden uit de tabel 'redenopschortingbijhouding' (zie Haal-Centraal-BRP-tabellen-bevragen API).
     Partner:
       type: object
       properties:
