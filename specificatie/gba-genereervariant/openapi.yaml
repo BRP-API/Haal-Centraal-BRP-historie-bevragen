@@ -784,8 +784,6 @@ components:
             $ref: '#/components/schemas/GbaPartner'
         geheimhoudingPersoonsgegevens:
           $ref: '#/components/schemas/GbaGeheimhoudingPersoonsgegevens'
-        verificatie:
-          $ref: '#/components/schemas/GbaVerificatie'
     VerblijfstitelhistorieQueryResponse:
       type: object
       properties:
@@ -1102,8 +1100,6 @@ components:
           $ref: '#/components/schemas/GbaAangaanHuwelijkPartnerschap'
         ontbindingHuwelijkPartnerschap:
           $ref: '#/components/schemas/GbaOntbindingHuwelijkPartnerschap'
-        rni:
-          $ref: '#/components/schemas/RniDeelnemer'
     GbaAangaanHuwelijkPartnerschap:
       type: object
       properties:

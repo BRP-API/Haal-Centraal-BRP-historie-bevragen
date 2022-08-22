@@ -1118,9 +1118,6 @@
           },
           "geheimhoudingPersoonsgegevens" : {
             "$ref" : "#/components/schemas/GeheimhoudingPersoonsgegevens"
-          },
-          "verificatie" : {
-            "$ref" : "#/components/schemas/Verificatie"
           }
         }
       },
@@ -1795,9 +1792,6 @@
           },
           "ontbindingHuwelijkPartnerschap" : {
             "$ref" : "#/components/schemas/OntbindingHuwelijkPartnerschap"
-          },
-          "rni" : {
-            "$ref" : "#/components/schemas/RniDeelnemer"
           }
         }
       },

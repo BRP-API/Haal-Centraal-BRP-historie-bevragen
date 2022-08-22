@@ -844,8 +844,6 @@ components:
             $ref: '#/components/schemas/Partner'
         geheimhoudingPersoonsgegevens:
           $ref: '#/components/schemas/GeheimhoudingPersoonsgegevens'
-        verificatie:
-          $ref: '#/components/schemas/Verificatie'
     VerblijfstitelhistorieQueryResponse:
       type: object
       properties:
@@ -1343,8 +1341,6 @@ components:
           $ref: '#/components/schemas/AangaanHuwelijkPartnerschap'
         ontbindingHuwelijkPartnerschap:
           $ref: '#/components/schemas/OntbindingHuwelijkPartnerschap'
-        rni:
-          $ref: '#/components/schemas/RniDeelnemer'
     PartnerInOnderzoek:
       description: |
         Geeft aan welke gegevens over het huwelijk of het partnerschap in onderzoek zijn.
