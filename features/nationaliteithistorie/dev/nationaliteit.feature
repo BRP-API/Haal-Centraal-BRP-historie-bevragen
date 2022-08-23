@@ -36,9 +36,9 @@ Functionaliteit: Lever de juiste gegevens over een nationaliteit
       Gegeven de persoon met burgerservicenummer '000000103' heeft een 'nationaliteit' met de volgende gegevens
       | nationaliteit (05.10) | reden opnemen (63.10) | datum ingang geldigheid (85.10) |
       | 0131                  | 301                   | 19750501                        |
-      En de 'nationaliteit' is gewijzigd met de volgende gegevens
-      | nationaliteit (05.10) | reden opnemen (63.10) | reden beëindigen (64.10) | datum ingang geldigheid (85.10) |
-      |                       |                       | 404                      | 20220131                        |
+      En de 'nationaliteit' is gewijzigd naar de volgende gegevens
+      | reden beëindigen (64.10) | datum ingang geldigheid (85.10) |
+      | 404                      | 20220131                        |
       Als nationaliteithistorie wordt geraadpleegd met de volgende parameters
       | naam                | waarde                             |
       | type                | RaadpleegMetPeriode                |
@@ -53,10 +53,10 @@ Functionaliteit: Lever de juiste gegevens over een nationaliteit
       Gegeven de persoon met burgerservicenummer '000000115' heeft een 'nationaliteit' met de volgende gegevens
       | nationaliteit (05.10) | reden opnemen (63.10) | reden beëindigen (64.10) | datum ingang geldigheid (85.10) |
       | 0100                  | 301                   |                          | 19890301                        |
-      En de 'nationaliteit' is gewijzigd met de volgende gegevens
-      | nationaliteit (05.10) | reden opnemen (63.10) | reden beëindigen (64.10) | datum ingang geldigheid (85.10) |
-      |                       |                       | 401                      | 20220601                        |
-      En de 'nationaliteit' is vervolgens gewijzigd met de volgende gegevens
+      En de 'nationaliteit' is gewijzigd naar de volgende gegevens
+      | reden beëindigen (64.10) | datum ingang geldigheid (85.10) |
+      | 401                      | 20220601                        |
+      En de 'nationaliteit' is vervolgens gewijzigd naar de volgende gegevens
       | reden beëindigen (64.10) | datum ingang geldigheid (85.10) |
       | 404                      | 20220601                        |
       Als nationaliteithistorie wordt geraadpleegd met de volgende parameters
@@ -73,12 +73,12 @@ Functionaliteit: Lever de juiste gegevens over een nationaliteit
       Gegeven de persoon met burgerservicenummer '000000127' heeft een 'nationaliteit' met de volgende gegevens
       | nationaliteit (05.10) | reden opnemen (63.10) | datum ingang geldigheid (85.10) |
       | 0400                  | 301                   | 20170401                        |
-      En de 'nationaliteit' is gewijzigd met de volgende gegevens
+      En de 'nationaliteit' is gewijzigd naar de volgende gegevens
       | nationaliteit (05.10) | reden opnemen (63.10) | datum ingang geldigheid (85.10) |
       | 0071                  | 301                   | 20170401                        |
-      En de 'nationaliteit' is vervolgens gewijzigd met de volgende gegevens
-      | nationaliteit (05.10) | reden opnemen (63.10) | reden beëindigen (64.10) | datum ingang geldigheid (85.10) |
-      |                       |                       | 404                      | 20200305                        |
+      En de 'nationaliteit' is vervolgens gewijzigd naar de volgende gegevens
+      | reden beëindigen (64.10) | datum ingang geldigheid (85.10) |
+      | 404                      | 20200305                        |
       Als nationaliteithistorie wordt geraadpleegd met de volgende parameters
       | naam                | waarde                             |
       | type                | RaadpleegMetPeriode                |
@@ -88,3 +88,31 @@ Functionaliteit: Lever de juiste gegevens over een nationaliteit
       Dan heeft de response de volgende 'nationaliteiten'
       | type          | nationaliteit.code |
       | Nationaliteit | 0071               |
+
+
+  Rule: Op basis van de nationaliteit-code wordt de bijbehorende omschrijving gehaald uit de tabel 'Nationaliteiten' (Landelijke tabel 32)
+
+    Abstract Scenario: persoon heeft nationaliteit "<nationaliteit omschrijving>"
+      Gegeven landelijke tabel "Nationaliteiten" heeft de volgende waarde
+      | code                 | omschrijving                 |
+      | <nationaliteit code> | <nationaliteit omschrijving> |
+      # INSERT INTO public.lo3_nationaliteit(nationaliteit_code, nationaliteit_oms) VALUES (<nationaliteit code>, '<nationaliteit omschrijving>')
+	    # ON CONFLICT (nationaliteit_code) DO UPDATE SET nationaliteit_oms = '<nationaliteit omschrijving>';
+      En de persoon met burgerservicenummer '<burgerservicenummer>' heeft een 'nationaliteit' met de volgende gegevens
+      | nationaliteit (05.10) | reden opnemen (63.10) | datum ingang geldigheid (85.10) |
+      | <nationaliteit code>  | 301                   | 20150426                        |
+      Als nationaliteithistorie wordt geraadpleegd met de volgende parameters
+      | naam                | waarde                        |
+      | type                | RaadpleegMetPeildatum         |
+      | burgerservicenummer | <burgerservicenummer>         |
+      | peildatum           | 2022-08-16                    |
+      | fields              | nationaliteiten.nationaliteit |
+      Dan heeft de response de volgende 'nationaliteiten'
+      | type          | nationaliteit.code   | nationaliteit.omschrijving   |
+      | Nationaliteit | <nationaliteit code> | <nationaliteit omschrijving> |
+
+      Voorbeelden:
+      | burgerservicenummer | nationaliteit code | nationaliteit omschrijving                 |
+      | 000000371           | 0144               | Burger van São Tomé en Principe            |
+      | 000000383           | 0113               | Equatoriaal-Guinese                        |
+      | 000000395           | 0338               | Burger van de Verenigde Arabische Emiraten |

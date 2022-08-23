@@ -140,9 +140,9 @@ Functionaliteit: Lever het juiste type van een nationaliteit
       Gegeven de persoon met burgerservicenummer '000000309' heeft een 'nationaliteit' met de volgende gegevens
       | nationaliteit (05.10) | reden opnemen (63.10) | datum ingang geldigheid (85.10) |
       | 0131                  | 301                   | 19750501                        |
-      En de 'nationaliteit' is gewijzigd met de volgende gegevens
-      | nationaliteit (05.10) | reden opnemen (63.10) | reden beëindigen (64.10) | datum ingang geldigheid (85.10) |
-      |                       |                       | 404                      | 20220131                        |
+      En de 'nationaliteit' is gewijzigd naar de volgende gegevens
+      | reden beëindigen (64.10) | datum ingang geldigheid (85.10) |
+      | 404                      | 20220131                        |
       Als nationaliteithistorie wordt geraadpleegd met de volgende parameters
       | naam                | waarde               |
       | type                | RaadpleegMetPeriode  |
@@ -157,9 +157,9 @@ Functionaliteit: Lever het juiste type van een nationaliteit
       Gegeven de persoon met burgerservicenummer '000000310' heeft een 'nationaliteit' met de volgende gegevens
       | bijzonder Nederlanderschap (65.10) | reden opnemen (63.10) | datum ingang geldigheid (85.10) |
       | B                                  | 310                   | 20010319                        |
-      En de 'nationaliteit' is gewijzigd met de volgende gegevens
-      | bijzonder Nederlanderschap (65.10) | reden opnemen (63.10) | reden beëindigen (64.10) | datum ingang geldigheid (85.10) |
-      |                                    |                       | 410                      | 20220604                        |
+      En de 'nationaliteit' is gewijzigd naar de volgende gegevens
+      | reden beëindigen (64.10) | datum ingang geldigheid (85.10) |
+      | 410                      | 20220604                        |
       Als nationaliteithistorie wordt geraadpleegd met de volgende parameters
       | naam                | waarde               |
       | type                | RaadpleegMetPeriode  |
@@ -174,12 +174,12 @@ Functionaliteit: Lever het juiste type van een nationaliteit
       Gegeven de persoon met burgerservicenummer '000000322' heeft een 'nationaliteit' met de volgende gegevens
       | nationaliteit (05.10) | reden opnemen (63.10) | reden beëindigen (64.10) | datum ingang geldigheid (85.10) |
       | 0100                  | 301                   |                          | 19890301                        |
-      En de 'nationaliteit' is gewijzigd met de volgende gegevens
-      | nationaliteit (05.10) | reden opnemen (63.10) | reden beëindigen (64.10) | datum ingang geldigheid (85.10) |
-      |                       |                       | 401                      | 20210923                        |
-      En de 'nationaliteit' is vervolgens gewijzigd met de volgende gegevens
-      | nationaliteit (05.10) | reden opnemen (63.10) | reden beëindigen (64.10) | datum ingang geldigheid (85.10) |
-      |                       |                       | 404                      | 20210923                        |
+      En de 'nationaliteit' is gewijzigd naar de volgende gegevens
+      | reden beëindigen (64.10) | datum ingang geldigheid (85.10) |
+      | 401                      | 20210923                        |
+      En de 'nationaliteit' is vervolgens gecorrigeerd naar de volgende gegevens
+      | reden beëindigen (64.10) | datum ingang geldigheid (85.10) |
+      | 404                      | 20210923                        |
       Als nationaliteithistorie wordt geraadpleegd met de volgende parameters
       | naam                | waarde               |
       | type                | RaadpleegMetPeriode  |

@@ -38,10 +38,10 @@ Functionaliteit: Lever de juiste datumTot van een beëindigde nationaliteit
       Gegeven de persoon met burgerservicenummer '000000085' heeft een 'nationaliteit' met de volgende gegevens
       | nationaliteit (05.10) | reden opnemen (63.10) | datum ingang geldigheid (85.10) |
       | 0100                  | 301                   | 19890301                        |
-      En de 'nationaliteit' is gewijzigd met de volgende gegevens
-      | nationaliteit (05.10) | reden opnemen (63.10) | reden beëindigen (64.10) | datum ingang geldigheid (85.10) |
-      |                       |                       | 401                      | 20220601                        |
-      En de 'nationaliteit' is vervolgens gewijzigd met de volgende gegevens
+      En de 'nationaliteit' is gewijzigd naar de volgende gegevens
+      | reden beëindigen (64.10) | datum ingang geldigheid (85.10) |
+      | 401                      | 20220601                        |
+      En de 'nationaliteit' is vervolgens gewijzigd naar de volgende gegevens
       | reden beëindigen (64.10) | datum ingang geldigheid (85.10) |
       | 404                      | 20220609                        |
       Als nationaliteithistorie wordt geraadpleegd met de volgende parameters
