@@ -41,7 +41,7 @@ Functionaliteit: Lever de juiste datum ingang geldigheid van een nationaliteit
       | 404                      | 20050131                        |
       Als nationaliteithistorie wordt geraadpleegd met de volgende parameters
       | naam                | waarde                                |
-      | type                | RaadpleegMetPeriode                   |
+      | type                | RaadpleegMetPeildatum                 |
       | burgerservicenummer | 000000024                             |
       | peildatum           | 2000-01-01                            |
       | fields              | nationaliteiten.datumIngangGeldigheid |
@@ -58,7 +58,7 @@ Functionaliteit: Lever de juiste datum ingang geldigheid van een nationaliteit
       | 410                      | 20190604                        |
       Als nationaliteithistorie wordt geraadpleegd met de volgende parameters
       | naam                | waarde                                |
-      | type                | RaadpleegMetPeriode                   |
+      | type                | RaadpleegMetPeildatum                 |
       | burgerservicenummer | 000000036                             |
       | peildatum           | 2018-01-01                            |
       | fields              | nationaliteiten.datumIngangGeldigheid |
@@ -78,7 +78,7 @@ Functionaliteit: Lever de juiste datum ingang geldigheid van een nationaliteit
       | 404                      | 20140601                        |
       Als nationaliteithistorie wordt geraadpleegd met de volgende parameters
       | naam                | waarde                                |
-      | type                | RaadpleegMetPeriode                   |
+      | type                | RaadpleegMetPeildatum                 |
       | burgerservicenummer | 000000048                             |
       | peildatum           | 2000-01-01                            |
       | fields              | nationaliteiten.datumIngangGeldigheid |
@@ -98,7 +98,7 @@ Functionaliteit: Lever de juiste datum ingang geldigheid van een nationaliteit
       | 404                      | 20200305                        |
       Als nationaliteithistorie wordt geraadpleegd met de volgende parameters
       | naam                | waarde                                |
-      | type                | RaadpleegMetPeriode                   |
+      | type                | RaadpleegMetPeildatum                 |
       | burgerservicenummer | 000000061                             |
       | peildatum           | 2000-01-01                            |
       | fields              | nationaliteiten.datumIngangGeldigheid |

@@ -27,11 +27,11 @@ Functionaliteit: Lever het juiste type van een nationaliteit
       | nationaliteit (05.10) | reden opnemen (63.10) | datum ingang geldigheid (85.10) |
       | 0001                  | 001                   | 19750707                        |
       Als personen wordt gezocht met de volgende parameters
-      | naam                | waarde               |
-      | type                | RaadpleegMetPeriode  |
-      | burgerservicenummer | 000000218            |
-      | peildatum           | 2022-08-01           |
-      | fields              | nationaliteiten.type |
+      | naam                | waarde                |
+      | type                | RaadpleegMetPeildatum |
+      | burgerservicenummer | 000000218             |
+      | peildatum           | 2022-08-01            |
+      | fields              | nationaliteiten.type  |
       Dan heeft de response de volgende 'nationaliteiten'
       | type          |
       | Nationaliteit |
@@ -41,11 +41,11 @@ Functionaliteit: Lever het juiste type van een nationaliteit
       | nationaliteit (05.10) | reden opnemen (63.10) | datum ingang geldigheid (85.10) |
       | 0263                  | 301                   | 19981103                        |
       Als personen wordt gezocht met de volgende parameters
-      | naam                | waarde               |
-      | type                | RaadpleegMetPeriode  |
-      | burgerservicenummer | 000000231            |
-      | peildatum           | 2022-08-01           |
-      | fields              | nationaliteiten.type |
+      | naam                | waarde                |
+      | type                | RaadpleegMetPeildatum |
+      | burgerservicenummer | 000000231             |
+      | peildatum           | 2022-08-01            |
+      | fields              | nationaliteiten.type  |
       Dan heeft de response de volgende 'nationaliteiten'
       | type          |
       | Nationaliteit |
@@ -55,11 +55,11 @@ Functionaliteit: Lever het juiste type van een nationaliteit
       | nationaliteit (05.10) | reden opnemen (63.10) | datum ingang geldigheid (85.10) |
       | 0499                  | 312                   | 20040201                        |
       Als personen wordt gezocht met de volgende parameters
-      | naam                | waarde               |
-      | type                | RaadpleegMetPeriode  |
-      | burgerservicenummer | 000000243            |
-      | peildatum           | 2022-08-01           |
-      | fields              | nationaliteiten.type |
+      | naam                | waarde                |
+      | type                | RaadpleegMetPeildatum |
+      | burgerservicenummer | 000000243             |
+      | peildatum           | 2022-08-01            |
+      | fields              | nationaliteiten.type  |
       Dan heeft de response de volgende 'nationaliteiten'
       | type      |
       | Staatloos |
@@ -69,11 +69,11 @@ Functionaliteit: Lever het juiste type van een nationaliteit
       | nationaliteit (05.10) | reden opnemen (63.10) | datum ingang geldigheid (85.10) |
       | 0000                  | 311                   | 19531104                        |
       Als personen wordt gezocht met de volgende parameters
-      | naam                | waarde               |
-      | type                | RaadpleegMetPeriode  |
-      | burgerservicenummer | 000000255            |
-      | peildatum           | 2022-08-01           |
-      | fields              | nationaliteiten.type |
+      | naam                | waarde                |
+      | type                | RaadpleegMetPeildatum |
+      | burgerservicenummer | 000000255             |
+      | peildatum           | 2022-08-01            |
+      | fields              | nationaliteiten.type  |
       Dan heeft de response de volgende 'nationaliteiten'
       | type                  |
       | NationaliteitOnbekend |
@@ -83,11 +83,11 @@ Functionaliteit: Lever het juiste type van een nationaliteit
       | bijzonder Nederlanderschap (65.10) | reden opnemen (63.10) | datum ingang geldigheid (85.10) |
       | B                                  | 310                   | 19570115                        |
       Als personen wordt gezocht met de volgende parameters
-      | naam                | waarde               |
-      | type                | RaadpleegMetPeriode  |
-      | burgerservicenummer | 000000267            |
-      | peildatum           | 2022-08-01           |
-      | fields              | nationaliteiten.type |
+      | naam                | waarde                |
+      | type                | RaadpleegMetPeildatum |
+      | burgerservicenummer | 000000267             |
+      | peildatum           | 2022-08-01            |
+      | fields              | nationaliteiten.type  |
       Dan heeft de response de volgende 'nationaliteiten'
       | type                    |
       | BehandeldAlsNederlander |
@@ -97,11 +97,11 @@ Functionaliteit: Lever het juiste type van een nationaliteit
       | nationaliteit (05.10) | reden opnemen (63.10) | datum ingang geldigheid (85.10) |
       | 0002                  | 310                   | 19530614                        |
       Als personen wordt gezocht met de volgende parameters
-      | naam                | waarde               |
-      | type                | RaadpleegMetPeriode  |
-      | burgerservicenummer | 000000279            |
-      | peildatum           | 2022-08-01           |
-      | fields              | nationaliteiten.type |
+      | naam                | waarde                |
+      | type                | RaadpleegMetPeildatum |
+      | burgerservicenummer | 000000279             |
+      | peildatum           | 2022-08-01            |
+      | fields              | nationaliteiten.type  |
       Dan heeft de response de volgende 'nationaliteiten'
       | type                    |
       | BehandeldAlsNederlander |
@@ -111,11 +111,11 @@ Functionaliteit: Lever het juiste type van een nationaliteit
       | bijzonder Nederlanderschap (65.10) | reden opnemen (63.10) | datum ingang geldigheid (85.10) |
       | V                                  | 310                   | 19750615                        |
       Als personen wordt gezocht met de volgende parameters
-      | naam                | waarde               |
-      | type                | RaadpleegMetPeriode  |
-      | burgerservicenummer | 000000280            |
-      | peildatum           | 2022-08-01           |
-      | fields              | nationaliteiten.type |
+      | naam                | waarde                |
+      | type                | RaadpleegMetPeildatum |
+      | burgerservicenummer | 000000280             |
+      | peildatum           | 2022-08-01            |
+      | fields              | nationaliteiten.type  |
       Dan heeft de response de volgende 'nationaliteiten'
       | type                       |
       | VastgesteldNietNederlander |
@@ -125,10 +125,11 @@ Functionaliteit: Lever het juiste type van een nationaliteit
       | nationaliteit (05.10) | reden opnemen (63.10) | datum ingang geldigheid (85.10) |
       | 0500                  | 310                   | 19861102                        |
       Als personen wordt gezocht met de volgende parameters
-      | naam                | waarde                          |
-      | type                | RaadpleegMetBurgerservicenummer |
-      | burgerservicenummer | 000000292                       |
-      | fields              | nationaliteiten                 |
+      | naam                | waarde                |
+      | type                | RaadpleegMetPeildatum |
+      | burgerservicenummer | 000000292             |
+      | peildatum           | 2022-08-01            |
+      | fields              | nationaliteiten.type  |
       Dan heeft de response de volgende 'nationaliteiten'
       | type                       |
       | VastgesteldNietNederlander |
@@ -144,11 +145,11 @@ Functionaliteit: Lever het juiste type van een nationaliteit
       | reden beëindigen (64.10) | datum ingang geldigheid (85.10) |
       | 404                      | 20220131                        |
       Als nationaliteithistorie wordt geraadpleegd met de volgende parameters
-      | naam                | waarde               |
-      | type                | RaadpleegMetPeriode  |
-      | burgerservicenummer | 000000309            |
-      | peildatum           | 2022-01-01           |
-      | fields              | nationaliteiten.type |
+      | naam                | waarde                |
+      | type                | RaadpleegMetPeildatum |
+      | burgerservicenummer | 000000309             |
+      | peildatum           | 2022-01-01            |
+      | fields              | nationaliteiten.type  |
       Dan heeft de response de volgende 'nationaliteiten'
       | type          |
       | Nationaliteit |
@@ -161,11 +162,11 @@ Functionaliteit: Lever het juiste type van een nationaliteit
       | reden beëindigen (64.10) | datum ingang geldigheid (85.10) |
       | 410                      | 20220604                        |
       Als nationaliteithistorie wordt geraadpleegd met de volgende parameters
-      | naam                | waarde               |
-      | type                | RaadpleegMetPeriode  |
-      | burgerservicenummer | 000000310            |
-      | peildatum           | 2021-01-01           |
-      | fields              | nationaliteiten.type |
+      | naam                | waarde                |
+      | type                | RaadpleegMetPeildatum |
+      | burgerservicenummer | 000000310             |
+      | peildatum           | 2021-01-01            |
+      | fields              | nationaliteiten.type  |
       Dan heeft de response de volgende 'nationaliteiten'
       | type                    |
       | BehandeldAlsNederlander |
@@ -181,11 +182,11 @@ Functionaliteit: Lever het juiste type van een nationaliteit
       | reden beëindigen (64.10) | datum ingang geldigheid (85.10) |
       | 404                      | 20210923                        |
       Als nationaliteithistorie wordt geraadpleegd met de volgende parameters
-      | naam                | waarde               |
-      | type                | RaadpleegMetPeriode  |
-      | burgerservicenummer | 000000322            |
-      | peildatum           | 2021-01-01           |
-      | fields              | nationaliteiten.type |
+      | naam                | waarde                |
+      | type                | RaadpleegMetPeildatum |
+      | burgerservicenummer | 000000322             |
+      | peildatum           | 2021-01-01            |
+      | fields              | nationaliteiten.type  |
       Dan heeft de response de volgende 'nationaliteiten'
       | type          |
       | Nationaliteit |

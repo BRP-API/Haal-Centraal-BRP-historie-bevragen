@@ -41,7 +41,7 @@ Functionaliteit: Lever de juiste gegevens over een nationaliteit
       | 404                      | 20220131                        |
       Als nationaliteithistorie wordt geraadpleegd met de volgende parameters
       | naam                | waarde                             |
-      | type                | RaadpleegMetPeriode                |
+      | type                | RaadpleegMetPeildatum              |
       | burgerservicenummer | 000000103                          |
       | peildatum           | 2022-01-01                         |
       | fields              | nationaliteiten.nationaliteit.code |
@@ -61,7 +61,7 @@ Functionaliteit: Lever de juiste gegevens over een nationaliteit
       | 404                      | 20220601                        |
       Als nationaliteithistorie wordt geraadpleegd met de volgende parameters
       | naam                | waarde                             |
-      | type                | RaadpleegMetPeriode                |
+      | type                | RaadpleegMetPeildatum              |
       | burgerservicenummer | 000000115                          |
       | peildatum           | 2022-01-01                         |
       | fields              | nationaliteiten.nationaliteit.code |
@@ -81,7 +81,7 @@ Functionaliteit: Lever de juiste gegevens over een nationaliteit
       | 404                      | 20200305                        |
       Als nationaliteithistorie wordt geraadpleegd met de volgende parameters
       | naam                | waarde                             |
-      | type                | RaadpleegMetPeriode                |
+      | type                | RaadpleegMetPeildatum              |
       | burgerservicenummer | 000000127                          |
       | peildatum           | 2000-01-01                         |
       | fields              | nationaliteiten.nationaliteit.code |

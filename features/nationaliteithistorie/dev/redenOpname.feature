@@ -41,7 +41,7 @@ Functionaliteit: Lever de juiste reden opname van een nationaliteit
       | 404                      | 20220131                        |
       Als nationaliteithistorie wordt geraadpleegd met de volgende parameters
       | naam                | waarde                           |
-      | type                | RaadpleegMetPeriode              |
+      | type                | RaadpleegMetPeildatum            |
       | burgerservicenummer | 000000152                        |
       | peildatum           | 2022-01-01                       |
       | fields              | nationaliteiten.redenOpname.code |
@@ -58,7 +58,7 @@ Functionaliteit: Lever de juiste reden opname van een nationaliteit
       | 410                      | 20220604                        |
       Als nationaliteithistorie wordt geraadpleegd met de volgende parameters
       | naam                | waarde                                                                 |
-      | type                | RaadpleegMetPeriode                                                    |
+      | type                | RaadpleegMetPeildatum                                                  |
       | burgerservicenummer | 000000164                                                              |
       | peildatum           | 2021-01-01                                                             |
       | fields              | nationaliteiten.redenOpname.code |
@@ -78,7 +78,7 @@ Functionaliteit: Lever de juiste reden opname van een nationaliteit
       | 404                      | 20140601                        |
       Als nationaliteithistorie wordt geraadpleegd met de volgende parameters
       | naam                | waarde                           |
-      | type                | RaadpleegMetPeriode              |
+      | type                | RaadpleegMetPeildatum            |
       | burgerservicenummer | 000000176                        |
       | peildatum           | 2000-01-01                       |
       | fields              | nationaliteiten.redenOpname.code |
@@ -98,7 +98,7 @@ Functionaliteit: Lever de juiste reden opname van een nationaliteit
       | 191                      | 20220305                        |
       Als nationaliteithistorie wordt geraadpleegd met de volgende parameters
       | naam                | waarde                           |
-      | type                | RaadpleegMetPeriode              |
+      | type                | RaadpleegMetPeildatum            |
       | burgerservicenummer | 000000188                        |
       | peildatum           | 2022-01-01                       |
       | fields              | nationaliteiten.redenOpname.code |
@@ -107,14 +107,12 @@ Functionaliteit: Lever de juiste reden opname van een nationaliteit
       | Nationaliteit | 032              |
 
 
-  Rule: Op basis van de reden opname wordt de bijbehorende omschrijving gehaald uit de tabel 'Nationaliteiten' (Landelijke tabel 32)
+  Rule: Op basis van de reden opname wordt de bijbehorende omschrijving gehaald uit de tabel 'Reden_Nationaliteit' (Landelijke tabel 37)
 
     Abstract Scenario: persoon heeft reden opname "<reden opname code>"
       Gegeven landelijke tabel "Reden_Nationaliteit" heeft de volgende waarde
       | code                | omschrijving                |
       | <reden opname code> | <reden opname omschrijving> |
-      # INSERT INTO public.lo3_nationaliteit(nationaliteit_code, nationaliteit_oms) VALUES (<nationaliteit code>, '<nationaliteit omschrijving>')
-	    # ON CONFLICT (nationaliteit_code) DO UPDATE SET nationaliteit_oms = '<nationaliteit omschrijving>';
       En de persoon met burgerservicenummer '<burgerservicenummer>' heeft een 'nationaliteit' met de volgende gegevens
       | nationaliteit (05.10) | reden opnemen (63.10) | datum ingang geldigheid (85.10) |
       | <nationaliteit code>  | <reden opname code>   | 20150426                        |
@@ -143,7 +141,7 @@ Functionaliteit: Lever de juiste reden opname van een nationaliteit
       | B                                  | 310                   | 20180319                        |
       Als nationaliteithistorie wordt geraadpleegd met de volgende parameters
       | naam                | waarde                                                                 |
-      | type                | RaadpleegMetPeriode                                                    |
+      | type                | RaadpleegMetPeildatum                                                  |
       | burgerservicenummer | 000000449                                                              |
       | peildatum           | 2021-01-01                                                             |
       | fields              | nationaliteiten.redenOpname |
@@ -160,7 +158,7 @@ Functionaliteit: Lever de juiste reden opname van een nationaliteit
       | 0000                  | 311                   | 19531104                        |
       Als personen wordt gezocht met de volgende parameters
       | naam                | waarde                      |
-      | type                | RaadpleegMetPeriode         |
+      | type                | RaadpleegMetPeildatum       |
       | burgerservicenummer | 000000255                   |
       | peildatum           | 2022-08-01                  |
       | fields              | nationaliteiten.redenOpname |
@@ -176,10 +174,10 @@ Functionaliteit: Lever de juiste reden opname van een nationaliteit
       | nationaliteit (05.10) | reden opnemen (63.10) | datum ingang geldigheid (85.10) |
       | 0499                  | 312                   | 20040201                        |
       Als personen wordt gezocht met de volgende parameters
-      | naam                | waarde               |
-      | type                | RaadpleegMetPeriode  |
-      | burgerservicenummer | 000000243            |
-      | peildatum           | 2022-08-01           |
+      | naam                | waarde                      |
+      | type                | RaadpleegMetPeildatum       |
+      | burgerservicenummer | 000000243                   |
+      | peildatum           | 2022-08-01                  |
       | fields              | nationaliteiten.redenOpname |
       Dan heeft de response de volgende 'nationaliteiten'
       | type      | redenOpname.code | redenOpname.omschrijving   |
