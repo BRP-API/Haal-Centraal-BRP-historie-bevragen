@@ -78,9 +78,11 @@ Functionaliteit: Selecteer nationaliteiten op een peildatum of in een periode
 
   Abstract Scenario: persoon heeft een beëindigde nationaliteit, <sub-titel>
     Gegeven de persoon met burgerservicenummer '999993008' heeft een 'nationaliteit' met de volgende gegevens
-    | nationaliteit (05.10) | reden opnemen (63.10) | reden beëindigen (64.10) | datum ingang geldigheid (85.10) |
-    |                       |                       | 404                      | 20050131                        |
-    | 0131                  | 301                   |                          | 19750501                        |
+    | nationaliteit (05.10) | reden opnemen (63.10) | datum ingang geldigheid (85.10) |
+    | 0131                  | 301                   | 19750501                        |
+    En de 'nationaliteit' is gewijzigd met de volgende gegevens
+    | reden beëindigen (64.10) | datum ingang geldigheid (85.10) |
+    | 404                      | 20050131                        |
     Als nationaliteithistorie wordt geraadpleegd met de volgende parameters
     | naam                | waarde                                                                                                          |
     | type                | RaadpleegMetPeildatum                                                                                           |
@@ -99,9 +101,11 @@ Functionaliteit: Selecteer nationaliteiten op een peildatum of in een periode
 
   Abstract Scenario: persoon heeft een beëindigde nationaliteit, <sub-titel>
     Gegeven de persoon met burgerservicenummer '999993008' heeft een 'nationaliteit' met de volgende gegevens
-    | nationaliteit (05.10) | reden opnemen (63.10) | reden beëindigen (64.10) | datum ingang geldigheid (85.10) |
-    |                       |                       | 404                      | 20050131                        |
-    | 0131                  | 301                   |                          | 19750501                        |
+    | nationaliteit (05.10) | reden opnemen (63.10) | datum ingang geldigheid (85.10) |
+    | 0131                  | 301                   | 19750501                        |
+    En de 'nationaliteit' is gewijzigd met de volgende gegevens
+    | reden beëindigen (64.10) | datum ingang geldigheid (85.10) |
+    | 404                      | 20050131                        |
     Als nationaliteithistorie wordt geraadpleegd met de volgende parameters
     | naam                | waarde                                                                                                          |
     | type                | RaadpleegMetPeildatum                                                                                           |
@@ -117,9 +121,11 @@ Functionaliteit: Selecteer nationaliteiten op een peildatum of in een periode
 
   Abstract Scenario: persoon heeft een beëindigde nationaliteit, <sub-titel>
     Gegeven de persoon met burgerservicenummer '999993008' heeft een 'nationaliteit' met de volgende gegevens
-    | nationaliteit (05.10) | reden opnemen (63.10) | reden beëindigen (64.10) | datum ingang geldigheid (85.10) |
-    |                       |                       | 404                      | 20050131                        |
-    | 0131                  | 301                   |                          | 19750501                        |
+    | nationaliteit (05.10) | reden opnemen (63.10) | datum ingang geldigheid (85.10) |
+    | 0131                  | 301                   | 19750501                        |
+    En de 'nationaliteit' is gewijzigd met de volgende gegevens
+    | reden beëindigen (64.10) | datum ingang geldigheid (85.10) |
+    | 404                      | 20050131                        |
     Als nationaliteithistorie wordt geraadpleegd met de volgende parameters
     | naam                | waarde                                                                                                          |
     | type                | RaadpleegMetPeriode                                                                                             |
@@ -142,9 +148,11 @@ Functionaliteit: Selecteer nationaliteiten op een peildatum of in een periode
 
   Abstract Scenario: persoon heeft een beëindigde nationaliteit, <sub-titel>
     Gegeven de persoon met burgerservicenummer '999993008' heeft een 'nationaliteit' met de volgende gegevens
-    | nationaliteit (05.10) | reden opnemen (63.10) | reden beëindigen (64.10) | datum ingang geldigheid (85.10) |
-    |                       |                       | 404                      | 20050131                        |
-    | 0131                  | 301                   |                          | 19750501                        |
+    | nationaliteit (05.10) | reden opnemen (63.10) | datum ingang geldigheid (85.10) |
+    | 0131                  | 301                   | 19750501                        |
+    En de 'nationaliteit' is gewijzigd met de volgende gegevens
+    | reden beëindigen (64.10) | datum ingang geldigheid (85.10) |
+    | 404                      | 20050131                        |
     Als nationaliteithistorie wordt geraadpleegd met de volgende parameters
     | naam                | waarde                                                                   |
     | type                | RaadpleegMetPeriode                                                      |
