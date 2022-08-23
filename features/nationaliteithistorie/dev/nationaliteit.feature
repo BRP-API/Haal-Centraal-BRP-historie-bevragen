@@ -16,13 +16,13 @@ Functionaliteit: Lever de juiste gegevens over een nationaliteit
     - een nationaliteit is niet beëindigd wanneer reden beëindigen (64.10) leeg is of geen waarde heeft.
 
     Scenario: persoon heeft een niet-beëindigde nationaliteit
-      Gegeven de persoon met burgerservicenummer '000009830' heeft een 'nationaliteit' met de volgende gegevens
+      Gegeven de persoon met burgerservicenummer '000000097' heeft een 'nationaliteit' met de volgende gegevens
       | nationaliteit (05.10) | reden opnemen (63.10) | datum ingang geldigheid (85.10) |
       | 0001                  | 001                   | 19750707                        |
       Als nationaliteithistorie wordt geraadpleegd met de volgende parameters
       | naam                | waarde                                                                                                    |
       | type                | RaadpleegMetPeildatum                                                                                     |
-      | burgerservicenummer | 000009830                                                                                                 |
+      | burgerservicenummer | 000000097                                                                                                 |
       | peildatum           | 2022-08-16                                                                                                |
       | fields              | nationaliteiten.nationaliteit.code |
       Dan heeft de response de volgende 'nationaliteiten'
@@ -33,46 +33,56 @@ Functionaliteit: Lever de juiste gegevens over een nationaliteit
   Rule: Voor een beëindigde nationaliteit wordt nationaliteit overgenomen uit de jongste bijbehorende historische categorie (54) waarin deze voorkomt en die niet onjuist is.
     
     Scenario: persoon heeft een beëindigde nationaliteit
-      Gegeven de persoon met burgerservicenummer '999993008' heeft een 'nationaliteit' met de volgende gegevens
+      Gegeven de persoon met burgerservicenummer '000000103' heeft een 'nationaliteit' met de volgende gegevens
+      | nationaliteit (05.10) | reden opnemen (63.10) | datum ingang geldigheid (85.10) |
+      | 0131                  | 301                   | 19750501                        |
+      En de 'nationaliteit' is gewijzigd met de volgende gegevens
       | nationaliteit (05.10) | reden opnemen (63.10) | reden beëindigen (64.10) | datum ingang geldigheid (85.10) |
-      |                       |                       | 404                      | 20050131                        |
-      | 0131                  | 301                   |                          | 19750501                        |
+      |                       |                       | 404                      | 20220131                        |
       Als nationaliteithistorie wordt geraadpleegd met de volgende parameters
       | naam                | waarde                             |
       | type                | RaadpleegMetPeriode                |
-      | burgerservicenummer | 999993008                          |
-      | peildatum           | 2000-01-01                         |
+      | burgerservicenummer | 000000103                          |
+      | peildatum           | 2022-01-01                         |
       | fields              | nationaliteiten.nationaliteit.code |
       Dan heeft de response de volgende 'nationaliteiten'
       | type          | nationaliteit.code |
       | Nationaliteit | 0131               |
 
     Scenario: persoon heeft een beëindigde nationaliteit met gecorrigeerde reden beëindigen
-      Gegeven de persoon met burgerservicenummer '999994657' heeft een 'nationaliteit' met de volgende gegevens
+      Gegeven de persoon met burgerservicenummer '000000115' heeft een 'nationaliteit' met de volgende gegevens
       | nationaliteit (05.10) | reden opnemen (63.10) | reden beëindigen (64.10) | datum ingang geldigheid (85.10) |
-      |                       |                       | 404                      | 20140601                        |
-      |                       |                       | 401                      | 19940601                        |
       | 0100                  | 301                   |                          | 19890301                        |
+      En de 'nationaliteit' is gewijzigd met de volgende gegevens
+      | nationaliteit (05.10) | reden opnemen (63.10) | reden beëindigen (64.10) | datum ingang geldigheid (85.10) |
+      |                       |                       | 401                      | 20220601                        |
+      En de 'nationaliteit' is vervolgens gewijzigd met de volgende gegevens
+      | reden beëindigen (64.10) | datum ingang geldigheid (85.10) |
+      | 404                      | 20220601                        |
       Als nationaliteithistorie wordt geraadpleegd met de volgende parameters
       | naam                | waarde                             |
       | type                | RaadpleegMetPeriode                |
-      | burgerservicenummer | 999994657                          |
-      | peildatum           | 2000-01-01                         |
+      | burgerservicenummer | 000000115                          |
+      | peildatum           | 2022-01-01                         |
       | fields              | nationaliteiten.nationaliteit.code |
       Dan heeft de response de volgende 'nationaliteiten'
       | type          | nationaliteit.code |
       | Nationaliteit | 0100               |
 
     Scenario: persoon heeft een beëindigde nationaliteit met gecorrigeerde nationaliteit
-      Gegeven de persoon met burgerservicenummer '555550002' heeft een 'nationaliteit' met de volgende gegevens
+      Gegeven de persoon met burgerservicenummer '000000127' heeft een 'nationaliteit' met de volgende gegevens
+      | nationaliteit (05.10) | reden opnemen (63.10) | datum ingang geldigheid (85.10) |
+      | 0400                  | 301                   | 20170401                        |
+      En de 'nationaliteit' is gewijzigd met de volgende gegevens
+      | nationaliteit (05.10) | reden opnemen (63.10) | datum ingang geldigheid (85.10) |
+      | 0071                  | 301                   | 20170401                        |
+      En de 'nationaliteit' is vervolgens gewijzigd met de volgende gegevens
       | nationaliteit (05.10) | reden opnemen (63.10) | reden beëindigen (64.10) | datum ingang geldigheid (85.10) |
       |                       |                       | 404                      | 20200305                        |
-      | 0071                  | 301                   |                          | 20170401                        |
-      | 0400                  | 301                   |                          | 20170401                        |
       Als nationaliteithistorie wordt geraadpleegd met de volgende parameters
       | naam                | waarde                             |
       | type                | RaadpleegMetPeriode                |
-      | burgerservicenummer | 555550002                          |
+      | burgerservicenummer | 000000127                          |
       | peildatum           | 2000-01-01                         |
       | fields              | nationaliteiten.nationaliteit.code |
       Dan heeft de response de volgende 'nationaliteiten'

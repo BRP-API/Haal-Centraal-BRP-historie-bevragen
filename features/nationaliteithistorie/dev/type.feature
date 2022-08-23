@@ -23,13 +23,13 @@ Functionaliteit: Lever het juiste type van een nationaliteit
     - het veld "nationaliteit" wordt alleen opgenomen bij type "Nationaliteit"
 
     Scenario: de persoon heeft de Nederlandse nationaliteit
-      Gegeven de persoon met burgerservicenummer '000009830' heeft een 'nationaliteit' met de volgende gegevens
+      Gegeven de persoon met burgerservicenummer '000000218' heeft een 'nationaliteit' met de volgende gegevens
       | nationaliteit (05.10) | reden opnemen (63.10) | datum ingang geldigheid (85.10) |
       | 0001                  | 001                   | 19750707                        |
       Als personen wordt gezocht met de volgende parameters
       | naam                | waarde               |
       | type                | RaadpleegMetPeriode  |
-      | burgerservicenummer | 000009830            |
+      | burgerservicenummer | 000000218            |
       | peildatum           | 2022-08-01           |
       | fields              | nationaliteiten.type |
       Dan heeft de response de volgende 'nationaliteiten'
@@ -37,13 +37,13 @@ Functionaliteit: Lever het juiste type van een nationaliteit
       | Nationaliteit |
 
     Scenario: de persoon heeft een vreemde nationaliteit
-      Gegeven de persoon met burgerservicenummer '999993045' heeft een 'nationaliteit' met de volgende gegevens
+      Gegeven de persoon met burgerservicenummer '000000231' heeft een 'nationaliteit' met de volgende gegevens
       | nationaliteit (05.10) | reden opnemen (63.10) | datum ingang geldigheid (85.10) |
-      | 0263                  | 301                   | 00000000                        |
+      | 0263                  | 301                   | 19981103                        |
       Als personen wordt gezocht met de volgende parameters
       | naam                | waarde               |
       | type                | RaadpleegMetPeriode  |
-      | burgerservicenummer | 999993045            |
+      | burgerservicenummer | 000000231            |
       | peildatum           | 2022-08-01           |
       | fields              | nationaliteiten.type |
       Dan heeft de response de volgende 'nationaliteiten'
@@ -51,13 +51,13 @@ Functionaliteit: Lever het juiste type van een nationaliteit
       | Nationaliteit |
 
     Scenario: de persoon is staatloos
-      Gegeven de persoon met burgerservicenummer '999991188' heeft een 'nationaliteit' met de volgende gegevens
+      Gegeven de persoon met burgerservicenummer '000000243' heeft een 'nationaliteit' met de volgende gegevens
       | nationaliteit (05.10) | reden opnemen (63.10) | datum ingang geldigheid (85.10) |
       | 0499                  | 312                   | 20040201                        |
       Als personen wordt gezocht met de volgende parameters
       | naam                | waarde               |
       | type                | RaadpleegMetPeriode  |
-      | burgerservicenummer | 999991188            |
+      | burgerservicenummer | 000000243            |
       | peildatum           | 2022-08-01           |
       | fields              | nationaliteiten.type |
       Dan heeft de response de volgende 'nationaliteiten'
@@ -65,13 +65,13 @@ Functionaliteit: Lever het juiste type van een nationaliteit
       | Staatloos |
 
     Scenario: de persoon heeft een onbekende nationaliteit
-      Gegeven de persoon met burgerservicenummer '999993367' heeft een 'nationaliteit' met de volgende gegevens
+      Gegeven de persoon met burgerservicenummer '000000255' heeft een 'nationaliteit' met de volgende gegevens
       | nationaliteit (05.10) | reden opnemen (63.10) | datum ingang geldigheid (85.10) |
-      | 0000                  | 311                   | 00000000                        |
+      | 0000                  | 311                   | 19531104                        |
       Als personen wordt gezocht met de volgende parameters
       | naam                | waarde               |
       | type                | RaadpleegMetPeriode  |
-      | burgerservicenummer | 999993367            |
+      | burgerservicenummer | 000000255            |
       | peildatum           | 2022-08-01           |
       | fields              | nationaliteiten.type |
       Dan heeft de response de volgende 'nationaliteiten'
@@ -79,13 +79,13 @@ Functionaliteit: Lever het juiste type van een nationaliteit
       | NationaliteitOnbekend |
 
     Scenario: de persoon wordt behandeld als Nederlander
-      Gegeven de persoon met burgerservicenummer '000009866' heeft een 'nationaliteit' met de volgende gegevens
+      Gegeven de persoon met burgerservicenummer '000000267' heeft een 'nationaliteit' met de volgende gegevens
       | bijzonder Nederlanderschap (65.10) | reden opnemen (63.10) | datum ingang geldigheid (85.10) |
       | B                                  | 310                   | 19570115                        |
       Als personen wordt gezocht met de volgende parameters
       | naam                | waarde               |
       | type                | RaadpleegMetPeriode  |
-      | burgerservicenummer | 000009866            |
+      | burgerservicenummer | 000000267            |
       | peildatum           | 2022-08-01           |
       | fields              | nationaliteiten.type |
       Dan heeft de response de volgende 'nationaliteiten'
@@ -93,13 +93,13 @@ Functionaliteit: Lever het juiste type van een nationaliteit
       | BehandeldAlsNederlander |
 
     Scenario: de persoon wordt behandeld als Nederlander, nationaliteit heeft code 0002
-      Gegeven de persoon met burgerservicenummer '555550001' heeft een 'nationaliteit' met de volgende gegevens
+      Gegeven de persoon met burgerservicenummer '000000279' heeft een 'nationaliteit' met de volgende gegevens
       | nationaliteit (05.10) | reden opnemen (63.10) | datum ingang geldigheid (85.10) |
       | 0002                  | 310                   | 19530614                        |
       Als personen wordt gezocht met de volgende parameters
       | naam                | waarde               |
       | type                | RaadpleegMetPeriode  |
-      | burgerservicenummer | 555550001            |
+      | burgerservicenummer | 000000279            |
       | peildatum           | 2022-08-01           |
       | fields              | nationaliteiten.type |
       Dan heeft de response de volgende 'nationaliteiten'
@@ -107,13 +107,13 @@ Functionaliteit: Lever het juiste type van een nationaliteit
       | BehandeldAlsNederlander |
 
     Scenario: de persoon is vastgesteld niet-Nederlander
-      Gegeven de persoon met burgerservicenummer '999994748' heeft een 'nationaliteit' met de volgende gegevens
+      Gegeven de persoon met burgerservicenummer '000000280' heeft een 'nationaliteit' met de volgende gegevens
       | bijzonder Nederlanderschap (65.10) | reden opnemen (63.10) | datum ingang geldigheid (85.10) |
       | V                                  | 310                   | 19750615                        |
       Als personen wordt gezocht met de volgende parameters
       | naam                | waarde               |
       | type                | RaadpleegMetPeriode  |
-      | burgerservicenummer | 999994748            |
+      | burgerservicenummer | 000000280            |
       | peildatum           | 2022-08-01           |
       | fields              | nationaliteiten.type |
       Dan heeft de response de volgende 'nationaliteiten'
@@ -121,62 +121,70 @@ Functionaliteit: Lever het juiste type van een nationaliteit
       | VastgesteldNietNederlander |
 
     Scenario: de persoon is vastgesteld niet-Nederlander, nationaliteit heeft code 0500
-      Gegeven de persoon met burgerservicenummer '555550002' heeft een 'nationaliteit' met de volgende gegevens
+      Gegeven de persoon met burgerservicenummer '000000292' heeft een 'nationaliteit' met de volgende gegevens
       | nationaliteit (05.10) | reden opnemen (63.10) | datum ingang geldigheid (85.10) |
       | 0500                  | 310                   | 19861102                        |
       Als personen wordt gezocht met de volgende parameters
       | naam                | waarde                          |
       | type                | RaadpleegMetBurgerservicenummer |
-      | burgerservicenummer | 555550002                       |
+      | burgerservicenummer | 000000292                       |
       | fields              | nationaliteiten                 |
       Dan heeft de response de volgende 'nationaliteiten'
       | type                       |
       | VastgesteldNietNederlander |
 
   
-  Rule: Voor een beëindigde nationaliteit of beëindigd bijzonder Nederlanderschap wordt type bepaald op de waarde voor nationaliteit en aanduidingBijzonderNederlanderschap uit de jongste bijbehorende historische categorie (54) waarin deze voorkomen en die niet onjuist is.
+  Rule: Voor een beëindigde nationaliteit of beëindigd bijzonder Nederlanderschap wordt type bepaald op de waarde voor nationaliteit en aanduiding bijzonder Nederlanderschap uit de jongste bijbehorende historische categorie (54) waarin deze voorkomen en die niet onjuist is.
     
     Scenario: persoon heeft een beëindigde nationaliteit
-      Gegeven de persoon met burgerservicenummer '999993008' heeft een 'nationaliteit' met de volgende gegevens
+      Gegeven de persoon met burgerservicenummer '000000309' heeft een 'nationaliteit' met de volgende gegevens
+      | nationaliteit (05.10) | reden opnemen (63.10) | datum ingang geldigheid (85.10) |
+      | 0131                  | 301                   | 19750501                        |
+      En de 'nationaliteit' is gewijzigd met de volgende gegevens
       | nationaliteit (05.10) | reden opnemen (63.10) | reden beëindigen (64.10) | datum ingang geldigheid (85.10) |
-      |                       |                       | 404                      | 20050131                        |
-      | 0131                  | 301                   |                          | 19750501                        |
+      |                       |                       | 404                      | 20220131                        |
       Als nationaliteithistorie wordt geraadpleegd met de volgende parameters
       | naam                | waarde               |
       | type                | RaadpleegMetPeriode  |
-      | burgerservicenummer | 999993008            |
-      | peildatum           | 2000-01-01           |
+      | burgerservicenummer | 000000309            |
+      | peildatum           | 2022-01-01           |
       | fields              | nationaliteiten.type |
       Dan heeft de response de volgende 'nationaliteiten'
-      | type |
+      | type          |
       | Nationaliteit |
 
     Scenario: verlies bijzonder Nederlanderschap
-      Gegeven de persoon met burgerservicenummer '555550003' heeft een 'nationaliteit' met de volgende gegevens
+      Gegeven de persoon met burgerservicenummer '000000310' heeft een 'nationaliteit' met de volgende gegevens
+      | bijzonder Nederlanderschap (65.10) | reden opnemen (63.10) | datum ingang geldigheid (85.10) |
+      | B                                  | 310                   | 20010319                        |
+      En de 'nationaliteit' is gewijzigd met de volgende gegevens
       | bijzonder Nederlanderschap (65.10) | reden opnemen (63.10) | reden beëindigen (64.10) | datum ingang geldigheid (85.10) |
-      |                                    |                       | 410                      | 20190604                        |
-      | B                                  | 310                   |                          | 20010319                        |
+      |                                    |                       | 410                      | 20220604                        |
       Als nationaliteithistorie wordt geraadpleegd met de volgende parameters
       | naam                | waarde               |
       | type                | RaadpleegMetPeriode  |
-      | burgerservicenummer | 555550003            |
-      | peildatum           | 2018-01-01           |
+      | burgerservicenummer | 000000310            |
+      | peildatum           | 2021-01-01           |
       | fields              | nationaliteiten.type |
       Dan heeft de response de volgende 'nationaliteiten'
       | type                    |
       | BehandeldAlsNederlander |
 
     Scenario: persoon heeft een beëindigde nationaliteit met gecorrigeerde reden beëindigen
-      Gegeven de persoon met burgerservicenummer '999994657' heeft een 'nationaliteit' met de volgende gegevens
+      Gegeven de persoon met burgerservicenummer '000000322' heeft een 'nationaliteit' met de volgende gegevens
       | nationaliteit (05.10) | reden opnemen (63.10) | reden beëindigen (64.10) | datum ingang geldigheid (85.10) |
-      |                       |                       | 404                      | 20140601                        |
-      |                       |                       | 401                      | 19940601                        |
       | 0100                  | 301                   |                          | 19890301                        |
+      En de 'nationaliteit' is gewijzigd met de volgende gegevens
+      | nationaliteit (05.10) | reden opnemen (63.10) | reden beëindigen (64.10) | datum ingang geldigheid (85.10) |
+      |                       |                       | 401                      | 20210923                        |
+      En de 'nationaliteit' is vervolgens gewijzigd met de volgende gegevens
+      | nationaliteit (05.10) | reden opnemen (63.10) | reden beëindigen (64.10) | datum ingang geldigheid (85.10) |
+      |                       |                       | 404                      | 20210923                        |
       Als nationaliteithistorie wordt geraadpleegd met de volgende parameters
       | naam                | waarde               |
       | type                | RaadpleegMetPeriode  |
-      | burgerservicenummer | 999994657            |
-      | peildatum           | 2000-01-01           |
+      | burgerservicenummer | 000000322            |
+      | peildatum           | 2021-01-01           |
       | fields              | nationaliteiten.type |
       Dan heeft de response de volgende 'nationaliteiten'
       | type          |

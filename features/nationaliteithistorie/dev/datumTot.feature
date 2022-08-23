@@ -17,14 +17,14 @@ Functionaliteit: Lever de juiste datumTot van een beëindigde nationaliteit
     - een nationaliteit of bijzonder Nederlanderschap is niet beëindigd wanneer reden beëindigen (64.10) leeg is of geen waarde heeft.
 
     Scenario: persoon heeft een niet-beëindigde nationaliteit
-      Gegeven de persoon met burgerservicenummer '000009830' heeft een 'nationaliteit' met de volgende gegevens
+      Gegeven de persoon met burgerservicenummer '000000073' heeft een 'nationaliteit' met de volgende gegevens
       | nationaliteit (05.10) | reden opnemen (63.10) | datum ingang geldigheid (85.10) |
       | 0001                  | 001                   | 19750707                        |
       Als nationaliteithistorie wordt geraadpleegd met de volgende parameters
-      | naam                | waarde                                |
-      | type                | RaadpleegMetPeildatum                 |
-      | burgerservicenummer | 000009830                             |
-      | peildatum           | 2022-08-16                            |
+      | naam                | waarde                   |
+      | type                | RaadpleegMetPeildatum    |
+      | burgerservicenummer | 000000073                |
+      | peildatum           | 2022-08-16               |
       | fields              | nationaliteiten.datumTot |
       Dan heeft de response de volgende 'nationaliteiten'
       | type          |
@@ -35,17 +35,21 @@ Functionaliteit: Lever de juiste datumTot van een beëindigde nationaliteit
     - een nationaliteit of bijzonder Nederlanderschap is beëindigd wanneer reden beëindigen (64.10) een waarde heeft.
 
     Scenario: persoon heeft een beëindigde nationaliteit met gecorrigeerde reden beëindigen
-      Gegeven de persoon met burgerservicenummer '999994657' heeft een 'nationaliteit' met de volgende gegevens
+      Gegeven de persoon met burgerservicenummer '000000085' heeft een 'nationaliteit' met de volgende gegevens
+      | nationaliteit (05.10) | reden opnemen (63.10) | datum ingang geldigheid (85.10) |
+      | 0100                  | 301                   | 19890301                        |
+      En de 'nationaliteit' is gewijzigd met de volgende gegevens
       | nationaliteit (05.10) | reden opnemen (63.10) | reden beëindigen (64.10) | datum ingang geldigheid (85.10) |
-      |                       |                       | 404                      | 20140601                        |
-      |                       |                       | 401                      | 19940601                        |
-      | 0100                  | 301                   |                          | 19890301                        |
+      |                       |                       | 401                      | 20220601                        |
+      En de 'nationaliteit' is vervolgens gewijzigd met de volgende gegevens
+      | reden beëindigen (64.10) | datum ingang geldigheid (85.10) |
+      | 404                      | 20220609                        |
       Als nationaliteithistorie wordt geraadpleegd met de volgende parameters
-      | naam                | waarde                                                      |
-      | type                | RaadpleegMetPeriode                                         |
-      | burgerservicenummer | 999994657                                                   |
-      | peildatum           | 2000-01-01                                                  |
-      | fields              | nationaliteiten.nationaliteit.code,nationaliteiten.datumTot |
+      | naam                | waarde                   |
+      | type                | RaadpleegMetPeriode      |
+      | burgerservicenummer | 000000085                |
+      | peildatum           | 2022-01-01               |
+      | fields              | nationaliteiten.datumTot |
       Dan heeft de response de volgende 'nationaliteiten'
-      | type          | nationaliteit.code | datumTot.type | datumTot.datum | datumTot.langFormaat |
-      | Nationaliteit | 0100               | Datum         | 2014-06-01     | 1 juni 2014          |
+      | type          | datumTot.type | datumTot.datum | datumTot.langFormaat |
+      | Nationaliteit | Datum         | 2022-06-09     | 9 juni 2022          |

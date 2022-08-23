@@ -25,43 +25,55 @@ Functionaliteit: Lever de juiste nationaliteit na verlies Nederlanderschap
   Rule: Wanneer (registratie van) een nationaliteit is beëindigd en daarna weer wordt opgenomen, worden beide periodes dat de nationaliteit geldig was opgenomen.
 
     Scenario: verlies Nederlanderschap verwerkt als actualisering vreemde nationaliteit met een nieuwe datum geldigheid
-      Gegeven de persoon met burgerservicenummer '555550001' heeft een 'nationaliteit' met de volgende gegevens
-      | nationaliteit (05.10) | reden opnemen (63.10) | reden beëindigen (64.10) | onjuist (84.10) | datum ingang geldigheid (85.10) |
-      | 0131                  | 301                   |                          |                 | 20210604                        |
-      |                       |                       | 404                      |                 | 20190516                        |
-      | 0131                  | 301                   |                          |                 | 20010319                        |
-      En de persoon met burgerservicenummer '555550001' heeft een 'nationaliteit' met de volgende gegevens
-      | nationaliteit (05.10) | reden opnemen (63.10) | reden beëindigen (64.10) | onjuist (84.10) | datum ingang geldigheid (85.10) |
-      |                       |                       | 192                      |                 | 20210604                        |
-      | 0001                  | 017                   |                          |                 | 20190516                        |
+      Gegeven de persoon met burgerservicenummer '000000334' heeft een 'nationaliteit' met de volgende gegevens
+      | nationaliteit (05.10) | reden opnemen (63.10) | datum ingang geldigheid (85.10) |
+      | 0131                  | 301                   | 20010319                        |
+      En de 'nationaliteit' is gewijzigd met de volgende gegevens
+      | nationaliteit (05.10) | reden opnemen (63.10) | reden beëindigen (64.10) | datum ingang geldigheid (85.10) |
+      |                       |                       | 404                      | 20190516                        |
+      En de 'nationaliteit' is vervolgens gewijzigd met de volgende gegevens
+      | nationaliteit (05.10) | reden opnemen (63.10) | reden beëindigen (64.10) | datum ingang geldigheid (85.10) |
+      | 0131                  | 301                   |                          | 20210604                        |
+      En de persoon met burgerservicenummer '000000334' heeft een 'nationaliteit' met de volgende gegevens
+      | nationaliteit (05.10) | reden opnemen (63.10) | reden beëindigen (64.10) | datum ingang geldigheid (85.10) |
+      | 0001                  | 017                   |                          | 20190516                        |
+      En de 'nationaliteit' is gewijzigd met de volgende gegevens
+      | nationaliteit (05.10) | reden opnemen (63.10) | reden beëindigen (64.10) | datum ingang geldigheid (85.10) |
+      |                       |                       | 192                      | 20210604                        |
       Als nationaliteithistorie wordt geraadpleegd met de volgende parameters
-      | naam                | waarde                                                                                             |
-      | type                | RaadpleegMetPeriode                                                                                |
-      | burgerservicenummer | 555550001                                                                                          |
-      | datumVan            | 2019-01-01                                                                                         |
-      | datumTot            | 2022-01-01                                                                                         |
-      | fields              | nationaliteiten.nationaliteit.code, nationaliteiten.datumIngangGeldigheid,nationaliteiten.datumTot |
+      | naam                | waarde                                                                                                                                                                   |
+      | type                | RaadpleegMetPeriode                                                                                                                                                      |
+      | burgerservicenummer | 000000334                                                                                                                                                                |
+      | datumVan            | 2019-01-01                                                                                                                                                               |
+      | datumTot            | 2022-01-01                                                                                                                                                               |
+      | fields              | nationaliteiten.nationaliteit.code, nationaliteiten.redenOpname.code,nationaliteiten.redenBeeindigen.code,nationaliteiten.datumIngangGeldigheid,nationaliteiten.datumTot |
       Dan heeft de response de volgende 'nationaliteiten'
-      | type          | nationaliteit.code | datumIngangGeldigheid.type | datumIngangGeldigheid.datum | datumIngangGeldigheid.langFormaat | datumTot.type | datumTot.datum | datumTot.langFormaat |
-      | Nationaliteit | 0131               | Datum                      | 2021-06-04                  | 4 juni 2021                       |               |                |                      |
-      | Nationaliteit | 0001               | Datum                      | 2019-05-16                  | 16 mei 2019                       | Datum         | 2021-06-04     | 4 juni 2021          |
-      | Nationaliteit | 0131               | Datum                      | 2001-03-19                  | 19 maart 2001                     | Datum         | 2019-05-16     | 16 mei 2019          |
+      | type          | nationaliteit.code | redenOpname.code | redenBeeindigen.code | datumIngangGeldigheid.type | datumIngangGeldigheid.datum | datumIngangGeldigheid.langFormaat | datumTot.type | datumTot.datum | datumTot.langFormaat |
+      | Nationaliteit | 0131               | 301              |                      | Datum                      | 2021-06-04                  | 4 juni 2021                       |               |                |                      |
+      | Nationaliteit | 0001               | 017              | 192                  | Datum                      | 2019-05-16                  | 16 mei 2019                       | Datum         | 2021-06-04     | 4 juni 2021          |
+      | Nationaliteit | 0131               | 301              | 404                  | Datum                      | 2001-03-19                  | 19 maart 2001                     | Datum         | 2019-05-16     | 16 mei 2019          |
 
     Scenario: verlies Nederlanderschap verwerkt als correctieprocedure
-      Gegeven de persoon met burgerservicenummer '555550002' heeft een 'nationaliteit' met de volgende gegevens
-      | nationaliteit (05.10) | reden opnemen (63.10) | reden beëindigen (64.10) | bijzonder Nederlanderschap (65.10) | onjuist (84.10) | datum ingang geldigheid (85.10) |
-      | 0131                  | 301                   |                          |                                    |                 | 20010319                        |
-      |                       |                       | 404                      |                                    | O               | 20190516                        |
-      | 0131                  | 301                   |                          |                                    |                 | 20010319                        |
-      En de persoon met burgerservicenummer '555550002' heeft een 'nationaliteit' met de volgende gegevens
-      | nationaliteit (05.10) | reden opnemen (63.10) | reden beëindigen (64.10) | onjuist (84.10) | datum ingang geldigheid (85.10) |
-      |                       |                       | 192                      |                 |                                 | 20210604 |
-      | 0001                  | 017                   |                          |                 |                                 | 20190516 |
+      Gegeven de persoon met burgerservicenummer '000000346' heeft een 'nationaliteit' met de volgende gegevens
+      | nationaliteit (05.10) | reden opnemen (63.10) | datum ingang geldigheid (85.10) |
+      | 0131                  | 301                   | 20010319                        |
+      En de 'nationaliteit' is gewijzigd met de volgende gegevens
+      | nationaliteit (05.10) | reden opnemen (63.10) | reden beëindigen (64.10) | datum ingang geldigheid (85.10) |
+      |                       |                       | 404                      | 20190516                        |
+      En de vorige wijziging  van 'nationaliteit' is onjuist en gecorrigeerd met de volgende gegevens
+      | nationaliteit (05.10) | reden opnemen (63.10) | reden beëindigen (64.10) | datum ingang geldigheid (85.10) |
+      | 0131                  | 301                   |                          | 20010319                        |
+      En de persoon met burgerservicenummer '000000346' heeft een 'nationaliteit' met de volgende gegevens
+      | nationaliteit (05.10) | reden opnemen (63.10) | datum ingang geldigheid (85.10) |
+      | 0001                  | 017                   | 20190516                        |
+      En de 'nationaliteit' is gewijzigd met de volgende gegevens
+      | nationaliteit (05.10) | reden opnemen (63.10) | reden beëindigen (64.10) | datum ingang geldigheid (85.10) |
+      |                       |                       | 192                      | 20210604                        |
       Als nationaliteithistorie wordt geraadpleegd met de volgende parameters
       | naam                | waarde                                                                                             |
       | type                | RaadpleegMetPeriode                                                                                |
-      | burgerservicenummer | 555550002                                                                                          |
-      | datumVan            | 2019-01-01                                                                                         |
+      | burgerservicenummer | 000000346                                                                                          |
+      | datumVan            | 2021-01-01                                                                                         |
       | datumTot            | 2022-01-01                                                                                         |
       | fields              | nationaliteiten.nationaliteit.code, nationaliteiten.datumIngangGeldigheid,nationaliteiten.datumTot |
       Dan heeft de response de volgende 'nationaliteiten'
@@ -70,14 +82,16 @@ Functionaliteit: Lever de juiste nationaliteit na verlies Nederlanderschap
       | Nationaliteit | 0001               | Datum                      | 2019-05-16                  | 16 mei 2019                       | Datum         | 2021-06-04     | 4 juni 2021          |
 
     Scenario: correctie van ingangsdatum van nationaliteit levert niet twee nationaliteiten op in het antwoord
-      Gegeven de persoon met burgerservicenummer '555550003' heeft een 'nationaliteit' met de volgende gegevens
-      | nationaliteit (05.10) | reden opnemen (63.10) | reden beëindigen (64.10) | onjuist (84.10) | datum ingang geldigheid (85.10) |
-      | 0131                  | 301                   |                          |                 | 20210319                        |
-      | 0131                  | 301                   |                          | O               | 20210301                        |
+      Gegeven de persoon met burgerservicenummer '000000358' heeft een 'nationaliteit' met de volgende gegevens
+      | nationaliteit (05.10) | reden opnemen (63.10) | datum ingang geldigheid (85.10) |
+      | 0131                  | 301                   | 20210301                        |
+      En de vorige wijziging  van 'nationaliteit' is onjuist en gecorrigeerd met de volgende gegevens
+      | nationaliteit (05.10) | reden opnemen (63.10) | datum ingang geldigheid (85.10) |
+      | 0131                  | 301                   | 20210319                        |
       Als nationaliteithistorie wordt geraadpleegd met de volgende parameters
       | naam                | waarde                                                                                             |
       | type                | RaadpleegMetPeriode                                                                                |
-      | burgerservicenummer | 555550003                                                                                          |
+      | burgerservicenummer | 000000358                                                                                          |
       | datumVan            | 2019-01-01                                                                                         |
       | datumTot            | 2022-01-01                                                                                         |
       | fields              | nationaliteiten.nationaliteit.code, nationaliteiten.datumIngangGeldigheid,nationaliteiten.datumTot |
