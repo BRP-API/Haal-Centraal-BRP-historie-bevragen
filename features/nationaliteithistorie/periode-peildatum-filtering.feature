@@ -80,7 +80,7 @@ Functionaliteit: Selecteer nationaliteiten op een peildatum of in een periode
     Gegeven de persoon met burgerservicenummer '999993008' heeft een 'nationaliteit' met de volgende gegevens
     | nationaliteit (05.10) | reden opnemen (63.10) | datum ingang geldigheid (85.10) |
     | 0131                  | 301                   | 19750501                        |
-    En de 'nationaliteit' is gewijzigd met de volgende gegevens
+    En de 'nationaliteit' is gewijzigd naar de volgende gegevens
     | reden beëindigen (64.10) | datum ingang geldigheid (85.10) |
     | 404                      | 20050131                        |
     Als nationaliteithistorie wordt geraadpleegd met de volgende parameters
@@ -103,7 +103,7 @@ Functionaliteit: Selecteer nationaliteiten op een peildatum of in een periode
     Gegeven de persoon met burgerservicenummer '999993008' heeft een 'nationaliteit' met de volgende gegevens
     | nationaliteit (05.10) | reden opnemen (63.10) | datum ingang geldigheid (85.10) |
     | 0131                  | 301                   | 19750501                        |
-    En de 'nationaliteit' is gewijzigd met de volgende gegevens
+    En de 'nationaliteit' is gewijzigd naar de volgende gegevens
     | reden beëindigen (64.10) | datum ingang geldigheid (85.10) |
     | 404                      | 20050131                        |
     Als nationaliteithistorie wordt geraadpleegd met de volgende parameters
@@ -123,7 +123,7 @@ Functionaliteit: Selecteer nationaliteiten op een peildatum of in een periode
     Gegeven de persoon met burgerservicenummer '999993008' heeft een 'nationaliteit' met de volgende gegevens
     | nationaliteit (05.10) | reden opnemen (63.10) | datum ingang geldigheid (85.10) |
     | 0131                  | 301                   | 19750501                        |
-    En de 'nationaliteit' is gewijzigd met de volgende gegevens
+    En de 'nationaliteit' is gewijzigd naar de volgende gegevens
     | reden beëindigen (64.10) | datum ingang geldigheid (85.10) |
     | 404                      | 20050131                        |
     Als nationaliteithistorie wordt geraadpleegd met de volgende parameters
@@ -150,7 +150,7 @@ Functionaliteit: Selecteer nationaliteiten op een peildatum of in een periode
     Gegeven de persoon met burgerservicenummer '999993008' heeft een 'nationaliteit' met de volgende gegevens
     | nationaliteit (05.10) | reden opnemen (63.10) | datum ingang geldigheid (85.10) |
     | 0131                  | 301                   | 19750501                        |
-    En de 'nationaliteit' is gewijzigd met de volgende gegevens
+    En de 'nationaliteit' is gewijzigd naar de volgende gegevens
     | reden beëindigen (64.10) | datum ingang geldigheid (85.10) |
     | 404                      | 20050131                        |
     Als nationaliteithistorie wordt geraadpleegd met de volgende parameters
