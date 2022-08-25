@@ -17,7 +17,7 @@ Functionaliteit: Lever de juiste gegevens over een nationaliteit
       En de 'nationaliteit' is gecorrigeerd naar de volgende gegevens
       | reden beëindigen (64.10) | datum ingang geldigheid (85.10) |
       | 405                      | 20210131                        |
-      En de persoon met burgerservicenummer '000000206' heeft een 'nationaliteit' met de volgende gegevens
+      En de persoon heeft nog een 'nationaliteit' met de volgende gegevens
       | nationaliteit (05.10) | reden opnemen (63.10) | reden beëindigen (64.10) | datum ingang geldigheid (85.10) |
       | 0001                  | 185                   |                          | 20210131                        |
       Als nationaliteithistorie wordt geraadpleegd met de volgende parameters
