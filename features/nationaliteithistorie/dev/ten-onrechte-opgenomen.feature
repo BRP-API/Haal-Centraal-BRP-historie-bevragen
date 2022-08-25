@@ -1,6 +1,6 @@
 # language: nl
 
-Functionaliteit: Lever de juiste gegevens over een nationaliteit
+Functionaliteit: Lever geen ten onrechte opgenomen nationaliteit
 
   Als consumer van de BRP
   Wil ik alleen de nationaliteiten van een persoon ontvangen die de persoon daadwerkelijk heeft of had
