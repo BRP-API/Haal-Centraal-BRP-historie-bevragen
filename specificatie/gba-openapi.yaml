@@ -264,8 +264,6 @@ components:
             $ref: 'verblijfstitel.yaml#/components/schemas/GbaVerblijfstitel'
         geheimhoudingPersoonsgegevens:
           $ref: 'persoon.yaml#/components/schemas/GbaGeheimhoudingPersoonsgegevens'
-        verificatie:
-          $ref: 'common.yaml#/components/schemas/GbaVerificatie'
         opschortingBijhouding:
           $ref: 'opschortingbijhouding.yaml#/components/schemas/GbaOpschortingBijhouding'
     NationaliteithistorieQueryResponse:
