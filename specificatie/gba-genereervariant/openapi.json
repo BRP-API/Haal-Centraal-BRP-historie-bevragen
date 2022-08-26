@@ -1038,6 +1038,7 @@
           },
           "verificatie" : {
             "$ref" : "#/components/schemas/GbaVerificatie"
+          },
           "opschortingBijhouding" : {
             "$ref" : "#/components/schemas/GbaOpschortingBijhouding"
           }
@@ -1072,8 +1073,6 @@
           "geheimhoudingPersoonsgegevens" : {
             "$ref" : "#/components/schemas/GbaGeheimhoudingPersoonsgegevens"
           },
-          "verificatie" : {
-            "$ref" : "#/components/schemas/GbaVerificatie"
           "opschortingBijhouding" : {
             "$ref" : "#/components/schemas/GbaOpschortingBijhouding"
           }
@@ -1093,6 +1092,7 @@
           },
           "verificatie" : {
             "$ref" : "#/components/schemas/GbaVerificatie"
+          },
           "opschortingBijhouding" : {
             "$ref" : "#/components/schemas/GbaOpschortingBijhouding"
           }
@@ -1414,6 +1414,7 @@
         "pattern" : "^[a-zA-Z0-9À-ž \\.\\-\\']{1,50}$",
         "type" : "string",
         "description" : "Omschrijving van de verificatie van de rni-gegevens\n"
+      },
       "GbaOpschortingBijhouding" : {
         "allOf" : [ {
           "$ref" : "#/components/schemas/OpschortingBijhoudingBasis"
