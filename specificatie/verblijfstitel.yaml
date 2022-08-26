@@ -22,8 +22,6 @@ components:
           $ref: 'datum.yaml#/components/schemas/GbaDatum'
         inOnderzoek:
           $ref: 'gba-inonderzoek.yaml#/components/schemas/GbaInOnderzoek'
-        rni:
-          $ref: 'common.yaml#/components/schemas/RniDeelnemer'
     Verblijfstitel:
       type: object
       description: |
