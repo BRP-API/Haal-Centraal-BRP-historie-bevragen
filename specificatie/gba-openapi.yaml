@@ -266,6 +266,8 @@ components:
           $ref: 'persoon.yaml#/components/schemas/GbaGeheimhoudingPersoonsgegevens'
         opschortingBijhouding:
           $ref: 'opschortingbijhouding.yaml#/components/schemas/GbaOpschortingBijhouding'
+        verificatie:
+          $ref: 'common.yaml#/components/schemas/GbaVerificatie'
     NationaliteithistorieQueryResponse:
       type: object
       properties:
