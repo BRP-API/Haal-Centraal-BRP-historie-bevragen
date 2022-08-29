@@ -1143,7 +1143,7 @@
             "$ref" : "#/components/schemas/OpschortingBijhouding"
           },
           "verificatie" : {
-            "$ref" : "#/components/schemas/GbaVerificatie"
+            "$ref" : "#/components/schemas/Verificatie"
           }
         }
       },
@@ -1965,17 +1965,6 @@
           }
         } ]
       },
-      "GbaVerificatie" : {
-        "type" : "object",
-        "properties" : {
-          "datum" : {
-            "$ref" : "#/components/schemas/GbaDatum"
-          },
-          "omschrijving" : {
-            "$ref" : "#/components/schemas/OmschrijvingVerificatie"
-          }
-        }
-      },
       "AbstractNationaliteit" : {
         "required" : [ "type" ],
         "type" : "object",
@@ -2513,11 +2502,6 @@
             }
           }
         } ]
-      },
-      "GbaDatum" : {
-        "pattern" : "^[0-9]{8}$",
-        "type" : "string",
-        "example" : "20180700"
       }
     },
     "headers" : {
