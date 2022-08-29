@@ -1143,8 +1143,6 @@ components:
           $ref: '#/components/schemas/GbaDatum'
         inOnderzoek:
           $ref: '#/components/schemas/GbaInOnderzoek'
-        rni:
-          $ref: '#/components/schemas/RniDeelnemer'
       description: |
         Gegevens over de verblijfsrechtelijke status van de persoon.
         * **datumEinde**: Datum waarop de geldigheid van de gegevens over de verblijfstitel is beëindigd.
