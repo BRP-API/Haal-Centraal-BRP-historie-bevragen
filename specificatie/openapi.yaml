@@ -329,7 +329,7 @@ components:
         opschortingBijhouding:
           $ref: 'opschortingbijhouding.yaml#/components/schemas/OpschortingBijhouding'
         verificatie:
-          $ref: 'common.yaml#/components/schemas/GbaVerificatie'
+          $ref: 'common.yaml#/components/schemas/Verificatie'
     NationaliteithistorieQueryResponse:
       type: object
       properties:
