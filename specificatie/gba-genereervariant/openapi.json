@@ -1075,6 +1075,9 @@
           },
           "opschortingBijhouding" : {
             "$ref" : "#/components/schemas/GbaOpschortingBijhouding"
+          },
+          "verificatie" : {
+            "$ref" : "#/components/schemas/GbaVerificatie"
           }
         }
       },

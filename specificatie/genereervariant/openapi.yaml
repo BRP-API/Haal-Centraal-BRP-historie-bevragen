@@ -859,6 +859,8 @@ components:
           $ref: '#/components/schemas/GeheimhoudingPersoonsgegevens'
         opschortingBijhouding:
           $ref: '#/components/schemas/OpschortingBijhouding'
+        verificatie:
+          $ref: '#/components/schemas/GbaVerificatie'
     NationaliteithistorieQueryResponse:
       type: object
       properties:
@@ -1467,6 +1469,13 @@ components:
             type: boolean
           datumIngang:
             type: boolean
+    GbaVerificatie:
+      type: object
+      properties:
+        datum:
+          $ref: '#/components/schemas/GbaDatum'
+        omschrijving:
+          $ref: '#/components/schemas/OmschrijvingVerificatie'
     AbstractNationaliteit:
       required:
       - type
@@ -1857,6 +1866,10 @@ components:
             type: boolean
           plaats:
             type: boolean
+    GbaDatum:
+      pattern: ^[0-9]{8}$
+      type: string
+      example: "20180700"
   headers:
     api_version:
       schema:

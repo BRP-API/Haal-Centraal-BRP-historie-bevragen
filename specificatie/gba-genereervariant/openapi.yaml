@@ -799,6 +799,8 @@ components:
           $ref: '#/components/schemas/GbaGeheimhoudingPersoonsgegevens'
         opschortingBijhouding:
           $ref: '#/components/schemas/GbaOpschortingBijhouding'
+        verificatie:
+          $ref: '#/components/schemas/GbaVerificatie'
     NationaliteithistorieQueryResponse:
       type: object
       properties:
