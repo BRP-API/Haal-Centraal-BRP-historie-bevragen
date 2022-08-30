@@ -1024,14 +1024,11 @@
   },
   "components" : {
     "schemas" : {
-      "VerblijfplaatshistorieQueryResponse" : {
+      "HistorieQueryResponseBasis" : {
         "type" : "object",
         "properties" : {
-          "verblijfplaatsen" : {
-            "type" : "array",
-            "items" : {
-              "$ref" : "#/components/schemas/GbaVerblijfplaats"
-            }
+          "opschortingBijhouding" : {
+            "$ref" : "#/components/schemas/GbaOpschortingBijhouding"
           },
           "geheimhoudingPersoonsgegevens" : {
             "$ref" : "#/components/schemas/GbaGeheimhoudingPersoonsgegevens"
@@ -1039,67 +1036,70 @@
           "verificatie" : {
             "$ref" : "#/components/schemas/GbaVerificatie"
           },
-          "opschortingBijhouding" : {
-            "$ref" : "#/components/schemas/GbaOpschortingBijhouding"
+          "rni" : {
+            "$ref" : "#/components/schemas/RniDeelnemer"
           }
         }
+      },
+      "VerblijfplaatshistorieQueryResponse" : {
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/HistorieQueryResponseBasis"
+        }, {
+          "type" : "object",
+          "properties" : {
+            "verblijfplaatsen" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/components/schemas/GbaVerblijfplaats"
+              }
+            }
+          }
+        } ]
       },
       "PartnerhistorieQueryResponse" : {
-        "type" : "object",
-        "properties" : {
-          "partners" : {
-            "type" : "array",
-            "items" : {
-              "$ref" : "#/components/schemas/GbaPartner"
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/HistorieQueryResponseBasis"
+        }, {
+          "type" : "object",
+          "properties" : {
+            "partners" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/components/schemas/GbaPartner"
+              }
             }
-          },
-          "geheimhoudingPersoonsgegevens" : {
-            "$ref" : "#/components/schemas/GbaGeheimhoudingPersoonsgegevens"
-          },
-          "opschortingBijhouding" : {
-            "$ref" : "#/components/schemas/GbaOpschortingBijhouding"
           }
-        }
+        } ]
       },
       "VerblijfstitelhistorieQueryResponse" : {
-        "type" : "object",
-        "properties" : {
-          "verblijfstitels" : {
-            "type" : "array",
-            "items" : {
-              "$ref" : "#/components/schemas/GbaVerblijfstitel"
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/HistorieQueryResponseBasis"
+        }, {
+          "type" : "object",
+          "properties" : {
+            "verblijfstitels" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/components/schemas/GbaVerblijfstitel"
+              }
             }
-          },
-          "geheimhoudingPersoonsgegevens" : {
-            "$ref" : "#/components/schemas/GbaGeheimhoudingPersoonsgegevens"
-          },
-          "opschortingBijhouding" : {
-            "$ref" : "#/components/schemas/GbaOpschortingBijhouding"
-          },
-          "verificatie" : {
-            "$ref" : "#/components/schemas/GbaVerificatie"
           }
-        }
+        } ]
       },
       "NationaliteithistorieQueryResponse" : {
-        "type" : "object",
-        "properties" : {
-          "nationaliteiten" : {
-            "type" : "array",
-            "items" : {
-              "$ref" : "#/components/schemas/GbaNationaliteit"
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/HistorieQueryResponseBasis"
+        }, {
+          "type" : "object",
+          "properties" : {
+            "nationaliteiten" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/components/schemas/GbaNationaliteit"
+              }
             }
-          },
-          "geheimhoudingPersoonsgegevens" : {
-            "$ref" : "#/components/schemas/GbaGeheimhoudingPersoonsgegevens"
-          },
-          "verificatie" : {
-            "$ref" : "#/components/schemas/GbaVerificatie"
-          },
-          "opschortingBijhouding" : {
-            "$ref" : "#/components/schemas/GbaOpschortingBijhouding"
           }
-        }
+        } ]
       },
       "HistorieQuery" : {
         "required" : [ "burgerservicenummer", "fields", "type" ],
@@ -1247,6 +1247,78 @@
           }
         },
         "description" : "Details over fouten in opgegeven parameters"
+      },
+      "GbaOpschortingBijhouding" : {
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/OpschortingBijhoudingBasis"
+        }, {
+          "type" : "object",
+          "properties" : {
+            "datum" : {
+              "$ref" : "#/components/schemas/GbaDatum"
+            }
+          },
+          "description" : "* **datum**: de datum waarop de bijhouding van de persoonsgegevens is gestaakt.\n"
+        } ]
+      },
+      "OpschortingBijhoudingBasis" : {
+        "type" : "object",
+        "properties" : {
+          "reden" : {
+            "$ref" : "#/components/schemas/Waardetabel"
+          }
+        },
+        "description" : "* **reden** - wordt gevuld met waarden uit de tabel 'redenopschortingbijhouding' (zie Haal-Centraal-BRP-tabellen-bevragen API).\n"
+      },
+      "GbaGeheimhoudingPersoonsgegevens" : {
+        "type" : "integer"
+      },
+      "GbaVerificatie" : {
+        "type" : "object",
+        "properties" : {
+          "datum" : {
+            "$ref" : "#/components/schemas/GbaDatum"
+          },
+          "omschrijving" : {
+            "$ref" : "#/components/schemas/OmschrijvingVerificatie"
+          }
+        }
+      },
+      "OmschrijvingVerificatie" : {
+        "pattern" : "^[a-zA-Z0-9À-ž \\.\\-\\']{1,50}$",
+        "type" : "string",
+        "description" : "Omschrijving van de verificatie van de rni-gegevens\n"
+      },
+      "RniDeelnemer" : {
+        "type" : "object",
+        "properties" : {
+          "deelnemer" : {
+            "$ref" : "#/components/schemas/Waardetabel"
+          },
+          "omschrijvingVerdrag" : {
+            "$ref" : "#/components/schemas/OmschrijvingVerdrag"
+          }
+        }
+      },
+      "Waardetabel" : {
+        "type" : "object",
+        "properties" : {
+          "code" : {
+            "pattern" : "^[a-zA-Z0-9 \\.]+$",
+            "type" : "string",
+            "example" : "6030"
+          },
+          "omschrijving" : {
+            "pattern" : "^[a-zA-Z0-9À-ž \\'\\,\\(\\)\\.\\-]{1,200}$",
+            "type" : "string",
+            "example" : "Nederland"
+          }
+        }
+      },
+      "OmschrijvingVerdrag" : {
+        "pattern" : "^[a-zA-Z0-9À-ž \\.\\-\\']{1,50}$",
+        "type" : "string",
+        "description" : "Omschrijving van het verdrag op basis waarvan een zusterorganisatie in het buitenland de gegevens bij de RNI-deelnemer heeft aangeleverd.\n"
       },
       "GbaVerblijfplaats" : {
         "type" : "object",
@@ -1399,47 +1471,6 @@
         "maxLength" : 80,
         "type" : "string"
       },
-      "GbaGeheimhoudingPersoonsgegevens" : {
-        "type" : "integer"
-      },
-      "GbaVerificatie" : {
-        "type" : "object",
-        "properties" : {
-          "datum" : {
-            "$ref" : "#/components/schemas/GbaDatum"
-          },
-          "omschrijving" : {
-            "$ref" : "#/components/schemas/OmschrijvingVerificatie"
-          }
-        }
-      },
-      "OmschrijvingVerificatie" : {
-        "pattern" : "^[a-zA-Z0-9À-ž \\.\\-\\']{1,50}$",
-        "type" : "string",
-        "description" : "Omschrijving van de verificatie van de rni-gegevens\n"
-      },
-      "GbaOpschortingBijhouding" : {
-        "allOf" : [ {
-          "$ref" : "#/components/schemas/OpschortingBijhoudingBasis"
-        }, {
-          "type" : "object",
-          "properties" : {
-            "datum" : {
-              "$ref" : "#/components/schemas/GbaDatum"
-            }
-          },
-          "description" : "* **datum**: de datum waarop de bijhouding van de persoonsgegevens is gestaakt.\n"
-        } ]
-      },
-      "OpschortingBijhoudingBasis" : {
-        "type" : "object",
-        "properties" : {
-          "reden" : {
-            "$ref" : "#/components/schemas/Waardetabel"
-          }
-        },
-        "description" : "* **reden** - wordt gevuld met waarden uit de tabel 'redenopschortingbijhouding' (zie Haal-Centraal-BRP-tabellen-bevragen API).\n"
-      },
       "GbaPartner" : {
         "type" : "object",
         "properties" : {
@@ -1556,21 +1587,6 @@
         "type" : "string",
         "description" : "Hiermee kun je de inhoud van de resource naar behoefte aanpassen door een lijst van paden die verwijzen naar de gewenste velden op te nemen \n([zie functionele specificaties 'fields' properties](https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-historie-bevragen/develop/features/fields.feature)). \nDe te gebruiken paden zijn beschreven in [fields-Persoon.csv](https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-historie-bevragen/develop/features/fields-Verblijfplaatshistorie.csv) \nwaarbij in de eerste kolom het fields-pad staat en in de tweede kolom het volledige pad naar het gewenste veld. \nBij opgave van een pad dat verwijst naar een niet-bestaand veld wordt een 400 Bad Request teruggegeven.\n"
       },
-      "Waardetabel" : {
-        "type" : "object",
-        "properties" : {
-          "code" : {
-            "pattern" : "^[a-zA-Z0-9 \\.]+$",
-            "type" : "string",
-            "example" : "6030"
-          },
-          "omschrijving" : {
-            "pattern" : "^[a-zA-Z0-9À-ž \\'\\,\\(\\)\\.\\-]{1,200}$",
-            "type" : "string",
-            "example" : "Nederland"
-          }
-        }
-      },
       "GbaDatum" : {
         "pattern" : "^[0-9]{8}$",
         "type" : "string",
@@ -1588,22 +1604,6 @@
             "$ref" : "#/components/schemas/GbaDatum"
           }
         }
-      },
-      "RniDeelnemer" : {
-        "type" : "object",
-        "properties" : {
-          "deelnemer" : {
-            "$ref" : "#/components/schemas/Waardetabel"
-          },
-          "omschrijvingVerdrag" : {
-            "$ref" : "#/components/schemas/OmschrijvingVerdrag"
-          }
-        }
-      },
-      "OmschrijvingVerdrag" : {
-        "pattern" : "^[a-zA-Z0-9À-ž \\.\\-\\']{1,50}$",
-        "type" : "string",
-        "description" : "Omschrijving van het verdrag op basis waarvan een zusterorganisatie in het buitenland de gegevens bij de RNI-deelnemer heeft aangeleverd.\n"
       },
       "GbaNaamBasis" : {
         "type" : "object",

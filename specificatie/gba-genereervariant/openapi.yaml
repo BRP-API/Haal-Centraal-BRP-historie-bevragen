@@ -764,56 +764,53 @@ paths:
                 $ref: '#/components/schemas/Foutbericht'
 components:
   schemas:
+    HistorieQueryResponseBasis:
+      type: object
+      properties:
+        opschortingBijhouding:
+          $ref: '#/components/schemas/GbaOpschortingBijhouding'
+        geheimhoudingPersoonsgegevens:
+          $ref: '#/components/schemas/GbaGeheimhoudingPersoonsgegevens'
+        verificatie:
+          $ref: '#/components/schemas/GbaVerificatie'
+        rni:
+          $ref: '#/components/schemas/RniDeelnemer'
     VerblijfplaatshistorieQueryResponse:
-      type: object
-      properties:
-        verblijfplaatsen:
-          type: array
-          items:
-            $ref: '#/components/schemas/GbaVerblijfplaats'
-        geheimhoudingPersoonsgegevens:
-          $ref: '#/components/schemas/GbaGeheimhoudingPersoonsgegevens'
-        verificatie:
-          $ref: '#/components/schemas/GbaVerificatie'
-        opschortingBijhouding:
-          $ref: '#/components/schemas/GbaOpschortingBijhouding'
+      allOf:
+      - $ref: '#/components/schemas/HistorieQueryResponseBasis'
+      - type: object
+        properties:
+          verblijfplaatsen:
+            type: array
+            items:
+              $ref: '#/components/schemas/GbaVerblijfplaats'
     PartnerhistorieQueryResponse:
-      type: object
-      properties:
-        partners:
-          type: array
-          items:
-            $ref: '#/components/schemas/GbaPartner'
-        geheimhoudingPersoonsgegevens:
-          $ref: '#/components/schemas/GbaGeheimhoudingPersoonsgegevens'
-        opschortingBijhouding:
-          $ref: '#/components/schemas/GbaOpschortingBijhouding'
+      allOf:
+      - $ref: '#/components/schemas/HistorieQueryResponseBasis'
+      - type: object
+        properties:
+          partners:
+            type: array
+            items:
+              $ref: '#/components/schemas/GbaPartner'
     VerblijfstitelhistorieQueryResponse:
-      type: object
-      properties:
-        verblijfstitels:
-          type: array
-          items:
-            $ref: '#/components/schemas/GbaVerblijfstitel'
-        geheimhoudingPersoonsgegevens:
-          $ref: '#/components/schemas/GbaGeheimhoudingPersoonsgegevens'
-        opschortingBijhouding:
-          $ref: '#/components/schemas/GbaOpschortingBijhouding'
-        verificatie:
-          $ref: '#/components/schemas/GbaVerificatie'
+      allOf:
+      - $ref: '#/components/schemas/HistorieQueryResponseBasis'
+      - type: object
+        properties:
+          verblijfstitels:
+            type: array
+            items:
+              $ref: '#/components/schemas/GbaVerblijfstitel'
     NationaliteithistorieQueryResponse:
-      type: object
-      properties:
-        nationaliteiten:
-          type: array
-          items:
-            $ref: '#/components/schemas/GbaNationaliteit'
-        geheimhoudingPersoonsgegevens:
-          $ref: '#/components/schemas/GbaGeheimhoudingPersoonsgegevens'
-        verificatie:
-          $ref: '#/components/schemas/GbaVerificatie'
-        opschortingBijhouding:
-          $ref: '#/components/schemas/GbaOpschortingBijhouding'
+      allOf:
+      - $ref: '#/components/schemas/HistorieQueryResponseBasis'
+      - type: object
+        properties:
+          nationaliteiten:
+            type: array
+            items:
+              $ref: '#/components/schemas/GbaNationaliteit'
     HistorieQuery:
       required:
       - burgerservicenummer
@@ -936,6 +933,59 @@ components:
           description: Beschrijving van de fout op de parameterwaarde
           example: Waarde is geen geldige integer.
       description: Details over fouten in opgegeven parameters
+    GbaOpschortingBijhouding:
+      allOf:
+      - $ref: '#/components/schemas/OpschortingBijhoudingBasis'
+      - type: object
+        properties:
+          datum:
+            $ref: '#/components/schemas/GbaDatum'
+        description: |
+          * **datum**: de datum waarop de bijhouding van de persoonsgegevens is gestaakt.
+    OpschortingBijhoudingBasis:
+      type: object
+      properties:
+        reden:
+          $ref: '#/components/schemas/Waardetabel'
+      description: |
+        * **reden** - wordt gevuld met waarden uit de tabel 'redenopschortingbijhouding' (zie Haal-Centraal-BRP-tabellen-bevragen API).
+    GbaGeheimhoudingPersoonsgegevens:
+      type: integer
+    GbaVerificatie:
+      type: object
+      properties:
+        datum:
+          $ref: '#/components/schemas/GbaDatum'
+        omschrijving:
+          $ref: '#/components/schemas/OmschrijvingVerificatie'
+    OmschrijvingVerificatie:
+      pattern: ^[a-zA-Z0-9À-ž \.\-\']{1,50}$
+      type: string
+      description: |
+        Omschrijving van de verificatie van de rni-gegevens
+    RniDeelnemer:
+      type: object
+      properties:
+        deelnemer:
+          $ref: '#/components/schemas/Waardetabel'
+        omschrijvingVerdrag:
+          $ref: '#/components/schemas/OmschrijvingVerdrag'
+    Waardetabel:
+      type: object
+      properties:
+        code:
+          pattern: ^[a-zA-Z0-9 \.]+$
+          type: string
+          example: "6030"
+        omschrijving:
+          pattern: ^[a-zA-Z0-9À-ž \'\,\(\)\.\-]{1,200}$
+          type: string
+          example: Nederland
+    OmschrijvingVerdrag:
+      pattern: ^[a-zA-Z0-9À-ž \.\-\']{1,50}$
+      type: string
+      description: |
+        Omschrijving van het verdrag op basis waarvan een zusterorganisatie in het buitenland de gegevens bij de RNI-deelnemer heeft aangeleverd.
     GbaVerblijfplaats:
       type: object
       properties:
@@ -1060,36 +1110,6 @@ components:
     NaamOpenbareRuimte:
       maxLength: 80
       type: string
-    GbaGeheimhoudingPersoonsgegevens:
-      type: integer
-    GbaVerificatie:
-      type: object
-      properties:
-        datum:
-          $ref: '#/components/schemas/GbaDatum'
-        omschrijving:
-          $ref: '#/components/schemas/OmschrijvingVerificatie'
-    OmschrijvingVerificatie:
-      pattern: ^[a-zA-Z0-9À-ž \.\-\']{1,50}$
-      type: string
-      description: |
-        Omschrijving van de verificatie van de rni-gegevens
-    GbaOpschortingBijhouding:
-      allOf:
-      - $ref: '#/components/schemas/OpschortingBijhoudingBasis'
-      - type: object
-        properties:
-          datum:
-            $ref: '#/components/schemas/GbaDatum'
-        description: |
-          * **datum**: de datum waarop de bijhouding van de persoonsgegevens is gestaakt.
-    OpschortingBijhoudingBasis:
-      type: object
-      properties:
-        reden:
-          $ref: '#/components/schemas/Waardetabel'
-      description: |
-        * **reden** - wordt gevuld met waarden uit de tabel 'redenopschortingbijhouding' (zie Haal-Centraal-BRP-tabellen-bevragen API).
     GbaPartner:
       type: object
       properties:
@@ -1182,17 +1202,6 @@ components:
         \ \nwaarbij in de eerste kolom het fields-pad staat en in de tweede kolom\
         \ het volledige pad naar het gewenste veld. \nBij opgave van een pad dat verwijst\
         \ naar een niet-bestaand veld wordt een 400 Bad Request teruggegeven.\n"
-    Waardetabel:
-      type: object
-      properties:
-        code:
-          pattern: ^[a-zA-Z0-9 \.]+$
-          type: string
-          example: "6030"
-        omschrijving:
-          pattern: ^[a-zA-Z0-9À-ž \'\,\(\)\.\-]{1,200}$
-          type: string
-          example: Nederland
     GbaDatum:
       pattern: ^[0-9]{8}$
       type: string
@@ -1208,18 +1217,6 @@ components:
           type: string
         datumIngangOnderzoek:
           $ref: '#/components/schemas/GbaDatum'
-    RniDeelnemer:
-      type: object
-      properties:
-        deelnemer:
-          $ref: '#/components/schemas/Waardetabel'
-        omschrijvingVerdrag:
-          $ref: '#/components/schemas/OmschrijvingVerdrag'
-    OmschrijvingVerdrag:
-      pattern: ^[a-zA-Z0-9À-ž \.\-\']{1,50}$
-      type: string
-      description: |
-        Omschrijving van het verdrag op basis waarvan een zusterorganisatie in het buitenland de gegevens bij de RNI-deelnemer heeft aangeleverd.
     GbaNaamBasis:
       type: object
       properties:
