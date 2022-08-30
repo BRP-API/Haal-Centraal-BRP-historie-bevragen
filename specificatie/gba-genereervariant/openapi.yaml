@@ -797,10 +797,10 @@ components:
             $ref: '#/components/schemas/GbaVerblijfstitel'
         geheimhoudingPersoonsgegevens:
           $ref: '#/components/schemas/GbaGeheimhoudingPersoonsgegevens'
-        verificatie:
-          $ref: '#/components/schemas/GbaVerificatie'
         opschortingBijhouding:
           $ref: '#/components/schemas/GbaOpschortingBijhouding'
+        verificatie:
+          $ref: '#/components/schemas/GbaVerificatie'
     NationaliteithistorieQueryResponse:
       type: object
       properties:
@@ -1145,8 +1145,6 @@ components:
           $ref: '#/components/schemas/GbaDatum'
         inOnderzoek:
           $ref: '#/components/schemas/GbaInOnderzoek'
-        rni:
-          $ref: '#/components/schemas/RniDeelnemer'
       description: |
         Gegevens over de verblijfsrechtelijke status van de persoon.
         * **datumEinde**: Datum waarop de geldigheid van de gegevens over de verblijfstitel is beëindigd.

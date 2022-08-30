@@ -857,10 +857,10 @@ components:
             $ref: '#/components/schemas/Verblijfstitel'
         geheimhoudingPersoonsgegevens:
           $ref: '#/components/schemas/GeheimhoudingPersoonsgegevens'
-        verificatie:
-          $ref: '#/components/schemas/Verificatie'
         opschortingBijhouding:
           $ref: '#/components/schemas/OpschortingBijhouding'
+        verificatie:
+          $ref: '#/components/schemas/Verificatie'
     NationaliteithistorieQueryResponse:
       type: object
       properties:
@@ -1451,8 +1451,6 @@ components:
           $ref: '#/components/schemas/AbstractDatum'
         inOnderzoek:
           $ref: '#/components/schemas/VerblijfstitelInOnderzoek'
-        rni:
-          $ref: '#/components/schemas/RniDeelnemer'
       description: |
         Gegevens over de verblijfsrechtelijke status van de persoon.
         * **datumEinde**: Datum waarop de geldigheid van de gegevens over de verblijfstitel is beëindigd.
