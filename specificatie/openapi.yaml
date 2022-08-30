@@ -292,54 +292,51 @@ components:
                 De einddatum van de periode waarover de resource wordt opgevraagd.
               format: date
               example: 1964-09-24
+    HistorieQueryResponseBasis:
+      type: object
+      properties:
+        opschortingBijhouding:
+          $ref: 'opschortingbijhouding.yaml#/components/schemas/OpschortingBijhouding'
+        geheimhoudingPersoonsgegevens:
+          $ref: 'persoon.yaml#/components/schemas/GeheimhoudingPersoonsgegevens'
+        verificatie:
+          $ref: 'common.yaml#/components/schemas/Verificatie'
+        rni:
+          $ref: 'common.yaml#/components/schemas/RniDeelnemer'
     VerblijfplaatshistorieQueryResponse:
-      type: object
-      properties:
-        verblijfplaatsen:
-          type: array
-          items:
-            $ref: 'verblijfplaats.yaml#/components/schemas/AbstractVerblijfplaats'
-        geheimhoudingPersoonsgegevens:
-          $ref: 'persoon.yaml#/components/schemas/GeheimhoudingPersoonsgegevens'
-        verificatie:
-          $ref: 'common.yaml#/components/schemas/Verificatie'
-        opschortingBijhouding:
-          $ref: 'opschortingbijhouding.yaml#/components/schemas/OpschortingBijhouding'
+      allOf:
+        - $ref: '#/components/schemas/HistorieQueryResponseBasis'
+        - type: object
+          properties:
+            verblijfplaatsen:
+              type: array
+              items:
+                $ref: 'verblijfplaats.yaml#/components/schemas/AbstractVerblijfplaats'
     PartnerhistorieQueryResponse:
-      type: object
-      properties:
-        partners:
-          type: array
-          items:
-            $ref: 'partner.yaml#/components/schemas/Partner'
-        geheimhoudingPersoonsgegevens:
-          $ref: 'persoon.yaml#/components/schemas/GeheimhoudingPersoonsgegevens'
-        opschortingBijhouding:
-          $ref: 'opschortingbijhouding.yaml#/components/schemas/OpschortingBijhouding'
+      allOf:
+        - $ref: '#/components/schemas/HistorieQueryResponseBasis'
+        - type: object
+          properties:
+            partners:
+              type: array
+              items:
+                $ref: 'partner.yaml#/components/schemas/Partner'
     VerblijfstitelhistorieQueryResponse:
-      type: object
-      properties:
-        # De vraag is of aan verblijfstitelhistorie niet ook 'geheimhoudingPersoonsgegevens' moet worden toegevoegd.
-        verblijfstitels:
-          type: array
-          items:
-            $ref: 'verblijfstitel.yaml#/components/schemas/Verblijfstitel'
-        geheimhoudingPersoonsgegevens:
-          $ref: 'persoon.yaml#/components/schemas/GeheimhoudingPersoonsgegevens'
-        opschortingBijhouding:
-          $ref: 'opschortingbijhouding.yaml#/components/schemas/OpschortingBijhouding'
-        verificatie:
-          $ref: 'common.yaml#/components/schemas/Verificatie'
+      allOf:
+        - $ref: '#/components/schemas/HistorieQueryResponseBasis'
+        - type: object
+          properties:
+            verblijfstitels:
+              type: array
+              items:
+                $ref: 'verblijfstitel.yaml#/components/schemas/Verblijfstitel'
     NationaliteithistorieQueryResponse:
-      type: object
-      properties:
-        nationaliteiten:
-          type: array
-          items:
-            $ref: 'nationaliteit.yaml#/components/schemas/AbstractNationaliteit'
-        geheimhoudingPersoonsgegevens:
-          $ref: 'persoon.yaml#/components/schemas/GeheimhoudingPersoonsgegevens'
-        verificatie:
-          $ref: 'common.yaml#/components/schemas/Verificatie'
-        opschortingBijhouding:
-          $ref: 'opschortingbijhouding.yaml#/components/schemas/OpschortingBijhouding'
+      allOf:
+        - $ref: '#/components/schemas/HistorieQueryResponseBasis'
+        - type: object
+          properties:
+            nationaliteiten:
+              type: array
+              items:
+                $ref: 'nationaliteit.yaml#/components/schemas/AbstractNationaliteit'
+ 
