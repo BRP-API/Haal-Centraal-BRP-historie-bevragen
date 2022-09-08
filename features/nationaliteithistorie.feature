@@ -12,9 +12,10 @@ Functionaliteit: Tonen van Nationaliteithistorie
   # Elk categorievoorkomen bevat de gegevens die vanaf de ingangsdatum gelden plus de registratiedatum.
   # Voor een beëindigde nationaliteit zit in de actuele categorie geen nationaliteit, omdat die op dat moment niet meer geldig is. De ingangsdatum in de actuele categorie is dan de datum vanaf wanneer de persoon deze nationaliteit niet meer had.
 
+  # Geprobeerd scenario's zodanig te schrijven met als doel het beschrijven/documenteren van de gewenste functionaliteit
 
   Rule: Voor een actueel geldende nationaliteit of bijzonder Nederlanderschap wordt de datumIngangGeldigheid gevuld met de datum geldigheid (85.10) in de actuele categorie (04).
-
+      
     Scenario: actueel en ongewijzigde nationaliteit
       Gegeven de ingeschreven persoon met burgerservicenummer 000009830 kent de volgende nationaliteiten:
         | Stapel | Categorie | nationaliteit (05.10) | reden opnemen (63.10) | reden beëindigen (64.10) | bijzonder Nederlanderschap (65.10) | onjuist (84.10) | datum ingang geldigheid (85.10) |
@@ -22,6 +23,27 @@ Functionaliteit: Tonen van Nationaliteithistorie
       Als de nationaliteithistorie met burgerservicenummer 000009830 wordt geraadpleegd
       Dan bevat het nationaliteithistorie-item met nationaliteit.code "0001" het gegeven "datumIngangGeldigheid" met datum "1975-07-07"
 
+    # Vervangt bovenstaande scenario
+    # kolommen zijn weggelaten die niet toedoen of niet relevant zijn voor deze scenario. Bijv. stapel, categorie, reden opnemen en lege velden
+    # wat wordt bedoeld met actueel?
+    # Wat wordt bedoeld met ongewijzigd? Wordt 'geen historische gegevens' bedoeld?
+    # zou in dit geval 'persoon heeft op peildatum een nationaliteit zonder historische gegevens' geen betere titel zijn?
+    # in de response is 'nationaliteiten' gebruikt als veld naam ipv nationaliteitHistorie zoals gespecificeerd in de OAS
+    Scenario: persoon heeft alleen één actuele nationaliteit
+      Gegeven een persoon met burgerservicenummer '000009830' heeft een 'nationaliteit' met de volgende gegevens
+      | nationaliteit (05.10) | datum ingang geldigheid (85.10) |
+      | 0001                  | 19750707                        |
+      Als nationaliteithistorie wordt geraadpleegd met de volgende parameters
+      | naam                | waarde                                                                   |
+      | type                | RaadpleegMetPeildatum                                                    |
+      | burgerservicenummer | 000009830                                                                |
+      | peildatum           | 2022-08-01                                                               |
+      | fields              | nationaliteiten.nationaliteit.code,nationaliteiten.datumIngangGeldigheid |
+      Dan heeft de response de volgende 'nationaliteiten'
+      | type          | nationaliteit.code | datumIngangGeldigheid.type | datumIngangGeldigheid.datum | datumIngangGeldigheid.langFormaat |
+      | Nationaliteit | 0001               | Datum                      | 1975-07-07                  | 7 juli 1975                       |
+
+    # het is niet duidelijk wat met deze scenario wordt beschreven/uitgelegd. Waarom zou nationaliteit met code 0307 een onbekende datum ingang geldigheid hebben? De onbekende datum is volgens de gegeven stap niet-actueel (historisch) 
     Scenario: nationaliteit met onbekende datum ingang geldigheid
       Gegeven de ingeschreven persoon met burgerservicenummer 999990998 kent de volgende nationaliteiten:
         | Stapel | Categorie | nationaliteit (05.10) | reden opnemen (63.10) | reden beëindigen (64.10) | bijzonder Nederlanderschap (65.10) | onjuist (84.10) | datum ingang geldigheid (85.10) |
@@ -40,7 +62,63 @@ Functionaliteit: Tonen van Nationaliteithistorie
       Als de nationaliteithistorie met burgerservicenummer 555550004 wordt geraadpleegd
       Dan bevat het nationaliteithistorie-item met nationaliteit.code "0100" het gegeven "datumIngangGeldigheid" met datum "2020-07-27"
 
+    # Vervangt bovenstaande scenario
+    # hier is categorie wel toegevoegd om te weten welke datum ingang geldigheid actueel is en welke historisch
+    # vraag: niet duidelijk of het relevant is om de onjuist kolom op te nemen in de historische rij. Voor het bepalen van de gegevens die voor de nationaliteit moet worden geretourneerd lijkt het niet relevant
+    Scenario: persoon heeft een nationaliteit met geactualiseerde datum ingang geldigheid
+      Gegeven een persoon met burgerservicenummer '555550004' heeft een 'nationaliteit' met de volgende gegevens
+      | categorie | nationaliteit (05.10) | datum ingang geldigheid (85.10) |
+      | 4         | 0100                  | 20200727                        |
+      | 54        | 0100                  | 20200713                        |
+      Als nationaliteithistorie wordt geraadpleegd met de volgende parameters
+      | naam                | waarde                                                                   |
+      | type                | RaadpleegMetPeildatum                                                    |
+      | burgerservicenummer | 555550004                                                                |
+      | peildatum           | 2022-08-01                                                               |
+      | fields              | nationaliteiten.nationaliteit.code,nationaliteiten.datumIngangGeldigheid |
+      Dan heeft de response de volgende 'nationaliteiten'
+      | type          | nationaliteit.code | datumIngangGeldigheid.type | datumIngangGeldigheid.datum | datumIngangGeldigheid.langFormaat |
+      | Nationaliteit | 0100               | Datum                      | 2020-07-27                  | 27 juli 2020                      |
 
+    # in oude scenario's wordt volgens mij stapel gebruikt om aan te geven welke rijen bij elkaar horen. Dit zou ook kunnen op de manier zoals in deze scenario met de gegeven: En de persoon heeft een andere 'nationaliteit' met de volgende gegevens
+    Scenario: persoon heeft meerdere actuele nationaliteiten
+      Gegeven een persoon met burgerservicenummer '999990998' heeft een 'nationaliteit' met de volgende gegevens
+      | nationaliteit (05.10) | datum ingang geldigheid (85.10) |
+      | 0307                  | 20150131                        |
+      En de persoon heeft een ander 'nationaliteit' met de volgende gegevens
+      | nationaliteit (05.10) | datum ingang geldigheid (85.10) |
+      | 0001                  | 19750707                        |
+      Als nationaliteithistorie wordt geraadpleegd met de volgende parameters
+      | naam                | waarde                                                                   |
+      | type                | RaadpleegMetPeildatum                                                    |
+      | burgerservicenummer | 999990998                                                                |
+      | peildatum           | 2022-08-01                                                               |
+      | fields              | nationaliteiten.nationaliteit.code,nationaliteiten.datumIngangGeldigheid |
+      Dan heeft de response de volgende 'nationaliteiten'
+      | type          | nationaliteit.code | datumIngangGeldigheid.type | datumIngangGeldigheid.datum | datumIngangGeldigheid.langFormaat |
+      | Nationaliteit | 0307               | Datum                      | 2015-01-31                  | 31 januari 2015                   |
+      | Nationaliteit | 0001               | Datum                      | 1975-07-07                  | 7 juli 1975                       |
+
+    # vervangt mogelijk scenario (regel 175): beëindigde registratie vreemde nationaliteit na verkrijgen Nederlandse nationaliteit
+    Scenario: persoon heeft een beëindigde nationaliteit op peildatum
+      Gegeven een persoon met burgerservicenummer '999993008' heeft een 'nationaliteit' met de volgende gegevens
+      | nationaliteit (05.10) | datum ingang geldigheid (85.10) |
+      | 0001                  | 20050316                        |
+      En de persoon heeft een ander 'nationaliteit' met de volgende gegevens
+      | categorie | nationaliteit (05.10) | datum ingang geldigheid (85.10) | reden beëindigen (64.10) |
+      | 4         |                       | 20050131                        | 404                      |
+      | 54        | 0131                  | 19750501                        |                          |
+      Als nationaliteithistorie wordt geraadpleegd met de volgende parameters
+      | naam                | waarde                                                                                            |
+      | type                | RaadpleegMetPeildatum                                                                             |
+      | burgerservicenummer | 999993008                                                                                         |
+      | peildatum           | 2005-01-01                                                                                        |
+      | fields              | nationaliteiten.nationaliteit.code,nationaliteiten.datumIngangGeldigheid,nationaliteiten.datumTot |
+      Dan heeft de response de volgende 'nationaliteiten'
+      | type          | nationaliteit.code | datumIngangGeldigheid.type | datumIngangGeldigheid.datum | datumIngangGeldigheid.langFormaat | datumTot.type | datumTot.datum | datumTot.langFormaat |
+      | Nationaliteit | 0131               | Datum                      | 1975-05-01                  | 1 mei 1975                        | Datum         | 2005-01-31     | 31 januari 2005      |
+
+  # indicatieNationaliteitBeeindigd komt niet voor in de OAS. Is dit nog nodig?
   Rule: In het antwoord wordt indicatieNationaliteitBeeindigd opgenomen met de waarde true, wanneer in de actuele nationaliteit (categorie 04) GEEN nationaliteit (05.10) en GEEN bijzonder Nederlanderschap (65.10) is opgenomen.
 
     Scenario: de persoon heeft de nationaliteit nu
@@ -223,10 +301,10 @@ Functionaliteit: Tonen van Nationaliteithistorie
         | 2      | 54        | 0001                  | 017                   |                          |                                    |                 | 20190516                        |
       Als de nationaliteithistorie met burgerservicenummer 555550012 wordt geraadpleegdbevat het antwoord 3 voorkomens
       En wordt de nationaliteithistorie teruggegeven met waarden:
-      | # | nationaliteit.code | datumIngangGeldigheid | datumTot             | indicatieNationaliteitBeeindigd | redenOpname.code | redenBeeindigen.code |
-      | 0 | 0131               | 2021-06-04            |                      |                                 | 301              |                      |
-      | 1 | 0001               | 2019-05-16            | 2021-06-04           | true                            | 017              | 192                  |
-      | 1 | 0131               | 2001-03-19            | 2019-05-16           | true                            | 301              | 404                  |
+      | # | nationaliteit.code | datumIngangGeldigheid | datumTot   | indicatieNationaliteitBeeindigd | redenOpname.code | redenBeeindigen.code |
+      | 0 | 0131               | 2021-06-04            |            |                                 | 301              |                      |
+      | 1 | 0001               | 2019-05-16            | 2021-06-04 | true                            | 017              | 192                  |
+      | 1 | 0131               | 2001-03-19            | 2019-05-16 | true                            | 301              | 404                  |
 
     Scenario: verlies Nederlanderschap verwerkt als correctieprocedure
       Gegeven de ingeschreven persoon met burgerservicenummer 555550013 kent de volgende nationaliteiten:
@@ -238,9 +316,9 @@ Functionaliteit: Tonen van Nationaliteithistorie
         | 2      | 54        | 0001                  | 017                   |                          |                                    |                 | 20190516                        |
       Als de nationaliteithistorie met burgerservicenummer 555550013 wordt geraadpleegdbevat het antwoord 3 voorkomens
       En wordt de nationaliteithistorie teruggegeven met waarden:
-      | # | nationaliteit.code | datumIngangGeldigheid | datumTot             | indicatieNationaliteitBeeindigd | redenOpname.code | redenBeeindigen.code |
-      | 0 | 0131               | 2001-03-19            |                      |                                 | 301              |                      |
-      | 1 | 0001               | 2019-05-16            | 2021-06-04           | true                            | 017              | 192                  |
+      | # | nationaliteit.code | datumIngangGeldigheid | datumTot   | indicatieNationaliteitBeeindigd | redenOpname.code | redenBeeindigen.code |
+      | 0 | 0131               | 2001-03-19            |            |                                 | 301              |                      |
+      | 1 | 0001               | 2019-05-16            | 2021-06-04 | true                            | 017              | 192                  |
 
 
   Rule: Er worden alleen nationaliteiten geleverd die geldig waren in de gevraagde periode of op de gevraagde peildatum
@@ -254,14 +332,14 @@ Functionaliteit: Tonen van Nationaliteithistorie
       Dan bevat het antwoord <resultaat> de nationaliteit met code "0065"
 
       Voorbeelden:
-        | omschrijving                                                | datumVan   | datumTotEnMet | resultaat |
-        | periode voor de geldigheid                                  | 1931-01-01 | 1931-06-23    | niet      |
-        | datumTotEnMet gelijk aan datumIngangGeldigheid              | 1931-01-01 | 1931-06-24    | wel       |
-        | periode voor en in de geldigheid                            | 1931-01-01 | 2000-01-01    | wel       |
-        | periode volledig in de geldigheid                           | 1990-01-01 | 2000-01-01    | wel       |
-        | periode in en na in de geldigheid                           | 2004-01-01 | 2020-01-01    | wel       |
-        | periode na in de geldigheid                                 | 2010-01-01 | 2020-01-01    | niet      |
-        | datumVan gelijk aan de datumTot                             | 2004-02-01 | 2020-01-01    | niet      |
+        | omschrijving                                   | datumVan   | datumTotEnMet | resultaat |
+        | periode voor de geldigheid                     | 1931-01-01 | 1931-06-23    | niet      |
+        | datumTotEnMet gelijk aan datumIngangGeldigheid | 1931-01-01 | 1931-06-24    | wel       |
+        | periode voor en in de geldigheid               | 1931-01-01 | 2000-01-01    | wel       |
+        | periode volledig in de geldigheid              | 1990-01-01 | 2000-01-01    | wel       |
+        | periode in en na in de geldigheid              | 2004-01-01 | 2020-01-01    | wel       |
+        | periode na in de geldigheid                    | 2010-01-01 | 2020-01-01    | niet      |
+        | datumVan gelijk aan de datumTot                | 2004-02-01 | 2020-01-01    | niet      |
 
     Abstract Scenario: Vragen nationaliteithistorie met peildatum <omschrijving> van de nationaliteit
       Gegeven de ingeschreven persoon met burgerservicenummer 999991188 kent de volgende nationaliteiten:
@@ -272,12 +350,12 @@ Functionaliteit: Tonen van Nationaliteithistorie
       Dan bevat het antwoord <resultaat> de nationaliteit met code "0065"
 
       Voorbeelden:
-        | omschrijving                                | peildatum  | resultaat |
-        | voor de geldigheid                          | 1931-06-23 | niet      |
-        | gelijk aan datumIngangGeldigheid            | 1931-06-24 | wel       |
-        | in de geldigheid                            | 2000-01-01 | wel       |
-        | gelijk aan de datumTot                      | 2004-02-01 | niet      |
-        | na de geldigheid                            | 2020-01-01 | niet      |
+        | omschrijving                     | peildatum  | resultaat |
+        | voor de geldigheid               | 1931-06-23 | niet      |
+        | gelijk aan datumIngangGeldigheid | 1931-06-24 | wel       |
+        | in de geldigheid                 | 2000-01-01 | wel       |
+        | gelijk aan de datumTot           | 2004-02-01 | niet      |
+        | na de geldigheid                 | 2020-01-01 | niet      |
 
 
   Rule: als datumVan is opgegeven en datumTotEnMet is niet opgegeven, worden alle nationaliteiten die geldig zijn of waren na datumVan geleverd
@@ -336,10 +414,10 @@ Functionaliteit: Tonen van Nationaliteithistorie
       Dan is het resultaat <resultaat>
 
       Voorbeelden:
-        | parameter     | query                                                             | resultaat                             |
-        | datumTotEnMet | datumVan=2003-01-01&datumTotEnMet=2102-12-31                      | een foutmelding met statuscode 400    |
-        | datumVan      | datumVan=2103-01-01                                               | een foutmelding met statuscode 400    |
-        | peildatum     | peildatum=2103-01-01                                              | een foutmelding met statuscode 400    |
+        | parameter     | query                                        | resultaat                          |
+        | datumTotEnMet | datumVan=2003-01-01&datumTotEnMet=2102-12-31 | een foutmelding met statuscode 400 |
+        | datumVan      | datumVan=2103-01-01                          | een foutmelding met statuscode 400 |
+        | peildatum     | peildatum=2103-01-01                         | een foutmelding met statuscode 400 |
 
 
   Rule: Er moet minimaal een periode of peildatum worden opgegeven
@@ -369,14 +447,14 @@ Functionaliteit: Tonen van Nationaliteithistorie
       Dan bevat het antwoord <resultaat> de nationaliteit met code "<code>"
 
       Voorbeelden:
-        | situatie                                    | periode                       | burgerservicenummer | datumVan   | datumTotEnMet | resultaat | code |
-        | volledig onbekende datum ingang             | voor een periode              | 999992806           | 2021-01-01 | 2021-06-30    | wel       | 0334 |
-        | alleen jaar bekend in datum ingang          | tot 1e dag van dat jaar       | 555550006           | 2000-01-01 | 2001-01-01    | wel       | 0105 |
-        | alleen jaar bekend in datum ingang          | tot vorige jaar               | 555550006           | 2000-01-01 | 2000-12-31    | niet      | 0105 |
-        | alleen jaar en maand bekend in datum ingang | tot 1e dag van die maand      | 555550007           | 2013-06-01 | 2014-06-01    | wel       | 0105 |
-        | alleen jaar en maand bekend in datum ingang | tot volgende maand            | 555550007           | 2013-06-01 | 2014-07-31    | wel       | 0105 |
-        | alleen jaar en maand bekend in datum ingang | tot vorige maand              | 555550007           | 2013-06-01 | 2014-05-31    | niet      | 0105 |
-        | alleen jaar en maand bekend in datum ingang | tot vorig jaar                | 555550007           | 2013-06-01 | 2013-07-01    | niet      | 0105 |
+        | situatie                                    | periode                  | burgerservicenummer | datumVan   | datumTotEnMet | resultaat | code |
+        | volledig onbekende datum ingang             | voor een periode         | 999992806           | 2021-01-01 | 2021-06-30    | wel       | 0334 |
+        | alleen jaar bekend in datum ingang          | tot 1e dag van dat jaar  | 555550006           | 2000-01-01 | 2001-01-01    | wel       | 0105 |
+        | alleen jaar bekend in datum ingang          | tot vorige jaar          | 555550006           | 2000-01-01 | 2000-12-31    | niet      | 0105 |
+        | alleen jaar en maand bekend in datum ingang | tot 1e dag van die maand | 555550007           | 2013-06-01 | 2014-06-01    | wel       | 0105 |
+        | alleen jaar en maand bekend in datum ingang | tot volgende maand       | 555550007           | 2013-06-01 | 2014-07-31    | wel       | 0105 |
+        | alleen jaar en maand bekend in datum ingang | tot vorige maand         | 555550007           | 2013-06-01 | 2014-05-31    | niet      | 0105 |
+        | alleen jaar en maand bekend in datum ingang | tot vorig jaar           | 555550007           | 2013-06-01 | 2013-07-01    | niet      | 0105 |
 
     Abstract Scenario: <status> nationaliteit met datumIngangGeldigheid <ingang geldigheid> en vragen op peildatum <omschrijving peildatum>
       Gegeven de ingeschreven persoon met burgerservicenummer 999992806 kent de volgende nationaliteiten:
@@ -415,9 +493,9 @@ Functionaliteit: Tonen van Nationaliteithistorie
       Dan bevat het antwoord <resultaat> de nationaliteit met code "0307"
 
       Voorbeelden:
-        | omschrijving         | datumVan   | datumTotEnMet | resultaat |
-        | voor datumTot        | 2015-01-01 | 2016-01-31    | wel       |
-        | na datumTot          | 2015-02-01 | 2016-01-31    | niet      |
+        | omschrijving  | datumVan   | datumTotEnMet | resultaat |
+        | voor datumTot | 2015-01-01 | 2016-01-31    | wel       |
+        | na datumTot   | 2015-02-01 | 2016-01-31    | niet      |
 
     Abstract Scenario: datumIngangGeldigheid onbekend bij een beëindigde nationaliteit en vragen op peildatum <omschrijving>
       Gegeven de ingeschreven persoon met burgerservicenummer 999990998 kent de volgende nationaliteiten:
@@ -428,9 +506,9 @@ Functionaliteit: Tonen van Nationaliteithistorie
       Dan bevat het antwoord <resultaat> de nationaliteit met code "0307"
 
       Voorbeelden:
-        | omschrijving        | peildatum  | resultaat |
-        | voor datumTot       | 2015-01-01 | wel       |
-        | na datumTot         | 2015-02-01 | niet      |
+        | omschrijving  | peildatum  | resultaat |
+        | voor datumTot | 2015-01-01 | wel       |
+        | na datumTot   | 2015-02-01 | niet      |
 
 
   Rule: Wanneer de datumTot gedeeltelijk onbekend is, wordt voor de filtering aangenomen dat de persoon gedurende de gehele onzekerheidstijd deze nationaliteit heeft gehad.
@@ -469,7 +547,7 @@ Rule: In het antwoord worden eerst de actuele nationaliteiten opgenomen, gevolgd
 
     Scenario: actuele en beëindigde nationaliteiten in de juiste volgorde
       Gegeven de ingeschreven persoon met burgerservicenummer 999991292 kent de volgende nationaliteiten:
-        | Stapel | Categorie | 05.10 | 65.10 | 64.10 | 85.10    |
+        | Stapel | Categorie | 05.10                 | 65.10                 | 64.10                    | 85.10                              |
         | Stapel | Categorie | nationaliteit (05.10) | reden opnemen (63.10) | reden beëindigen (64.10) | bijzonder Nederlanderschap (65.10) | onjuist (84.10) | datum ingang geldigheid (85.10) |
         | 1      | 04        |                       |                       | 404                      |                                    |                 | 19940601                        |
         | 1      | 54        | 0100                  |                       |                          |                                    |                 | 19890301                        |
@@ -479,10 +557,10 @@ Rule: In het antwoord worden eerst de actuele nationaliteiten opgenomen, gevolgd
       Als de nationaliteithistorie met burgerservicenummer 999991292 wordt geraadpleegd
       Dan bevat het antwoord 3 voorkomens
       En wordt de nationaliteithistorie teruggegeven in de volgorde en met waarden:
-      | # | nationaliteit.code | aanduidingBijzonderNederlanderschap | datumIngangGeldigheid | datumTot             | indicatieNationaliteitBeeindigd | redenBeeindigen.code |
-      | 0 | 0001               |                                     | 1991-02-01            |                      |                                 |                      |
-      | 1 | 0057               |                                     | 1983-12-13            | 2014-06-01           | true                            | 404                  |
-      | 2 | 0100               |                                     | 1989-03-01            | 1994-06-01           | true                            | 404                  |
+      | # | nationaliteit.code | aanduidingBijzonderNederlanderschap | datumIngangGeldigheid | datumTot   | indicatieNationaliteitBeeindigd | redenBeeindigen.code |
+      | 0 | 0001               |                                     | 1991-02-01            |            |                                 |                      |
+      | 1 | 0057               |                                     | 1983-12-13            | 2014-06-01 | true                            | 404                  |
+      | 2 | 0100               |                                     | 1989-03-01            | 1994-06-01 | true                            | 404                  |
 
 
   Rule: bij sorteren wordt een nationaliteit met volledig onbekende datum ingang of datum tot geplaatst onder de nationaliteit(en) met een bekende datum
@@ -498,10 +576,10 @@ Rule: In het antwoord worden eerst de actuele nationaliteiten opgenomen, gevolgd
       Als de nationaliteithistorie met burgerservicenummer 999992806 wordt geraadpleegd
       Dan bevat het antwoord 3 voorkomens
       En wordt de nationaliteithistorie teruggegeven in de volgorde en met waarden:
-      | # | nationaliteit.code | aanduidingBijzonderNederlanderschap | datumIngangGeldigheid | datumTot             | indicatieNationaliteitBeeindigd | redenBeeindigen.code |
-      | 0 | 0100               | vastgesteld_niet_nederlander        | 2000-01-14            |                      |                                 |                      |
-      | 1 | 0334               |                                     |                       |                      |                                 |                      |
-      | 2 | 0331               |                                     | 1983-12-13            | 2000-01-14           | true                            | 404                  |
+      | # | nationaliteit.code | aanduidingBijzonderNederlanderschap | datumIngangGeldigheid | datumTot   | indicatieNationaliteitBeeindigd | redenBeeindigen.code |
+      | 0 | 0100               | vastgesteld_niet_nederlander        | 2000-01-14            |            |                                 |                      |
+      | 1 | 0334               |                                     |                       |            |                                 |                      |
+      | 2 | 0331               |                                     | 1983-12-13            | 2000-01-14 | true                            | 404                  |
 
   Rule: voor sorteren wordt bij een gedeeltelijk onbekende datum ingang of datum tot de eerste dag van de onzekerheidsperiode gebruikt
 
