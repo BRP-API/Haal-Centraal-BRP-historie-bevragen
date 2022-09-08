@@ -1529,6 +1529,9 @@
           "datumIngangGeldigheid" : {
             "$ref" : "#/components/schemas/GbaDatum"
           },
+          "datumTot" : {
+            "$ref" : "#/components/schemas/GbaDatum"
+          },
           "nationaliteit" : {
             "$ref" : "#/components/schemas/Waardetabel"
           },
