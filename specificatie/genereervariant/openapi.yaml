@@ -824,56 +824,53 @@ components:
               De einddatum van de periode waarover de resource wordt opgevraagd.
             format: date
             example: 1964-09-24
+    HistorieQueryResponseBasis:
+      type: object
+      properties:
+        opschortingBijhouding:
+          $ref: '#/components/schemas/OpschortingBijhouding'
+        geheimhoudingPersoonsgegevens:
+          $ref: '#/components/schemas/GeheimhoudingPersoonsgegevens'
+        verificatie:
+          $ref: '#/components/schemas/Verificatie'
+        rni:
+          $ref: '#/components/schemas/RniDeelnemer'
     VerblijfplaatshistorieQueryResponse:
-      type: object
-      properties:
-        verblijfplaatsen:
-          type: array
-          items:
-            $ref: '#/components/schemas/AbstractVerblijfplaats'
-        geheimhoudingPersoonsgegevens:
-          $ref: '#/components/schemas/GeheimhoudingPersoonsgegevens'
-        verificatie:
-          $ref: '#/components/schemas/Verificatie'
-        opschortingBijhouding:
-          $ref: '#/components/schemas/OpschortingBijhouding'
+      allOf:
+      - $ref: '#/components/schemas/HistorieQueryResponseBasis'
+      - type: object
+        properties:
+          verblijfplaatsen:
+            type: array
+            items:
+              $ref: '#/components/schemas/AbstractVerblijfplaats'
     PartnerhistorieQueryResponse:
-      type: object
-      properties:
-        partners:
-          type: array
-          items:
-            $ref: '#/components/schemas/Partner'
-        geheimhoudingPersoonsgegevens:
-          $ref: '#/components/schemas/GeheimhoudingPersoonsgegevens'
-        opschortingBijhouding:
-          $ref: '#/components/schemas/OpschortingBijhouding'
+      allOf:
+      - $ref: '#/components/schemas/HistorieQueryResponseBasis'
+      - type: object
+        properties:
+          partners:
+            type: array
+            items:
+              $ref: '#/components/schemas/Partner'
     VerblijfstitelhistorieQueryResponse:
-      type: object
-      properties:
-        verblijfstitels:
-          type: array
-          items:
-            $ref: '#/components/schemas/Verblijfstitel'
-        geheimhoudingPersoonsgegevens:
-          $ref: '#/components/schemas/GeheimhoudingPersoonsgegevens'
-        opschortingBijhouding:
-          $ref: '#/components/schemas/OpschortingBijhouding'
-        verificatie:
-          $ref: '#/components/schemas/Verificatie'
+      allOf:
+      - $ref: '#/components/schemas/HistorieQueryResponseBasis'
+      - type: object
+        properties:
+          verblijfstitels:
+            type: array
+            items:
+              $ref: '#/components/schemas/Verblijfstitel'
     NationaliteithistorieQueryResponse:
-      type: object
-      properties:
-        nationaliteiten:
-          type: array
-          items:
-            $ref: '#/components/schemas/AbstractNationaliteit'
-        geheimhoudingPersoonsgegevens:
-          $ref: '#/components/schemas/GeheimhoudingPersoonsgegevens'
-        verificatie:
-          $ref: '#/components/schemas/Verificatie'
-        opschortingBijhouding:
-          $ref: '#/components/schemas/OpschortingBijhouding'
+      allOf:
+      - $ref: '#/components/schemas/HistorieQueryResponseBasis'
+      - type: object
+        properties:
+          nationaliteiten:
+            type: array
+            items:
+              $ref: '#/components/schemas/AbstractNationaliteit'
     BadRequestFoutbericht:
       allOf:
       - $ref: '#/components/schemas/Foutbericht'
@@ -953,6 +950,61 @@ components:
         \ \nwaarbij in de eerste kolom het fields-pad staat en in de tweede kolom\
         \ het volledige pad naar het gewenste veld. \nBij opgave van een pad dat verwijst\
         \ naar een niet-bestaand veld wordt een 400 Bad Request teruggegeven.\n"
+    OpschortingBijhouding:
+      allOf:
+      - $ref: '#/components/schemas/OpschortingBijhoudingBasis'
+      - type: object
+        properties:
+          datum:
+            $ref: '#/components/schemas/AbstractDatum'
+        description: |
+          * **datum**: de datum waarop de bijhouding van de persoonsgegevens is gestaakt.
+    OpschortingBijhoudingBasis:
+      type: object
+      properties:
+        reden:
+          $ref: '#/components/schemas/Waardetabel'
+      description: |
+        * **reden** - wordt gevuld met waarden uit de tabel 'redenopschortingbijhouding' (zie Haal-Centraal-BRP-tabellen-bevragen API).
+    GeheimhoudingPersoonsgegevens:
+      type: boolean
+      description: |
+        Gegevens mogen niet worden verstrekt aan derden / maatschappelijke instellingen.
+    Verificatie:
+      type: object
+      properties:
+        datum:
+          $ref: '#/components/schemas/AbstractDatum'
+        omschrijving:
+          $ref: '#/components/schemas/OmschrijvingVerificatie'
+    OmschrijvingVerificatie:
+      pattern: ^[a-zA-Z0-9À-ž \.\-\']{1,50}$
+      type: string
+      description: |
+        Omschrijving van de verificatie van de rni-gegevens
+    RniDeelnemer:
+      type: object
+      properties:
+        deelnemer:
+          $ref: '#/components/schemas/Waardetabel'
+        omschrijvingVerdrag:
+          $ref: '#/components/schemas/OmschrijvingVerdrag'
+    Waardetabel:
+      type: object
+      properties:
+        code:
+          pattern: ^[a-zA-Z0-9 \.]+$
+          type: string
+          example: "6030"
+        omschrijving:
+          pattern: ^[a-zA-Z0-9À-ž \'\,\(\)\.\-]{1,200}$
+          type: string
+          example: Nederland
+    OmschrijvingVerdrag:
+      pattern: ^[a-zA-Z0-9À-ž \.\-\']{1,50}$
+      type: string
+      description: |
+        Omschrijving van het verdrag op basis waarvan een zusterorganisatie in het buitenland de gegevens bij de RNI-deelnemer heeft aangeleverd.
     AbstractVerblijfplaats:
       required:
       - type
@@ -1313,38 +1365,6 @@ components:
             type: boolean
           datumIngangGeldigheid:
             type: boolean
-    GeheimhoudingPersoonsgegevens:
-      type: boolean
-      description: |
-        Gegevens mogen niet worden verstrekt aan derden / maatschappelijke instellingen.
-    Verificatie:
-      type: object
-      properties:
-        datum:
-          $ref: '#/components/schemas/AbstractDatum'
-        omschrijving:
-          $ref: '#/components/schemas/OmschrijvingVerificatie'
-    OmschrijvingVerificatie:
-      pattern: ^[a-zA-Z0-9À-ž \.\-\']{1,50}$
-      type: string
-      description: |
-        Omschrijving van de verificatie van de rni-gegevens
-    OpschortingBijhouding:
-      allOf:
-      - $ref: '#/components/schemas/OpschortingBijhoudingBasis'
-      - type: object
-        properties:
-          datum:
-            $ref: '#/components/schemas/AbstractDatum'
-        description: |
-          * **datum**: de datum waarop de bijhouding van de persoonsgegevens is gestaakt.
-    OpschortingBijhoudingBasis:
-      type: object
-      properties:
-        reden:
-          $ref: '#/components/schemas/Waardetabel'
-      description: |
-        * **reden** - wordt gevuld met waarden uit de tabel 'redenopschortingbijhouding' (zie Haal-Centraal-BRP-tabellen-bevragen API).
     Partner:
       type: object
       properties:
@@ -1602,35 +1622,6 @@ components:
             type: boolean
           redenBeeindigen:
             type: boolean
-    AdresseringBeperkt:
-      type: object
-      properties:
-        adresregel1:
-          $ref: '#/components/schemas/Adresregel1'
-        adresregel2:
-          $ref: '#/components/schemas/Adresregel2'
-        adresregel3:
-          $ref: '#/components/schemas/Adresregel3'
-        land:
-          $ref: '#/components/schemas/Waardetabel'
-    Adresregel1:
-      maxLength: 40
-      type: string
-      description: |
-        Het eerste deel van een adres is een combinatie van de straat en huisnummer.
-      example: Laan van de landinrichtingscommissie Duiven-Westervoort 26A-3
-    Adresregel2:
-      maxLength: 50
-      type: string
-      description: |
-        Het tweede deel van een adres is een combinatie van woonplaats eventueel in combinatie met de postcode.
-      example: 1234AA Nootdorp
-    Adresregel3:
-      maxLength: 35
-      type: string
-      description: |
-        Het derde deel van een adres is optioneel. Het gaat om een of meer geografische gebieden van het adres in het buitenland.
-      example: Selangor
     AbstractDatum:
       required:
       - type
@@ -1724,29 +1715,35 @@ components:
       minimum: 1
       type: integer
       format: int32
-    Waardetabel:
+    AdresseringBeperkt:
       type: object
       properties:
-        code:
-          pattern: ^[a-zA-Z0-9 \.]+$
-          type: string
-          example: "6030"
-        omschrijving:
-          pattern: ^[a-zA-Z0-9À-ž \'\,\(\)\.\-]{1,200}$
-          type: string
-          example: Nederland
-    RniDeelnemer:
-      type: object
-      properties:
-        deelnemer:
+        adresregel1:
+          $ref: '#/components/schemas/Adresregel1'
+        adresregel2:
+          $ref: '#/components/schemas/Adresregel2'
+        adresregel3:
+          $ref: '#/components/schemas/Adresregel3'
+        land:
           $ref: '#/components/schemas/Waardetabel'
-        omschrijvingVerdrag:
-          $ref: '#/components/schemas/OmschrijvingVerdrag'
-    OmschrijvingVerdrag:
-      pattern: ^[a-zA-Z0-9À-ž \.\-\']{1,50}$
+    Adresregel1:
+      maxLength: 40
       type: string
       description: |
-        Omschrijving van het verdrag op basis waarvan een zusterorganisatie in het buitenland de gegevens bij de RNI-deelnemer heeft aangeleverd.
+        Het eerste deel van een adres is een combinatie van de straat en huisnummer.
+      example: Laan van de landinrichtingscommissie Duiven-Westervoort 26A-3
+    Adresregel2:
+      maxLength: 50
+      type: string
+      description: |
+        Het tweede deel van een adres is een combinatie van woonplaats eventueel in combinatie met de postcode.
+      example: 1234AA Nootdorp
+    Adresregel3:
+      maxLength: 35
+      type: string
+      description: |
+        Het derde deel van een adres is optioneel. Het gaat om een of meer geografische gebieden van het adres in het buitenland.
+      example: Selangor
     InOnderzoek:
       type: object
       properties:
