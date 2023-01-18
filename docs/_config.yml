@@ -43,7 +43,7 @@ plugins:
 
 remote_theme: VNG-Realisatie/jekyll-theme-haal-centraal
 
-github: VNG-Realisatie/Haal-Centraal-BRP-historie-bevragen
+github: BRP-API/Haal-Centraal-BRP-historie-bevragen
 
 theme: jekyll-theme-time-machine
 

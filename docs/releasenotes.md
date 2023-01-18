@@ -3,7 +3,7 @@
 
 ## Versie 1.0.0
 
-Alhoewel er nog geen eerdere officiële versie van de Haal-Centraal-BRP-historie-bevragen API als release is uitgebracht zijn de specificaties van deze endpoints als onderdeel van de specificatie van Haal-Centraal-BRP-bevragen het afgelopen jaar beschikbaar geweest via de repository. In de [v0.9.0 release van BRP-bevragen](https://github.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/tree/v0.9.0) zijn de historie-endpoints nog opgenomen. In de afgelopen maanden hebben we de historie-endpoints in een aparte API ondergebracht. Daarbij zijn nieuwe inzichten die het afgelopen jaar zijn opgedaan opgenomen. Recentelijk hebben we de specificaties ook aangepast op het hergebruik van componenten uit BRP-Bevragen release 1.2.0.
+Alhoewel er nog geen eerdere officiële versie van de Haal-Centraal-BRP-historie-bevragen API als release is uitgebracht zijn de specificaties van deze endpoints als onderdeel van de specificatie van Haal-Centraal-BRP-bevragen het afgelopen jaar beschikbaar geweest via de repository. In de [v0.9.0 release van BRP-bevragen](https://github.com/BRP-API/Haal-Centraal-BRP-bevragen/tree/v0.9.0) zijn de historie-endpoints nog opgenomen. In de afgelopen maanden hebben we de historie-endpoints in een aparte API ondergebracht. Daarbij zijn nieuwe inzichten die het afgelopen jaar zijn opgedaan opgenomen. Recentelijk hebben we de specificaties ook aangepast op het hergebruik van componenten uit BRP-Bevragen release 1.2.0.
 Dit is een globaal overzicht van wijzigingen die daarvoor zijn doorgevoerd.
 
 We bieden nu ook SDK's aan met gegenereerde [plumbing-code](./code). Daarnaast bieden we een [postman-collectie](./test) t.b.v. testen aan.
@@ -50,7 +50,7 @@ _**Breaking:**_
 
 
 _**Non-breaking:**_
-- server-url is aangepast (omdat het een aparte API is geworden.) --> https://github.com/VNG-Realisatie/Haal-Centraal-BRP-historie-bevragen
+- server-url is aangepast (omdat het een aparte API is geworden.) --> https://github.com/BRP-API/Haal-Centraal-BRP-historie-bevragen
 - OperationId's zijn aangepast ivm code-generatie issues en nu in UpperCamelCase.
 - Bij properties zijn de maxLength, minLength, pattern en (waar overbodig) de title weggehaald.
 
