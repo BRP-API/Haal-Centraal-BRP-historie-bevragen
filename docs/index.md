@@ -22,7 +22,7 @@ Gebruik de BRP historie bevragen API in combinatie met (een van de) andere BRP A
 * [Actuele BRP-gegevens bevragen](https://BRP-API.github.io/Haal-Centraal-BRP-bevragen){:target="_blank" rel="noopener"}
 * [Reisdocumenten bevragen](https://BRP-API.github.io/Haal-Centraal-Reisdocumenten-bevragen){:target="_blank" rel="noopener"}
 * [Bewoning en medebewoners bevragen](https://BRP-API.github.io/Haal-Centraal-BRP-bewoning){:target="_blank" rel="noopener"}
-* [Landelijke tabellen bevragen](https://vng-realisatie.github.io/Haal-Centraal-BRP-tabellen-bevragen){:target="_blank" rel="noopener"}
+* [Landelijke tabellen bevragen](https://BRP-API.github.io/Haal-Centraal-BRP-tabellen-bevragen){:target="_blank" rel="noopener"}
 
 ## Bronnen
 * [API Design Visie](https://github.com/Geonovum/KP-APIs/tree/master/Werkgroep%20Design%20Visie){:target="_blank" rel="noopener"}
