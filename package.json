@@ -31,13 +31,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/VNG-Realisatie/Haal-Centraal-BRP-historie-bevragen.git"
+    "url": "git+https://github.com/BRP-API/Haal-Centraal-BRP-historie-bevragen.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/VNG-Realisatie/Haal-Centraal-BRP-historie-bevragen/issues"
+    "url": "https://github.com/BRP-API/Haal-Centraal-BRP-historie-bevragen/issues"
   },
-  "homepage": "https://github.com/VNG-Realisatie/Haal-Centraal-BRP-historie-bevragen#readme"
+  "homepage": "https://github.com/BRP-API/Haal-Centraal-BRP-historie-bevragen#readme"
 }
