@@ -42,8 +42,7 @@ components:
         - predicaat
     AdellijkeTitelPredicaatType:
       description: |
-        wordt gevuld op basis van de waarden die voorkomen in de tabel 'Adellijke_Titel_Predicaat' uit de Haal-Centraal-BRP-tabellen-bevragen API. 
-        De property **soort** geeft aan of het een 'predicaat' of een 'titel' betreft. 
+        Wordt gevuld met waarden uit de landelijke tabel 'Adellijke titel/predicaat'. De property soort geeft aan of het een 'predicaat' of een 'titel' is.
       allOf:
         - $ref: 'common.yaml#/components/schemas/Waardetabel'
         - properties:
@@ -103,7 +102,7 @@ components:
           $ref: '#/components/schemas/NaamInOnderzoek'
     NaamInOnderzoek:
       description: |
-        Geeft aan welke gegevens over de naam in onderzoek zijn. Zie de [functionele specificaties](https://github.com/VNG-Realisatie/Haal-Centraal-BRP-bevragen/blob/v1.1.0/features/in_onderzoek.feature)
+        Geeft aan welke gegevens over de naam in onderzoek zijn.
       allOf:
         - $ref: 'persoon.yaml#/components/schemas/InOnderzoek'
         - type: object
@@ -121,7 +120,7 @@ components:
     NaamPersoon:
       description: |
         Gegevens over de naam van de persoon.
-        * **aanduidingNaamgebruik** - wordt gevuld op basis van de waarden die voorkomen in de tabel 'Naamgebruik' uit de Haal-Centraal-BRP-tabellen-bevragen API.
+        * **aanduidingNaamgebruik** - wordt gevuld met waarden voor 'Naamgebruik' in 'tabelwaarden.csv'.
       allOf:
         - $ref: '#/components/schemas/NaamBasis'
         - properties:
