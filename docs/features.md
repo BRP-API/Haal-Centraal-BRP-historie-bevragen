@@ -5,10 +5,10 @@ title: Features
 # Features
 Deze voorbeelden illustreren en specificeren zoveel mogelijk de functionaliteit van de API:
 
-- [nationaliteithistorie](https://github.com/VNG-Realisatie/Haal-Centraal-BRP-historie-bevragen/blob/master/features/nationaliteithistorie.feature){:target="_blank" rel="noopener"}
-- [partnerhistorie](https://github.com/VNG-Realisatie/Haal-Centraal-BRP-historie-bevragen/blob/master/features/partnerhistorie.feature){:target="_blank" rel="noopener"}
-- [verblijfplaatshistorie](https://github.com/VNG-Realisatie/Haal-Centraal-BRP-historie-bevragen/blob/master/features/verblijfplaatshistorie.feature){:target="_blank" rel="noopener"}
-- [verblijfstitelhistorie](https://github.com/VNG-Realisatie/Haal-Centraal-BRP-historie-bevragen/blob/master/features/verblijfstitelhistorie.feature){:target="_blank" rel="noopener"}
+- [nationaliteithistorie](https://github.com/BRP-API/Haal-Centraal-BRP-historie-bevragen/blob/master/features/nationaliteithistorie.feature){:target="_blank" rel="noopener"}
+- [partnerhistorie](https://github.com/BRP-API/Haal-Centraal-BRP-historie-bevragen/blob/master/features/partnerhistorie.feature){:target="_blank" rel="noopener"}
+- [verblijfplaatshistorie](https://github.com/BRP-API/Haal-Centraal-BRP-historie-bevragen/blob/master/features/verblijfplaatshistorie.feature){:target="_blank" rel="noopener"}
+- [verblijfstitelhistorie](https://github.com/BRP-API/Haal-Centraal-BRP-historie-bevragen/blob/master/features/verblijfstitelhistorie.feature){:target="_blank" rel="noopener"}
 
 ## Algemene Haal Centraal features
 Naast API specifieke features zijn er ook features voor alle Haal Centraal API's. Zij staan in Haal Centraal common:

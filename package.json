@@ -10,43 +10,46 @@
     "oas:generate-netcore-client": "npm run oas:generate-client -- -o ./code/netcore -g csharp-netcore --additional-properties=optionalProjectFile=false,optionalAssemblyInfo=false",
     "oas:generate-net-client": "npm run oas:generate-client -- -o ./code/net -g csharp --additional-properties=optionalProjectFile=false,optionalAssemblyInfo=false",
     "oas:generate-python-client": "npm run oas:generate-client -- -o ./code/python -g python --additional-properties=optionalProjectFile=false,optionalAssemblyInfo=false",
-    "preoas:generate-postman-collection": "mkdirp ./test",
-    "oas:generate-postman-collection": "openapi2postmanv2 -s ./specificatie/genereervariant/openapi.yaml -o ./test/BRP-historie-Bevragen-postman-collection.json --pretty",
     "oas:lint": "bash scripts/lint-oas.sh",
     "oas:lint-genereervariant": "bash scripts/lint-oas-genereervariant.sh",
-    "preoas:resolve": "mvn-dl io.swagger.codegen.v3:swagger-codegen-cli:3.0.19 -f swagger-codegen-cli.jar",
+    "preoas:resolve": "mvn-dl io.swagger.codegen.v3:swagger-codegen-cli:3.0.45 -f swagger-codegen-cli.jar",
     "oas:resolve": "bash scripts/resolve-oas.sh",
     "postoas:resolve": "rm swagger-codegen-cli.jar",
-    "unstage-generated": "git reset HEAD ./specificatie/genereervariant/openapi.* ./specificatie/gba-genereervariant/openapi.* ./test/BRP-Historie-Bevragen-postman-collection.json",
-    "rollback-generated": "git checkout ./specificatie/genereervariant/openapi.* ./specificatie/gba-genereervariant/openapi.* ./test/BRP-Historie-Bevragen-postman-collection.json",
-    "prepare": "husky install",
-    "pre-commit": "npm run oas:lint && npm run oas:resolve && npm run oas:lint-genereervariant && npm run unstage-generated",
+    "unstage-generated": "git reset HEAD ./specificatie/genereervariant/openapi.* ./specificatie/gba-genereervariant/openapi.*",
+    "rollback-generated": "git checkout ./specificatie/genereervariant/openapi.* ./specificatie/gba-genereervariant/openapi.*",
     "specs:report": "node scripts/generate-cucumber-report.js",
-    "specs:verify": "bash scripts/specs-verify.sh"
+    "specs:summary": "node scripts/parse-summary.js",
+    "specs:verify": "bash scripts/specs-verify.sh",
+    "pre-commit": "npm run oas:lint && npm run oas:resolve && npm run oas:lint-genereervariant && npm run unstage-generated",
+    "prepare": "husky install",
+    "dotnet:clean": "for /d /r . %d in (bin,obj) do @if exist \"%d\" rd /s/q \"%d\"",
+    "dotnet:restore": "dotnet restore src/Bewoning.sln",
+    "dotnet:build": "dotnet build src/Bewoning.sln --configuration Release --no-restore",
+    "dotnet:test": "dotnet test src/Bewoning.sln --configuration Release --no-build --verbosity normal --collect:\"XPlat Code Coverage\" --results-directory ./coverage"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/VNG-Realisatie/Haal-Centraal-BRP-historie-bevragen.git"
+    "url": "git+https://github.com/BRP-API/Haal-Centraal-BRP-historie-bevragen.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/VNG-Realisatie/Haal-Centraal-BRP-historie-bevragen/issues"
+    "url": "https://github.com/BRP-API/Haal-Centraal-BRP-historie-bevragen/issues"
   },
-  "homepage": "https://github.com/VNG-Realisatie/Haal-Centraal-BRP-historie-bevragen#readme",
+  "homepage": "https://github.com/BRP-API/Haal-Centraal-BRP-historie-bevragen#readme",
   "devDependencies": {
-    "@cucumber/cucumber": "^8.2.0",
-    "@openapitools/openapi-generator-cli": "^2.5.1",
-    "@stoplight/spectral-cli": "^6.5.0",
-    "axios": "^0.27.2",
-    "chai": "^4.3.6",
-    "cucumber-html-reporter": "^5.5.0",
-    "deep-equal-in-any-order": "^1.1.17",
-    "husky": "^8.0.1",
-    "mkdirp": "^1.0.4",
-    "mvn-dl": "^6.0.0",
-    "nswag": "^13.15.10",
-    "openapi-to-postmanv2": "^4.2.0"
+    "@cucumber/cucumber": "^10.0.1",
+    "@openapitools/openapi-generator-cli": "^2.7.0",
+    "@stoplight/spectral-cli": "^6.11.0",
+    "axios": "^1.6.0",
+    "chai": "^4.3.10",
+    "cucumber-html-reporter": "^7.1.1",
+    "deep-equal-in-any-order": "^2.0.6",
+    "husky": "^8.0.3",
+    "mkdirp": "^3.0.1",
+    "mvn-dl": "^6.1.1",
+    "nswag": "^13.20.0",
+    "pg": "^8.11.3"
   }
 }
