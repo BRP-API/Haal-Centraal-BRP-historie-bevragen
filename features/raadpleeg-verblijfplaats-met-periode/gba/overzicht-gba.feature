@@ -166,7 +166,7 @@ Rule: De gevraagde velden van een verblijfplaats van een persoon met bekend datu
     |           |                              |             |                                  | Woonboot bij de Grote Sloot | 20160526 | 20181201 |
     |           |                              | Laan        | 0800010000000001                 |                             | 20100818 | 20160526 |
 
-Rule: De gevraagde velden van een verblijfplaats van een persoon met deels/geheel onbekende datum aanvang adreshouding/adres buitenland worden geleverd als de onzekerheidsperiode van de adreshouding van de verblijfplaats in de gevraagde periode ligt of als de gevraagde periode de onzekerheidsperiode geheel/deels overlapt
+Rule: De gevraagde velden van een verblijfplaats van een persoon met deels/geheel onbekende datum aanvang adreshouding/adres buitenland worden geleverd als de gevraagde periode in de onzekerheidsperiode van de adreshouding ligt of als de gevraagde periode de onzekerheidsperiode geheel/deels overlapt of als de gevraagde periode in de adreshoudingperiode na de onzekerheidsperiode ligt of als de gevraagde periode deze periode geheel/deels overlapt
 
   De adreshouding van een persoon heeft een onzekerheidsperiode als de datum aanvang adreshouding geheel/deels onbekend is.
   In deze periode kan niet met zekerheid worden aangegeven of de persoon daadwerkelijk bewoner is van het adresseerbaar object.
@@ -193,11 +193,11 @@ Rule: De gevraagde velden van een verblijfplaats van een persoon met deels/gehee
     | 0800010000000001                 | Laan   | <datum aanvang adreshouding> |          |
 
     Voorbeelden:
-    | datum aanvang adreshouding | datum van  | datum tot  | scenario                                                                                                  |
-    | 20100800                   | 2010-08-01 | 2010-08-31 | De gevraagde periode ligt in de onzekerheidsperiode van de adreshouding op een adresseerbaar object       |
-    | 20100800                   | 2010-07-01 | 2010-08-15 | De gevraagde periode ligt deels in de onzekerheidsperiode van de adreshouding op een adresseerbaar object |
-    | 20100800                   | 2010-08-01 | 2011-01-01 | De gevraagde periode overlapt de onzekerheidsperiode van de adreshouding op een adresseerbaar object      |
-    | 20100000                   | 2010-01-01 | 2010-12-31 | De gevraagde periode ligt in de onzekerheidsperiode van de adreshouding op een adresseerbaar object       |
+    | datum aanvang adreshouding | datum van  | datum tot  | scenario                                                                                                                                         |
+    | 20100800                   | 2010-08-01 | 2010-08-31 | De gevraagde periode ligt in de onzekerheidsperiode van de adreshouding op een adresseerbaar object                                              |
+    | 20100800                   | 2010-07-01 | 2010-08-15 | De gevraagde periode ligt deels in de onzekerheidsperiode van de adreshouding op een adresseerbaar object                                        |
+    | 20100800                   | 2010-08-14 | 2011-01-01 | De gevraagde periode overlapt deels de onzekerheidsperiode en deels de adreshoudingperiode na de onzekerheidsperiode op een adresseerbaar object |
+    | 20100000                   | 2010-01-01 | 2010-12-31 | De gevraagde periode ligt in de onzekerheidsperiode van de adreshouding op een adresseerbaar object                                              |
 
   Scenario: De gevraagde periode overlapt meerdere adreshoudingperiodes met deels/geheel onbekend datum aanvang adreshouding/adres buitenland
     Gegeven de persoon met burgerservicenummer '000000024' is ingeschreven op adres 'A1' met de volgende gegevens
