@@ -189,14 +189,15 @@ Rule: De gevraagde velden van een verblijfplaats van een persoon met deels/gehee
     | datumTot            | <datum tot>         |
     | fields              | verblijfplaats      |
     Dan heeft de response verblijfplaatsen met de volgende gegevens
-    | adresseerbaarObjectIdentificatie | straat | datumVan | datumTot |
-    | 0800010000000001                 | Laan   | 20100818 |          |
+    | adresseerbaarObjectIdentificatie | straat | datumVan                     | datumTot |
+    | 0800010000000001                 | Laan   | <datum aanvang adreshouding> |          |
 
     Voorbeelden:
     | datum aanvang adreshouding | datum van  | datum tot  | scenario                                                                                                  |
     | 20100800                   | 2010-08-01 | 2010-08-31 | De gevraagde periode ligt in de onzekerheidsperiode van de adreshouding op een adresseerbaar object       |
     | 20100800                   | 2010-07-01 | 2010-08-15 | De gevraagde periode ligt deels in de onzekerheidsperiode van de adreshouding op een adresseerbaar object |
     | 20100800                   | 2010-08-01 | 2011-01-01 | De gevraagde periode overlapt de onzekerheidsperiode van de adreshouding op een adresseerbaar object      |
+    | 20100000                   | 2010-01-01 | 2010-12-31 | De gevraagde periode ligt in de onzekerheidsperiode van de adreshouding op een adresseerbaar object       |
 
   Scenario: De gevraagde periode overlapt meerdere adreshoudingperiodes met deels/geheel onbekend datum aanvang adreshouding/adres buitenland
     Gegeven de persoon met burgerservicenummer '000000024' is ingeschreven op adres 'A1' met de volgende gegevens
