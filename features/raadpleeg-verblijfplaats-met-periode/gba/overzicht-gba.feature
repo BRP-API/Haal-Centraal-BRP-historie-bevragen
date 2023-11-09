@@ -21,7 +21,7 @@ Functionaliteit: raadpleeg verblijfplaats voorkomens in een periode
     | gemeentecode (92.10) | locatiebeschrijving (12.10) |
     | 0800                 | Woonboot bij de Grote Sloot |
 
-Rule: Een verblijfplaats van een persoon met bekend datum aanvang adreshouding/adres buitenland wordt geleverd als datumTot van de gevraagde periode groter of gelijk is aan datum aanvang adreshouding/adres buitenland en in het geval van een volgende adreshouding/adres buitenland is de datumVan kleiner dan datum aanvang volgende adreshouding/adres buitenland
+Rule: Een verblijfplaats van een persoon met bekend datum aanvang adreshouding/adres buitenland wordt geleverd als datumTot van de gevraagde periode groter is dan datum aanvang adreshouding/adres buitenland en in het geval van een volgende adreshouding/adres buitenland is de datumVan kleiner dan datum aanvang volgende adreshouding/adres buitenland
 
   De verblijfplaatsen worden aflopend gesorteerd geleverd. De eerste verblijfplaats in de verblijfplaatsen lijst is de meest recente verblijfplaats in de gevraagde periode.
   Komt er in de gevraagde periode alleen verblijfplaatsen voor met bekend datum aanvang adreshouding/adres buitenland, dan is de sortering gelijk aan het aflopend sorteren op datum aanvang adreshouding/adres buitenland.
@@ -35,19 +35,19 @@ Rule: Een verblijfplaats van een persoon met bekend datum aanvang adreshouding/a
     | type                | RaadpleegMetPeriode |
     | burgerservicenummer | 000000024           |
     | datumVan            | <datum van>         |
-    | datumTot            | 2011-09-01          |
+    | datumTot            | <datum tot>         |
     Dan heeft de response verblijfplaatsen met de volgende gegevens
     | adresseerbaarObjectIdentificatie | straat | datumAanvangAdreshouding |
     | 0800010000000001                 | Laan   | 20100818                 |
 
     Voorbeelden:
-    | datum van  | scenario                                                                   |
-    | 2010-09-01 | De gevraagde periode ligt na datum aanvang adreshouding                    |
-    | 2010-08-01 | datumTot van de gevraagde periode is gelijk aan datum aanvang adreshouding |
+    | datum van  | datum tot  | scenario                                                                             |
+    | 2010-09-01 | 2011-09-01 | De gevraagde periode ligt na datum aanvang adreshouding                              |
+    | 2010-01-01 | 2010-08-19 | datumTot van de gevraagde periode is gelijk aan de dag na datum aanvang adreshouding |
     # 24 |--A1--     |--A1--
     #      |---| |---|
 
-  Scenario: De gevraagde periode begint op/na datum aanvang adreshouding (wel vorige en geen volgende verblijfplaats)
+  Abstract Scenario: <scenario> (wel vorige en geen volgende verblijfplaats)
     Gegeven de persoon met burgerservicenummer '000000024' is ingeschreven op adres 'A1' met de volgende gegevens
     | gemeente van inschrijving (09.10) | datum aanvang adreshouding (10.30) |
     | 0800                              | 20100818                           |
@@ -63,10 +63,15 @@ Rule: Een verblijfplaats van een persoon met bekend datum aanvang adreshouding/a
     Dan heeft de response verblijfplaatsen met de volgende gegevens
     | adresseerbaarObjectIdentificatie | straat      | datumAanvangAdreshouding |
     | 0800010000000002                 | Luttestraat | 20160526                 |
-    # 24 |-A1-|--A2--
-    #          |---|
 
-  Abstract Scenario: <scenario> (geen vorige verblijfplaats)
+    Voorbeelden:
+    | datum van  | scenario                                                  |
+    | 2016-05-26 | De gevraagde periode begint op datum aanvang adreshouding |
+    | 2016-09-01 | De gevraagde periode begint na datum aanvang adreshouding |
+    # 24 |-A1-|--A2--  |-A1-|--A2--
+    #         |---|           |---|
+
+  Abstract Scenario: <scenario> (geen vorige verblijfplaats en wel volgende verblijfplaats)
     Gegeven de persoon met burgerservicenummer '000000024' is ingeschreven op adres 'A1' met de volgende gegevens
     | gemeente van inschrijving (09.10) | datum aanvang adreshouding (10.30) |
     | 0800                              | 20100818                           |
@@ -86,11 +91,11 @@ Rule: Een verblijfplaats van een persoon met bekend datum aanvang adreshouding/a
     Voorbeelden:
     | datum tot  | scenario                                                                                        |
     | 2016-05-25 | datumTot van de gevraagde periode is gelijk aan de dag vóór datum aanvang volgende adreshouding |
-    | 2010-08-18 | datumTot van de gevraagde periode is gelijk aan datum aanvang adreshouding                      |
+    | 2010-08-19 | datumTot van de gevraagde periode is gelijk aan de dag na datum aanvang adreshouding            |
     # 24  |--A1--|--A2--     |--A1--|--A2--
     #   |--------|       |---|
 
-  Scenario: De gevraagde periode ligt tussen datum aanvang adreshouding en datum aanvang volgende adreshouding (wel vorige verblijfplaats)
+  Scenario: De gevraagde periode ligt tussen datum aanvang adreshouding en datum aanvang volgende adreshouding (wel vorige verblijfplaats en wel volgende verblijfplaats)
     Gegeven de persoon met burgerservicenummer '000000024' is ingeschreven op adres 'A1' met de volgende gegevens
     | gemeente van inschrijving (09.10) | datum aanvang adreshouding (10.30) |
     | 0800                              | 20100818                           |
@@ -143,8 +148,8 @@ Rule: Een verblijfplaats van een persoon met bekend datum aanvang adreshouding/a
     | datumVan            | 2019-10-01          |
     | datumTot            | 2020-07-01          |
     Dan heeft de response verblijfplaatsen met de volgende gegevens
-    | land.code | land.omschrijving            | datumAanvangAdreshouding | datumAanvangVolgendeAdresBuitenland |
-    | 6014      | Verenigde Staten van Amerika | 20181201                 |                                     |
+    | land.code | land.omschrijving            | datumAanvangAdresBuitenland |
+    | 6014      | Verenigde Staten van Amerika | 20181201                    |
 
   Scenario: De gevraagde persoon heeft meerdere verblijfplaatsen met bekend datum aanvang adreshouding/adres buitenland die in de gevraagde periode liggen
     Gegeven de persoon met burgerservicenummer '000000024' is ingeschreven op adres 'A1' met de volgende gegevens
@@ -172,7 +177,7 @@ Rule: Een verblijfplaats van een persoon met bekend datum aanvang adreshouding/a
     |           |                              |             |                                  | Woonboot bij de Grote Sloot | 20160526                 |                                  |                             | 20181201                            |
     |           |                              | Laan        | 0800010000000001                 |                             | 20100818                 | 20160526                         |                             |                                     |
 
-Rule: Een verblijfplaats van een persoon met deels onbekende datum aanvang adreshouding/adres buitenland wordt geleverd als datumTot van de gevraagde periode groter of gelijk is aan de eerste dag van de deels onbekende datum aanvang adreshouding/adres buitenland en in het geval van een volgende adreshouding/adres buitenland is de datumVan kleiner dan datum aanvang volgende adreshouding/adres buitenland
+Rule: Een verblijfplaats van een persoon met deels onbekende datum aanvang adreshouding/adres buitenland wordt geleverd als datumTot van de gevraagde periode groter is dan de eerste dag van de deels onbekende datum aanvang adreshouding/adres buitenland en in het geval van een volgende adreshouding/adres buitenland is de datumVan kleiner dan datum aanvang volgende adreshouding/adres buitenland
 
   Bij een datum aanvang adreshouding/adres buitenland waarvan de dag onbekend is, wordt de eerste dag van de betreffende maand als datum aanvang adreshouding/adres buitenland gehanteerd. Bijvoorbeeld bij 20100800 wordt 20100801 gehanteerd.
   Analoog wordt, bij een datum aanvang adreshouding/adres buitenland waarvan de dag en maand onbekend is, de eerste dag van het betreffende jaar als datum aanvang adreshouding/adres buitenland gehanteerd. Bijvoorbeeld bij 20100000 wordt 20100101 gehanteerd.
@@ -181,7 +186,7 @@ Rule: Een verblijfplaats van een persoon met deels onbekende datum aanvang adres
   In tegenstelling tot verblijfplaatsen met bekend datum aanvang adreshouding/adres buitenland, hoeft de sortering niet overeen te komen met het aflopend sorteren op datum aanvang adreshouding/adres buitenland.
   Dit is bijvoorbeeld het geval bij een verblijfplaats met datum aanvang adreshouding die in de onzekerheidsperiode ligt van een volgende verblijfplaats met deels onbekende datum aanvang adreshouding en de datum aanvang adreshouding ligt in de gevraagde periode.
 
-  Abstract Scenario: datumTot van de gevraagde periode is gelijk aan de eerste dag van de deels onbekende datum aanvang adreshouding (geen vorige en geen volgende verblijfplaats)
+  Abstract Scenario: datumTot van de gevraagde periode is gelijk aan de tweede dag van de deels onbekende datum aanvang adreshouding (geen vorige en geen volgende verblijfplaats)
     Gegeven de persoon met burgerservicenummer '000000024' is ingeschreven op adres 'A1' met de volgende gegevens
     | gemeente van inschrijving (09.10) | datum aanvang adreshouding (10.30) |
     | 0800                              | <datum aanvang adreshouding>       |
@@ -197,8 +202,8 @@ Rule: Een verblijfplaats van een persoon met deels onbekende datum aanvang adres
 
     Voorbeelden:
     | datum aanvang adreshouding | datum tot  |
-    | 20100800                   | 2010-08-01 |
-    | 20100000                   | 2010-01-01 |
+    | 20100800                   | 2010-08-02 |
+    | 20100000                   | 2010-01-02 |
 
   Abstract Scenario: <scenario> (wel vorige en geen volgende verblijfplaats)
     Gegeven de persoon met burgerservicenummer '000000024' is ingeschreven op adres 'A1' met de volgende gegevens
@@ -245,6 +250,8 @@ Rule: Een verblijfplaats van een persoon met deels onbekende datum aanvang adres
     | datum van  |
     | 2010-01-01 |
     | 2016-05-25 |
+    # 24 |~~A1--|--A2--  |~~A1--|--A2--
+    #    |----------|           |---|
 
   Scenario: De gevraagde persoon heeft meerdere verblijfplaatsen met deels onbekende datum aanvang adreshouding/adres buitenland die in de gevraagde periode liggen
     Gegeven de persoon met burgerservicenummer '000000024' is ingeschreven op adres 'A1' met de volgende gegevens
@@ -324,7 +331,7 @@ Rule: Een verblijfplaats buitenland van een persoon wordt niet geleverd als de o
     | datumTot                          | 2020-07-01          |
     | exclusiefVerblijfplaatsBuitenland | true                |
     Dan heeft de response verblijfplaatsen met de volgende gegevens
-    | straat      | adresseerbaarObjectIdentificatie | locatiebeschrijving         | datumAanvangAdreshouding | datumAanvangVolgendeAdreshouding |
-    | Luttestraat | 0800010000000002                 |                             | 20200415                 |                                  |
-    |             |                                  | Woonboot bij de Grote Sloot | 20160526                 | 20181201                         |
-    | Laan        | 0800010000000001                 |                             | 20100818                 | 20160526                         |
+    | straat      | adresseerbaarObjectIdentificatie | locatiebeschrijving         | datumAanvangAdreshouding | datumAanvangVolgendeAdreshouding | datumAanvangVolgdendeAdresBuitenland |
+    | Luttestraat | 0800010000000002                 |                             | 20200415                 |                                  |                                      |
+    |             |                                  | Woonboot bij de Grote Sloot | 20160526                 |                                  | 20181201                             |
+    | Laan        | 0800010000000001                 |                             | 20100818                 | 20160526                         |                                      |
