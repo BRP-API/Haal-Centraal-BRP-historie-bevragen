@@ -21,7 +21,7 @@ Functionaliteit: raadpleeg verblijfplaats voorkomens in een periode
     | gemeentecode (92.10) | locatiebeschrijving (12.10) |
     | 0800                 | Woonboot bij de Grote Sloot |
 
-Rule: Een verblijfplaats van een persoon met bekend datum aanvang adreshouding/adres buitenland wordt geleverd als datumTot van de gevraagde periode groter of gelijk is aan datum aanvang adreshouding/adres buitenland en bij aansluitend volgende adreshouding/adres buitenland, als datumVan kleiner is dan datum aanvang volgende adreshouding/adres buitenland
+Rule: Een verblijfplaats van een persoon met bekend datum aanvang adreshouding/adres buitenland wordt geleverd als datumTot van de gevraagde periode groter of gelijk is aan datum aanvang adreshouding/adres buitenland en in het geval van een volgende adreshouding/adres buitenland is de datumVan kleiner dan datum aanvang volgende adreshouding/adres buitenland
 
   De verblijfplaatsen worden aflopend gesorteerd geleverd. De eerste verblijfplaats in de verblijfplaatsen lijst is de meest recente verblijfplaats in de gevraagde periode.
   Komt er in de gevraagde periode alleen verblijfplaatsen voor met bekend datum aanvang adreshouding/adres buitenland, dan is de sortering gelijk aan het aflopend sorteren op datum aanvang adreshouding/adres buitenland.
@@ -172,10 +172,10 @@ Rule: Een verblijfplaats van een persoon met bekend datum aanvang adreshouding/a
     |           |                              |             |                                  | Woonboot bij de Grote Sloot | 20160526                 |                                  |                             | 20181201                            |
     |           |                              | Laan        | 0800010000000001                 |                             | 20100818                 | 20160526                         |                             |                                     |
 
-Rule: Een verblijfplaats van een persoon met deels onbekende datum aanvang adreshouding/adres buitenland wordt geleverd als datumTot van de gevraagde periode groter of gelijk is aan de eerste dag van de deels onbekende datum aanvang adreshouding/adres buitenland en bij aansluitend volgende adreshouding/adres buitenland, als datumVan kleiner is dan datum aanvang volgende adreshouding/adres buitenland
+Rule: Een verblijfplaats van een persoon met deels onbekende datum aanvang adreshouding/adres buitenland wordt geleverd als datumTot van de gevraagde periode groter of gelijk is aan de eerste dag van de deels onbekende datum aanvang adreshouding/adres buitenland en in het geval van een volgende adreshouding/adres buitenland is de datumVan kleiner dan datum aanvang volgende adreshouding/adres buitenland
 
-  Bij een datum aanvang adreshouding/adres buitenland waarvan de dag onbekend is, wordt de eerste dag van de betreffende maand als datum aanvang adreshouding/adres buitenland gehanteerd.
-  Analoog wordt, bij een datum aanvang adreshouding/adres buitenland waarvan de dag en maand onbekend is, de eerste dag van het betreffende jaar als datum aanvang adreshouding/adres buitenland gehanteerd.
+  Bij een datum aanvang adreshouding/adres buitenland waarvan de dag onbekend is, wordt de eerste dag van de betreffende maand als datum aanvang adreshouding/adres buitenland gehanteerd. Bijvoorbeeld bij 20100800 wordt 20100801 gehanteerd.
+  Analoog wordt, bij een datum aanvang adreshouding/adres buitenland waarvan de dag en maand onbekend is, de eerste dag van het betreffende jaar als datum aanvang adreshouding/adres buitenland gehanteerd. Bijvoorbeeld bij 20100000 wordt 20100101 gehanteerd.
 
   De verblijfplaatsen worden aflopend gesorteerd geleverd. De eerste verblijfplaats in de verblijfplaatsen lijst is de meest recente verblijfplaats in de gevraagde periode.
   In tegenstelling tot verblijfplaatsen met bekend datum aanvang adreshouding/adres buitenland, hoeft de sortering niet overeen te komen met het aflopend sorteren op datum aanvang adreshouding/adres buitenland.
@@ -274,7 +274,7 @@ Rule: Een verblijfplaats van een persoon met deels onbekende datum aanvang adres
 
 Rule: Een verblijfplaats van een persoon met geheel onbekende datum aanvang adreshouding/adres buitenland wordt altijd geleverd
 
-  Bij een geheel onbekende datum aanvang adreshouding/adres buitenland wordt 00010101 als datum aanvang adreshouding/adres buitenland gehanteerd.
+  Bij een geheel onbekende datum aanvang adreshouding/adres buitenland wordt de eerste dag van jaar 1 (00010101) als datum aanvang adreshouding/adres buitenland gehanteerd.
 
   Scenario: De gevraagde persoon heeft meerdere verblijfplaatsen met geheel onbekende datum aanvang adreshouding/adres buitenland
     Gegeven de persoon met burgerservicenummer '000000024' is ingeschreven op adres 'A1' met de volgende gegevens
