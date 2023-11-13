@@ -89,9 +89,9 @@ Rule: Een verblijfplaats van een persoon met bekend datum aanvang adreshouding/a
     | 0800010000000001                 | Laan   | 20100818                 | 20160526                         |
 
     Voorbeelden:
-    | datum tot  | scenario                                                                                        |
-    | 2016-05-25 | datumTot van de gevraagde periode is gelijk aan de dag vóór datum aanvang volgende adreshouding |
-    | 2010-08-19 | datumTot van de gevraagde periode is gelijk aan de dag na datum aanvang adreshouding            |
+    | datum tot  | scenario                                                                             |
+    | 2016-05-26 | datumTot van de gevraagde periode is gelijk aan datum aanvang volgende adreshouding  |
+    | 2010-08-19 | datumTot van de gevraagde periode is gelijk aan de dag na datum aanvang adreshouding |
     # 24  |--A1--|--A2--     |--A1--|--A2--
     #   |--------|       |---|
 
