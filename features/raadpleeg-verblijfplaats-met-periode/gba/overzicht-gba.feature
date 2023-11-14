@@ -58,7 +58,7 @@ Rule: Een verblijfplaats van een persoon met bekend datum aanvang adreshouding/a
     | naam                | waarde              |
     | type                | RaadpleegMetPeriode |
     | burgerservicenummer | 000000024           |
-    | datumVan            | 2016-09-01          |
+    | datumVan            | <datum van>         |
     | datumTot            | 2020-01-01          |
     Dan heeft de response verblijfplaatsen met de volgende gegevens
     | adresseerbaarObjectIdentificatie | straat      | datumAanvangAdreshouding |
