@@ -191,8 +191,6 @@ components:
         properties:
           verblijfadres:
             $ref: "#/components/schemas/VerblijfadresBuitenland"
-          gemeenteVanInschrijving:
-            $ref: 'common.yaml#/components/schemas/Waardetabel'
           datumVan:
             $ref: 'datum.yaml#/components/schemas/AbstractDatum'
           datumTot:
@@ -208,6 +206,7 @@ components:
         * **functieAdres** - wordt gevuld met waarden voor 'Functie_Adres' in 'tabelwaarden.csv'.
         * **aanduidingBijHuisnummer** - wordt gevuld met waarden voor 'Aanduiding_Bij_Huisnummer' in 'tabelwaarden.csv'.
         * **datumVan** : de datum van aangifte of ambtshalve melding van verblijf en adres.
+        * **datumTot** : de datum van aangifte of ambtshalve melding van volgende verblijf en adres.
       allOf:
         - $ref : '#/components/schemas/AbstractVerblijfplaats'
         - type: object
@@ -230,8 +229,6 @@ components:
               $ref: '#/components/schemas/IndicatieVastgesteldVerblijftNietOpAdres'
             inOnderzoek:
               $ref: "#/components/schemas/AdresInOnderzoek"
-            rni:
-              $ref: 'common.yaml#/components/schemas/RniDeelnemer'
     Locatie:
       description: |
         * **functieAdres** - wordt gevuld met waarden voor 'Functie_Adres' in 'tabelwaarden.csv'.
@@ -255,8 +252,6 @@ components:
               $ref: '#/components/schemas/IndicatieVastgesteldVerblijftNietOpAdres'
             inOnderzoek:
               $ref: '#/components/schemas/LocatieInOnderzoek'
-            rni:
-              $ref: 'common.yaml#/components/schemas/RniDeelnemer'
     VerblijfplaatsOnbekend:
       allOf:
         - $ref: '#/components/schemas/AbstractVerblijfplaats'
@@ -281,14 +276,22 @@ components:
               $ref: '#/components/schemas/NummeraanduidingIdentificatie'
             datumAanvangAdresBuitenland:
               $ref: 'datum.yaml#/components/schemas/GbaDatum'
+            datumAanvangVolgendeAdresBuitenland:
+              $ref: 'datum.yaml#/components/schemas/GbaDatum'
             datumAanvangAdreshouding:
+              $ref: 'datum.yaml#/components/schemas/GbaDatum'
+            datumAanvangVolgendeAdreshouding:
               $ref: 'datum.yaml#/components/schemas/GbaDatum'
             functieAdres:
               $ref: 'common.yaml#/components/schemas/Waardetabel'
             naamOpenbareRuimte:
               $ref: '#/components/schemas/NaamOpenbareRuimte'
+            gemeenteVanInschrijving:
+              $ref: 'common.yaml#/components/schemas/Waardetabel'
             rni:
               $ref: 'common.yaml#/components/schemas/RniDeelnemer'
+            inOnderzoekVolgendeVerblijfplaats:
+              $ref: 'gba-inonderzoek.yaml#/components/schemas/GbaInOnderzoek'
     VerblijfplaatsBuitenlandInOnderzoek:
       allOf:
         - $ref: 'persoon.yaml#/components/schemas/InOnderzoek'
@@ -299,6 +302,8 @@ components:
             gemeenteVanInschrijving:
               type: boolean
             datumVan:
+              type: boolean
+            datumTot:
               type: boolean
     VerblijfadresBuitenlandInOnderzoek:
       allOf:
@@ -345,6 +350,8 @@ components:
               type: boolean
             datumVan:
               type: boolean
+            datumTot:
+              type: boolean
             nummeraanduidingIdentificatie:
               type: boolean
             adresseerbaarObjectIdentificatie:
@@ -360,6 +367,8 @@ components:
               type: boolean
             datumVan:
               type: boolean
+            datumTot:
+              type: boolean
     LocatieInOnderzoek:
       allOf:
         - $ref: 'persoon.yaml#/components/schemas/InOnderzoek'
@@ -370,6 +379,8 @@ components:
             gemeenteVanInschrijving:
               type: boolean
             datumVan:
+              type: boolean
+            datumTot:
               type: boolean
             functieAdres:
               type: boolean

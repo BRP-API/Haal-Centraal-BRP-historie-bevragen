@@ -140,17 +140,8 @@ components:
           type: string
         burgerservicenummer:
           $ref: "persoon.yaml#/components/schemas/Burgerservicenummer"
-        fields:
-          description: |
-            Hiermee kun je de inhoud van de resource naar behoefte aanpassen door een lijst van paden die verwijzen naar de gewenste velden op te nemen
-            ([zie functionele specificaties 'fields' properties](https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-historie-bevragen/develop/features/fields.feature)).
-            De te gebruiken paden zijn beschreven in [fields-Persoon.csv](https://raw.githubusercontent.com/VNG-Realisatie/Haal-Centraal-BRP-historie-bevragen/develop/features/fields-Verblijfplaatshistorie.csv)
-            waarbij in de eerste kolom het fields-pad staat en in de tweede kolom het volledige pad naar het gewenste veld.
-          type: array
-          maxItems: 130
-          minItems: 1
-          items:
-            $ref: 'filter.yaml#/components/schemas/Field'
+        exclusiefVerblijfplaatsBuitenland:
+          type: boolean
     RaadpleegMetPeildatum:
       required:
         - peildatum
