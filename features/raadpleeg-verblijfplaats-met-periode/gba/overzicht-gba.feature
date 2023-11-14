@@ -219,8 +219,8 @@ Rule: Een verblijfplaats van een persoon met deels onbekende datum aanvang adres
     | datumVan            | <datum van>         |
     | datumTot            | <datum tot>         |
     Dan heeft de response verblijfplaatsen met de volgende gegevens
-    | adresseerbaarObjectIdentificatie | straat | datumAanvangAdreshouding     |
-    | 0800010000000001                 | Laan   | <datum aanvang adreshouding> |
+    | adresseerbaarObjectIdentificatie | straat      | datumAanvangAdreshouding |
+    | 0800010000000002                 | Luttestraat | 20160000                 |
 
     Voorbeelden:
     | datum van  | datum tot  | scenario                                                                                               |
