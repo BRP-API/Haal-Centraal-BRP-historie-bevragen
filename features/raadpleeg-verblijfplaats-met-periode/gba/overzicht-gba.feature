@@ -46,8 +46,8 @@ Rule: Een verblijfplaats voorkomen met bekend datum aanvang wordt geleverd als d
     | datumVan            | <datum van>         |
     | datumTot            | <datum tot>         |
     Dan heeft de response verblijfplaatsen met de volgende gegevens
-    | adresseerbaarObjectIdentificatie | straat | datumAanvangAdreshouding |
-    | 0800010000000001                 | Laan   | 20100818                 |
+    | adresseerbaarObjectIdentificatie | straat | datumAanvangAdreshouding | gemeenteVanInschrijving.code | gemeenteVanInschrijving.omschrijving |
+    | 0800010000000001                 | Laan   | 20100818                 | 0800                         | Hoogeloon, Hapert en Casteren        |
 
     Voorbeelden:
     | datum van  | datum tot  | scenario                                                                                                          |
@@ -71,8 +71,8 @@ Rule: Een verblijfplaats voorkomen met bekend datum aanvang wordt geleverd als d
     | datumVan            | <datum van>         |
     | datumTot            | 2020-01-01          |
     Dan heeft de response verblijfplaatsen met de volgende gegevens
-    | adresseerbaarObjectIdentificatie | straat      | datumAanvangAdreshouding |
-    | 0800010000000002                 | Luttestraat | 20160526                 |
+    | adresseerbaarObjectIdentificatie | straat      | datumAanvangAdreshouding | gemeenteVanInschrijving.code | gemeenteVanInschrijving.omschrijving |
+    | 0800010000000002                 | Luttestraat | 20160526                 | 0800                         | Hoogeloon, Hapert en Casteren        |
 
     Voorbeelden:
     | datum van  | scenario                                                                               |
@@ -95,8 +95,8 @@ Rule: Een verblijfplaats voorkomen met bekend datum aanvang wordt geleverd als d
     | datumVan            | 2010-01-01          |
     | datumTot            | <datum tot>         |
     Dan heeft de response verblijfplaatsen met de volgende gegevens
-    | adresseerbaarObjectIdentificatie | straat | datumAanvangAdreshouding | datumAanvangVolgendeAdreshouding |
-    | 0800010000000001                 | Laan   | 20100818                 | 20160526                         |
+    | adresseerbaarObjectIdentificatie | straat | datumAanvangAdreshouding | datumAanvangVolgendeAdreshouding | gemeenteVanInschrijving.code | gemeenteVanInschrijving.omschrijving |
+    | 0800010000000001                 | Laan   | 20100818                 | 20160526                         | 0800                         | Hoogeloon, Hapert en Casteren        |
 
     Voorbeelden:
     | datum tot  | scenario                                                                                                          |
@@ -122,8 +122,8 @@ Rule: Een verblijfplaats voorkomen met bekend datum aanvang wordt geleverd als d
     | datumVan            | 2016-10-01          |
     | datumTot            | 2020-07-01          |
     Dan heeft de response verblijfplaatsen met de volgende gegevens
-    | adresseerbaarObjectIdentificatie | straat      | datumAanvangAdreshouding | datumAanvangVolgendeAdreshouding |
-    | 0800010000000002                 | Luttestraat | 20160526                 | 20201008                         |
+    | adresseerbaarObjectIdentificatie | straat      | datumAanvangAdreshouding | datumAanvangVolgendeAdreshouding | gemeenteVanInschrijving.code | gemeenteVanInschrijving.omschrijving |
+    | 0800010000000002                 | Luttestraat | 20160526                 | 20201008                         | 0800                         | Hoogeloon, Hapert en Casteren        |
     # 24 |--A1--|--A2--|--A3--
     #            |---|
 
@@ -141,8 +141,8 @@ Rule: Een verblijfplaats voorkomen met bekend datum aanvang wordt geleverd als d
     | datumVan            | 2016-10-01          |
     | datumTot            | 2020-07-01          |
     Dan heeft de response verblijfplaatsen met de volgende gegevens
-    | locatiebeschrijving         | datumAanvangAdreshouding | datumAanvangVolgendeAdreshouding |
-    | Woonboot bij de Grote Sloot | 20100818                 | 20201008                         |
+    | locatiebeschrijving         | datumAanvangAdreshouding | datumAanvangVolgendeAdreshouding | gemeenteVanInschrijving.code | gemeenteVanInschrijving.omschrijving |
+    | Woonboot bij de Grote Sloot | 20100818                 | 20201008                         | 0800                         | Hoogeloon, Hapert en Casteren        |
 
   Scenario: De gevraagde periode ligt na datum aanvang adres buitenland van een verblijfplaats voorkomen
     Gegeven de persoon met burgerservicenummer '000000024' is ingeschreven op adres 'A1' met de volgende gegevens
@@ -181,11 +181,11 @@ Rule: Een verblijfplaats voorkomen met bekend datum aanvang wordt geleverd als d
     | datumVan            | 2010-07-01          |
     | datumTot            | 2020-07-01          |
     Dan heeft de response verblijfplaatsen met de volgende gegevens
-    | land.code | land.omschrijving            | straat      | adresseerbaarObjectIdentificatie | locatiebeschrijving         | datumAanvangAdreshouding | datumAanvangVolgendeAdreshouding | datumAanvangAdresBuitenland | datumAanvangVolgendeAdresBuitenland |
-    |           |                              | Luttestraat | 0800010000000002                 |                             | 20200415                 |                                  |                             |                                     |
-    | 6014      | Verenigde Staten van Amerika |             |                                  |                             |                          | 20200415                         | 20181201                    |                                     |
-    |           |                              |             |                                  | Woonboot bij de Grote Sloot | 20160526                 |                                  |                             | 20181201                            |
-    |           |                              | Laan        | 0800010000000001                 |                             | 20100818                 | 20160526                         |                             |                                     |
+    | land.code | land.omschrijving            | straat      | adresseerbaarObjectIdentificatie | locatiebeschrijving         | datumAanvangAdreshouding | datumAanvangVolgendeAdreshouding | datumAanvangAdresBuitenland | datumAanvangVolgendeAdresBuitenland | gemeenteVanInschrijving.code | gemeenteVanInschrijving.omschrijving |
+    |           |                              | Luttestraat | 0800010000000002                 |                             | 20200415                 |                                  |                             |                                     | 0800                         | Hoogeloon, Hapert en Casteren        |
+    | 6014      | Verenigde Staten van Amerika |             |                                  |                             |                          | 20200415                         | 20181201                    |                                     |                              |                                      |
+    |           |                              |             |                                  | Woonboot bij de Grote Sloot | 20160526                 |                                  |                             | 20181201                            | 0800                         | Hoogeloon, Hapert en Casteren        |
+    |           |                              | Laan        | 0800010000000001                 |                             | 20100818                 | 20160526                         |                             |                                     | 0800                         | Hoogeloon, Hapert en Casteren        |
 
 Rule: Een verblijfplaats voorkomen met deels/geheel onbekend datum aanvang verblijf wordt geleverd als datumTot van de gevraagde periode groter is dan de gehanteerde datum aanvang verblijf van het verblijfplaats voorkomen en bij volgende verblijfplaats voorkomen als datumVan kleiner is dan de (gehanteerde) datum aanvang verblijf van het volgende verblijfplaats voorkomen.
 
@@ -213,8 +213,8 @@ Rule: Een verblijfplaats voorkomen met deels/geheel onbekend datum aanvang verbl
     | datumVan            | 2007-01-01          |
     | datumTot            | <datum tot>         |
     Dan heeft de response verblijfplaatsen met de volgende gegevens
-    | adresseerbaarObjectIdentificatie | straat | datumAanvangAdreshouding     |
-    | 0800010000000001                 | Laan   | <datum aanvang adreshouding> |
+    | adresseerbaarObjectIdentificatie | straat | datumAanvangAdreshouding     | gemeenteVanInschrijving.code | gemeenteVanInschrijving.omschrijving |
+    | 0800010000000001                 | Laan   | <datum aanvang adreshouding> | 0800                         | Hoogeloon, Hapert en Casteren        |
 
     Voorbeelden:
     | datum aanvang adreshouding | datum tot  |
@@ -235,8 +235,8 @@ Rule: Een verblijfplaats voorkomen met deels/geheel onbekend datum aanvang verbl
     | datumVan            | <datum van>         |
     | datumTot            | <datum tot>         |
     Dan heeft de response verblijfplaatsen met de volgende gegevens
-    | adresseerbaarObjectIdentificatie | straat      | datumAanvangAdreshouding |
-    | 0800010000000002                 | Luttestraat | 20160000                 |
+    | adresseerbaarObjectIdentificatie | straat      | datumAanvangAdreshouding | gemeenteVanInschrijving.code | gemeenteVanInschrijving.omschrijving |
+    | 0800010000000002                 | Luttestraat | 20160000                 | 0800                         | Hoogeloon, Hapert en Casteren        |
 
     Voorbeelden:
     | datum van  | datum tot  | scenario                                                                                                            |
@@ -259,9 +259,9 @@ Rule: Een verblijfplaats voorkomen met deels/geheel onbekend datum aanvang verbl
     | datumVan            | <datum van>         |
     | datumTot            | 2017-01-01          |
     Dan heeft de response verblijfplaatsen met de volgende gegevens
-    | adresseerbaarObjectIdentificatie | straat      | datumAanvangAdreshouding | datumAanvangVolgendeAdreshouding |
-    | 0800010000000002                 | Luttestraat | 20160526                 |                                  |
-    | 0800010000000001                 | Laan        | 20100000                 | 20160526                         |
+    | adresseerbaarObjectIdentificatie | straat      | datumAanvangAdreshouding | datumAanvangVolgendeAdreshouding | gemeenteVanInschrijving.code | gemeenteVanInschrijving.omschrijving |
+    | 0800010000000002                 | Luttestraat | 20160526                 |                                  | 0800                         | Hoogeloon, Hapert en Casteren        |
+    | 0800010000000001                 | Laan        | 20100000                 | 20160526                         | 0800                         | Hoogeloon, Hapert en Casteren        |
 
     Voorbeelden:
     | datum van  |
@@ -284,8 +284,8 @@ Rule: Een verblijfplaats voorkomen met deels/geheel onbekend datum aanvang verbl
     | datumVan            | 2016-08-11          |
     | datumTot            | 2018-01-01          |
     Dan heeft de response verblijfplaatsen met de volgende gegevens
-    | adresseerbaarObjectIdentificatie | straat      | datumAanvangAdreshouding |
-    | 0800010000000002                 | Luttestraat | 20160000                 |
+    | adresseerbaarObjectIdentificatie | straat      | datumAanvangAdreshouding | gemeenteVanInschrijving.code | gemeenteVanInschrijving.omschrijving |
+    | 0800010000000002                 | Luttestraat | 20160000                 | 0800                         | Hoogeloon, Hapert en Casteren        |
 
   Abstract Scenario: datum aanvang van een verblijfplaats voorkomen ligt in de onzekerheidsperiode van het volgende verblijfplaats voorkomen en de gevraagde periode eindigt op de dag na datum aanvang van het verblijfplaats voorkomen
     Gegeven de persoon met burgerservicenummer '000000024' is ingeschreven op adres 'A1' met de volgende gegevens
@@ -301,8 +301,8 @@ Rule: Een verblijfplaats voorkomen met deels/geheel onbekend datum aanvang verbl
     | datumVan            | <datum van>         |
     | datumTot            | 2016-08-11          |
     Dan heeft de response verblijfplaatsen met de volgende gegevens
-    | adresseerbaarObjectIdentificatie | straat | datumAanvangAdreshouding | datumAanvangVolgendeAdreshouding |
-    | 0800010000000001                 | Laan   | 20160810                 | 20160000                         |
+    | adresseerbaarObjectIdentificatie | straat | datumAanvangAdreshouding | datumAanvangVolgendeAdreshouding | gemeenteVanInschrijving.code | gemeenteVanInschrijving.omschrijving |
+    | 0800010000000001                 | Laan   | 20160810                 | 20160000                         | 0800                         | Hoogeloon, Hapert en Casteren        |
 
     Voorbeelden:
     | datum van  |
@@ -329,11 +329,11 @@ Rule: Een verblijfplaats voorkomen met deels/geheel onbekend datum aanvang verbl
     | datumVan            | 2010-07-01          |
     | datumTot            | 2020-07-01          |
     Dan heeft de response verblijfplaatsen met de volgende gegevens
-    | land.code | land.omschrijving            | straat      | adresseerbaarObjectIdentificatie | locatiebeschrijving         | datumAanvangAdreshouding | datumAanvangVolgendeAdreshouding | datumAanvangAdresBuitenland | datumAanvangVolgendeAdresBuitenland |
-    |           |                              | Luttestraat | 0800010000000002                 |                             | 20200415                 |                                  |                             |                                     |
-    | 6014      | Verenigde Staten van Amerika |             |                                  |                             |                          | 20200415                         | 20101026                    |                                     |
-    |           |                              |             |                                  | Woonboot bij de Grote Sloot | 20100000                 |                                  |                             | 20101026                            |
-    |           |                              | Laan        | 0800010000000001                 |                             | 20100600                 | 20100000                         |                             |                                     |
+    | land.code | land.omschrijving            | straat      | adresseerbaarObjectIdentificatie | locatiebeschrijving         | datumAanvangAdreshouding | datumAanvangVolgendeAdreshouding | datumAanvangAdresBuitenland | datumAanvangVolgendeAdresBuitenland | gemeenteVanInschrijving.code | gemeenteVanInschrijving.omschrijving |
+    |           |                              | Luttestraat | 0800010000000002                 |                             | 20200415                 |                                  |                             |                                     | 0800                         | Hoogeloon, Hapert en Casteren        |
+    | 6014      | Verenigde Staten van Amerika |             |                                  |                             |                          | 20200415                         | 20101026                    |                                     |                              |                                      |
+    |           |                              |             |                                  | Woonboot bij de Grote Sloot | 20100000                 |                                  |                             | 20101026                            | 0800                         | Hoogeloon, Hapert en Casteren        |
+    |           |                              | Laan        | 0800010000000001                 |                             | 20100600                 | 20100000                         |                             |                                     | 0800                         | Hoogeloon, Hapert en Casteren        |
 
   Scenario: gevraagde periode ligt in de onzekerheidsperiode van een verblijfplaats voorkomen met geheel onbekend datum aanvang verblijf en eindigt op datum aanvang van het volgende verblijfplaats voorkomen
     Gegeven de persoon met burgerservicenummer '000000024' is ingeschreven op adres 'A1' met de volgende gegevens
@@ -349,8 +349,8 @@ Rule: Een verblijfplaats voorkomen met deels/geheel onbekend datum aanvang verbl
     | datumVan            | 2009-07-01          |
     | datumTot            | 2010-06-25          |
     Dan heeft de response verblijfplaatsen met de volgende gegevens
-    | adresseerbaarObjectIdentificatie | straat | datumAanvangAdreshouding | datumAanvangVolgendeAdreshouding |
-    | 0800010000000001                 | Laan   | 00000000                 | 20100625                         |
+    | adresseerbaarObjectIdentificatie | straat | datumAanvangAdreshouding | datumAanvangVolgendeAdreshouding | gemeenteVanInschrijving.code | gemeenteVanInschrijving.omschrijving |
+    | 0800010000000001                 | Laan   | 00000000                 | 20100625                         | 0800                         | Hoogeloon, Hapert en Casteren        |
 
   Scenario: gevraagde periode ligt in de onzekerheidsperiode van een verblijfplaats voorkomen met geheel onbekend datum aanvang verblijf en begint op de dag na datum aanvang van het vorige verblijfplaats voorkomen
     Gegeven de persoon met burgerservicenummer '000000024' is ingeschreven op adres 'A1' met de volgende gegevens
@@ -366,8 +366,8 @@ Rule: Een verblijfplaats voorkomen met deels/geheel onbekend datum aanvang verbl
     | datumVan            | 2010-06-26          |
     | datumTot            | 2020-01-01          |
     Dan heeft de response verblijfplaatsen met de volgende gegevens
-    | adresseerbaarObjectIdentificatie | straat      | datumAanvangAdreshouding |
-    | 0800010000000002                 | Luttestraat | 00000000                 |
+    | adresseerbaarObjectIdentificatie | straat      | datumAanvangAdreshouding | gemeenteVanInschrijving.code | gemeenteVanInschrijving.omschrijving |
+    | 0800010000000002                 | Luttestraat | 00000000                 | 0800                         | Hoogeloon, Hapert en Casteren        |
 
   Scenario: De gevraagde persoon heeft meerdere verblijfplaats voorkomens met geheel onbekende datum aanvang adreshouding/adres buitenland en de gevraagde periode overlapt deze verblijfplaats voorkomens niet
     Gegeven de persoon met burgerservicenummer '000000024' is ingeschreven op adres 'A1' met de volgende gegevens
@@ -389,8 +389,8 @@ Rule: Een verblijfplaats voorkomen met deels/geheel onbekend datum aanvang verbl
     | datumVan            | 2010-07-01          |
     | datumTot            | 2020-07-01          |
     Dan heeft de response verblijfplaatsen met de volgende gegevens
-    | locatiebeschrijving         | datumAanvangAdreshouding | datumAanvangVolgendeAdresBuitenland |
-    | Woonboot bij de Grote Sloot | 20100625                 | 20201201                            |
+    | locatiebeschrijving         | datumAanvangAdreshouding | datumAanvangVolgendeAdresBuitenland | gemeenteVanInschrijving.code | gemeenteVanInschrijving.omschrijving |
+    | Woonboot bij de Grote Sloot | 20100625                 | 20201201                            | 0800                         | Hoogeloon, Hapert en Casteren        |
 
 Rule: Een verblijfplaats buitenland van een persoon wordt niet geleverd als de optionele 'exclusiefVerblijfplaatsBuitenland' parameter wordt opgegeven
 
@@ -415,7 +415,7 @@ Rule: Een verblijfplaats buitenland van een persoon wordt niet geleverd als de o
     | datumTot                          | 2020-07-01          |
     | exclusiefVerblijfplaatsBuitenland | true                |
     Dan heeft de response verblijfplaatsen met de volgende gegevens
-    | straat      | adresseerbaarObjectIdentificatie | locatiebeschrijving         | datumAanvangAdreshouding | datumAanvangVolgendeAdreshouding | datumAanvangVolgdendeAdresBuitenland |
-    | Luttestraat | 0800010000000002                 |                             | 20200415                 |                                  |                                      |
-    |             |                                  | Woonboot bij de Grote Sloot | 20160526                 |                                  | 20181201                             |
-    | Laan        | 0800010000000001                 |                             | 20100818                 | 20160526                         |                                      |
+    | straat      | adresseerbaarObjectIdentificatie | locatiebeschrijving         | datumAanvangAdreshouding | datumAanvangVolgendeAdreshouding | datumAanvangVolgdendeAdresBuitenland | gemeenteVanInschrijving.code | gemeenteVanInschrijving.omschrijving |
+    | Luttestraat | 0800010000000002                 |                             | 20200415                 |                                  |                                      | 0800                         | Hoogeloon, Hapert en Casteren        |
+    |             |                                  | Woonboot bij de Grote Sloot | 20160526                 |                                  | 20181201                             | 0800                         | Hoogeloon, Hapert en Casteren        |
+    | Laan        | 0800010000000001                 |                             | 20100818                 | 20160526                         |                                      | 0800                         | Hoogeloon, Hapert en Casteren        |
