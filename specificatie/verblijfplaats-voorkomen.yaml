@@ -149,6 +149,8 @@ components:
           properties:
             type:
               type: boolean
+            gemeenteVanInschrijving:
+              type: boolean
             datumVan:
               type: boolean
             datumTot:
