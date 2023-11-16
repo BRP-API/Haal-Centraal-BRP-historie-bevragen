@@ -92,6 +92,8 @@ components:
           $ref: "persoon.yaml#/components/schemas/Burgerservicenummer"
         exclusiefVerblijfplaatsBuitenland:
           type: boolean
+          description: |
+            consumers die niet zijn geautoriseerd voor verblijfplaats buitenland kunnen deze parameter gebruiken om alleen binnenlandse verblijfplaats voorkomens te vragen
     RaadpleegMetPeildatum:
       required:
         - peildatum
@@ -131,18 +133,7 @@ components:
         verblijfplaatsen:
           type: array
           items:
-            $ref: 'verblijfplaats.yaml#/components/schemas/AbstractVerblijfplaats'
-        geheimhoudingPersoonsgegevens:
-          $ref: 'persoon.yaml#/components/schemas/GeheimhoudingPersoonsgegevens'
-        opschortingBijhouding:
-          $ref: 'opschortingbijhouding.yaml#/components/schemas/OpschortingBijhouding'
-    PartnerhistorieQueryResponse:
-      type: object
-      properties:
-        partners:
-          type: array
-          items:
-            $ref: 'partner.yaml#/components/schemas/Partner'
+            $ref: 'verblijfplaats-voorkomen.yaml#/components/schemas/AbstractVerblijfplaatsVoorkomen'
         geheimhoudingPersoonsgegevens:
           $ref: 'persoon.yaml#/components/schemas/GeheimhoudingPersoonsgegevens'
         opschortingBijhouding:

@@ -1,0 +1,187 @@
+openapi: 3.0.3
+info:
+  title: VerblijfplaatsVoorkomen definities
+  version: 2.0.0
+  contact: {}
+paths: {}
+components:
+  schemas:
+    AbstractVerblijfplaatsVoorkomen:
+      type: object
+      description: |
+        Gegevens over het verblijfplaats voorkomen van een persoon.
+      required:
+        - type
+      properties:
+        type:
+          type: string
+      discriminator:
+        propertyName: type
+        mapping:
+          VerblijfplaatsBuitenland: '#/components/schemas/VerblijfplaatsBuitenlandVoorkomen'
+          Adres: '#/components/schemas/AdresVoorkomen'
+          VerblijfplaatsOnbekend: '#/components/schemas/VerblijfplaatsOnbekendVoorkomen'
+          Locatie: '#/components/schemas/LocatieVoorkomen'
+    VerblijfplaatsBuitenlandVoorkomen:
+      description: |
+        * **land** - land waar de persoon is overleden. Wordt gevuld met waarden uit de landelijke tabel 'Landen'.
+      allOf:
+      - $ref : '#/components/schemas/AbstractVerblijfplaatsVoorkomen'
+      - type: object
+        properties:
+          verblijfadres:
+            $ref: "verblijfplaats.yaml#/components/schemas/VerblijfadresBuitenland"
+          datumVan:
+            $ref: 'datum.yaml#/components/schemas/AbstractDatum'
+          datumTot:
+            $ref: 'datum.yaml#/components/schemas/AbstractDatum'
+          inOnderzoek:
+            $ref: '#/components/schemas/VerblijfplaatsBuitenlandVoorkomenInOnderzoek'
+          rni:
+            $ref: 'common.yaml#/components/schemas/RniDeelnemer'
+    AdresVoorkomen:
+      description: |
+        Gegevens over het adres voorkomen van een persoon.
+        * **gemeenteVanInschrijving** - wordt gevuld met waarden uit de landelijke tabel 'Gemeenten'.
+        * **functieAdres** - wordt gevuld met waarden voor 'Functie_Adres' in 'tabelwaarden.csv'.
+        * **aanduidingBijHuisnummer** - wordt gevuld met waarden voor 'Aanduiding_Bij_Huisnummer' in 'tabelwaarden.csv'.
+        * **datumVan** : de datum van aangifte of ambtshalve melding van verblijf en adres.
+        * **datumTot** : de datum van aangifte of ambtshalve melding van volgende verblijf en adres.
+      allOf:
+        - $ref : '#/components/schemas/AbstractVerblijfplaatsVoorkomen'
+        - type: object
+          properties:
+            verblijfadres:
+              $ref: "verblijfplaats.yaml#/components/schemas/VerblijfadresBinnenland"
+            functieAdres:
+              $ref: 'common.yaml#/components/schemas/Waardetabel'
+            adresseerbaarObjectIdentificatie:
+              $ref: 'verblijfplaats.yaml#/components/schemas/AdresseerbaarObjectIdentificatie'
+            nummeraanduidingIdentificatie:
+              $ref: 'verblijfplaats.yaml#/components/schemas/NummeraanduidingIdentificatie'
+            gemeenteVanInschrijving:
+              $ref: 'common.yaml#/components/schemas/Waardetabel'
+            datumVan:
+              $ref: 'datum.yaml#/components/schemas/AbstractDatum'
+            datumTot:
+              $ref: 'datum.yaml#/components/schemas/AbstractDatum'
+            indicatieVastgesteldVerblijftNietOpAdres:
+              $ref: 'verblijfplaats.yaml#/components/schemas/IndicatieVastgesteldVerblijftNietOpAdres'
+            inOnderzoek:
+              $ref: "#/components/schemas/AdresVoorkomenInOnderzoek"
+    LocatieVoorkomen:
+      description: |
+        * **functieAdres** - wordt gevuld met waarden voor 'Functie_Adres' in 'tabelwaarden.csv'.
+        * **gemeenteVanInschrijving** - wordt gevuld met waarden uit de landelijke tabel 'Gemeenten'.
+      allOf:
+        - $ref: '#/components/schemas/AbstractVerblijfplaatsVoorkomen'
+        - type: object
+          properties:
+            datumVan:
+              $ref: 'datum.yaml#/components/schemas/AbstractDatum'
+            datumTot:
+              $ref: 'datum.yaml#/components/schemas/AbstractDatum'
+            functieAdres:
+              $ref: 'common.yaml#/components/schemas/Waardetabel'
+            verblijfadres:
+              $ref: "verblijfplaats.yaml#/components/schemas/VerblijfadresLocatie"
+            gemeenteVanInschrijving:
+              $ref: 'common.yaml#/components/schemas/Waardetabel'
+            indicatieVastgesteldVerblijftNietOpAdres:
+              $ref: 'verblijfplaats.yaml#/components/schemas/IndicatieVastgesteldVerblijftNietOpAdres'
+            inOnderzoek:
+              $ref: '#/components/schemas/LocatieVoorkomenInOnderzoek'
+    VerblijfplaatsOnbekendVoorkomen:
+      allOf:
+        - $ref: '#/components/schemas/AbstractVerblijfplaatsVoorkomen'
+        - type: object
+          properties:
+            datumVan:
+              $ref: 'datum.yaml#/components/schemas/AbstractDatum'
+            datumTot:
+              $ref: 'datum.yaml#/components/schemas/AbstractDatum'
+            inOnderzoek:
+              $ref: '#/components/schemas/VerblijfplaatsOnbekendVoorkomenInOnderzoek'
+            rni:
+              $ref: 'common.yaml#/components/schemas/RniDeelnemer'
+    GbaVerblijfplaatsVoorkomen:
+      allOf:
+        - $ref: 'verblijfplaats.yaml#/components/schemas/GbaVerblijfplaatsBeperkt'
+        - type: object
+          properties:
+            adresseerbaarObjectIdentificatie:
+              $ref: 'verblijfplaats.yaml#/components/schemas/AdresseerbaarObjectIdentificatie'
+            nummeraanduidingIdentificatie:
+              $ref: 'verblijfplaats.yaml#/components/schemas/NummeraanduidingIdentificatie'
+            datumAanvangAdresBuitenland:
+              $ref: 'datum.yaml#/components/schemas/GbaDatum'
+            datumAanvangVolgendeAdresBuitenland:
+              $ref: 'datum.yaml#/components/schemas/GbaDatum'
+            datumAanvangAdreshouding:
+              $ref: 'datum.yaml#/components/schemas/GbaDatum'
+            datumAanvangVolgendeAdreshouding:
+              $ref: 'datum.yaml#/components/schemas/GbaDatum'
+            functieAdres:
+              $ref: 'common.yaml#/components/schemas/Waardetabel'
+            naamOpenbareRuimte:
+              $ref: 'verblijfplaats.yaml#/components/schemas/NaamOpenbareRuimte'
+            gemeenteVanInschrijving:
+              $ref: 'common.yaml#/components/schemas/Waardetabel'
+            rni:
+              $ref: 'common.yaml#/components/schemas/RniDeelnemer'
+            inOnderzoekVolgendeVerblijfplaats:
+              $ref: 'gba-inonderzoek.yaml#/components/schemas/GbaInOnderzoek'
+    VerblijfplaatsBuitenlandVoorkomenInOnderzoek:
+      allOf:
+        - $ref: 'persoon.yaml#/components/schemas/InOnderzoek'
+        - type: object
+          properties:
+            type:
+              type: boolean
+            datumVan:
+              type: boolean
+            datumTot:
+              type: boolean
+    AdresVoorkomenInOnderzoek:
+      allOf:
+        - $ref: 'persoon.yaml#/components/schemas/InOnderzoek'
+        - type: object
+          properties:
+            type:
+              type: boolean
+            datumVan:
+              type: boolean
+            datumTot:
+              type: boolean
+            nummeraanduidingIdentificatie:
+              type: boolean
+            adresseerbaarObjectIdentificatie:
+              type: boolean
+            functieAdres:
+              type: boolean
+    VerblijfplaatsOnbekendVoorkomenInOnderzoek:
+      allOf:
+        - $ref: 'persoon.yaml#/components/schemas/InOnderzoek'
+        - type: object
+          properties:
+            type:
+              type: boolean
+            datumVan:
+              type: boolean
+            datumTot:
+              type: boolean
+    LocatieVoorkomenInOnderzoek:
+      allOf:
+        - $ref: 'persoon.yaml#/components/schemas/InOnderzoek'
+        - type: object
+          properties:
+            type:
+              type: boolean
+            gemeenteVanInschrijving:
+              type: boolean
+            datumVan:
+              type: boolean
+            datumTot:
+              type: boolean
+            functieAdres:
+              type: boolean

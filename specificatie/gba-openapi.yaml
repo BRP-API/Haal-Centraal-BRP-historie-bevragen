@@ -79,18 +79,7 @@ components:
         verblijfplaatsen:
           type: array
           items:
-            $ref: 'verblijfplaats.yaml#/components/schemas/GbaVerblijfplaats'
-        geheimhoudingPersoonsgegevens:
-          $ref: 'persoon.yaml#/components/schemas/GbaGeheimhoudingPersoonsgegevens'
-        opschortingBijhouding:
-          $ref: 'opschortingbijhouding.yaml#/components/schemas/GbaOpschortingBijhouding'
-    PartnerhistorieQueryResponse:
-      type: object
-      properties:
-        partners:
-          type: array
-          items:
-            $ref: 'partner.yaml#/components/schemas/GbaPartner'
+            $ref: 'verblijfplaats-voorkomen.yaml#/components/schemas/GbaVerblijfplaatsVoorkomen'
         geheimhoudingPersoonsgegevens:
           $ref: 'persoon.yaml#/components/schemas/GbaGeheimhoudingPersoonsgegevens'
         opschortingBijhouding:
