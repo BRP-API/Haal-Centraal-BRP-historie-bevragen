@@ -191,16 +191,12 @@ components:
         properties:
           verblijfadres:
             $ref: "#/components/schemas/VerblijfadresBuitenland"
-          gemeenteVanInschrijving:
-            $ref: 'common.yaml#/components/schemas/Waardetabel'
           datumVan:
             $ref: 'datum.yaml#/components/schemas/AbstractDatum'
-          datumTot:
+          datumIngangGeldigheid:
             $ref: 'datum.yaml#/components/schemas/AbstractDatum'
           inOnderzoek:
             $ref: '#/components/schemas/VerblijfplaatsBuitenlandInOnderzoek'
-          rni:
-            $ref: 'common.yaml#/components/schemas/RniDeelnemer'
     Adres:
       description: |
         Gegevens over het adres van een persoon.
@@ -208,6 +204,7 @@ components:
         * **functieAdres** - wordt gevuld met waarden voor 'Functie_Adres' in 'tabelwaarden.csv'.
         * **aanduidingBijHuisnummer** - wordt gevuld met waarden voor 'Aanduiding_Bij_Huisnummer' in 'tabelwaarden.csv'.
         * **datumVan** : de datum van aangifte of ambtshalve melding van verblijf en adres.
+        * **datumIngangGeldigheid** : datum waarop de gegevens over de verblijfplaats geldig zijn geworden.
       allOf:
         - $ref : '#/components/schemas/AbstractVerblijfplaats'
         - type: object
@@ -220,22 +217,18 @@ components:
               $ref: '#/components/schemas/AdresseerbaarObjectIdentificatie'
             nummeraanduidingIdentificatie:
               $ref: '#/components/schemas/NummeraanduidingIdentificatie'
-            gemeenteVanInschrijving:
-              $ref: 'common.yaml#/components/schemas/Waardetabel'
             datumVan:
               $ref: 'datum.yaml#/components/schemas/AbstractDatum'
-            datumTot:
+            datumIngangGeldigheid:
               $ref: 'datum.yaml#/components/schemas/AbstractDatum'
             indicatieVastgesteldVerblijftNietOpAdres:
               $ref: '#/components/schemas/IndicatieVastgesteldVerblijftNietOpAdres'
             inOnderzoek:
               $ref: "#/components/schemas/AdresInOnderzoek"
-            rni:
-              $ref: 'common.yaml#/components/schemas/RniDeelnemer'
     Locatie:
       description: |
-        * **functieAdres** - wordt gevuld met waarden voor 'Functie_Adres' in 'tabelwaarden.csv'.
         * **gemeenteVanInschrijving** - wordt gevuld met waarden uit de landelijke tabel 'Gemeenten'.
+        * **functieAdres** - wordt gevuld met waarden voor 'Functie_Adres' in 'tabelwaarden.csv'.
         * **landVanWaarIngeschreven** : het land waar de persoon woonde voor (her)vestiging in Nederland. Wordt gevuld met waarden uit de landelijke tabel 'Landen'.
       allOf:
         - $ref: '#/components/schemas/AbstractVerblijfplaats'
@@ -243,20 +236,16 @@ components:
           properties:
             datumVan:
               $ref: 'datum.yaml#/components/schemas/AbstractDatum'
-            datumTot:
-              $ref: 'datum.yaml#/components/schemas/AbstractDatum'
             functieAdres:
               $ref: 'common.yaml#/components/schemas/Waardetabel'
             verblijfadres:
               $ref: "#/components/schemas/VerblijfadresLocatie"
-            gemeenteVanInschrijving:
-              $ref: 'common.yaml#/components/schemas/Waardetabel'
+            datumIngangGeldigheid:
+              $ref: 'datum.yaml#/components/schemas/AbstractDatum'
             indicatieVastgesteldVerblijftNietOpAdres:
               $ref: '#/components/schemas/IndicatieVastgesteldVerblijftNietOpAdres'
             inOnderzoek:
               $ref: '#/components/schemas/LocatieInOnderzoek'
-            rni:
-              $ref: 'common.yaml#/components/schemas/RniDeelnemer'
     VerblijfplaatsOnbekend:
       allOf:
         - $ref: '#/components/schemas/AbstractVerblijfplaats'
@@ -264,12 +253,10 @@ components:
           properties:
             datumVan:
               $ref: 'datum.yaml#/components/schemas/AbstractDatum'
-            datumTot:
+            datumIngangGeldigheid:
               $ref: 'datum.yaml#/components/schemas/AbstractDatum'
             inOnderzoek:
               $ref: '#/components/schemas/VerblijfplaatsOnbekendInOnderzoek'
-            rni:
-              $ref: 'common.yaml#/components/schemas/RniDeelnemer'
     GbaVerblijfplaats:
       allOf:
         - $ref: '#/components/schemas/GbaVerblijfplaatsBeperkt'
@@ -283,12 +270,12 @@ components:
               $ref: 'datum.yaml#/components/schemas/GbaDatum'
             datumAanvangAdreshouding:
               $ref: 'datum.yaml#/components/schemas/GbaDatum'
+            datumIngangGeldigheid:
+              $ref: 'datum.yaml#/components/schemas/GbaDatum'
             functieAdres:
               $ref: 'common.yaml#/components/schemas/Waardetabel'
             naamOpenbareRuimte:
               $ref: '#/components/schemas/NaamOpenbareRuimte'
-            rni:
-              $ref: 'common.yaml#/components/schemas/RniDeelnemer'
     VerblijfplaatsBuitenlandInOnderzoek:
       allOf:
         - $ref: 'persoon.yaml#/components/schemas/InOnderzoek'
@@ -296,9 +283,9 @@ components:
           properties:
             type:
               type: boolean
-            gemeenteVanInschrijving:
-              type: boolean
             datumVan:
+              type: boolean
+            datumIngangGeldigheid:
               type: boolean
     VerblijfadresBuitenlandInOnderzoek:
       allOf:
@@ -341,9 +328,9 @@ components:
           properties:
             type:
               type: boolean
-            gemeenteVanInschrijving:
-              type: boolean
             datumVan:
+              type: boolean
+            datumIngangGeldigheid:
               type: boolean
             nummeraanduidingIdentificatie:
               type: boolean
@@ -360,6 +347,8 @@ components:
               type: boolean
             datumVan:
               type: boolean
+            datumIngangGeldigheid:
+              type: boolean
     LocatieInOnderzoek:
       allOf:
         - $ref: 'persoon.yaml#/components/schemas/InOnderzoek'
@@ -367,11 +356,11 @@ components:
           properties:
             type:
               type: boolean
-            gemeenteVanInschrijving:
-              type: boolean
             datumVan:
               type: boolean
             functieAdres:
+              type: boolean
+            datumIngangGeldigheid:
               type: boolean
     VerblijfadresLocatieInOnderzoek:
       allOf:
@@ -379,4 +368,11 @@ components:
         - type: object
           properties:
             locatiebeschrijving:
+              type: boolean
+    VerblijfplaatsInOnderzoekBeperkt:
+      allOf:
+        - $ref: 'persoon.yaml#/components/schemas/InOnderzoek'
+        - type: object
+          properties:
+            type:
               type: boolean
