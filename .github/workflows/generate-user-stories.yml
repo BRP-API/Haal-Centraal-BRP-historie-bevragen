@@ -12,10 +12,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Create User Stories IO
+      - name: Create User Stories Prod
         run: |
-          echo -e '---\nlayout: page-with-side-nav\ntitle: User Stories in Ontwikkeling\n---\n' >> user-stories-dev.md
-          echo -e '# User stories\n' >> user-stories-dev.md
+          echo -e '---\nlayout: page-with-side-nav\ntitle: User Stories in Productie\n---\n' >> user-stories.md
+          echo -e '# User stories\n' >> user-stories.md
 
       - name: List 'v2.0' user stories
         uses: lee-dohm/select-matching-issues@v1.2.0
@@ -25,39 +25,18 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           path: issues-tmp.md
       - run: |
-          cat issues-tmp.md >> user-stories-dev.md
-          echo -e '\n' >> user-stories-dev.md
-        
-      - name: Create User Stories Prod
-        run: |
-          echo -e '---\nlayout: page-with-side-nav\ntitle: User Stories in Productie\n---\n' >> user-stories.md
-          echo -e '# User stories\n' >> user-stories.md
-          
-      - name: List 'v1.0' user stories
-        uses: lee-dohm/select-matching-issues@v1.2.0
-        with:
-          format: list
-          query:  label:"v1.0" label:"User Story"
-          token: ${{ secrets.GITHUB_TOKEN }}
-          path: issues-tmp.md
-      - run: |
-          echo -e '## Vanaf versie 1.0\n' >> user-stories.md
+          echo -e '## Vanaf versie 2.0\n' >> user-stories.md
           cat issues-tmp.md >> user-stories.md
           echo -e '\n' >> user-stories.md
-          
+
       - name: target=_blank toevoegen aan issue link
         run: |
-          sed -i 's/)$/){:target="_blank" rel="noopener"}/' user-stories-dev.md
           sed -i 's/)$/){:target="_blank" rel="noopener"}/' user-stories.md
       - name: move user-stories markdown bestanden naar ./docs
         run: |
-          mv user-stories-dev.md ./docs/user-stories-dev.md
           mv user-stories.md ./docs/user-stories.md
       - name: commit & push user-stories markdown bestanden
         run: |
-          if [ -n "$(git status ./docs/user-stories-dev.md --porcelain)" ]; then
-            git add ./docs/user-stories-dev.md
-          fi
           if [ -n "$(git status ./docs/user-stories.md --porcelain)" ]; then
             git add ./docs/user-stories.md
           fi
