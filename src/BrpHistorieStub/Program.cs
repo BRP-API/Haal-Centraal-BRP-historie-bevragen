@@ -1,40 +1,55 @@
+using BrpHistorie.Infrastructure.Logging;
+using BrpHistorie.Infrastructure.ProblemJson;
+using BrpHistorie.Validatie.Validators;
+using FluentValidation;
 using FluentValidation.AspNetCore;
+using HaalCentraal.BrpHistorieStub.Repositories;
 using Serilog;
-using Serilog.Enrichers.Span;
-using Serilog.Exceptions;
 
-var builder = WebApplication.CreateBuilder(args);
+Log.Logger = new LoggerConfiguration()
+    .WriteTo.Console()
+    .CreateLogger();
 
-builder.Logging.ClearProviders();
-builder.Host.UseSerilog((context, config) =>
+try
 {
-    config
-        .ReadFrom.Configuration(context.Configuration)
-        .WriteTo.Console()
-        .Enrich.WithExceptionDetails()
-        .Enrich.FromLogContext()
-        .Enrich.With<ActivityEnricher>()
-        .WriteTo.Seq(context.Configuration["Seq:ServerUrl"]);
-});
+    Log.Information("Starting BRP Historie Mock");
 
-// Add services to the container.
-builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+    var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers()
-                .AddFluentValidation(options =>
-                {
-                    options.DisableDataAnnotationsValidation = true;
-                })
-                .AddNewtonsoftJson();
+    builder.Logging.ClearProviders();
+    builder.Host.UseSerilog(SerilogHelpers.Configure(Log.Logger));
 
-var app = builder.Build();
+    // Add services to the container.
 
-// Configure the HTTP request pipeline.
+    builder.Services.AddControllers()
+                    .ConfigureInvalidModelStateHandling()
+                    .AddNewtonsoftJson();
+    builder.Services.AddFluentValidationAutoValidation(options => options.DisableDataAnnotationsValidation = true)
+                    .AddValidatorsFromAssemblyContaining<RaadpleegMetBurgerservicenummerValidator>();
 
-app.UseHttpsRedirection();
+    builder.Services.AddScoped<PersoonRepository>();
 
-app.UseAuthorization();
+    builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
-app.MapControllers();
+    var app = builder.Build();
 
-app.Run();
+    // Configure the HTTP request pipeline.
+    app.UseSerilogRequestLogging(options =>
+    {
+        options.GetLevel = CustomRequestLoggingOptions.GetLevel;
+    });
+
+    app.UseMiddleware<GlobalExceptionHandlingMiddleware>();
+
+    app.MapControllers();
+
+    app.Run();
+}
+catch (Exception ex)
+{
+    Log.Fatal(ex, "BRP Historie Mock terminated unexpectedly");
+}
+finally
+{
+    Log.CloseAndFlush();
+}
