@@ -1,8 +1,8 @@
 class World {
     constructor(parameters) {
         this.context = parameters;
-        this.context.proxyUrl = "http://localhost:5000/haalcentraal/api/brphistorie/verblijfplaatshistorie";
-        this.context.apiUrl = "http://localhost:8000/haalcentraal/api/brphistorie/verblijfplaatshistorie";
+        this.context.proxyUrl = "http://localhost:5000/haalcentraal/api/brphistorie";
+        this.context.apiUrl = "http://localhost:8000/haalcentraal/api/brphistorie";
         this.context.sql = {
             useDb: true,
             logStatements: false,

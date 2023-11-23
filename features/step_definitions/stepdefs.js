@@ -100,7 +100,17 @@ Given(/^de persoon is vervolgens ingeschreven op een buitenlands adres met de vo
     ].concat(createArrayFrom(dataTable, columnNameMap)));
 });
 
-async function handleRequest(context, dataTable) {
+function createAutorisatieSettings(context, afnemerId) {
+    const heeftAutorisatieSettings = context.sqlData.filter(s => s['autorisatie'] !== undefined).length > 0;
+    if (!heeftAutorisatieSettings &&
+        (context.createDefaultAutorisation === undefined || context.createDefaultAutorisation)
+       ) {
+        let sqlData = context.sqlData.at(-1);
+        sqlData['autorisatie'] = createAutorisatieSettingsFor(afnemerId);
+    }
+}
+
+async function handleRequest(context, endpoint, dataTable) {
     if(context.sqlData === undefined) {
         context.sqlData = [{}];
     }
@@ -109,13 +119,7 @@ async function handleRequest(context, dataTable) {
     const gemeenteCode = context.gemeenteCode ?? "800";
     const url = context.proxyAanroep ? context.proxyUrl : context.apiUrl;
 
-    const heeftAutorisatieSettings = context.sqlData.filter(s => s['autorisatie'] !== undefined).length > 0;
-    if (!heeftAutorisatieSettings &&
-        (context.createDefaultAutorisation === undefined || context.createDefaultAutorisation)
-       ) {
-        let sqlData = context.sqlData.at(-1);
-        sqlData['autorisatie'] = createAutorisatieSettingsFor(afnemerId);
-    }
+    createAutorisatieSettings(context, afnemerId);
 
     await executeSqlStatements(context.sqlData, pool, tableNameMap, logSqlStatements);
 
@@ -125,14 +129,49 @@ async function handleRequest(context, dataTable) {
         accessToken = result.accessToken;
     }
     else {
-        context.response = await postBevragenRequestWithBasicAuth(url, createBasicAuthorizationHeader(afnemerId, gemeenteCode), dataTable);
+        context.response = await postBevragenRequestWithBasicAuth(url, endpoint, createBasicAuthorizationHeader(afnemerId, gemeenteCode), dataTable);
     }
 }
 
-When(/^gba ([a-z]*) wordt gezocht met de volgende parameters$/, function (endpoint, dataTable) {
+When(/^gba ([a-z]*) wordt gezocht met de volgende parameters$/, async function (endpoint, dataTable) {
     this.context.proxyAanroep = false;
 
-    // await handleRequest(this.context, dataTable);
+    await handleRequest(this.context, endpoint, dataTable);
+});
+
+When(/^([a-z]*) wordt gezocht met de volgende parameters$/, async function (endpoint, dataTable) {
+    this.context.proxyAanroep = true;
+
+    await handleRequest(this.context, endpoint, dataTable);
+});
+
+async function handleCustomRequest(context, endpoint, verb) {
+    if(context.sqlData === undefined) {
+        context.sqlData = [{}];
+    }
+
+    const afnemerId = context.afnemerId ?? context.oAuth.clients[0].afnemerID;
+    const gemeenteCode = context.gemeenteCode ?? "800";
+    const url = context.proxyAanroep ? context.proxyUrl : context.apiUrl;
+
+    createAutorisatieSettings(context, afnemerId);
+
+    await executeSqlStatements(context.sqlData, pool, tableNameMap, logSqlStatements);
+
+    if(context.oAuth.enable){
+        const result = await handleOAuthCustomRequest(accessToken, context.oAuth, afnemerId, url, verb, '{}');
+        context.response = result.response;
+        accessToken = result.accessToken;
+    }
+    else {
+        context.response = await handleCustomBevragenRequest(url, endpoint, verb, undefined, createBasicAuthorizationHeader(afnemerId, gemeenteCode), '{}');
+    }
+}
+
+When(/^(.*) wordt gezocht met een '(.*)' aanroep$/, async function(endpoint, verb){
+    this.context.proxyAanroep = true;
+
+    await handleCustomRequest(this.context, endpoint, verb);
 });
 
 Then(/^heeft de response verblijfplaatsen met de volgende gegevens$/, function (dataTable) {
@@ -143,6 +182,25 @@ Then(/^heeft de response verblijfplaatsen met de volgende gegevens$/, function (
     }
 
     this.context.expected.verblijfplaatsen = createObjectArrayFrom(dataTable, true);
+});
+
+Then(/^heeft de response een object met de volgende gegevens$/, function (dataTable) {
+    this.context.verifyResponse = true;
+
+    this.context.expected = createObjectFrom(dataTable, this.context.proxyAanroep);
+});
+
+Then(/^heeft het object de volgende '(.*)' gegevens$/, function (gegevensgroep, dataTable) {
+    this.context.expected[gegevensgroep] = dataTable.hashes();
+});
+
+Then(/^heeft de response (\d*) (.*)$/, function (aantal, type) {
+    this.context.response.status.should.equal(200, `response body: ${JSON.stringify(this.context.response.data, null, '\t')}`);
+
+    const actual = this.context?.response?.data[type];
+
+    should.exist(actual, `geen ${type} property gevonden`);
+    actual.length.should.equal(Number(aantal), `aantal personen in response is ongelijk aan ${aantal}\nPersonen:${JSON.stringify(actual, null, "\t")}`);
 });
 
 After({tags: 'not @fout-case'}, async function() {
@@ -159,6 +217,24 @@ After({tags: 'not @fout-case'}, async function() {
     const expected = this.context.expected !== undefined
         ? this.context.expected
         : {};
+
+    actual.should.deep.equalInAnyOrder(expected, `actual: ${JSON.stringify(actual, null, '\t')}\nexpected: ${JSON.stringify(expected, null, '\t')}`);
+});
+
+After({tags: '@fout-case'}, async function() {
+    this.context.response.status.should.not.equal(200, `response body: ${JSON.stringify(this.context.response.data, null, '\t')}`);
+
+    const headers = this.context?.response?.headers;
+    should.exist(headers, 'no response headers found');
+
+    const header = headers["content-type"];
+    should.exist(header, `no header found with name 'content-type'. Response headers: ${headers}`);
+    header.should.contain('application/problem+json', "no 'content-type' header found with value: 'application/problem+json'");
+
+    const actual = this.context?.response?.data !== undefined
+        ? stringifyValues(this.context.response.data)
+        : {};
+    const expected = this.context.expected;
 
     actual.should.deep.equalInAnyOrder(expected, `actual: ${JSON.stringify(actual, null, '\t')}\nexpected: ${JSON.stringify(expected, null, '\t')}`);
 });

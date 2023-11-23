@@ -83,32 +83,29 @@ function createAutorisatieSettingsFor(afnemerId) {
 
 function createRequestBody(dataTable) {
     let requestBody = {};
+    const type = dataTable.hashes().find(param => param.naam === 'type')?.waarde;
+
     dataTable.hashes()
             .filter(function(param) {
                 return !param.naam.startsWith("header:");
             })
             .forEach(function(param) {
-                if(["burgerservicenummer",
-                    "burgerservicenummer (als string)",
-                    "fields",
-                    "fields (als string)"].includes(param.naam)) {
-                    if(param.naam === 'fields (als string)') {
-                        requestBody['fields'] = param.waarde;
-                    }
-                    else if(param.naam === 'burgerservicenummer (als string)') {
-                        requestBody['burgerservicenummer'] = param.waarde;
-                    }
-                    else if(param.waarde === '') {
-                        requestBody[param.naam] = [];
-                    }
-                    else if(param.waarde === '(131 maal aNummer)') {
-                        requestBody[param.naam] = [];
-                        for(let count=0; count<=131; count++) {
-                            requestBody[param.naam].push('aNummer');
-                        }
-                    }
-                    else {
-                        requestBody[param.naam] = param.waarde.split(',');
+                if ((type === 'RaadpleegMetBurgerservicenummer' && param.naam === 'burgerservicenummer') ||
+                    param.naam === 'fields') {
+                        requestBody[param.naam] = param.waarde === '' 
+                            ? []
+                            : param.waarde.split(',');
+                }
+                else if(param.naam === 'burgerservicenummer (als string)') {
+                    requestBody['burgerservicenummer'] = param.waarde;
+                }
+                else if(param.naam === 'fields (als string)') {
+                    requestBody['fields'] = param.waarde;
+                }
+                else if(param.waarde === '(131 maal aNummer)') {
+                    requestBody[param.naam] = [];
+                    for(let count=0; count<=131; count++) {
+                        requestBody[param.naam].push('aNummer');
                     }
                 }
                 else {

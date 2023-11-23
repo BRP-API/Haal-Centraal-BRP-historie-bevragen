@@ -27,42 +27,28 @@ function createHeaders(dataTable, extraHeaders) {
     return headers;
 }
 
-async function postBevragenRequestWithBasicAuth(baseUrl, extraHeaders, dataTable) {
+async function postBevragenRequestWithBasicAuth(baseUrl, url, extraHeaders, dataTable) {
     const config = {
         method: 'post',
-        url: '/bewoningen',
+        url: `/${url}`,
         baseURL: baseUrl,
         data: createRequestBody(dataTable),
         headers: createHeaders(dataTable, extraHeaders)
     };
 
-    try {
-        return await axios(config);
-    }
-    catch(e) {
-        e.code.should.not.equal('ECONNREFUSED', `${e.config.baseURL}${e.config.url} returns ${e.code}`);
-        e.code.should.not.equal('ECONNRESET', `${e.config.baseURL}${e.config.url} returns ${e.code}`);
-        return e.response;
-    }
+    return await sendRequest(config);
 }
 
-async function handleCustomBevragenRequest(baseUrl, method, dataTable, extraHeaders, requestBody) {
+async function handleCustomBevragenRequest(baseUrl, url, method, dataTable, extraHeaders, requestBody) {
     const config = {
         method: method,
-        url: '/bewoningen',
+        url: `/${url}`,
         baseURL: baseUrl,
         data: requestBody,
         headers: createHeaders(dataTable, extraHeaders)
     };
 
-    try {
-        return await axios(config);
-    }
-    catch(e) {
-        e.code.should.not.equal('ECONNREFUSED', `${e.config.baseURL}${e.config.url} returns ${e.code}`);
-        e.code.should.not.equal('ECONNRESET', `${e.config.baseURL}${e.config.url} returns ${e.code}`);
-        return e.response;
-    }
+    return await sendRequest(config);
 }
 
 async function handleOAuthRequest(accessToken, oAuth, afnemerId, endpointUrl, dataTable) {
@@ -82,11 +68,11 @@ async function handleOAuthRequest(accessToken, oAuth, afnemerId, endpointUrl, da
     }
 
     const requestBody = createRequestBody(dataTable);
-    let response = await postBevragenRequestWithOAuth(endpointUrl, accessToken, dataTable, 'post', requestBody);
+    let response = await requestWithOAuth(endpointUrl, accessToken, dataTable, 'post', requestBody);
     if(response.status === 401) {
         console.log("access denied. access token expired");
         accessToken = await getOAuthAccessToken(accessTokenUrl, oAuthSettings);
-        response = await postBevragenRequestWithOAuth(endpointUrl, accessToken, dataTable, 'post', requestBody);
+        response = await requestWithOAuth(endpointUrl, accessToken, dataTable, 'post', requestBody);
     }
 
     return { response: response, accessToken: accessToken};
@@ -108,11 +94,11 @@ async function handleOAuthCustomRequest(accessToken, oAuth, afnemerId, endpointU
         accessToken = await getOAuthAccessToken(accessTokenUrl, oAuthSettings);
     }
 
-    let response = await postBevragenRequestWithOAuth(endpointUrl, accessToken, undefined, method, requestBody);
+    let response = await requestWithOAuth(endpointUrl, accessToken, undefined, method, requestBody);
     if(response.status === 401) {
         console.log("access denied. access token expired");
         accessToken = await getOAuthAccessToken(accessTokenUrl, oAuthSettings);
-        response = await postBevragenRequestWithOAuth(endpointUrl, accessToken, undefined, method, requestBody);
+        response = await requestWithOAuth(endpointUrl, accessToken, undefined, method, requestBody);
     }
 
     return { response: response, accessToken: accessToken};
@@ -141,10 +127,10 @@ async function getOAuthAccessToken(accessTokenUrl, oAuthSettings) {
     }
 }
 
-async function postBevragenRequestWithOAuth(baseUrl, access_token, dataTable, method, body) {
+async function requestWithOAuth(baseUrl, url, access_token, dataTable, method, body) {
     const config = {
         method: method,
-        url: '/bewoningen',
+        url: `/${url}`,
         baseURL: baseUrl,
         data: body,
         headers: createHeaders(dataTable, [
@@ -155,6 +141,10 @@ async function postBevragenRequestWithOAuth(baseUrl, access_token, dataTable, me
         ])
     };
 
+    return await sendRequest(config);
+}
+
+async function sendRequest(config) {
     try {
         return await axios(config);
     }
