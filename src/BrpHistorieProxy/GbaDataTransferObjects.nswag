@@ -92,7 +92,7 @@
       "enumNameGeneratorType": null,
       "serviceHost": null,
       "serviceSchemes": null,
-      "output": "Generated/Gba/Generated.cs",
+      "output": "Generated/Gba/GbaDataTransferObjects.cs",
       "newLineBehavior": "Auto"
     }
   }

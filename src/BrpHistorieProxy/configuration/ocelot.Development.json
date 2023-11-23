@@ -6,7 +6,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "brphistoriemock",
+          "Host": "localhost",
           "Port": "5010"
         }
       ]
