@@ -238,3 +238,29 @@ After({tags: '@fout-case'}, async function() {
 
     actual.should.deep.equalInAnyOrder(expected, `actual: ${JSON.stringify(actual, null, '\t')}\nexpected: ${JSON.stringify(expected, null, '\t')}`);
 });
+
+Before({tags: '@autorisatie'}, async function() {
+    this.context.createDefaultAutorisation = false;
+});
+
+Before(function() {
+    if(this.context.sql.useDb && pool === undefined && this.context.stapDocumentatie) {
+        pool = new Pool(this.context.sql.poolConfig);
+        logSqlStatements = this.context.sql.logStatements;
+    }
+});
+
+After(async function() {
+    if (pool === undefined ||
+        !this.context.sql.cleanup ||
+        noSqlData(this.context.sqlData)) {
+        return;
+    }
+
+    let deleteIndividualRecords = this.context.sql.deleteIndividualRecords;
+    if(deleteIndividualRecords === undefined) {
+        deleteIndividualRecords = true;
+    }
+
+    await rollbackSqlStatements(this.context.sqlData, pool, tableNameMap, logSqlStatements, deleteIndividualRecords);
+});
