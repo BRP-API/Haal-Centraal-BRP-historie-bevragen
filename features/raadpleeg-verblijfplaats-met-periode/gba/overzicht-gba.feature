@@ -39,7 +39,7 @@ Rule: Een verblijfplaats voorkomen met bekend datum aanvang wordt geleverd als d
     Gegeven de persoon met burgerservicenummer '000000024' is ingeschreven op adres 'A1' met de volgende gegevens
     | gemeente van inschrijving (09.10) | datum aanvang adreshouding (10.30) |
     | 0800                              | 20100818                           |
-    Als gba verblijfplaatsen wordt gezocht met de volgende parameters
+    Als gba verblijfplaatshistorie wordt gezocht met de volgende parameters
     | naam                | waarde              |
     | type                | RaadpleegMetPeriode |
     | burgerservicenummer | 000000024           |
@@ -64,7 +64,7 @@ Rule: Een verblijfplaats voorkomen met bekend datum aanvang wordt geleverd als d
     En de persoon is vervolgens ingeschreven op adres 'A2' met de volgende gegevens
     | gemeente van inschrijving (09.10) | datum aanvang adreshouding (10.30) |
     | 0800                              | 20160526                           |
-    Als gba verblijfplaatsen wordt gezocht met de volgende parameters
+    Als gba verblijfplaatshistorie wordt gezocht met de volgende parameters
     | naam                | waarde              |
     | type                | RaadpleegMetPeriode |
     | burgerservicenummer | 000000024           |
@@ -88,7 +88,7 @@ Rule: Een verblijfplaats voorkomen met bekend datum aanvang wordt geleverd als d
     En de persoon is vervolgens ingeschreven op adres 'A2' met de volgende gegevens
     | gemeente van inschrijving (09.10) | datum aanvang adreshouding (10.30) |
     | 0800                              | 20160526                           |
-    Als gba verblijfplaatsen wordt gezocht met de volgende parameters
+    Als gba verblijfplaatshistorie wordt gezocht met de volgende parameters
     | naam                | waarde              |
     | type                | RaadpleegMetPeriode |
     | burgerservicenummer | 000000024           |
@@ -115,7 +115,7 @@ Rule: Een verblijfplaats voorkomen met bekend datum aanvang wordt geleverd als d
     En de persoon is vervolgens ingeschreven op adres 'A3' met de volgende gegevens
     | gemeente van inschrijving (09.10) | datum aanvang adreshouding (10.30) |
     | 0800                              | 20201008                           |
-    Als gba verblijfplaatsen wordt gezocht met de volgende parameters
+    Als gba verblijfplaatshistorie wordt gezocht met de volgende parameters
     | naam                | waarde              |
     | type                | RaadpleegMetPeriode |
     | burgerservicenummer | 000000024           |
@@ -134,7 +134,7 @@ Rule: Een verblijfplaats voorkomen met bekend datum aanvang wordt geleverd als d
     En de persoon is vervolgens ingeschreven op adres 'A3' met de volgende gegevens
     | gemeente van inschrijving (09.10) | datum aanvang adreshouding (10.30) |
     | 0800                              | 20201008                           |
-    Als gba verblijfplaatsen wordt gezocht met de volgende parameters
+    Als gba verblijfplaatshistorie wordt gezocht met de volgende parameters
     | naam                | waarde              |
     | type                | RaadpleegMetPeriode |
     | burgerservicenummer | 000000024           |
@@ -151,7 +151,7 @@ Rule: Een verblijfplaats voorkomen met bekend datum aanvang wordt geleverd als d
     En de persoon is vervolgens ingeschreven op een buitenlands adres met de volgende gegevens
     | datum aanvang adres buitenland (13.20) | land adres buitenland (13.10) |
     | 20181201                               | 6014                          |
-    Als gba verblijfplaatsen wordt gezocht met de volgende parameters
+    Als gba verblijfplaatshistorie wordt gezocht met de volgende parameters
     | naam                | waarde              |
     | type                | RaadpleegMetPeriode |
     | burgerservicenummer | 000000024           |
@@ -174,7 +174,7 @@ Rule: Een verblijfplaats voorkomen met bekend datum aanvang wordt geleverd als d
     En de persoon is vervolgens ingeschreven op adres 'A2' met de volgende gegevens
     | gemeente van inschrijving (09.10) | datum aanvang adreshouding (10.30) |
     | 0800                              | 20200415                           |
-    Als gba verblijfplaatsen wordt gezocht met de volgende parameters
+    Als gba verblijfplaatshistorie wordt gezocht met de volgende parameters
     | naam                | waarde              |
     | type                | RaadpleegMetPeriode |
     | burgerservicenummer | 000000024           |
@@ -206,7 +206,7 @@ Rule: Een verblijfplaats voorkomen met deels/geheel onbekend datum aanvang verbl
     Gegeven de persoon met burgerservicenummer '000000024' is ingeschreven op adres 'A1' met de volgende gegevens
     | gemeente van inschrijving (09.10) | datum aanvang adreshouding (10.30) |
     | 0800                              | <datum aanvang adreshouding>       |
-    Als gba verblijfplaatsen wordt gezocht met de volgende parameters
+    Als gba verblijfplaatshistorie wordt gezocht met de volgende parameters
     | naam                | waarde              |
     | type                | RaadpleegMetPeriode |
     | burgerservicenummer | 000000024           |
@@ -228,7 +228,7 @@ Rule: Een verblijfplaats voorkomen met deels/geheel onbekend datum aanvang verbl
     En de persoon is vervolgens ingeschreven op adres 'A2' met de volgende gegevens
     | gemeente van inschrijving (09.10) | datum aanvang adreshouding (10.30) |
     | 0800                              | 20160000                           |
-    Als gba verblijfplaatsen wordt gezocht met de volgende parameters
+    Als gba verblijfplaatshistorie wordt gezocht met de volgende parameters
     | naam                | waarde              |
     | type                | RaadpleegMetPeriode |
     | burgerservicenummer | 000000024           |
@@ -252,7 +252,7 @@ Rule: Een verblijfplaats voorkomen met deels/geheel onbekend datum aanvang verbl
     En de persoon is vervolgens ingeschreven op adres 'A2' met de volgende gegevens
     | gemeente van inschrijving (09.10) | datum aanvang adreshouding (10.30) |
     | 0800                              | 20160526                           |
-    Als gba verblijfplaatsen wordt gezocht met de volgende parameters
+    Als gba verblijfplaatshistorie wordt gezocht met de volgende parameters
     | naam                | waarde              |
     | type                | RaadpleegMetPeriode |
     | burgerservicenummer | 000000024           |
@@ -277,7 +277,7 @@ Rule: Een verblijfplaats voorkomen met deels/geheel onbekend datum aanvang verbl
     En de persoon is vervolgens ingeschreven op adres 'A2' met de volgende gegevens
     | gemeente van inschrijving (09.10) | datum aanvang adreshouding (10.30) |
     | 0800                              | 20160000                           |
-    Als gba verblijfplaatsen wordt gezocht met de volgende parameters
+    Als gba verblijfplaatshistorie wordt gezocht met de volgende parameters
     | naam                | waarde              |
     | type                | RaadpleegMetPeriode |
     | burgerservicenummer | 000000024           |
@@ -294,7 +294,7 @@ Rule: Een verblijfplaats voorkomen met deels/geheel onbekend datum aanvang verbl
     En de persoon is vervolgens ingeschreven op adres 'A2' met de volgende gegevens
     | gemeente van inschrijving (09.10) | datum aanvang adreshouding (10.30) |
     | 0800                              | 20160000                           |
-    Als gba verblijfplaatsen wordt gezocht met de volgende parameters
+    Als gba verblijfplaatshistorie wordt gezocht met de volgende parameters
     | naam                | waarde              |
     | type                | RaadpleegMetPeriode |
     | burgerservicenummer | 000000024           |
@@ -322,7 +322,7 @@ Rule: Een verblijfplaats voorkomen met deels/geheel onbekend datum aanvang verbl
     En de persoon is vervolgens ingeschreven op adres 'A2' met de volgende gegevens
     | gemeente van inschrijving (09.10) | datum aanvang adreshouding (10.30) |
     | 0800                              | 20200415                           |
-    Als gba verblijfplaatsen wordt gezocht met de volgende parameters
+    Als gba verblijfplaatshistorie wordt gezocht met de volgende parameters
     | naam                | waarde              |
     | type                | RaadpleegMetPeriode |
     | burgerservicenummer | 000000024           |
@@ -341,7 +341,7 @@ Rule: Een verblijfplaats voorkomen met deels/geheel onbekend datum aanvang verbl
     En de persoon is vervolgens ingeschreven op adres 'A2' met de volgende gegevens
     | gemeente van inschrijving (09.10) | datum aanvang adreshouding (10.30) |
     | 0800                              | 20100625                           |
-    Als gba verblijfplaatsen wordt gezocht met de volgende parameters
+    Als gba verblijfplaatshistorie wordt gezocht met de volgende parameters
     | naam                | waarde              |
     | type                | RaadpleegMetPeriode |
     | burgerservicenummer | 000000024           |
@@ -358,7 +358,7 @@ Rule: Een verblijfplaats voorkomen met deels/geheel onbekend datum aanvang verbl
     En de persoon is vervolgens ingeschreven op adres 'A2' met de volgende gegevens
     | gemeente van inschrijving (09.10) | datum aanvang adreshouding (10.30) |
     | 0800                              | 00000000                           |
-    Als gba verblijfplaatsen wordt gezocht met de volgende parameters
+    Als gba verblijfplaatshistorie wordt gezocht met de volgende parameters
     | naam                | waarde              |
     | type                | RaadpleegMetPeriode |
     | burgerservicenummer | 000000024           |
@@ -381,7 +381,7 @@ Rule: Een verblijfplaats voorkomen met deels/geheel onbekend datum aanvang verbl
     En de persoon is vervolgens ingeschreven op adres 'A2' met de volgende gegevens
     | gemeente van inschrijving (09.10) | datum aanvang adreshouding (10.30) |
     | 0800                              | 00000000                           |
-    Als gba verblijfplaatsen wordt gezocht met de volgende parameters
+    Als gba verblijfplaatshistorie wordt gezocht met de volgende parameters
     | naam                | waarde              |
     | type                | RaadpleegMetPeriode |
     | burgerservicenummer | 000000024           |
@@ -406,7 +406,7 @@ Rule: Een verblijfplaats buitenland van een persoon wordt niet geleverd als de o
     En de persoon is vervolgens ingeschreven op adres 'A2' met de volgende gegevens
     | gemeente van inschrijving (09.10) | datum aanvang adreshouding (10.30) |
     | 0800                              | 20200415                           |
-    Als gba verblijfplaatsen wordt gezocht met de volgende parameters
+    Als gba verblijfplaatshistorie wordt gezocht met de volgende parameters
     | naam                              | waarde              |
     | type                              | RaadpleegMetPeriode |
     | burgerservicenummer               | 000000024           |
