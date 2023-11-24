@@ -414,7 +414,7 @@ Rule: Een verblijfplaats buitenland van een persoon wordt niet geleverd als de o
     | datumTot                          | 2020-07-01          |
     | exclusiefVerblijfplaatsBuitenland | true                |
     Dan heeft de response verblijfplaatsen met de volgende gegevens
-    | straat      | adresseerbaarObjectIdentificatie | locatiebeschrijving         | datumAanvangAdreshouding | datumAanvangVolgendeAdreshouding | datumAanvangVolgdendeAdresBuitenland | gemeenteVanInschrijving.code | gemeenteVanInschrijving.omschrijving |
-    | Luttestraat | 0800010000000002                 |                             | 20200415                 |                                  |                                      | 0800                         | Hoogeloon, Hapert en Casteren        |
-    |             |                                  | Woonboot bij de Grote Sloot | 20160526                 |                                  | 20181201                             | 0800                         | Hoogeloon, Hapert en Casteren        |
-    | Laan        | 0800010000000001                 |                             | 20100818                 | 20160526                         |                                      | 0800                         | Hoogeloon, Hapert en Casteren        |
+    | straat      | adresseerbaarObjectIdentificatie | locatiebeschrijving         | datumAanvangAdreshouding | datumAanvangVolgendeAdreshouding | datumAanvangVolgendeAdresBuitenland | gemeenteVanInschrijving.code | gemeenteVanInschrijving.omschrijving |
+    | Luttestraat | 0800010000000002                 |                             | 20200415                 |                                  |                                     | 0800                         | Hoogeloon, Hapert en Casteren        |
+    |             |                                  | Woonboot bij de Grote Sloot | 20160526                 |                                  | 20181201                            | 0800                         | Hoogeloon, Hapert en Casteren        |
+    | Laan        | 0800010000000001                 |                             | 20100818                 | 20160526                         |                                     | 0800                         | Hoogeloon, Hapert en Casteren        |
