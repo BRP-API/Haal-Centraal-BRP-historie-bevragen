@@ -8,7 +8,15 @@ title: Haal-Centraal-BRP-historie-bevragen
 ![lint oas](https://github.com/BRP-API/Haal-Centraal-BRP-historie-bevragen/workflows/lint-oas/badge.svg)
 ![generate postman collection](https://github.com/BRP-API/Haal-Centraal-BRP-historie-bevragen/workflows/generate-postman-collection/badge.svg)
 
-API voor het raadplegen van historische gegevens over personen. Met deze API kun je verblijfplaatshistorie, partnerhistorie, verblijfstitelhistorie en nationaliteithistorie opvragen. De API wordt nog niet door RvIG aangeboden. Om de migratie naar API's te versnellen besluiten sommige gemeenten de API zelf aan te bieden.  
+API voor het raadplegen van historische gegevens over personen. Met deze API kun je de verblijfplaats(en) van een persoon opvragen in een periode of op een peildatum. 
+
+## Planning en Roadmap
+De BRP Historie API voor verblijfplaatshistorie wordt tweede kwartaal van 2024 verwacht. 
+
+## Aansluiten en voorwaarden
+De BRP Historie API is beschikbaar voor gemeenten en andere afnemers van de BRP met een passend autorisatiebesluit voor verstrekking van een zoekvraag die deelnemen aan het [Experiment Dataminimalisatie]. Iedere deelnemer sluit aan met een API Gateway voor een veilige verbinding met RvIG, en sluit een convenant met RvIG waarin de afspraken voor deelname zijn vastgelegd. De aansluiting verloopt via Diginetwerk, vereist een TLS verbinding (PKIO certificaat) en een OAuth 2.0 token (OAuth 2.0 client credentials flow). 
+
+Stuur een mail naar info@RvIG voor een kennismakingmakingsgesprek en onboarding.
 
 ## Direct uitproberen?
 * Bekijk de specificaties met [Swagger UI](swagger-ui) of [Redoc](redoc)
