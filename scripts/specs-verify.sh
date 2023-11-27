@@ -1,25 +1,60 @@
 #!/bin/bash
 
+DBHOST=$1
+DBUSER=$2
+DBPASSWORD=$3
+CLIENTID=$4
+CLIENTSECRET=$5
+
+PARAMS="{ \
+  \"deleteIndividualRecords\": false, \
+  \"poolConfig\": { \
+    \"host\": \"${DBHOST}\", \
+    \"user\": \"${DBUSER}\", \
+    \"password\": \"${DBPASSWORD}\" \
+  }, \
+  \"client\": { \
+    \"clientId\": \"${CLIENTID}\", \
+    \"clientSecret\": \"${CLIENTSECRET}\" \
+  }\
+}"
+
 mkdir -p docs/features
 
-cucumber-js -f html:docs/features/test-result.html \
-            -f json:docs/features/test-result.json \
-            features/dev/*.feature \
-            features/aanhef.feature \
-            features/datum.feature \
-            features/fields-fout-cases.feature \
-            features/fields.feature \
-            features/gebruik_in_lopende_tekst.feature \
-            features/immigratie.feature \
-            features/leeftijd_bepaling.feature \
-            features/nationaliteit.feature \
-            features/onbekend_waardes.feature \
-            features/verblijfplaats.feature \
-            features/volledigeNaam.feature \
-            features/voorletters.feature \
-            features/zoek-met-bsn.feature \
-            features/zoek-met-geslachtsnaam-geboortedatum.feature \
-            features/zoek-met-geslachtsnaam-voornamen-gemeentevaninschrijving.feature \
-            features/zoek-met-postcode-huisnummer.feature \
-            features/zoek.feature \
-            --tags "not @gba" --tags "not @skip-verify"
+npx cucumber-js -f json:docs/features/test-result-autorisatie-gba.json \
+                -f summary:docs/features/test-result-autorisatie-gba-summary.txt \
+                features \
+                --tags "not @skip-verify" --tags "@autorisatie" \
+                --world-parameters "$PARAMS"
+
+npx cucumber-js -f json:docs/features/test-result-protocollering-gba.json \
+                -f summary:docs/features/test-result-protocollering-gba-summary.txt \
+                features \
+                --tags "not @skip-verify" --tags "@protocollering" \
+                --world-parameters "$PARAMS"
+
+npx cucumber-js -f json:docs/features/test-result-raadpleeg-verblijfplaatshistorie-op-peildatum-gba.json \
+                -f summary:docs/features/test-result-raadpleeg-verblijfplaatshistorie-op-peildatum-gba-summary.txt \
+                features/raadpleeg-verblijfplaats-op-peildatum \
+                fout-cases-gba.feature \
+                --tags "not @skip-verify" --tags "@gba" --tags "not @autorisatie" --tags "not @protocollering" \
+                --world-parameters "$PARAMS"
+
+npx cucumber-js -f json:docs/features/test-result-raadpleeg-verblijfplaatshistorie-met-periode-gba.json \
+                -f summary:docs/features/test-result-raadpleeg-verblijfplaatshistorie-met-periode-gba-summary.txt \
+                features/raadpleeg-verblijfplaats-met-periode \
+                --tags "not @skip-verify" --tags "@gba" --tags "not @autorisatie" --tags "not @protocollering" \
+                --world-parameters "$PARAMS"
+
+npx cucumber-js -f json:docs/features/test-result-raadpleeg-verblijfplaatshistorie-op-peildatum.json \
+                -f summary:docs/features/test-result-raadpleeg-verblijfplaatshistorie-op-peildatum-summary.txt \
+                features/raadpleeg-verblijfplaats-op-peildatum \
+                fout-cases.feature \
+                --tags "not @skip-verify" --tags "not @gba" \
+                --world-parameters "$PARAMS"
+
+npx cucumber-js -f json:docs/features/test-result-raadpleeg-verblijfplaatshistorie-met-periode.json \
+                -f summary:docs/features/test-result-raadpleeg-verblijfplaatshistorie-met-periode-summary.txt \
+                features/raadpleeg-verblijfplaats-met-periode \
+                --tags "not @skip-verify" --tags "not @gba" \
+                --world-parameters "$PARAMS"
