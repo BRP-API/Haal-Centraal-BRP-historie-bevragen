@@ -1,0 +1,41 @@
+name: ci
+
+on:
+  push:
+    paths:
+      - src/**
+      - features/**
+      - .github/workflows/ci.yml
+      - .docker/brphistorie-api.yml
+    branches:
+      - develop
+      - master
+    tags:
+      - v*-proxy
+      - v*-mock
+  workflow_dispatch:
+
+env:
+  DOTNET_VERSION: 8.0.x
+  DOTNET_SOLUTION: src/BRP-Historie.sln
+  NODE_VERSION: '18'
+  CONTAINER_NAME: ghcr.io/brp-api/haal-centraal-brphistorie-bevragen
+  COMPOSE_FILE_ARGUMENT: -f .docker/db-ci.yml -f .docker/brphistorie-api.yml -f .docker/brphistorie-proxy.yml
+  DOCKER_API_FILE_PATH: .docker/brphistorie-api.yml
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+            dotnet-version: ${{ env.DOTNET_VERSION }}
+      - name: Restore dependencies
+        run: dotnet restore ${{ env.DOTNET_SOLUTION }}
+      - name: Build
+        run: dotnet build ${{ env.DOTNET_SOLUTION }} --configuration Release --no-restore
+      - name: Test
+        run: dotnet test ${{ env.DOTNET_SOLUTION }} --configuration Release --no-build --verbosity normal --collect:"XPlat Code Coverage" --results-directory ./coverage
