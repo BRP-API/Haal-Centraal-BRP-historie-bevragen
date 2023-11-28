@@ -61,10 +61,10 @@ function fromHash(hash, columnNameMap) {
     return retval;
 }
 
-function createVoorkomenDataFromArray(data) {
+function createVoorkomenDataFromArray(dataTable, columnNameMap) {
     return [
         [ 'volg_nr', '0']
-    ].concat(data);
+    ].concat(createArrayFrom(dataTable, columnNameMap));
 }
 
 module.exports = { createCollectieDataFromArray, createArrayFrom, createVoorkomenDataFromArray, fromHash }

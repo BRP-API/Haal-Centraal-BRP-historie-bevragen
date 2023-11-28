@@ -63,4 +63,20 @@ function setProperty(obj, propertyName, propertyValue, dateAsDate) {
     }
 }
 
-module.exports = { createObjectFrom, createObjectArrayFrom, mapRowToProperty }
+function setObjectPropertiesFrom(obj, dataTable, dateAsDate = false) {
+    if(dataTable.raw()[0][0] === 'naam') {
+        dataTable.hashes().forEach(function(row) {
+            mapRowToProperty(obj, row, dateAsDate);
+        });
+    }
+    else {
+        dataTable.hashes().forEach(function(row) {
+            Object.keys(row).forEach(function(propertyName) {
+                setProperty(obj, propertyName, row[propertyName]);
+            })
+        });
+    }
+
+}
+
+module.exports = { createObjectFrom, createObjectArrayFrom, setObjectPropertiesFrom }

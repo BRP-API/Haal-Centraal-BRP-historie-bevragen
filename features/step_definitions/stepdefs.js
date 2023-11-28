@@ -1,7 +1,6 @@
 const { World } = require('./world');
 const { Given, When, Then, setWorldConstructor, Before, After, setDefaultTimeout } = require('@cucumber/cucumber');
-const { createObjectFrom, createObjectArrayFrom } = require('./dataTable2Object.js');
-const { createCollectieDataFromArray, createArrayFrom, createVoorkomenDataFromArray, fromHash } = require('./dataTable2Array.js');
+const { createObjectFrom, createObjectArrayFrom, setObjectPropertiesFrom } = require('./dataTable2Object.js');
 const { tableNameMap, columnNameMap, createAutorisatieSettingsFor, createRequestBody, createBasicAuthorizationHeader, createAdresseringBinnenlandAutorisatieSettingsFor, createVerblijfplaatsBinnenlandAutorisatieSettingsFor } = require('./gba.js');
 const { postBevragenRequestWithBasicAuth, handleOAuthRequest, handleOAuthCustomRequest, handleCustomBevragenRequest } = require('./handleRequest.js');
 const deepEqualInAnyOrder = require('deep-equal-in-any-order');
@@ -11,6 +10,7 @@ const { noSqlData, executeSqlStatements, rollbackSqlStatements, insertIntoPersoo
 const { stringifyValues } = require('./stringify.js');
 const { createAdres, infrastructureelWijzigenAdres } = require('./adres.js');
 const { createPersoonMetVerblijfplaats, createVerblijfplaats, createVerblijfplaatsBuitenland, corrigeerVerblijfplaats } = require('./verblijfplaats.js');
+const { createPersoon, createInschrijving } = require('./persoon.js');
 
 setWorldConstructor(World);
 
@@ -52,6 +52,20 @@ Given(/^de persoon is vervolgens ingeschreven op adres '(.*)' met de volgende ge
 
 Given(/^de persoon is vervolgens ingeschreven op een buitenlands adres met de volgende gegevens$/, function (dataTable) {
     createVerblijfplaatsBuitenland(this.context, dataTable);
+});
+
+Given(/^de persoon met burgerservicenummer '(\d*)' heeft de volgende gegevens$/, function (burgerservicenummer, dataTable) {
+    createPersoon(this.context, burgerservicenummer, undefined, dataTable);
+});
+
+Given(/^de persoon met burgerservicenummer '(\d*)' heeft de volgende '(\w*)' gegevens$/, function (burgerservicenummer, gegevensgroep, dataTable) {
+    createPersoon(this.context, burgerservicenummer, gegevensgroep, dataTable);
+});
+
+Given(/^de persoon heeft de volgende '(.*)' gegevens$/, function (gegevensgroep, dataTable) {
+    if(gegevensgroep === 'inschrijving') {
+        createInschrijving(this.context, dataTable)
+    }
 });
 
 function createAutorisatieSettings(context, afnemerId) {
@@ -126,6 +140,17 @@ When(/^(.*) wordt gezocht met een '(.*)' aanroep$/, async function(endpoint, ver
     this.context.proxyAanroep = true;
 
     await handleCustomRequest(this.context, endpoint, verb);
+});
+
+Then(/^heeft de response de volgende gegevens$/, function (dataTable) {
+    this.context.verifyResponse = true;
+
+    if(this.context.expected === undefined) {
+        this.context.expected = {};
+    }
+
+    let expected = this.context.expected;
+    setObjectPropertiesFrom(expected, dataTable);
 });
 
 Then(/^heeft de response verblijfplaatsen met de volgende gegevens$/, function (dataTable) {
