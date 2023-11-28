@@ -1,9 +1,9 @@
 ---
 layout: page-with-side-nav
-title: Haal-Centraal-BRP-historie-bevragen
+title: BRP Historie
 ---
 
-# Haal Centraal BRP historie bevragen
+# BRP Historie
 
 ![lint oas](https://github.com/BRP-API/Haal-Centraal-BRP-historie-bevragen/workflows/lint-oas/badge.svg)
 ![generate postman collection](https://github.com/BRP-API/Haal-Centraal-BRP-historie-bevragen/workflows/generate-postman-collection/badge.svg)
