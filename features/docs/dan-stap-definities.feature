@@ -2,6 +2,28 @@
 
 Functionaliteit: Dan stap definities
 
+  Scenario: Dan heeft de response de volgende gegevens (veld naam = tabel kolom naam)
+    Gegeven de response body is gelijk aan
+    """
+    {
+      "geheimhoudingPersoonsgegevens": "7"
+    }
+    """
+    Dan heeft de response de volgende gegevens
+    | geheimhoudingPersoonsgegevens |
+    | 7                             |
+
+  Scenario: Dan heeft de response de volgende gegevens
+    Gegeven de response body is gelijk aan
+    """
+    {
+      "geheimhoudingPersoonsgegevens": "7"
+    }
+    """
+    Dan heeft de response de volgende gegevens
+    | naam                          | waarde |
+    | geheimhoudingPersoonsgegevens | 7      |
+
   Scenario: Dan heeft de response een verblijfplaats met de volgende gegevens
     Gegeven de response body is gelijk aan
     """
