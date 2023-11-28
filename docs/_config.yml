@@ -12,7 +12,7 @@ organisation-url: "http://www.rvig.nl"
 # Indien een 'url' voorradig dan wordt daarmee de 'href' gevuld en dient het path slechts om te bepalen welke link active is.
 # 'target: blank' zorgt er voor dat de link in een nieuw tabblad wordt geöpend.
 nav:
-  - title: BRP Historie Bevragen
+  - title: BRP Historie 
     subnav:
       - title: Main
         path: /
