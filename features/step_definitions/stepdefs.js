@@ -9,6 +9,8 @@ const should = require('chai').use(deepEqualInAnyOrder).should();
 const { Pool } = require('pg');
 const { noSqlData, executeSqlStatements, rollbackSqlStatements, insertIntoPersoonlijstStatement, insertIntoAdresStatement, insertIntoStatement } = require('./postgresqlHelpers.js');
 const { stringifyValues } = require('./stringify.js');
+const { createAdres, infrastructureelWijzigenAdres } = require('./adres.js');
+const { createPersoonMetVerblijfplaats, createVerblijfplaats, createVerblijfplaatsBuitenland, corrigeerVerblijfplaats } = require('./verblijfplaats.js');
 
 setWorldConstructor(World);
 
@@ -22,82 +24,34 @@ let logSqlStatements = false;
 let accessToken;
 
 Given(/^adres '(.*)' heeft de volgende gegevens$/, function (adresId, dataTable) {
-    if(this.context.sqlData === undefined) {
-        this.context.sqlData = [{'adres':{}}];
-    }
+    createAdres(this.context, adresId, dataTable);
+});
 
-    let sqlData = this.context.sqlData.find(e => Object.keys(e).includes('adres'));
-    if(sqlData === undefined) {
-        sqlData = { adres: {} };
-        this.context.sqlData.push(sqlData);
-    }
+Given(/^adres '(.*)' is op '(.*)' infrastructureel gewijzigd naar adres '(.*)' met de volgende gegevens$/, function(sourceAdresId, ingangsdatum, targetAdresId, dataTable) {
+    infrastructureelWijzigenAdres(this.context, sourceAdresId, ingangsdatum, targetAdresId, dataTable);
+});
 
-    sqlData['adres'][adresId] = {
-        index: Object.keys(sqlData['adres']).length,
-        data: createArrayFrom(dataTable, columnNameMap)
-    };
+Given(/^adres '(.*)' is op '(.*)' infrastructureel gewijzigd met de volgende gegevens$/, function (adresId, ingangsdatum, dataTable) {
+    let sqlData = this.context.sqlData.find(el => el['adres'] !== undefined);
+
+    const nieuwAdresIndex = Object.keys(sqlData['adres']).length;
+    infrastructureelWijzigenAdres(this.context, adresId, ingangsdatum, nieuwAdresIndex + 1 + '', dataTable);
+});
+
+Given(/^de inschrijving is vervolgens gecorrigeerd als een inschrijving op adres '(.*)' met de volgende gegevens$/, function (adresId, dataTable) {
+    corrigeerVerblijfplaats(this.context, adresId, dataTable);
 });
 
 Given(/^de persoon met burgerservicenummer '(\d*)' is ingeschreven op adres '(.*)' met de volgende gegevens$/, function (burgerservicenummer, adresId, dataTable) {
-    if(this.context.sqlData === undefined) {
-        this.context.sqlData = [];
-    }
-
-    const adressenData = this.context.sqlData.find(e => Object.keys(e).includes('adres'));
-    should.exist(adressenData, 'geen adressen gevonden');
-    const adresIndex = adressenData.adres[adresId]?.index;
-    should.exist(adresIndex, `geen adres gevonden met id '${adresId}'`);
-
-    this.context.sqlData.push({});
-
-    let sqlData = this.context.sqlData.at(-1);
-
-    sqlData['persoon'] = [
-        createCollectieDataFromArray('persoon', [
-            ['burger_service_nr', burgerservicenummer]
-        ])
-    ];
-
-    sqlData['inschrijving'] = [[[ 'geheim_ind', '0' ]]];
-
-    sqlData['verblijfplaats'] = [
-        [
-            [ 'adres_id', adresIndex + '' ],
-            [ 'volg_nr', '0']
-        ].concat(createArrayFrom(dataTable, columnNameMap))
-    ];
+    createPersoonMetVerblijfplaats(this.context, burgerservicenummer, adresId, dataTable);
 });
 
 Given(/^de persoon is vervolgens ingeschreven op adres '(.*)' met de volgende gegevens$/, function (adresId, dataTable) {
-    const adressenData = this.context.sqlData.find(e => Object.keys(e).includes('adres'));
-    should.exist(adressenData, 'geen adressen gevonden');
-    const adresIndex = adressenData.adres[adresId]?.index;
-    should.exist(adresIndex, `geen adres gevonden met id '${adresId}'`);
-
-    let sqlData = this.context.sqlData.at(-1);
-
-    sqlData['verblijfplaats'].forEach(function(data) {
-        let volgNr = data.find(el => el[0] === 'volg_nr');
-        volgNr[1] = Number(volgNr[1]) + 1 + '';
-    });
-
-    sqlData['verblijfplaats'].push([
-        [ 'adres_id', adresIndex + '' ],
-        [ 'volg_nr', '0']
-    ].concat(createArrayFrom(dataTable, columnNameMap)));
+    createVerblijfplaats(this.context, adresId, dataTable);
 });
 
 Given(/^de persoon is vervolgens ingeschreven op een buitenlands adres met de volgende gegevens$/, function (dataTable) {
-    let sqlData = this.context.sqlData.at(-1);
-
-    sqlData['verblijfplaats'].forEach(function(data) {
-        let volgNr = data.find(el => el[0] === 'volg_nr');
-        volgNr[1] = Number(volgNr[1]) + 1 + '';
-    });
-
-    sqlData['verblijfplaats'].push([
-        [ 'volg_nr', '0']
-    ].concat(createArrayFrom(dataTable, columnNameMap)));
+    createVerblijfplaatsBuitenland(this.context, dataTable);
 });
 
 function createAutorisatieSettings(context, afnemerId) {
