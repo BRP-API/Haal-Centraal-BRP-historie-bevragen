@@ -5,15 +5,15 @@ VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{3AF85B1B-7E1C-4F83-9615-61E0DF605495}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BrpHistorieProxy", "src\BrpHistorieProxy\BrpHistorieProxy.csproj", "{13E74685-55FB-450D-96D9-CE0405C0706B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BrpHistorieProxy", "BrpHistorieProxy\BrpHistorieProxy.csproj", "{13E74685-55FB-450D-96D9-CE0405C0706B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BrpHistorieStub", "src\BrpHistorieStub\BrpHistorieStub.csproj", "{9D8D2BF7-842F-47E9-BE5A-52084F55CBC3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BrpHistorieStub", "BrpHistorieStub\BrpHistorieStub.csproj", "{9D8D2BF7-842F-47E9-BE5A-52084F55CBC3}"
 EndProject
-Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{F65F75B4-74C6-4AB6-AECB-573DABD4D33B}"
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "..\docker-compose.dcproj", "{F65F75B4-74C6-4AB6-AECB-573DABD4D33B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BrpHistorie.Infrastructure", "src\BrpHistorie.Infrastructure\BrpHistorie.Infrastructure.csproj", "{39CAF451-B3CC-4418-AF46-59B6BBD01C37}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BrpHistorie.Infrastructure", "BrpHistorie.Infrastructure\BrpHistorie.Infrastructure.csproj", "{39CAF451-B3CC-4418-AF46-59B6BBD01C37}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrpHistorie.Validatie", "src\BrpHistorie.Validatie\BrpHistorie.Validatie.csproj", "{D0C95944-A7FB-49B6-8052-D3CB293B1392}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrpHistorie.Validatie", "BrpHistorie.Validatie\BrpHistorie.Validatie.csproj", "{D0C95944-A7FB-49B6-8052-D3CB293B1392}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
