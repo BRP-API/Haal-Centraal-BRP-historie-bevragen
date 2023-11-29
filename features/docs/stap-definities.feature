@@ -130,7 +130,7 @@ Functionaliteit: Stap definities
     |      | verblijfplaats | INSERT INTO public.lo3_pl_verblijfplaats(pl_id,adres_id,volg_nr,inschrijving_gemeente_code,adreshouding_start_datum) VALUES($1,$2,$3,$4,$5)                              | 9999,4999,1,0800,20220102   |
     |      |                | INSERT INTO public.lo3_pl_verblijfplaats(pl_id,adres_id,volg_nr,inschrijving_gemeente_code,adreshouding_start_datum,aangifte_adreshouding_oms) VALUES($1,$2,$3,$4,$5,$6) | 9999,5000,0,0530,20230203,W |
 
-  Scenario: een correctie op een inschrijving op een adres met identificatie 
+  Scenario: een correctie op een inschrijving op een adres met identificatie naar een ander adres met identificatie
     Gegeven adres 'A1' heeft de volgende gegevens
     | straatnaam (11.10) |
     | Boterdiep          |
@@ -151,3 +151,21 @@ Functionaliteit: Stap definities
     |      | persoon        | INSERT INTO public.lo3_pl_persoon(pl_id,stapel_nr,volg_nr,persoon_type,burger_service_nr) VALUES($1,$2,$3,$4,$5)                                      | 9999,0,0,P,000000012   |
     |      | verblijfplaats | INSERT INTO public.lo3_pl_verblijfplaats(pl_id,adres_id,volg_nr,adreshouding_start_datum,onjuist_ind) VALUES($1,$2,$3,$4,$5)                          | 9999,4999,1,20230102,O |
     |      |                | INSERT INTO public.lo3_pl_verblijfplaats(pl_id,adres_id,volg_nr,adreshouding_start_datum) VALUES($1,$2,$3,$4)                                         | 9999,5000,0,20230800   |
+
+  Scenario: een correctie op een inschrijving op een adres met identificatie
+    Gegeven adres 'A1' heeft de volgende gegevens
+    | straatnaam (11.10) |
+    | Boterdiep          |
+    En de persoon met burgerservicenummer '000000012' is ingeschreven op adres 'A1' met de volgende gegevens
+    | datum aanvang adreshouding (10.30) |
+    | 20230102                           |
+    En de 'verblijfplaats' is gecorrigeerd naar de volgende gegevens
+    | datum aanvang adreshouding (10.30) |
+    | 20230800                           |
+    Dan zijn de gegenereerde SQL statements
+    | stap | categorie      | text                                                                                                                                                  | values                 |
+    | 1    | adres-A1       | INSERT INTO public.lo3_adres(adres_id,straat_naam) VALUES((SELECT COALESCE(MAX(adres_id), 0)+1 FROM public.lo3_adres),$1) RETURNING *                 | Boterdiep              |
+    | 2    | inschrijving   | INSERT INTO public.lo3_pl(pl_id,mutatie_dt,geheim_ind) VALUES((SELECT COALESCE(MAX(pl_id), 0)+1 FROM public.lo3_pl),current_timestamp,$1) RETURNING * | 0                      |
+    |      | persoon        | INSERT INTO public.lo3_pl_persoon(pl_id,stapel_nr,volg_nr,persoon_type,burger_service_nr) VALUES($1,$2,$3,$4,$5)                                      | 9999,0,0,P,000000012   |
+    |      | verblijfplaats | INSERT INTO public.lo3_pl_verblijfplaats(pl_id,adres_id,volg_nr,adreshouding_start_datum,onjuist_ind) VALUES($1,$2,$3,$4,$5)                          | 9999,4999,1,20230102,O |
+    |      |                | INSERT INTO public.lo3_pl_verblijfplaats(pl_id,adres_id,volg_nr,adreshouding_start_datum) VALUES($1,$2,$3,$4)                                         | 9999,4999,0,20230800   |

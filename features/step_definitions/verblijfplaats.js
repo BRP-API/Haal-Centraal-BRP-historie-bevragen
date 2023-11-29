@@ -8,6 +8,9 @@ function createVerblijfplaatsVoorkomen(sqlData, adresIndex, dataTable, isCorrect
         let volgNr = data.find(el => el[0] === 'volg_nr');
         if(isCorrectie && volgNr[1] === '0') {
             data.push(['onjuist_ind','O']);
+            if(adresIndex === undefined) {
+                adresIndex = data.find(el => el[0] === 'adres_id')[1];
+            }
         }
         volgNr[1] = Number(volgNr[1]) + 1 + '';
     });
@@ -69,8 +72,12 @@ function createVerblijfplaatsBuitenland(context, dataTable) {
 function corrigeerVerblijfplaats(context, adresId, dataTable) {
     const adressenData = context.sqlData.find(e => Object.keys(e).includes('adres'));
     should.exist(adressenData, 'geen adressen gevonden');
-    const adresIndex = adressenData.adres[adresId]?.index;
-    should.exist(adresIndex, `geen adres gevonden met id '${adresId}'`);
+    const adresIndex = adresId !== undefined
+     ? adressenData.adres[adresId]?.index
+     : undefined;
+    if(adresId !== undefined) {
+        should.exist(adresIndex, `geen adres gevonden met id '${adresId}' in ${JSON.stringify(adressenData)}`);
+    }
 
     let sqlData = context.sqlData.at(-1);
 
