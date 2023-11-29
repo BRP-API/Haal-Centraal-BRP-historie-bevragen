@@ -68,6 +68,12 @@ Given(/^de persoon heeft de volgende '(.*)' gegevens$/, function (gegevensgroep,
     }
 });
 
+Given(/^(?:de|het) '(.*)' is gecorrigeerd naar de volgende gegevens$/, async function (relatie, dataTable) {
+    if(relatie === 'verblijfplaats') {
+        corrigeerVerblijfplaats(this.context, undefined, dataTable);
+    }
+});
+
 function createAutorisatieSettings(context, afnemerId) {
     const heeftAutorisatieSettings = context.sqlData.filter(s => s['autorisatie'] !== undefined).length > 0;
     if (!heeftAutorisatieSettings &&
