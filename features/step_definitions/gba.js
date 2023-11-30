@@ -24,14 +24,27 @@ const columnNameMap = new Map([
 
     ['gemeente van inschrijving (09.10)', 'inschrijving_gemeente_code'],
 
+    ['functie adres (10.10)', 'adres_functie'],
     ['datum aanvang adreshouding (10.30)', 'adreshouding_start_datum'],
 
     ['straatnaam (11.10)', 'straat_naam'],
+    ['straatnaam (diakrieten)', 'diak_straat_naam'],
+    ['naam openbare ruimte (11.15)', 'open_ruimte_naam'],
+    ['naam openbare ruimte (diakrieten)', 'diak_open_ruimte_naam'],
+    ['huisnummer (11.20)', 'huis_nr'],
+    ['huisletter (11.30)', 'huis_letter'],
+    ['huisnummertoevoeging (11.40)', 'huis_nr_toevoeging'],
+    ['aanduiding bij huisnummer (11.50)', 'huis_nr_aand'],
+    ['postcode (11.60)', 'postcode'],
+    ['woonplaats (11.70)', 'woon_plaats_naam'],
+    ['woonplaats (diakrieten)', 'diak_woon_plaats_naam'],
     ['identificatiecode verblijfplaats (11.80)', 'verblijf_plaats_ident_code'],
     ['identificatiecode nummeraanduiding (11.90)', 'nummer_aand_ident_code'],
 
     ['locatiebeschrijving (12.10)', 'locatie_beschrijving'],
+    ['locatiebeschrijving (diakrieten)', 'diak_locatie_beschrijving'],
 
+    ['land (13.10)', 'vertrek_land_code'],
     ['land adres buitenland (13.10)', 'vertrek_land_code'],
     ['datum aanvang adres buitenland (13.20)', 'vertrek_datum'],
     ['regel 1 adres buitenland (13.30)', 'vertrek_land_adres_1'],
