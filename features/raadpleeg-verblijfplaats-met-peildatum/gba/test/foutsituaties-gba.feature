@@ -161,6 +161,25 @@ Functionaliteit: test dat raadplegen historie met peildatum een correcte melding
       | required | peildatum | Parameter is verplicht. |
 
     @fout-case
+    Scenario: De peildatum parameter is leeg
+      Als gba verblijfplaatshistorie wordt gezocht met de volgende parameters
+      | naam                | waarde                |
+      | type                | RaadpleegMetPeildatum |
+      | burgerservicenummer | 000000012             |
+      | peildatum           |                       |
+      Dan heeft de response een object met de volgende gegevens
+      | naam     | waarde                                                      |
+      | type     | https://datatracker.ietf.org/doc/html/rfc7231#section-6.5.1 |
+      | title    | Een of meerdere parameters zijn niet correct.               |
+      | status   | 400                                                         |
+      | detail   | De foutieve parameter(s) zijn: peildatum.                    |
+      | code     | paramsValidation                                            |
+      | instance | /haalcentraal/api/brphistorie/verblijfplaatshistorie        |
+      En heeft het object de volgende 'invalidParams' gegevens
+      | code     | name      | reason                  |
+      | required | peildatum | Parameter is verplicht. |
+
+    @fout-case
     Abstract Scenario: De peildatum parameter heeft een ongeldige waarde
       Als gba verblijfplaatshistorie wordt gezocht met de volgende parameters
       | naam                | waarde                |
@@ -193,7 +212,6 @@ Functionaliteit: test dat raadplegen historie met peildatum een correcte melding
       | 2019-02-29     |
       | --             |
       | - -            |
-      |                |
 
   Rule: parameter exclusiefVerblijfplaatsBuitenland is optioneel en moet een boolean (true of false) als waarde hebben
     
@@ -223,8 +241,6 @@ Functionaliteit: test dat raadplegen historie met peildatum een correcte melding
       | 1                |
       | waar             |
       | ja               |
-      | null             |
-      | undefined        |
   
   Rule: Alleen gespecificeerde parameters bij het opgegeven raadpleeg type mogen worden gebruikt
 
@@ -235,7 +251,7 @@ Functionaliteit: test dat raadplegen historie met peildatum een correcte melding
       | type                | RaadpleegMetPeildatum |
       | burgerservicenummer | 000000012             |
       | peildatum           | 2020-01-01            |
-      | <parameter          | <waarde>              |
+      | <parameter>         | <waarde>              |
       Dan heeft de response een object met de volgende gegevens
       | naam     | waarde                                                      |
       | type     | https://datatracker.ietf.org/doc/html/rfc7231#section-6.5.1 |
@@ -249,7 +265,7 @@ Functionaliteit: test dat raadplegen historie met peildatum een correcte melding
       | unknownParam | <parameter> | Parameter is niet verwacht. |
 
       Voorbeelden:
-      | parameter | peildatum  |
+      | parameter | waarde     |
       | datumVan  | 2019-01-01 |
       | datumVan  | 2020-01-01 |
       | datumVan  | 2020-07-01 |

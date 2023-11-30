@@ -6,9 +6,6 @@ Functionaliteit: test dat raadplegen historie met periode bij een opeenvolgende 
       Gegeven adres 'A1' heeft de volgende gegevens
       | gemeentecode (92.10) | straatnaam (11.10) |
       | 0800                 | Korte straatnaam   |
-      En adres 'A2' heeft de volgende gegevens
-      | gemeentecode (92.10) | identificatiecode verblijfplaats (11.80) | straatnaam (11.10) | naam openbare ruimte (11.15) | woonplaats (11.70) | identificatiecode verblijfplaats (11.80) | identificatiecode nummeraanduiding (11.90) |
-      | 0800                 | 0800010000000002                         | Korte straatnaam   | Officiele straatnaam         | Testdorp           | 0800010000000002                         | 0800200000000002                           |
 
   Rule: een verblijfplaats wordt niet geleverd wanneer de bekende datum aanvang volgende verblijfplaats gelijk is aan (of eerder) dan de datum aanvang van het verblijf
 
@@ -16,9 +13,9 @@ Functionaliteit: test dat raadplegen historie met periode bij een opeenvolgende 
       Gegeven de persoon met burgerservicenummer '000000012' is ingeschreven op adres 'A1' met de volgende gegevens
       | gemeente van inschrijving (09.10) | datum aanvang adreshouding (10.30) |
       | 0800                              | 20020701                           |
-      En de persoon is vervolgens ingeschreven op adres 'A2' met de volgende gegevens
-      | gemeente van inschrijving (09.10) | datum aanvang adreshouding (10.30) | aangifte adreshouding (72.10) |
-      | 0800                              | 20101014                           | T                             |
+      En adres 'A1' is op '20101014' geactualiseerd met de volgende gegevens
+      | identificatiecode verblijfplaats (11.80) | naam openbare ruimte (11.15) | woonplaats (11.70) | identificatiecode verblijfplaats (11.80) | identificatiecode nummeraanduiding (11.90) |
+      | 0800010000000002                         | Officiele straatnaam         | Testdorp           | 0800010000000002                         | 0800200000000002                           |
       Als gba verblijfplaatshistorie wordt gezocht met de volgende parameters
       | naam                | waarde              |
       | type                | RaadpleegMetPeriode |
@@ -34,9 +31,9 @@ Functionaliteit: test dat raadplegen historie met periode bij een opeenvolgende 
       Gegeven de persoon met burgerservicenummer '000000012' is ingeschreven op adres 'A1' met de volgende gegevens
       | gemeente van inschrijving (09.10) | datum aanvang adreshouding (10.30) |
       | 0800                              | 20020701                           |
-      En de persoon is vervolgens ingeschreven op adres 'A2' met de volgende gegevens
-      | gemeente van inschrijving (09.10) | datum aanvang adreshouding (10.30) | aangifte adreshouding (72.10) |
-      | 0800                              | <datum aanvang>                    | T                             |
+      En adres 'A1' is op '<datum aanvang>' geactualiseerd met de volgende gegevens
+      | identificatiecode verblijfplaats (11.80) | naam openbare ruimte (11.15) | woonplaats (11.70) | identificatiecode verblijfplaats (11.80) | identificatiecode nummeraanduiding (11.90) |
+      | 0800010000000002                         | Officiele straatnaam         | Testdorp           | 0800010000000002                         | 0800200000000002                           |
       Als gba verblijfplaatshistorie wordt gezocht met de volgende parameters
       | naam                | waarde              |
       | type                | RaadpleegMetPeriode |

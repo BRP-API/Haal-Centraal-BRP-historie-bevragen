@@ -167,6 +167,26 @@ Functionaliteit: test dat raadplegen historie met periode een correcte melding g
       | required | datumVan | Parameter is verplicht. |
 
     @fout-case
+    Scenario: De datumVan parameter is leeg
+      Als gba verblijfplaatshistorie wordt gezocht met de volgende parameters
+      | naam                | waarde              |
+      | type                | RaadpleegMetPeriode |
+      | burgerservicenummer | 000000012           |
+      | datumVan            |                     |
+      | datumTot            | 2020-01-01          |
+      Dan heeft de response een object met de volgende gegevens
+      | naam     | waarde                                                      |
+      | type     | https://datatracker.ietf.org/doc/html/rfc7231#section-6.5.1 |
+      | title    | Een of meerdere parameters zijn niet correct.               |
+      | status   | 400                                                         |
+      | detail   | De foutieve parameter(s) zijn: datumVan.                    |
+      | code     | paramsValidation                                            |
+      | instance | /haalcentraal/api/brphistorie/verblijfplaatshistorie        |
+      En heeft het object de volgende 'invalidParams' gegevens
+      | code     | name     | reason                  |
+      | required | datumVan | Parameter is verplicht. |
+
+    @fout-case
     Abstract Scenario: De datumVan parameter heeft een ongeldige waarde
       Als gba verblijfplaatshistorie wordt gezocht met de volgende parameters
       | naam                | waarde              |
@@ -200,7 +220,6 @@ Functionaliteit: test dat raadplegen historie met periode een correcte melding g
       | 2019-02-29     |
       | --             |
       | - -            |
-      |                |
 
   Rule: bij RaadpleegMetPeriode is datumTot een verplichte parameter in RFC 3339 (yyyy-mm-dd) formaat
 
@@ -211,6 +230,26 @@ Functionaliteit: test dat raadplegen historie met periode een correcte melding g
       | type                | RaadpleegMetPeriode |
       | burgerservicenummer | 000000012           |
       | datumVan            | 2020-01-01          |
+      Dan heeft de response een object met de volgende gegevens
+      | naam     | waarde                                                      |
+      | type     | https://datatracker.ietf.org/doc/html/rfc7231#section-6.5.1 |
+      | title    | Een of meerdere parameters zijn niet correct.               |
+      | status   | 400                                                         |
+      | detail   | De foutieve parameter(s) zijn: datumTot.                    |
+      | code     | paramsValidation                                            |
+      | instance | /haalcentraal/api/brphistorie/verblijfplaatshistorie        |
+      En heeft het object de volgende 'invalidParams' gegevens
+      | code     | name     | reason                  |
+      | required | datumTot | Parameter is verplicht. |
+
+    @fout-case
+    Scenario: De datumTot parameter is leeg
+      Als gba verblijfplaatshistorie wordt gezocht met de volgende parameters
+      | naam                | waarde              |
+      | type                | RaadpleegMetPeriode |
+      | burgerservicenummer | 000000012           |
+      | datumVan            | 2020-01-01          |
+      | datumTot            |                     |
       Dan heeft de response een object met de volgende gegevens
       | naam     | waarde                                                      |
       | type     | https://datatracker.ietf.org/doc/html/rfc7231#section-6.5.1 |
@@ -258,7 +297,6 @@ Functionaliteit: test dat raadplegen historie met periode een correcte melding g
       | 01-01-2019     |
       | --             |
       | - -            |
-      |                |
 
   Rule: datumTot moet na datumVan liggen
 
@@ -318,8 +356,6 @@ Functionaliteit: test dat raadplegen historie met periode een correcte melding g
       | 1                |
       | waar             |
       | ja               |
-      | null             |
-      | undefined        |
   
   Rule: Alleen gespecificeerde parameters bij het opgegeven raadpleeg type mogen worden gebruikt
 

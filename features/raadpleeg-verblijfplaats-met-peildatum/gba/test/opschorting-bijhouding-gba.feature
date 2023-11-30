@@ -7,17 +7,16 @@ Functionaliteit: test voor raadplegen historie met peildatum dat opschorting bij
       | gemeentecode (92.10) | straatnaam (11.10) |
       | 0800                 | Korte straatnaam   |
 
-  Rule: personen met afgevoerde persoonslijst worden niet gevonden bij het zoeken
-    Een afgevoerde persoonslijst heeft opschorting bijhouding reden "F" (fout)
+  Rule: Een persoonslijst met reden opschorting bijhouding "W" (wissen) wordt niet geleverd
 
     @fout-case
-    Scenario: historie wordt gevraagd op burgerservicenummer van afgevoerde persoonslijst
+    Scenario: historie wordt gevraagd op burgerservicenummer van gewiste persoonslijst
       Gegeven de persoon met burgerservicenummer '000000012' is ingeschreven op adres 'A1' met de volgende gegevens
       | gemeente van inschrijving (09.10) | datum aanvang adreshouding (10.30) |
       | 0800                              | 20220801                           |
       En de persoon heeft de volgende 'inschrijving' gegevens
       | naam                                 | waarde   |
-      | reden opschorting bijhouding (67.20) | F        |
+      | reden opschorting bijhouding (67.20) | W        |
       | datum opschorting bijhouding (67.10) | 20220829 |
       Als gba verblijfplaatshistorie wordt gezocht met de volgende parameters
       | naam                | waarde                |
@@ -62,7 +61,8 @@ Functionaliteit: test voor raadplegen historie met peildatum dat opschorting bij
       | O                            | overlijden                     |
       | E                            | emigratie                      |
       | M                            | ministerieel besluit           |
-      | R                            | pl is aangelegd in de rni      | 
+      | R                            | pl is aangelegd in de rni      |
+      | F                            | fout                           |
       | .                            | onbekend                       |
 
     Abstract Scenario: historie wordt gevraagd van persoon waarvoor de bijhouding is opgeschort met peildatum <omschrijving> datum opschorting (overlijden)
