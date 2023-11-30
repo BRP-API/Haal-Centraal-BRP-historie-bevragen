@@ -60,6 +60,10 @@ function createVerblijfplaats(context, adresId, dataTable) {
 
     let sqlData = context.sqlData.at(-1);
 
+    if(sqlData['verblijfplaats'] === undefined) {
+        sqlData['verblijfplaats'] = [];
+    }
+
     createVerblijfplaatsVoorkomen(sqlData, adresIndex, dataTable);
 }
 
