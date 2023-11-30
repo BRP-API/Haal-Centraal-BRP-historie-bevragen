@@ -35,6 +35,12 @@ const dagRegex = /^(?<dag>gisteren|vandaag|morgen)( - (?<jaarOffset>\d+) jaar)?$
 const maandRegex = /^(?<maand>vorige maand|deze maand|volgende maand)( - (?<jaarOffset>\d+) jaar)?$/;
 const jaarRegex = /^(?<jaar>vorig jaar|dit jaar|volgend jaar)( - (?<jaarOffset>\d+) jaar)?$/;
 
+function isSupportedDateNotation(dateInText) {
+    return dateInText.match(dagRegex) ||
+           dateInText.match(maandRegex) ||
+           dateInText.match(jaarRegex);
+}
+
 function toDate(dateInText) {
     let jaar = 0,
         maand = 0,
@@ -66,7 +72,7 @@ function toDate(dateInText) {
     }
 
     let date = new Date();
-    date.setDate(dag !== 0 ? date.getDate() + dag : 1);
+    date.setDate(date.getDate() + dag);
     date.setMonth(date.getMonth() + maand);
     date.setYear(date.getFullYear() + jaar);
 
@@ -100,9 +106,7 @@ function toHcDate(dateInText) {
 // converteer een datum representatie naar een GBA datum (8 cijfers representatie) of een ISO datum of een jaar of een maand
 // of de waarde als deze geen datum representatie is 
 function toDateOrString(value, dateAsDate) {
-    if (value.match(dagRegex) ||
-        value.match(maandRegex) ||
-        value.match(jaarRegex)) {
+    if (isSupportedDateNotation(value)) {
         return dateAsDate
             ? toHcDate(value)
             : toGbaDate(value);
