@@ -221,6 +221,16 @@ Then(/^heeft de response de volgende gegevens$/, function (dataTable) {
     setObjectPropertiesFrom(expected, dataTable);
 });
 
+Then(/^heeft de response de volgende '(.*)' gegevens$/, function (gegevensgroep, dataTable) {      
+    this.context.verifyResponse = true;
+
+    if(this.context.expected === undefined) {
+        this.context.expected = {};
+    }
+
+    this.context.expected[gegevensgroep] = createObjectFrom(dataTable, this.context.proxyAanroep);
+});
+
 Then(/^heeft de response verblijfplaatsen met de volgende gegevens$/, function (dataTable) {
     this.context.verifyResponse = true;
 
@@ -269,7 +279,7 @@ After({tags: 'not @fout-case'}, async function() {
 });
 
 After({tags: '@fout-case'}, async function() {
-    this.context.response.status.should.not.equal(200, `response body: ${JSON.stringify(this.context.response.data, null, '\t')}`);
+    this.context.response.status.should.not.equal(200, `request body: ${this.context.response.config.data}\nresponse body: ${JSON.stringify(this.context.response.data, null, '\t')}`);
 
     const headers = this.context?.response?.headers;
     should.exist(headers, 'no response headers found');
@@ -283,7 +293,7 @@ After({tags: '@fout-case'}, async function() {
         : {};
     const expected = this.context.expected;
 
-    actual.should.deep.equalInAnyOrder(expected, `actual: ${JSON.stringify(actual, null, '\t')}\nexpected: ${JSON.stringify(expected, null, '\t')}`);
+    actual.should.deep.equalInAnyOrder(expected, `request body: ${this.context.response.config.data}\nactual: ${JSON.stringify(actual, null, '\t')}\nexpected: ${JSON.stringify(expected, null, '\t')}`);
 });
 
 Before({tags: '@autorisatie'}, async function() {
