@@ -53,3 +53,35 @@ Functionaliteit: test voor raadplegen historie met peildatum dat geheimhoudingPe
       | 5                              |
       | 6                              |
       | 7                              |
+
+    Scenario: historie wordt gevraagd van persoon met geheimhouding op peildatum waarop geen verblijfplaats wordt gevonden
+      Gegeven de persoon heeft de volgende 'inschrijving' gegevens
+      | naam                     | waarde |
+      | indicatie geheim (70.10) | 7      |
+      Als gba verblijfplaatshistorie wordt gezocht met de volgende parameters
+      | naam                | waarde                |
+      | type                | RaadpleegMetPeildatum |
+      | burgerservicenummer | 000000012             |
+      | peildatum           | 2022-01-01            |
+      Dan heeft de response geen 'verblijfplaatsen' gegevens
+      En heeft de response de volgende gegevens
+      | naam                          | waarde |
+      | geheimhoudingPersoonsgegevens | 7      |
+
+    Scenario: historie wordt gevraagd van persoon met geheimhouding met exclusiefVerblijfplaatsBuitenland met peildatum tijdens verblijf buitenland
+      Gegeven de persoon heeft de volgende 'inschrijving' gegevens
+      | naam                     | waarde |
+      | indicatie geheim (70.10) | 7      |
+      En de persoon is vervolgens ingeschreven op een buitenlands adres met de volgende gegevens
+      | datum aanvang adres buitenland (13.20) | land adres buitenland (13.10) |
+      | 20221201                               | 6014                          |
+      Als gba verblijfplaatshistorie wordt gezocht met de volgende parameters
+      | naam                              | waarde                |
+      | type                              | RaadpleegMetPeildatum |
+      | burgerservicenummer               | 000000012             |
+      | peildatum                         | 2023-01-01            |
+      | exclusiefVerblijfplaatsBuitenland | true                  |
+      Dan heeft de response geen 'verblijfplaatsen' gegevens
+      En heeft de response de volgende gegevens
+      | naam                          | waarde |
+      | geheimhoudingPersoonsgegevens | 7      |
