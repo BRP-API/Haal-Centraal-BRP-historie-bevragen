@@ -68,6 +68,9 @@ const columnNameMap = new Map([
     ['datum ingang onderzoek (83.20)', 'onderzoek_start_datum' ],
     ['datum einde onderzoek (83.30)', 'onderzoek_eind_datum' ],
 
+    ['rni-deelnemer (88.10)', 'rni_deelnemer'],
+    ['omschrijving verdrag (88.20)', 'verdrag_oms'],
+
     ['gemeentecode (92.10)', 'gemeente_code'],
     ['gemeentenaam (92.11)', 'gemeente_naam'],
     ['nieuwe gemeentecode (92.12)', 'nieuwe_gemeente_code'],
