@@ -32,6 +32,34 @@ Functionaliteit: test voor raadplegen historie met peildatum dat opschorting bij
       | code     | notFound                                                       |
       | instance | /haalcentraal/api/brphistorie/verblijfplaatshistorie           |
 
+  Rule: bij het raadplegen van een persoon met afgevoerde persoonslijst wordt alleen de reden en datum opschorting geleverd
+    Overige gegevens op de afgevoerde persoonslijst worden niet geleverd
+
+    Abstract Scenario: historie wordt gevraagd van persoon waarvoor de bijhouding is opgeschort met reden "F" (fout)
+      Gegeven de persoon met burgerservicenummer '000000012' is ingeschreven op adres 'A1' met de volgende gegevens
+      | gemeente van inschrijving (09.10) | datum aanvang adreshouding (10.30) |
+      | 0800                              | 20220801                           |
+      En de persoon heeft de volgende 'inschrijving' gegevens
+      | naam                                 | waarde   |
+      | reden opschorting bijhouding (67.20) | F        |
+      | datum opschorting bijhouding (67.10) | 20220829 |
+      Als gba verblijfplaatshistorie wordt gezocht met de volgende parameters
+      | naam                | waarde                |
+      | type                | RaadpleegMetPeildatum |
+      | burgerservicenummer | 000000012             |
+      | peildatum           | <peildatum>            |
+      Dan heeft de response geen 'verblijfplaatsen' gegevens
+      En heeft de response de volgende gegevens
+      | naam                                     | waarde   |
+      | opschortingBijhouding.reden.code         | F        |
+      | opschortingBijhouding.reden.omschrijving | fout     |
+      | opschortingBijhouding.datum              | 20220829 |
+
+      Voorbeelden:
+      | omschrijving           | peildatum  |
+      | voor datum opschorting | 2022-08-11 |
+      | na datum opschorting   | 2022-09-01 |
+  
   Rule: opschortingBijhouding wordt geleverd
 
     Abstract Scenario: historie wordt gevraagd van persoon waarvoor de bijhouding is opgeschort
@@ -62,7 +90,6 @@ Functionaliteit: test voor raadplegen historie met peildatum dat opschorting bij
       | E                            | emigratie                      |
       | M                            | ministerieel besluit           |
       | R                            | pl is aangelegd in de rni      |
-      | F                            | fout                           |
       | .                            | onbekend                       |
 
     Abstract Scenario: historie wordt gevraagd van persoon waarvoor de bijhouding is opgeschort met peildatum <omschrijving> datum opschorting (overlijden)
