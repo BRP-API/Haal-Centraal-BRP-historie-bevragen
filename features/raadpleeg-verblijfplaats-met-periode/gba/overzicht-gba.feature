@@ -579,7 +579,7 @@ Rule: Personen op een logisch verwijderde persoonslijst worden niet gevonden
     | 20160731                     | datum opschorting ligt in de gevraagde periode   |
     | 20220829                     | datum opschorting ligt na de gevraagde periode   |
 
-Rule: In onderzoek gegevens horende een geleverde verblijfplaats voorkomen wordt altijd meegeleverd
+Rule: In onderzoek gegevens horende bij een geleverde verblijfplaats voorkomen wordt altijd meegeleverd
 
   Scenario: Gevraagde persoon heeft een verblijfplaats voorkomen met in onderzoek gegevens en de verblijfperiode overlapt de gevraagde periode
     Gegeven de persoon met burgerservicenummer '000000024' is ingeschreven op adres 'A1' met de volgende gegevens
@@ -628,6 +628,62 @@ Rule: In onderzoek gegevens horende een geleverde verblijfplaats voorkomen wordt
     Gegeven de persoon met burgerservicenummer '000000024' is ingeschreven op adres 'A1' met de volgende gegevens
     | gemeente van inschrijving (09.10) | datum aanvang adreshouding (10.30) | aanduiding in onderzoek (83.10) | datum ingang onderzoek (83.20) |
     | 0800                              | 20100818                           | 580000                          | 20190526                       |
+    En de persoon is vervolgens ingeschreven op adres 'A2' met de volgende gegevens
+    | gemeente van inschrijving (09.10) | datum aanvang adreshouding (10.30) |
+    | 0800                              | 20160526                           |
+    Als gba verblijfplaatshistorie wordt gezocht met de volgende parameters
+    | naam                | waarde              |
+    | type                | RaadpleegMetPeriode |
+    | burgerservicenummer | 000000024           |
+    | datumVan            | 2016-06-01          |
+    | datumTot            | 2017-06-10          |
+    Dan heeft de response verblijfplaatsen met de volgende gegevens
+    | adresseerbaarObjectIdentificatie | straat      | datumAanvangAdreshouding | gemeenteVanInschrijving.code | gemeenteVanInschrijving.omschrijving |
+    | 0800010000000002                 | Luttestraat | 20160526                 | 0800                         | Hoogeloon, Hapert en Casteren        |
+
+Rule: In onderzoek gegevens horende bij een geleverde verblijfplaats voorkomen wordt niet meegeleverd als het onderzoek is beëindigd
+
+  Scenario: Gevraagde persoon heeft een verblijfplaats voorkomen met beëindigd in onderzoek gegevens en de verblijfperiode overlapt de gevraagde periode
+    Gegeven de persoon met burgerservicenummer '000000024' is ingeschreven op adres 'A1' met de volgende gegevens
+    | gemeente van inschrijving (09.10) | datum aanvang adreshouding (10.30) | aanduiding in onderzoek (83.10) | datum ingang onderzoek (83.20) | datum einde onderzoek (83.30) |
+    | 0800                              | 20100818                           | 080000                          | 20190526                       | 20200922                      |
+    Als gba verblijfplaatshistorie wordt gezocht met de volgende parameters
+    | naam                | waarde              |
+    | type                | RaadpleegMetPeriode |
+    | burgerservicenummer | 000000024           |
+    | datumVan            | 2015-07-01          |
+    | datumTot            | 2020-07-01          |
+    Dan heeft de response een verblijfplaats voorkomen met de volgende gegevens
+    | straat | adresseerbaarObjectIdentificatie | datumAanvangAdreshouding |
+    | Laan   | 0800010000000001                 | 20100818                 |
+    En heeft het verblijfplaats voorkomen de volgende 'gemeenteVanInschrijving' gegevens
+    | code | omschrijving                  |
+    | 0800 | Hoogeloon, Hapert en Casteren |
+
+  Scenario: Gevraagde persoon heeft een verblijfplaats voorkomen met beëindigd in onderzoek gegevens en gevraagde periode ligt vóór dit verblijfplaats voorkomen
+    Gegeven de persoon met burgerservicenummer '000000024' is ingeschreven op adres 'A1' met de volgende gegevens
+    | gemeente van inschrijving (09.10) | datum aanvang adreshouding (10.30) |
+    | 0800                              | 20100818                           |
+    En de persoon is vervolgens ingeschreven op adres 'A2' met de volgende gegevens
+    | gemeente van inschrijving (09.10) | datum aanvang adreshouding (10.30) | aanduiding in onderzoek (83.10) | datum ingang onderzoek (83.20) | datum einde onderzoek (83.30) |
+    | 0800                              | 20160526                           | 080000                          | 20190526                       | 20200922                      |
+    Als gba verblijfplaatshistorie wordt gezocht met de volgende parameters
+    | naam                | waarde              |
+    | type                | RaadpleegMetPeriode |
+    | burgerservicenummer | 000000024           |
+    | datumVan            | 2010-01-01          |
+    | datumTot            | 2016-05-26          |
+    Dan heeft de response een verblijfplaats voorkomen met de volgende gegevens
+    | adresseerbaarObjectIdentificatie | straat | datumAanvangAdreshouding | datumAanvangVolgendeAdreshouding |
+    | 0800010000000001                 | Laan   | 20100818                 | 20160526                         |
+    En heeft het verblijfplaats voorkomen de volgende 'gemeenteVanInschrijving' gegevens
+    | code | omschrijving                  |
+    | 0800 | Hoogeloon, Hapert en Casteren |
+
+  Scenario: Gevraagde persoon heeft een verblijfplaats voorkomen met beëindigd in onderzoek gegevens en gevraagde periode ligt na dit verblijfplaats voorkomen
+    Gegeven de persoon met burgerservicenummer '000000024' is ingeschreven op adres 'A1' met de volgende gegevens
+    | gemeente van inschrijving (09.10) | datum aanvang adreshouding (10.30) | aanduiding in onderzoek (83.10) | datum ingang onderzoek (83.20) | datum einde onderzoek (83.30) |
+    | 0800                              | 20100818                           | 580000                          | 20190526                       | 20200922                      |
     En de persoon is vervolgens ingeschreven op adres 'A2' met de volgende gegevens
     | gemeente van inschrijving (09.10) | datum aanvang adreshouding (10.30) |
     | 0800                              | 20160526                           |
