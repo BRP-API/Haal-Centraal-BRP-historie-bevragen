@@ -63,7 +63,7 @@ Functionaliteit: test voor raadplegen historie met peildatum dat geheimhoudingPe
       | type                | RaadpleegMetPeildatum |
       | burgerservicenummer | 000000012             |
       | peildatum           | 2022-01-01            |
-      Dan heeft de response geen 'verblijfplaatsen' gegevens
+      Dan heeft de response 0 verblijfplaatsen
       En heeft de response de volgende gegevens
       | naam                          | waarde |
       | geheimhoudingPersoonsgegevens | 7      |
@@ -81,7 +81,7 @@ Functionaliteit: test voor raadplegen historie met peildatum dat geheimhoudingPe
       | burgerservicenummer               | 000000012             |
       | peildatum                         | 2023-01-01            |
       | exclusiefVerblijfplaatsBuitenland | true                  |
-      Dan heeft de response geen 'verblijfplaatsen' gegevens
+      Dan heeft de response 0 verblijfplaatsen
       En heeft de response de volgende gegevens
       | naam                          | waarde |
       | geheimhoudingPersoonsgegevens | 7      |

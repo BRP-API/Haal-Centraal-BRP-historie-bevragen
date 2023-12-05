@@ -50,7 +50,7 @@ Functionaliteit: test voor raadplegen historie met periode dat opschorting bijho
       | burgerservicenummer | 000000012           |
       | datumVan            | <datum van>         |
       | datumTot            | <datum tot>         |
-      Dan heeft de response geen 'verblijfplaatsen' gegevens
+      Dan heeft de response 0 verblijfplaatsen
       En heeft de response de volgende gegevens
       | naam                                     | waarde   |
       | opschortingBijhouding.reden.code         | F        |
@@ -140,7 +140,7 @@ Functionaliteit: test voor raadplegen historie met periode dat opschorting bijho
       | burgerservicenummer | 000000012           |
       | datumVan            | 2021-01-01          |
       | datumTot            | 2022-01-01          |
-      Dan heeft de response geen 'verblijfplaatsen' gegevens
+      Dan heeft de response 0 verblijfplaatsen
       En heeft de response de volgende gegevens
       | naam                                     | waarde                           |
       | opschortingBijhouding.reden.code         | <reden opschorting bijhouding>   |
@@ -173,7 +173,7 @@ Functionaliteit: test voor raadplegen historie met periode dat opschorting bijho
       | datumVan                          | 2023-01-01          |
       | datumTot                          | 2023-07-01          |
       | exclusiefVerblijfplaatsBuitenland | true                |
-      Dan heeft de response geen 'verblijfplaatsen' gegevens
+      Dan heeft de response 0 verblijfplaatsen
       En heeft de response de volgende gegevens
       | naam                                     | waarde                    |
       | opschortingBijhouding.reden.code         | R                         |

@@ -66,7 +66,7 @@ Functionaliteit: test voor raadplegen historie met periode dat geheimhoudingPers
       | burgerservicenummer | 000000012           |
       | datumVan            | 2022-01-01          |
       | datumTot            | 2022-07-01          |
-      Dan heeft de response geen 'verblijfplaatsen' gegevens
+      Dan heeft de response 0 verblijfplaatsen
       En heeft de response de volgende gegevens
       | naam                          | waarde |
       | geheimhoudingPersoonsgegevens | 7      |
@@ -85,7 +85,7 @@ Functionaliteit: test voor raadplegen historie met periode dat geheimhoudingPers
       | datumVan                          | 2023-01-01          |
       | datumTot                          | 2023-07-01          |
       | exclusiefVerblijfplaatsBuitenland | true                |
-      Dan heeft de response geen 'verblijfplaatsen' gegevens
+      Dan heeft de response 0 verblijfplaatsen
       En heeft de response de volgende gegevens
       | naam                          | waarde |
       | geheimhoudingPersoonsgegevens | 7      |

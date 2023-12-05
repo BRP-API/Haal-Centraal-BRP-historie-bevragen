@@ -48,7 +48,7 @@ Functionaliteit: test voor raadplegen historie met peildatum dat opschorting bij
       | type                | RaadpleegMetPeildatum |
       | burgerservicenummer | 000000012             |
       | peildatum           | <peildatum>            |
-      Dan heeft de response geen 'verblijfplaatsen' gegevens
+      Dan heeft de response 0 verblijfplaatsen
       En heeft de response de volgende gegevens
       | naam                                     | waarde   |
       | opschortingBijhouding.reden.code         | F        |
@@ -133,7 +133,7 @@ Functionaliteit: test voor raadplegen historie met peildatum dat opschorting bij
       | type                | RaadpleegMetPeildatum |
       | burgerservicenummer | 000000012             |
       | peildatum           | 2022-07-01            |
-      Dan heeft de response geen 'verblijfplaatsen' gegevens
+      Dan heeft de response 0 verblijfplaatsen
       En heeft de response de volgende gegevens
       | naam                                     | waarde                           |
       | opschortingBijhouding.reden.code         | <reden opschorting bijhouding>   |
@@ -165,7 +165,7 @@ Functionaliteit: test voor raadplegen historie met peildatum dat opschorting bij
       | burgerservicenummer               | 000000012             |
       | peildatum                         | 2023-01-01            |
       | exclusiefVerblijfplaatsBuitenland | true                  |
-      Dan heeft de response geen 'verblijfplaatsen' gegevens
+      Dan heeft de response 0 verblijfplaatsen
       En heeft de response de volgende gegevens
       | naam                                     | waarde                    |
       | opschortingBijhouding.reden.code         | R                         |
