@@ -241,6 +241,28 @@ Then(/^heeft de response verblijfplaatsen met de volgende gegevens$/, function (
     this.context.expected.verblijfplaatsen = createObjectArrayFrom(dataTable, true);
 });
 
+Then(/^heeft de response een verblijfplaats voorkomen met de volgende gegevens$/, function (dataTable) {
+    this.context.verifyResponse = true;
+
+    const expected = createObjectFrom(dataTable, this.context.proxyAanroep);
+
+    if(this.context.expected === undefined) {
+        this.context.expected = {
+            'verblijfplaatsen': []
+        };
+    }
+
+    this.context.expected.verblijfplaatsen.push(expected);
+});
+
+Then(/^heeft het verblijfplaats voorkomen de volgende '(.*)' gegevens$/, function (gegevensgroep, dataTable) {
+    this.context.verifyResponse = true;
+
+    let expected = this.context.expected.verblijfplaatsen.at(-1);
+
+    expected[gegevensgroep] = createObjectFrom(dataTable, this.context.proxyAanroep);
+});
+
 Then(/^heeft de response een object met de volgende gegevens$/, function (dataTable) {
     this.context.verifyResponse = true;
 
@@ -257,7 +279,32 @@ Then(/^heeft de response (\d*) (.*)$/, function (aantal, type) {
     const actual = this.context?.response?.data[type];
 
     should.exist(actual, `geen ${type} property gevonden`);
-    actual.length.should.equal(Number(aantal), `aantal personen in response is ongelijk aan ${aantal}\nPersonen:${JSON.stringify(actual, null, "\t")}`);
+    actual.length.should.equal(Number(aantal), `aantal ${type} in response is ongelijk aan ${aantal}\nresponse body:${JSON.stringify(this.context.response.data, null, '\t')}`);
+});
+
+Then(/^heeft de response geen (\w*)$/, function (type) {
+    if(this.context.verifyResponse === undefined || !this.context.verifyResponse) {
+        this.context.response.status.should.equal(200, `response body: ${JSON.stringify(this.context.response.data, null, '\t')}`);
+
+        const actual = this.context?.response?.data[type];
+    
+        should.exist(actual, `geen ${type} property gevonden`);
+        actual.length.should.equal(0, `aantal ${type} in response is ongelijk aan 0\nresponse body:${JSON.stringify(this.context.response.data, null, '\t')}`);
+    }
+    else {
+
+        this.context.expected[type] = [];
+    }
+});
+
+Then(/^heeft de response geen 'verblijfplaatsen' gegevens$/, function() {
+    this.context.verifyResponse = true;
+
+    if(this.context.expected === undefined) {
+        this.context.expected = {};
+    }
+
+    this.context.expected.verblijfplaatsen = [];
 });
 
 After({tags: 'not @fout-case'}, async function() {
