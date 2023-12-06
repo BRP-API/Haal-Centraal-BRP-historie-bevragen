@@ -31,6 +31,7 @@ Functionaliteit: raadpleeg verblijfplaats voorkomens in een periode
 
 Rule: Een verblijfplaats voorkomen met bekend datum aanvang wordt geleverd als datumTot van de gevraagde periode groter is dan de datum aanvang van het verblijfplaats voorkomen en bij volgende verblijfplaats voorkomen als datumVan kleiner is dan de datum aanvang van het volgende verblijfplaats voorkomen
 
+  Indien een geleverde verblijfplaats voorkomen een wel of niet geleverd volgende verblijfplaats voorkomen heeft, wordt de datum aanvang verblijf van het volgende verblijfplaats voorkomen meegeleverd.
   De verblijfplaats voorkomens worden aflopend gesorteerd geleverd.
   Het meest recente verblijfplaats voorkomen in de gevraagde periode is het eerste verblijfplaats voorkomen in de geleverde lijst.
   De sortering komt overeen met het aflopend sorteren van de verblijfplaats voorkomens op datum aanvang verblijf.
@@ -580,6 +581,8 @@ Rule: Personen op een logisch verwijderde persoonslijst worden niet gevonden
     | 20220829                     | datum opschorting ligt na de gevraagde periode   |
 
 Rule: In onderzoek gegevens horende bij een geleverde verblijfplaats voorkomen wordt altijd meegeleverd
+
+      Indien een geleverde verblijfplaats voorkomen een wel of niet geleverd volgende verblijfplaats voorkomen heeft, wordt indien aanwezig de in onderzoek gegevens van het volgende verblijfplaats voorkomen meegeleverd
 
   Scenario: Gevraagde persoon heeft een verblijfplaats voorkomen met in onderzoek gegevens en de verblijfperiode overlapt de gevraagde periode
     Gegeven de persoon met burgerservicenummer '000000024' is ingeschreven op adres 'A1' met de volgende gegevens
