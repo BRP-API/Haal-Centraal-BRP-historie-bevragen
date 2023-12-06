@@ -274,12 +274,21 @@ Then(/^heeft het object de volgende '(.*)' gegevens$/, function (gegevensgroep, 
 });
 
 Then(/^heeft de response (\d*) (.*)$/, function (aantal, type) {
-    this.context.response.status.should.equal(200, `response body: ${JSON.stringify(this.context.response.data, null, '\t')}`);
+    if(Number(aantal) === 0) {
+        this.context.verifyResponse = true;
+        if(this.context.expected === undefined) {
+            this.context.expected = {};
+        }
+        this.context.expected[type] = [];
+    }
+    else {
+        this.context.response.status.should.equal(200, `response body: ${JSON.stringify(this.context.response.data, null, '\t')}`);
 
-    const actual = this.context?.response?.data[type];
+        const actual = this.context?.response?.data[type];
 
-    should.exist(actual, `geen ${type} property gevonden`);
-    actual.length.should.equal(Number(aantal), `aantal ${type} in response is ongelijk aan ${aantal}\nresponse body:${JSON.stringify(this.context.response.data, null, '\t')}`);
+        should.exist(actual, `geen ${type} property gevonden`);
+        actual.length.should.equal(Number(aantal), `aantal ${type} in response is ongelijk aan ${aantal}\nresponse body:${JSON.stringify(this.context.response.data, null, '\t')}`);
+    }
 });
 
 Then(/^heeft de response geen (\w*)$/, function (type) {
@@ -295,16 +304,6 @@ Then(/^heeft de response geen (\w*)$/, function (type) {
 
         this.context.expected[type] = [];
     }
-});
-
-Then(/^heeft de response geen 'verblijfplaatsen' gegevens$/, function() {
-    this.context.verifyResponse = true;
-
-    if(this.context.expected === undefined) {
-        this.context.expected = {};
-    }
-
-    this.context.expected.verblijfplaatsen = [];
 });
 
 After({tags: 'not @fout-case'}, async function() {
