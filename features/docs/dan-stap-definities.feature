@@ -84,3 +84,20 @@ Functionaliteit: Dan stap definities
     |           |                              | Luttestraat | 0800010000000002                 |                             | 20200415                 |                                  |                             |                                     | 0800                         | Hoogeloon, Hapert en Casteren        |
     | 6014      | Verenigde Staten van Amerika |             |                                  |                             |                          | 20200415                         | 20181201                    |                                     |                              |                                      |
     |           |                              |             |                                  | Woonboot bij de Grote Sloot | 20160526                 |                                  |                             | 20181201                            | 0800                         | Hoogeloon, Hapert en Casteren        |
+
+  Scenario: Dan heeft de response de volgende 'opschortingBijhouding' gegevens
+    Gegeven de response body is gelijk aan
+    """
+    {
+      "opschortingBijhouding": {
+        "reden": {
+          "code": "O",
+          "omschrijving": "overlijden"
+        },
+        "datum": "20150401"
+      }
+    }
+    """
+    Dan heeft de response de volgende 'opschortingBijhouding' gegevens
+    | reden.code | reden.omschrijving | datum    |
+    | O          | overlijden         | 20150401 |

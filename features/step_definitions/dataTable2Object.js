@@ -10,7 +10,10 @@ function createObjectFrom(dataTable, dateAsDate = false) {
         });
     }
     else {
-        obj = dataTable.hashes()[0];
+        const row = dataTable.hashes()[0];
+        Object.keys(row).forEach(function(propertyName) {
+            setProperty(obj, propertyName, row[propertyName], dateAsDate);
+        });
     }
 
 
