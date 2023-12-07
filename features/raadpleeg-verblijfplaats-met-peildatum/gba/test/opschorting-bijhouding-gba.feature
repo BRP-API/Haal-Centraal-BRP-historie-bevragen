@@ -32,7 +32,7 @@ Functionaliteit: test voor raadplegen historie met peildatum dat opschorting bij
       | code     | notFound                                                       |
       | instance | /haalcentraal/api/brphistorie/verblijfplaatshistorie           |
 
-  Rule: bij het raadplegen van een persoon met afgevoerde persoonslijst wordt alleen de reden en datum opschorting geleverd
+  Rule: bij het raadplegen van een persoon met opschorting bijhouding reden "F" (afgevoerde persoonslijst) wordt alleen de reden en datum opschorting geleverd
     Overige gegevens op de afgevoerde persoonslijst worden niet geleverd
 
     Abstract Scenario: historie wordt gevraagd van persoon waarvoor de bijhouding is opgeschort met reden "F" (fout)
