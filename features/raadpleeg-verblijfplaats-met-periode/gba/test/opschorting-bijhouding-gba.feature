@@ -93,8 +93,7 @@ Functionaliteit: test voor raadplegen historie met periode dat opschorting bijho
       | O                            | overlijden                     |
       | E                            | emigratie                      |
       | M                            | ministerieel besluit           |
-      | R                            | pl is aangelegd in de rni      | 
-      | F                            | fout                           |
+      | R                            | pl is aangelegd in de rni      |
       | .                            | onbekend                       |
 
     Abstract Scenario: historie wordt gevraagd van persoon waarvoor de bijhouding is opgeschort met periode <omschrijving> opschorting (overlijden)
