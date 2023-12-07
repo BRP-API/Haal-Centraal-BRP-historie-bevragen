@@ -291,7 +291,7 @@ Functionaliteit: test dat raadplegen historie met peildatum een correcte melding
       | type     | https://datatracker.ietf.org/doc/html/rfc7231#section-6.5.1 |
       | title    | Een of meerdere parameters zijn niet correct.               |
       | status   | 400                                                         |
-      | detail   | De foutieve parameter(s) zijn: datumVan, datumTot.          |
+      | detail   | De foutieve parameter(s) zijn: datumTot, datumVan.          |
       | code     | paramsValidation                                            |
       | instance | /haalcentraal/api/brphistorie/verblijfplaatshistorie        |
       En heeft het object de volgende 'invalidParams' gegevens

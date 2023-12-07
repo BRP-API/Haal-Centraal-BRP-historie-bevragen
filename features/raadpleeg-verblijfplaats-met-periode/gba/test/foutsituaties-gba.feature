@@ -317,8 +317,8 @@ Functionaliteit: test dat raadplegen historie met periode een correcte melding g
       | code     | paramsValidation                                            |
       | instance | /haalcentraal/api/brphistorie/verblijfplaatshistorie        |
       En heeft het object de volgende 'invalidParams' gegevens
-      | code         | name     | reason                            |
-      | invalidParam | datumTot | datumTot moet na datumVan liggen. |
+      | code | name     | reason                            |
+      | date | datumTot | datumTot moet na datumVan liggen. |
 
       Voorbeelden:
       | datum van  | datum tot  |
