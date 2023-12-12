@@ -9,7 +9,7 @@ Functionaliteit: test dat raadplegen historie met periode bij een opeenvolgende 
 
   Rule: een verblijfplaats wordt niet geleverd wanneer de bekende datum aanvang volgende verblijfplaats gelijk is aan (of eerder) dan de datum aanvang van het verblijf
 
-    Scenario: wel leveren wanneer de datum aanvang van de technisch gewijzigde verblijfplaats later is dan de aanvang oorspronkelijke
+    Scenario: wel leveren wanneer de datum aanvang van de gewijzigde verblijfplaats later is dan de aanvang oorspronkelijke
       Gegeven de persoon met burgerservicenummer '000000012' is ingeschreven op adres 'A1' met de volgende gegevens
       | gemeente van inschrijving (09.10) | datum aanvang adreshouding (10.30) |
       | 0800                              | 20020701                           |
@@ -27,7 +27,7 @@ Functionaliteit: test dat raadplegen historie met periode bij een opeenvolgende 
       | 0800                         | Hoogeloon, Hapert en Casteren        | 20101014                 |                                  | Korte straatnaam | Officiele straatnaam | Testdorp   | 0800010000000002                 | 0800200000000002              |
       | 0800                         | Hoogeloon, Hapert en Casteren        | 20020701                 | 20101014                         | Korte straatnaam |                      |            |                                  |                               |
 
-    Abstract Scenario: niet leveren wanneer de datum aanvang van de technisch gewijzigde verblijfplaats is <omschrijving> de aanvang oorspronkelijke
+    Abstract Scenario: niet leveren wanneer de datum aanvang van de gewijzigde verblijfplaats is <omschrijving> de aanvang oorspronkelijke
       Gegeven de persoon met burgerservicenummer '000000012' is ingeschreven op adres 'A1' met de volgende gegevens
       | gemeente van inschrijving (09.10) | datum aanvang adreshouding (10.30) |
       | 0800                              | 20020701                           |
