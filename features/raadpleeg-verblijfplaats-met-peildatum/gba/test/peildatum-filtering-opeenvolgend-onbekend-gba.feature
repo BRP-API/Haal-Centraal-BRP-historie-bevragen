@@ -26,6 +26,10 @@ Functionaliteit: test dat alleen de juiste verblijfplaats(en) wordt geleverd in 
 
 
   Rule: Een verblijfplaats met onbekende aanvang van het verblijf en onbekende aanvang vorige binnen de onzekerheidsperiode van het verblijf wordt niet geleverd wanneer de gevraagde peildatum ligt op of voor de eerste dag van de onzekerheidsperiode van het vorige verblijf
+    # de testgevallen gaan er vanuit dat er steeds alleen naar de vorige verblijfplaats wordt gekeken, niet naar de voor-vorige
+    # dus niet eerst de vorige begrenzen door de vorige-van-de-vorige
+    # gevolg is dat het resultaat op een aantal plekken functioneel onjuist is, maar wel exact voldoet aan de beschreven regel
+    # op een later moment kunnen we kijken of dit op te lossen is (mogelijk ondersteunt de code van de API namelijk al kijken naar de voor-vorige)
 
     Abstract Scenario: lever geen enkele verblijfplaats, omdat <omschrijving>
       Gegeven de persoon met burgerservicenummer '000000012' is ingeschreven op adres 'A1' met de volgende gegevens
