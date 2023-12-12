@@ -1,6 +1,6 @@
 #language: nl
 
-Functionaliteit: test dat raadplegen historie met periode bij een opeenvolgende verblijfplaatsen met gelijke of overlappende datum aanvang correct wordt geleverd
+Functionaliteit: test dat raadplegen historie met peildatum bij een opeenvolgende verblijfplaatsen met gelijke of overlappende datum aanvang correct wordt geleverd
 
     Achtergrond:
       Gegeven adres 'A1' heeft de volgende gegevens
