@@ -235,16 +235,13 @@
               "$ref" : "#/components/schemas/GbaVerblijfplaatsVoorkomen"
             }
           },
-          "geheimhoudingPersoonsgegevens" : {
-            "$ref" : "#/components/schemas/GbaGeheimhoudingPersoonsgegevens"
-          },
           "opschortingBijhouding" : {
             "$ref" : "#/components/schemas/GbaOpschortingBijhouding"
           }
         }
       },
       "HistorieQuery" : {
-        "required" : [ "burgerservicenummer", "fields", "type" ],
+        "required" : [ "burgerservicenummer", "type" ],
         "type" : "object",
         "properties" : {
           "type" : {
@@ -252,10 +249,6 @@
           },
           "burgerservicenummer" : {
             "$ref" : "#/components/schemas/Burgerservicenummer"
-          },
-          "exclusiefVerblijfplaatsBuitenland" : {
-            "type" : "boolean",
-            "description" : "consumers die niet zijn geautoriseerd voor verblijfplaats buitenland kunnen deze parameter gebruiken om alleen binnenlandse verblijfplaats voorkomens te vragen\n"
           }
         },
         "discriminator" : {
@@ -429,9 +422,6 @@
             }
           }
         } ]
-      },
-      "GbaGeheimhoudingPersoonsgegevens" : {
-        "type" : "integer"
       },
       "GbaOpschortingBijhouding" : {
         "allOf" : [ {

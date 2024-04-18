@@ -185,14 +185,11 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/GbaVerblijfplaatsVoorkomen'
-        geheimhoudingPersoonsgegevens:
-          $ref: '#/components/schemas/GbaGeheimhoudingPersoonsgegevens'
         opschortingBijhouding:
           $ref: '#/components/schemas/GbaOpschortingBijhouding'
     HistorieQuery:
       required:
       - burgerservicenummer
-      - fields
       - type
       type: object
       properties:
@@ -200,10 +197,6 @@ components:
           type: string
         burgerservicenummer:
           $ref: '#/components/schemas/Burgerservicenummer'
-        exclusiefVerblijfplaatsBuitenland:
-          type: boolean
-          description: |
-            consumers die niet zijn geautoriseerd voor verblijfplaats buitenland kunnen deze parameter gebruiken om alleen binnenlandse verblijfplaats voorkomens te vragen
       discriminator:
         propertyName: type
         mapping:
@@ -334,8 +327,6 @@ components:
             $ref: '#/components/schemas/RniDeelnemer'
           inOnderzoekVolgendeVerblijfplaats:
             $ref: '#/components/schemas/GbaInOnderzoek'
-    GbaGeheimhoudingPersoonsgegevens:
-      type: integer
     GbaOpschortingBijhouding:
       allOf:
       - $ref: '#/components/schemas/OpschortingBijhoudingBasis'

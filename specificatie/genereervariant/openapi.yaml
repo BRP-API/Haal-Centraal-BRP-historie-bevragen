@@ -181,7 +181,6 @@ components:
     HistorieQuery:
       required:
       - burgerservicenummer
-      - fields
       - type
       type: object
       properties:
@@ -189,10 +188,6 @@ components:
           type: string
         burgerservicenummer:
           $ref: '#/components/schemas/Burgerservicenummer'
-        exclusiefVerblijfplaatsBuitenland:
-          type: boolean
-          description: |
-            consumers die niet zijn geautoriseerd voor verblijfplaats buitenland kunnen deze parameter gebruiken om alleen binnenlandse verblijfplaats voorkomens te vragen
       discriminator:
         propertyName: type
         mapping:
@@ -238,8 +233,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/AbstractVerblijfplaatsVoorkomen'
-        geheimhoudingPersoonsgegevens:
-          $ref: '#/components/schemas/GeheimhoudingPersoonsgegevens'
         opschortingBijhouding:
           $ref: '#/components/schemas/OpschortingBijhouding'
     BadRequestFoutbericht:
@@ -318,6 +311,8 @@ components:
       properties:
         type:
           type: string
+        adressering:
+          $ref: '#/components/schemas/AdresseringBeperkt'
       description: |
         Gegevens over het verblijfplaats voorkomen van een persoon.
       discriminator:
@@ -465,10 +460,6 @@ components:
             type: boolean
           functieAdres:
             type: boolean
-    GeheimhoudingPersoonsgegevens:
-      type: boolean
-      description: |
-        Gegevens mogen niet worden verstrekt aan derden / maatschappelijke instellingen.
     OpschortingBijhouding:
       allOf:
       - $ref: '#/components/schemas/OpschortingBijhoudingBasis'
@@ -485,6 +476,59 @@ components:
           $ref: '#/components/schemas/Waardetabel'
       description: |
         * **reden** - wordt gevuld met waarden voor 'Reden_Opschorting_Bijhouding' in 'tabelwaarden.csv'.
+    AdresseringBeperkt:
+      allOf:
+      - $ref: '#/components/schemas/AdresseringBasis'
+      - properties:
+          inOnderzoek:
+            $ref: '#/components/schemas/AdresseringInOnderzoekBeperkt'
+    AdresseringBasis:
+      type: object
+      properties:
+        adresregel1:
+          $ref: '#/components/schemas/Adresregel1'
+        adresregel2:
+          $ref: '#/components/schemas/Adresregel2'
+        adresregel3:
+          $ref: '#/components/schemas/Adresregel3'
+        land:
+          $ref: '#/components/schemas/Waardetabel'
+        indicatieVastgesteldVerblijftNietOpAdres:
+          $ref: '#/components/schemas/IndicatieVastgesteldVerblijftNietOpAdres'
+      description: ""
+    Adresregel1:
+      maxLength: 40
+      type: string
+      description: |
+        Het eerste deel van een adres is een combinatie van de straat en huisnummer.
+      example: Kappeyne v d Cappellostr 26A-3
+    Adresregel2:
+      maxLength: 50
+      type: string
+      description: |
+        Het tweede deel van een adres is een combinatie van woonplaats eventueel in combinatie met de postcode.
+      example: 1234AA Nootdorp
+    Adresregel3:
+      maxLength: 35
+      type: string
+      description: |
+        Het derde deel van een adres is optioneel. Het gaat om een of meer geografische gebieden van het adres in het buitenland.
+      example: Selangor
+    AdresseringInOnderzoekBeperkt:
+      type: object
+      properties:
+        adresregel1:
+          type: boolean
+        adresregel2:
+          type: boolean
+        adresregel3:
+          type: boolean
+        land:
+          type: boolean
+        datumIngangOnderzoekVerblijfplaats:
+          $ref: '#/components/schemas/AbstractDatum'
+      description: |
+        Geeft aan welke gegevens over de adressering in onderzoek zijn.
     VerblijfadresBuitenland:
       type: object
       properties:
