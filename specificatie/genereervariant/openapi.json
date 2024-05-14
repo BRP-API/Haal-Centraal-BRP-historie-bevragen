@@ -294,6 +294,9 @@
           },
           "opschortingBijhouding" : {
             "$ref" : "#/components/schemas/OpschortingBijhouding"
+          },
+          "geheimhoudingPersoonsgegevens" : {
+            "$ref" : "#/components/schemas/GeheimhoudingPersoonsgegevens"
           }
         }
       },
@@ -392,9 +395,6 @@
         "properties" : {
           "type" : {
             "type" : "string"
-          },
-          "adressering" : {
-            "$ref" : "#/components/schemas/AdresseringBeperkt"
           }
         },
         "description" : "Gegevens over het verblijfplaats voorkomen van een persoon.\n",
@@ -429,6 +429,9 @@
             },
             "rni" : {
               "$ref" : "#/components/schemas/RniDeelnemer"
+            },
+            "adressering" : {
+              "$ref" : "#/components/schemas/AdresseringBuitenland"
             }
           }
         } ]
@@ -484,6 +487,9 @@
             },
             "inOnderzoek" : {
               "$ref" : "#/components/schemas/AdresVoorkomenInOnderzoek"
+            },
+            "adressering" : {
+              "$ref" : "#/components/schemas/AdresseringBinnenland"
             }
           }
         } ]
@@ -584,6 +590,9 @@
             },
             "inOnderzoek" : {
               "$ref" : "#/components/schemas/LocatieVoorkomenInOnderzoek"
+            },
+            "adressering" : {
+              "$ref" : "#/components/schemas/AdresseringBinnenland"
             }
           }
         } ]
@@ -634,76 +643,9 @@
         },
         "description" : "* **reden** - wordt gevuld met waarden voor 'Reden_Opschorting_Bijhouding' in 'tabelwaarden.csv'.\n"
       },
-      "AdresseringBeperkt" : {
-        "allOf" : [ {
-          "$ref" : "#/components/schemas/AdresseringBasis"
-        }, {
-          "properties" : {
-            "inOnderzoek" : {
-              "$ref" : "#/components/schemas/AdresseringInOnderzoekBeperkt"
-            }
-          }
-        } ]
-      },
-      "AdresseringBasis" : {
-        "type" : "object",
-        "properties" : {
-          "adresregel1" : {
-            "$ref" : "#/components/schemas/Adresregel1"
-          },
-          "adresregel2" : {
-            "$ref" : "#/components/schemas/Adresregel2"
-          },
-          "adresregel3" : {
-            "$ref" : "#/components/schemas/Adresregel3"
-          },
-          "land" : {
-            "$ref" : "#/components/schemas/Waardetabel"
-          },
-          "indicatieVastgesteldVerblijftNietOpAdres" : {
-            "$ref" : "#/components/schemas/IndicatieVastgesteldVerblijftNietOpAdres"
-          }
-        },
-        "description" : ""
-      },
-      "Adresregel1" : {
-        "maxLength" : 40,
-        "type" : "string",
-        "description" : "Het eerste deel van een adres is een combinatie van de straat en huisnummer.\n",
-        "example" : "Kappeyne v d Cappellostr 26A-3"
-      },
-      "Adresregel2" : {
-        "maxLength" : 50,
-        "type" : "string",
-        "description" : "Het tweede deel van een adres is een combinatie van woonplaats eventueel in combinatie met de postcode.\n",
-        "example" : "1234AA Nootdorp"
-      },
-      "Adresregel3" : {
-        "maxLength" : 35,
-        "type" : "string",
-        "description" : "Het derde deel van een adres is optioneel. Het gaat om een of meer geografische gebieden van het adres in het buitenland.\n",
-        "example" : "Selangor"
-      },
-      "AdresseringInOnderzoekBeperkt" : {
-        "type" : "object",
-        "properties" : {
-          "adresregel1" : {
-            "type" : "boolean"
-          },
-          "adresregel2" : {
-            "type" : "boolean"
-          },
-          "adresregel3" : {
-            "type" : "boolean"
-          },
-          "land" : {
-            "type" : "boolean"
-          },
-          "datumIngangOnderzoekVerblijfplaats" : {
-            "$ref" : "#/components/schemas/AbstractDatum"
-          }
-        },
-        "description" : "Geeft aan welke gegevens over de adressering in onderzoek zijn.\n"
+      "GeheimhoudingPersoonsgegevens" : {
+        "type" : "boolean",
+        "description" : "Gegevens mogen niet worden verstrekt aan derden / maatschappelijke instellingen.\n"
       },
       "VerblijfadresBuitenland" : {
         "type" : "object",
@@ -919,6 +861,65 @@
         "type" : "string",
         "description" : "Omschrijving van het verdrag op basis waarvan een zusterorganisatie in het buitenland de gegevens bij de RNI-deelnemer heeft aangeleverd.\n"
       },
+      "AdresseringBuitenland" : {
+        "type" : "object",
+        "properties" : {
+          "adresregel1" : {
+            "$ref" : "#/components/schemas/Adresregel1"
+          },
+          "adresregel2" : {
+            "$ref" : "#/components/schemas/Adresregel2"
+          },
+          "adresregel3" : {
+            "$ref" : "#/components/schemas/Adresregel3"
+          },
+          "land" : {
+            "$ref" : "#/components/schemas/Waardetabel"
+          },
+          "inOnderzoek" : {
+            "$ref" : "#/components/schemas/AdresseringBuitenlandInOnderzoek"
+          }
+        }
+      },
+      "Adresregel1" : {
+        "maxLength" : 40,
+        "type" : "string",
+        "description" : "Het eerste deel van een adres is een combinatie van de straat en huisnummer.\n",
+        "example" : "Kappeyne v d Cappellostr 26A-3"
+      },
+      "Adresregel2" : {
+        "maxLength" : 50,
+        "type" : "string",
+        "description" : "Het tweede deel van een adres is een combinatie van woonplaats eventueel in combinatie met de postcode.\n",
+        "example" : "1234AA Nootdorp"
+      },
+      "Adresregel3" : {
+        "maxLength" : 35,
+        "type" : "string",
+        "description" : "Het derde deel van een adres is optioneel. Het gaat om een of meer geografische gebieden van het adres in het buitenland.\n",
+        "example" : "Selangor"
+      },
+      "AdresseringBuitenlandInOnderzoek" : {
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/InOnderzoek"
+        }, {
+          "type" : "object",
+          "properties" : {
+            "adresregel1" : {
+              "type" : "boolean"
+            },
+            "adresregel2" : {
+              "type" : "boolean"
+            },
+            "adresregel3" : {
+              "type" : "boolean"
+            },
+            "land" : {
+              "type" : "boolean"
+            }
+          }
+        } ]
+      },
       "InOnderzoek" : {
         "type" : "object",
         "properties" : {
@@ -1049,6 +1050,38 @@
       "IndicatieVastgesteldVerblijftNietOpAdres" : {
         "type" : "boolean",
         "description" : "Geeft aan dat is vastgesteld dat de persoon niet meer op de geregistreerde adres/locatie staat ingeschreven.\n"
+      },
+      "AdresseringBinnenland" : {
+        "type" : "object",
+        "properties" : {
+          "adresregel1" : {
+            "$ref" : "#/components/schemas/Adresregel1"
+          },
+          "adresregel2" : {
+            "$ref" : "#/components/schemas/Adresregel2"
+          },
+          "indicatieVastgesteldVerblijftNietOpAdres" : {
+            "$ref" : "#/components/schemas/IndicatieVastgesteldVerblijftNietOpAdres"
+          },
+          "inOnderzoek" : {
+            "$ref" : "#/components/schemas/AdresseringBinnenlandInOnderzoek"
+          }
+        }
+      },
+      "AdresseringBinnenlandInOnderzoek" : {
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/InOnderzoek"
+        }, {
+          "type" : "object",
+          "properties" : {
+            "adresregel1" : {
+              "type" : "boolean"
+            },
+            "adresregel2" : {
+              "type" : "boolean"
+            }
+          }
+        } ]
       },
       "VerblijfadresLocatie" : {
         "type" : "object",
