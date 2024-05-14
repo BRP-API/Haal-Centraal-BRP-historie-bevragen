@@ -187,6 +187,8 @@ components:
             $ref: '#/components/schemas/GbaVerblijfplaatsVoorkomen'
         opschortingBijhouding:
           $ref: '#/components/schemas/GbaOpschortingBijhouding'
+        geheimhoudingPersoonsgegevens:
+          $ref: '#/components/schemas/GbaGeheimhoudingPersoonsgegevens'
     HistorieQuery:
       required:
       - burgerservicenummer
@@ -343,6 +345,8 @@ components:
           $ref: '#/components/schemas/Waardetabel'
       description: |
         * **reden** - wordt gevuld met waarden voor 'Reden_Opschorting_Bijhouding' in 'tabelwaarden.csv'.
+    GbaGeheimhoudingPersoonsgegevens:
+      type: integer
     Burgerservicenummer:
       pattern: "^[0-9]{9}$"
       type: string

@@ -237,6 +237,9 @@
           },
           "opschortingBijhouding" : {
             "$ref" : "#/components/schemas/GbaOpschortingBijhouding"
+          },
+          "geheimhoudingPersoonsgegevens" : {
+            "$ref" : "#/components/schemas/GbaGeheimhoudingPersoonsgegevens"
           }
         }
       },
@@ -444,6 +447,9 @@
           }
         },
         "description" : "* **reden** - wordt gevuld met waarden voor 'Reden_Opschorting_Bijhouding' in 'tabelwaarden.csv'.\n"
+      },
+      "GbaGeheimhoudingPersoonsgegevens" : {
+        "type" : "integer"
       },
       "Burgerservicenummer" : {
         "pattern" : "^[0-9]{9}$",
