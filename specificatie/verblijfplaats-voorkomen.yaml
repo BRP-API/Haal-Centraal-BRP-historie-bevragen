@@ -15,8 +15,6 @@ components:
       properties:
         type:
           type: string
-        adressering:
-          $ref: 'adressering.yaml#/components/schemas/AdresseringBeperkt'
       discriminator:
         propertyName: type
         mapping:
@@ -41,6 +39,8 @@ components:
             $ref: '#/components/schemas/VerblijfplaatsBuitenlandVoorkomenInOnderzoek'
           rni:
             $ref: 'common.yaml#/components/schemas/RniDeelnemer'
+          adressering:
+            $ref: 'adressering.yaml#/components/schemas/AdresseringBuitenland'
     AdresVoorkomen:
       description: |
         Gegevens over het adres voorkomen van een persoon.
@@ -71,6 +71,8 @@ components:
               $ref: 'verblijfplaats.yaml#/components/schemas/IndicatieVastgesteldVerblijftNietOpAdres'
             inOnderzoek:
               $ref: "#/components/schemas/AdresVoorkomenInOnderzoek"
+            adressering:
+              $ref: 'adressering.yaml#/components/schemas/AdresseringBinnenland'
     LocatieVoorkomen:
       description: |
         * **functieAdres** - wordt gevuld met waarden voor 'Functie_Adres' in 'tabelwaarden.csv'.
@@ -93,6 +95,8 @@ components:
               $ref: 'verblijfplaats.yaml#/components/schemas/IndicatieVastgesteldVerblijftNietOpAdres'
             inOnderzoek:
               $ref: '#/components/schemas/LocatieVoorkomenInOnderzoek'
+            adressering:
+              $ref: 'adressering.yaml#/components/schemas/AdresseringBinnenland'
     VerblijfplaatsOnbekendVoorkomen:
       allOf:
         - $ref: '#/components/schemas/AbstractVerblijfplaatsVoorkomen'

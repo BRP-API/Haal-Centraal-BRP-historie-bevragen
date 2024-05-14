@@ -6,27 +6,6 @@ info:
 paths: {}
 components:
   schemas:
-    Aanhef:
-      type: string
-      pattern: ^[a-zA-Z0-9À-ž \.\-\']{1,650}$
-      description: |
-        Kun je gebruiken als aanhef in een brief gericht aan persoon.
-      example: "Hoogwelgeboren heer"
-    Aanschrijfwijze:
-      type: object
-      description: |
-        Samengestelde naam en aanspreekvorm die je kunt gebruiken in de communicatie met de persoon.
-      properties:
-        naam:
-          type: string
-          pattern: ^[a-zA-Z0-9À-ž \.\-\']{1,650}$
-          example: "H.W. baron van den Aedel"
-        aanspreekvorm:
-          description: |
-            Deze regel moet als aparte regel boven de samengestelde naam worden geplaatst. Komt alleen voor bij personen met een adellijke titel of predicaat.
-          type: string
-          pattern: ^[a-zA-Z ]{1,25}$
-          example: "De hoogwelgeboren heer"
     Adresregel1:
       type: string
       maxLength: 40
@@ -47,15 +26,28 @@ components:
       description: |
         Het derde deel van een adres is optioneel. Het gaat om een of meer geografische gebieden van het adres in het buitenland.
       example: "Selangor"
-    GebruikInLopendeTekst:
-      type: string
-      pattern: ^[a-zA-Z0-9À-ž \.\-\']{1,650}$
-      description: |
-        Naam van persoon die je kunt gebruiken als je in lopende tekst (bijvoorbeeld in een brief) aan persoon refereert.
-      example: "baron Van den Aedel"
-    AdresseringBasis:
-      type: "object"
-      description: ""
+    AdresseringBinnenland:
+      type: object
+      properties:
+        adresregel1:
+          $ref: "#/components/schemas/Adresregel1"
+        adresregel2:
+          $ref: "#/components/schemas/Adresregel2"
+        indicatieVastgesteldVerblijftNietOpAdres:
+          $ref: 'verblijfplaats.yaml#/components/schemas/IndicatieVastgesteldVerblijftNietOpAdres'
+        inOnderzoek:
+          $ref: '#/components/schemas/AdresseringBinnenlandInOnderzoek'
+    AdresseringBinnenlandInOnderzoek:
+      allOf:
+        - $ref: 'persoon.yaml#/components/schemas/InOnderzoek'
+        - type: object
+          properties:
+            adresregel1:
+              type: boolean
+            adresregel2:
+              type: boolean
+    AdresseringBuitenland:
+      type: object
       properties:
         adresregel1:
           $ref: "#/components/schemas/Adresregel1"
@@ -65,63 +57,18 @@ components:
           $ref: "#/components/schemas/Adresregel3"
         land:
           $ref: "common.yaml#/components/schemas/Waardetabel"
-        indicatieVastgesteldVerblijftNietOpAdres:
-          $ref: 'verblijfplaats.yaml#/components/schemas/IndicatieVastgesteldVerblijftNietOpAdres'
-    Adressering:
+        inOnderzoek:
+          $ref: '#/components/schemas/AdresseringBuitenlandInOnderzoek'
+    AdresseringBuitenlandInOnderzoek:
       allOf:
-        - $ref: "#/components/schemas/AdresseringBasis"
-        - properties:
-            aanhef:
-              $ref: "#/components/schemas/Aanhef"
-            aanschrijfwijze:
-              $ref: "#/components/schemas/Aanschrijfwijze"
-            gebruikInLopendeTekst:
-              $ref: "#/components/schemas/GebruikInLopendeTekst"
-            inOnderzoek:
-              $ref: "#/components/schemas/AdresseringInOnderzoek"
-    AdresseringBeperkt:
-      allOf:
-        - $ref: "#/components/schemas/AdresseringBasis"
-        - properties:
-            inOnderzoek:
-              $ref: "#/components/schemas/AdresseringInOnderzoekBeperkt"
-    AdresseringInOnderzoek:
-      description: |
-        Geeft aan welke gegevens over de adressering in onderzoek zijn.
-      type: object
-      properties:
-        aanhef:
-          type: boolean
-        adresregel1:
-          type: boolean
-        adresregel2:
-          type: boolean
-        adresregel3:
-          type: boolean
-        land:
-          type: boolean
-        aanschrijfwijze:
-          type: boolean
-        gebruikInLopendeTekst:
-          type: boolean
-        datumIngangOnderzoekPersoon:
-          $ref: 'datum.yaml#/components/schemas/AbstractDatum'
-        datumIngangOnderzoekPartner:
-          $ref: 'datum.yaml#/components/schemas/AbstractDatum'
-        datumIngangOnderzoekVerblijfplaats:
-          $ref: 'datum.yaml#/components/schemas/AbstractDatum'
-    AdresseringInOnderzoekBeperkt:
-      description: |
-        Geeft aan welke gegevens over de adressering in onderzoek zijn.
-      type: object
-      properties:
-        adresregel1:
-          type: boolean
-        adresregel2:
-          type: boolean
-        adresregel3:
-          type: boolean
-        land:
-          type: boolean
-        datumIngangOnderzoekVerblijfplaats:
-          $ref: 'datum.yaml#/components/schemas/AbstractDatum'
+        - $ref: 'persoon.yaml#/components/schemas/InOnderzoek'
+        - type: object
+          properties:
+            adresregel1:
+              type: boolean
+            adresregel2:
+              type: boolean
+            adresregel3:
+              type: boolean
+            land:
+              type: boolean

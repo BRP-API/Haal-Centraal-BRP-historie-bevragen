@@ -131,3 +131,5 @@ components:
             $ref: 'verblijfplaats-voorkomen.yaml#/components/schemas/AbstractVerblijfplaatsVoorkomen'
         opschortingBijhouding:
           $ref: 'opschortingbijhouding.yaml#/components/schemas/OpschortingBijhouding'
+        geheimhoudingPersoonsgegevens:
+          $ref: 'persoon.yaml#/components/schemas/GeheimhoudingPersoonsgegevens'

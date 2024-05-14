@@ -82,3 +82,5 @@ components:
             $ref: 'verblijfplaats-voorkomen.yaml#/components/schemas/GbaVerblijfplaatsVoorkomen'
         opschortingBijhouding:
           $ref: 'opschortingbijhouding.yaml#/components/schemas/GbaOpschortingBijhouding'
+        geheimhoudingPersoonsgegevens:
+          $ref: 'persoon.yaml#/components/schemas/GbaGeheimhoudingPersoonsgegevens'
