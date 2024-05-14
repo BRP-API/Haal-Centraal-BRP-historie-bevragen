@@ -1,7 +1,7 @@
 # Haal Centraal BRP historie bevragen
 
 ![lint oas](https://github.com/BRP-API/Haal-Centraal-BRP-historie-bevragen/workflows/lint-oas/badge.svg)
-![generate postman collection](https://github.com/BRP-API/Haal-Centraal-BRP-historie-bevragen/workflows/generate-postman-collection/badge.svg)
+![ci](https://github.com/BRP-API/Haal-Centraal-BRP-historie-bevragen/workflows/ci/badge.svg)
 
 API voor het raadplegen van historische gegevens over personen. Met deze API kun je verblijfplaatshistorie, partnerhistorie, verblijfstitelhistorie en nationaliteithistorie opvragen. De API wordt nog niet door RvIG aangeboden. Om de migratie naar API's te versnellen besluiten sommige gemeenten de API zelf aan te bieden.  
 
