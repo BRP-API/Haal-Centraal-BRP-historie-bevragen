@@ -1060,9 +1060,6 @@
           "adresregel2" : {
             "$ref" : "#/components/schemas/Adresregel2"
           },
-          "indicatieVastgesteldVerblijftNietOpAdres" : {
-            "$ref" : "#/components/schemas/IndicatieVastgesteldVerblijftNietOpAdres"
-          },
           "inOnderzoek" : {
             "$ref" : "#/components/schemas/AdresseringBinnenlandInOnderzoek"
           }
