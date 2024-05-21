@@ -1,6 +1,6 @@
 #language: nl
 
-Functionaliteit: raadplegen historie met periode levert opschorting bijhouding
+Functionaliteit: raadplegen historie levert opschorting bijhouding
 
     Achtergrond:
       Gegeven adres 'A1' heeft de volgende gegevens
@@ -25,8 +25,8 @@ Functionaliteit: raadplegen historie met periode levert opschorting bijhouding
       | datumVan            | 2022-01-01          |
       | datumTot            | 2023-01-01          |
       Dan heeft de response verblijfplaatsen met de volgende gegevens
-      | gemeenteVanInschrijving.code | gemeenteVanInschrijving.omschrijving | datumAanvangAdreshouding.type | datumAanvangAdreshouding.datum | datumAanvangAdreshouding.langFormaat | straat           |
-      | 0800                         | Hoogeloon, Hapert en Casteren        | Datum                         | 2022-08-01                     | 1 augustus 2022                      | Korte straatnaam |
+      | type  | gemeenteVanInschrijving.code | gemeenteVanInschrijving.omschrijving | datumAanvangAdreshouding.type | datumAanvangAdreshouding.datum | datumAanvangAdreshouding.langFormaat | straat           |
+      | Adres | 0800                         | Hoogeloon, Hapert en Casteren        | Datum                         | 2022-08-01                     | 1 augustus 2022                      | Korte straatnaam |
       En heeft de response de volgende gegevens
       | naam                                     | waarde                           |
       | opschortingBijhouding.reden.code         | <reden opschorting bijhouding>   |
