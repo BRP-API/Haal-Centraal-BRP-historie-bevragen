@@ -1,5 +1,6 @@
 #language: nl
 
+@gba
 Functionaliteit: raadplegen historie met periode op persoonslijst met opschorting bijhouding
 
     Achtergrond:
