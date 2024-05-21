@@ -1,7 +1,7 @@
 #language: nl
 
 @gba
-Functionaliteit: test dat bij verblijfplaatshistorie met periode een gecorrigeerde historische verblijfplaats volledig wordt genegeerd
+Functionaliteit: verblijfplaatshistorie met periode negeert onjuiste en inmiddels gecorrigeerde historische verblijfplaatsvoorkomens volledig
 
   
     Achtergrond:
@@ -11,6 +11,7 @@ Functionaliteit: test dat bij verblijfplaatshistorie met periode een gecorrigeer
       En adres 'A2' heeft de volgende gegevens
       | gemeentecode (92.10) | straatnaam (11.10) |
       | 0800                 | Het Tweede adres   |
+
 
   Rule: gecorrigeerde gegevens worden niet gebruikt
 
