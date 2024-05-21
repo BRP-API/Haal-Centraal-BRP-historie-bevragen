@@ -25,9 +25,9 @@ Functionaliteit: leveren van datumVan en datumTot voor geleverde verblijfplaatse
       | datumVan            | 2023-01-01          |
       | datumTot            | 2024-01-01          |
       Dan heeft de response verblijfplaatsen met de volgende gegevens
-      | datumVan.type | datumVan.datum | datumVan.langFormaat | datumTot.type | datumTot.datum | datumTot.langFormaat | gemeenteVanInschrijving.code | gemeenteVanInschrijving.omschrijving | adresseerbaarObjectIdentificatie |
-      | Datum         | 2023-10-14     | 14 oktober 2023      |               |                |                      | 0800                         | Hoogeloon, Hapert en Casteren        | 0800010000000002                 |
-      | Datum         | 2021-05-26     | 26 mei 2021          | Datum         | 2023-10-14     | 14 oktober 2023      | 0800                         | Hoogeloon, Hapert en Casteren        | 0800010000000001                 |
+      | type  | datumVan.type | datumVan.datum | datumVan.langFormaat | datumTot.type | datumTot.datum | datumTot.langFormaat | gemeenteVanInschrijving.code | gemeenteVanInschrijving.omschrijving | adresseerbaarObjectIdentificatie |
+      | Adres | Datum         | 2023-10-14     | 14 oktober 2023      |               |                |                      | 0800                         | Hoogeloon, Hapert en Casteren        | 0800010000000002                 |
+      | Adres | Datum         | 2021-05-26     | 26 mei 2021          | Datum         | 2023-10-14     | 14 oktober 2023      | 0800                         | Hoogeloon, Hapert en Casteren        | 0800010000000001                 |
 
     Scenario: verblijfplaatsen in Nederland en in buitenland
       Gegeven de persoon met burgerservicenummer '000000012' is ingeschreven op adres 'A1' met de volgende gegevens
@@ -46,10 +46,10 @@ Functionaliteit: leveren van datumVan en datumTot voor geleverde verblijfplaatse
       | datumVan            | 2022-01-01          |
       | datumTot            | 2024-01-01          |
       Dan heeft de response verblijfplaatsen met de volgende gegevens
-      | datumVan.type | datumVan.datum | datumVan.langFormaat | datumTot.type | datumTot.datum | datumTot.langFormaat | gemeenteVanInschrijving.code | gemeenteVanInschrijving.omschrijving | adresseerbaarObjectIdentificatie | verblijfadres.land.code | verblijfadres.land.omschrijving |
-      | Datum         | 2023-10-14     | 14 oktober 2023      |               |                |                      | 0800                         | Hoogeloon, Hapert en Casteren        | 0800010000000002                 |                         |                                 |
-      | Datum         | 2022-07-30     | 30 juli 2022         | Datum         | 2023-10-14     | 14 oktober 2023      |                              |                                      |                                  | 6014                    | Verenigde Staten van Amerika    |
-      | Datum         | 2021-05-26     | 26 mei 2021          | Datum         | 2022-07-30     | 30 juli 2022         | 0800                         | Hoogeloon, Hapert en Casteren        | 0800010000000001                 |                         |                                 |
+      | type                     | datumVan.type | datumVan.datum | datumVan.langFormaat | datumTot.type | datumTot.datum | datumTot.langFormaat | gemeenteVanInschrijving.code | gemeenteVanInschrijving.omschrijving | adresseerbaarObjectIdentificatie | verblijfadres.land.code | verblijfadres.land.omschrijving |
+      | Adres                    | Datum         | 2023-10-14     | 14 oktober 2023      |               |                |                      | 0800                         | Hoogeloon, Hapert en Casteren        | 0800010000000002                 |                         |                                 |
+      | VerblijfplaatsBuitenland | Datum         | 2022-07-30     | 30 juli 2022         | Datum         | 2023-10-14     | 14 oktober 2023      |                              |                                      |                                  | 6014                    | Verenigde Staten van Amerika    |
+      | Adres                    | Datum         | 2021-05-26     | 26 mei 2021          | Datum         | 2022-07-30     | 30 juli 2022         | 0800                         | Hoogeloon, Hapert en Casteren        | 0800010000000001                 |                         |                                 |
 
     Scenario: verblijfplaats in Nederland heeft datum aanvang met alleen jaar en maand bekend
       Gegeven de persoon met burgerservicenummer '000000012' is ingeschreven op adres 'A1' met de volgende gegevens
@@ -65,9 +65,9 @@ Functionaliteit: leveren van datumVan en datumTot voor geleverde verblijfplaatse
       | datumVan            | 2022-01-01          |
       | datumTot            | 2024-01-01          |
       Dan heeft de response verblijfplaatsen met de volgende gegevens
-      | datumVan.type  | datumVan.datum | datumVan.jaar | datumVan.maand | datumVan.langFormaat | datumTot.type  | datumTot.jaar | datumTot.maand | datumTot.langFormaat | gemeenteVanInschrijving.code | gemeenteVanInschrijving.omschrijving | adresseerbaarObjectIdentificatie | verblijfadres.land.code | verblijfadres.land.omschrijving |
-      | JaarMaandDatum |                | 2023          | 10             | oktober 2023         |                |               |                |                      | 0800                         | Hoogeloon, Hapert en Casteren        | 0800010000000002                 |                         |                                 |
-      | Datum          | 2021-05-26     | 26 mei 2021   |                |                      | JaarMaandDatum | 2023          | 10             | oktober 2023         | 0800                         | Hoogeloon, Hapert en Casteren        | 0800010000000001                 |                         |                                 |
+      | type  | datumVan.type  | datumVan.datum | datumVan.jaar | datumVan.maand | datumVan.langFormaat | datumTot.type  | datumTot.jaar | datumTot.maand | datumTot.langFormaat | gemeenteVanInschrijving.code | gemeenteVanInschrijving.omschrijving | adresseerbaarObjectIdentificatie | verblijfadres.land.code | verblijfadres.land.omschrijving |
+      | Adres | JaarMaandDatum |                | 2023          | 10             | oktober 2023         |                |               |                |                      | 0800                         | Hoogeloon, Hapert en Casteren        | 0800010000000002                 |                         |                                 |
+      | Adres | Datum          | 2021-05-26     | 26 mei 2021   |                |                      | JaarMaandDatum | 2023          | 10             | oktober 2023         | 0800                         | Hoogeloon, Hapert en Casteren        | 0800010000000001                 |                         |                                 |
 
     Scenario: verblijfplaats in Nederland heeft datum aanvang met alleen jaar bekend
       Gegeven de persoon met burgerservicenummer '000000012' is ingeschreven op adres 'A1' met de volgende gegevens
@@ -83,9 +83,9 @@ Functionaliteit: leveren van datumVan en datumTot voor geleverde verblijfplaatse
       | datumVan            | 2022-01-01          |
       | datumTot            | 2024-01-01          |
       Dan heeft de response verblijfplaatsen met de volgende gegevens
-      | datumVan.type | datumVan.datum | datumVan.jaar | datumVan.langFormaat | datumTot.type | datumTot.jaar | datumTot.langFormaat | gemeenteVanInschrijving.code | gemeenteVanInschrijving.omschrijving | adresseerbaarObjectIdentificatie | verblijfadres.land.code | verblijfadres.land.omschrijving |
-      | JaarDatum     |                | 2023          | 2023                 |               |               |                     | 0800                         | Hoogeloon, Hapert en Casteren        | 0800010000000002                 |                         |                                 |
-      | Datum         | 2021-05-26     | 26 mei 2021   |                      | JaarDatum     | 2023          |2023                 | 0800                         | Hoogeloon, Hapert en Casteren        | 0800010000000001                 |                         |                                 |
+      | type  | datumVan.type | datumVan.datum | datumVan.jaar | datumVan.langFormaat | datumTot.type | datumTot.jaar | datumTot.langFormaat | gemeenteVanInschrijving.code | gemeenteVanInschrijving.omschrijving | adresseerbaarObjectIdentificatie | verblijfadres.land.code | verblijfadres.land.omschrijving |
+      | Adres | JaarDatum     |                | 2023          | 2023                 |               |               |                     | 0800                         | Hoogeloon, Hapert en Casteren        | 0800010000000002                 |                         |                                 |
+      | Adres | Datum         | 2021-05-26     | 26 mei 2021   |                      | JaarDatum     | 2023          |2023                 | 0800                         | Hoogeloon, Hapert en Casteren        | 0800010000000001                 |                         |                                 |
 
     Scenario: verblijfplaats in Nederland heeft datum aanvang is onbekend
       Gegeven de persoon met burgerservicenummer '000000012' is ingeschreven op adres 'A1' met de volgende gegevens
@@ -101,9 +101,9 @@ Functionaliteit: leveren van datumVan en datumTot voor geleverde verblijfplaatse
       | datumVan            | 2022-01-01          |
       | datumTot            | 2024-01-01          |
       Dan heeft de response verblijfplaatsen met de volgende gegevens
-      | datumVan.type | datumVan.datum | datumVan.langFormaat | datumVan.onbekend | datumTot.type | datumTot.langFormaat | datumTot.onbekend | gemeenteVanInschrijving.code | gemeenteVanInschrijving.omschrijving | adresseerbaarObjectIdentificatie | verblijfadres.land.code       | verblijfadres.land.omschrijving |
-      | DatumOnbekend |                | onbekend             | true              |               |                      |                   |                              |                                      | 0800                             | Hoogeloon, Hapert en Casteren | 0800010000000002                |  |  |
-      | Datum         | 2021-05-26     | 26 mei 2021          |                   | DatumOnbekend | onbekend             | true              | 0800                         | Hoogeloon, Hapert en Casteren        | 0800010000000001                 |                               |                                 |
+      | type  | datumVan.type | datumVan.datum | datumVan.langFormaat | datumVan.onbekend | datumTot.type | datumTot.langFormaat | datumTot.onbekend | gemeenteVanInschrijving.code | gemeenteVanInschrijving.omschrijving | adresseerbaarObjectIdentificatie | verblijfadres.land.code       | verblijfadres.land.omschrijving |
+      | Adres | DatumOnbekend |                | onbekend             | true              |               |                      |                   |                              |                                      | 0800                             | Hoogeloon, Hapert en Casteren | 0800010000000002                |  |  |
+      | Adres | Datum         | 2021-05-26     | 26 mei 2021          |                   | DatumOnbekend | onbekend             | true              | 0800                         | Hoogeloon, Hapert en Casteren        | 0800010000000001                 |                               |                                 |
 
     Scenario: verblijfplaats buitenland heeft datum aanvang met alleen jaar en maand bekend
       Gegeven de persoon met burgerservicenummer '000000012' is ingeschreven op adres 'A1' met de volgende gegevens
@@ -122,10 +122,10 @@ Functionaliteit: leveren van datumVan en datumTot voor geleverde verblijfplaatse
       | datumVan            | 2022-01-01          |
       | datumTot            | 2024-01-01          |
       Dan heeft de response verblijfplaatsen met de volgende gegevens
-      | datumVan.type  | datumVan.datum | datumVan.jaar | datumVan.maand | datumVan.langFormaat | datumTot.type  | datumTot.datum | datumTot.jaar | datumTot.maand | datumTot.langFormaat | gemeenteVanInschrijving.code | gemeenteVanInschrijving.omschrijving | adresseerbaarObjectIdentificatie | verblijfadres.land.code | verblijfadres.land.omschrijving |
-      | Datum          | 2023-10-14     |               |                | 14 oktober 2023      |                |                |               |                |                      | 0800                         | Hoogeloon, Hapert en Casteren        | 0800010000000002                 |                         |                                 |
-      | JaarMaandDatum |                | 2022          | 7              | juli 2022            | Datum          | 2023-10-14     |               |                | 14 oktober 2023      |                              |                                      |                                  | 6014                    | Verenigde Staten van Amerika    |
-      | Datum          | 2021-05-26     |               |                | 26 mei 2021          | JaarMaandDatum |                | 2022          | 7              | juli 2022            | 0800                         | Hoogeloon, Hapert en Casteren        | 0800010000000001                 |                         |                                 |
+      | type                     | datumVan.type  | datumVan.datum | datumVan.jaar | datumVan.maand | datumVan.langFormaat | datumTot.type  | datumTot.datum | datumTot.jaar | datumTot.maand | datumTot.langFormaat | gemeenteVanInschrijving.code | gemeenteVanInschrijving.omschrijving | adresseerbaarObjectIdentificatie | verblijfadres.land.code | verblijfadres.land.omschrijving |
+      | Adres                    | Datum          | 2023-10-14     |               |                | 14 oktober 2023      |                |                |               |                |                      | 0800                         | Hoogeloon, Hapert en Casteren        | 0800010000000002                 |                         |                                 |
+      | VerblijfplaatsBuitenland | JaarMaandDatum |                | 2022          | 7              | juli 2022            | Datum          | 2023-10-14     |               |                | 14 oktober 2023      |                              |                                      |                                  | 6014                    | Verenigde Staten van Amerika    |
+      | Adres                    | Datum          | 2021-05-26     |               |                | 26 mei 2021          | JaarMaandDatum |                | 2022          | 7              | juli 2022            | 0800                         | Hoogeloon, Hapert en Casteren        | 0800010000000001                 |                         |                                 |
 
     Scenario: verblijfplaats buitenland heeft datum aanvang met alleen jaar bekend
       Gegeven de persoon met burgerservicenummer '000000012' is ingeschreven op adres 'A1' met de volgende gegevens
@@ -144,10 +144,10 @@ Functionaliteit: leveren van datumVan en datumTot voor geleverde verblijfplaatse
       | datumVan            | 2022-01-01          |
       | datumTot            | 2024-01-01          |
       Dan heeft de response verblijfplaatsen met de volgende gegevens
-      | datumVan.type | datumVan.datum | datumVan.jaar | datumVan.langFormaat | datumTot.type | datumTot.datum | datumTot.jaar | datumTot.langFormaat | gemeenteVanInschrijving.code | gemeenteVanInschrijving.omschrijving | adresseerbaarObjectIdentificatie | verblijfadres.land.code | verblijfadres.land.omschrijving |
-      | Datum         | 2023-10-14     |               | 14 oktober 2023      |               |                |               |                      | 0800                         | Hoogeloon, Hapert en Casteren        | 0800010000000002                 |                         |                                 |
-      | JaarDatum     |                | 2022          | 2022                 | Datum         | 2023-10-14     |               | 14 oktober 2023      |                              |                                      |                                  | 6014                    | Verenigde Staten van Amerika    |
-      | Datum         | 2021-05-26     |               | 26 mei 2021          | JaarDatum     |                | 2022          | 2022                 | 0800                         | Hoogeloon, Hapert en Casteren        | 0800010000000001                 |                         |                                 |
+      | type                     | datumVan.type | datumVan.datum | datumVan.jaar | datumVan.langFormaat | datumTot.type | datumTot.datum | datumTot.jaar | datumTot.langFormaat | gemeenteVanInschrijving.code | gemeenteVanInschrijving.omschrijving | adresseerbaarObjectIdentificatie | verblijfadres.land.code | verblijfadres.land.omschrijving |
+      | Adres                    | Datum         | 2023-10-14     |               | 14 oktober 2023      |               |                |               |                      | 0800                         | Hoogeloon, Hapert en Casteren        | 0800010000000002                 |                         |                                 |
+      | VerblijfplaatsBuitenland | JaarDatum     |                | 2022          | 2022                 | Datum         | 2023-10-14     |               | 14 oktober 2023      |                              |                                      |                                  | 6014                    | Verenigde Staten van Amerika    |
+      | Adres                    | Datum         | 2021-05-26     |               | 26 mei 2021          | JaarDatum     |                | 2022          | 2022                 | 0800                         | Hoogeloon, Hapert en Casteren        | 0800010000000001                 |                         |                                 |
 
     Scenario: verblijfplaats buitenland heeft datum aanvang is onbekend
       Gegeven de persoon met burgerservicenummer '000000012' is ingeschreven op adres 'A1' met de volgende gegevens
@@ -166,7 +166,7 @@ Functionaliteit: leveren van datumVan en datumTot voor geleverde verblijfplaatse
       | datumVan            | 2021-01-01          |
       | datumTot            | 2024-01-01          |
       Dan heeft de response verblijfplaatsen met de volgende gegevens
-      | datumVan.type | datumVan.datum | datumVan.langFormaat | datumVan.onbekend | datumTot.type | datumTot.datum | datumTot.langFormaat | datumTot.onbekend | gemeenteVanInschrijving.code | gemeenteVanInschrijving.omschrijving | adresseerbaarObjectIdentificatie | verblijfadres.land.code | verblijfadres.land.omschrijving |
-      | Datum         | 2023-10-14     | 14 oktober 2023      |                   |               |                |                      |                   | 0800                         | Hoogeloon, Hapert en Casteren        | 0800010000000002                 |                         |                                 |
-      | DatumOnbekend |                | onbekend             | true              | Datum         | 2023-10-14     | 14 oktober 2023      |                   |                              |                                      |                                  | 6014                    | Verenigde Staten van Amerika    |
-      | Datum         | 2021-05-26     | 26 mei 2021          |                   | DatumOnbekend |                | onbekend             | true              | 0800                         | Hoogeloon, Hapert en Casteren        | 0800010000000001                 |                         |                                 |
+      | type                     | datumVan.type | datumVan.datum | datumVan.langFormaat | datumVan.onbekend | datumTot.type | datumTot.datum | datumTot.langFormaat | datumTot.onbekend | gemeenteVanInschrijving.code | gemeenteVanInschrijving.omschrijving | adresseerbaarObjectIdentificatie | verblijfadres.land.code | verblijfadres.land.omschrijving |
+      | Adres                    | Datum         | 2023-10-14     | 14 oktober 2023      |                   |               |                |                      |                   | 0800                         | Hoogeloon, Hapert en Casteren        | 0800010000000002                 |                         |                                 |
+      | VerblijfplaatsBuitenland | DatumOnbekend |                | onbekend             | true              | Datum         | 2023-10-14     | 14 oktober 2023      |                   |                              |                                      |                                  | 6014                    | Verenigde Staten van Amerika    |
+      | Adres                    | Datum         | 2021-05-26     | 26 mei 2021          |                   | DatumOnbekend |                | onbekend             | true              | 0800                         | Hoogeloon, Hapert en Casteren        | 0800010000000001                 |                         |                                 |
