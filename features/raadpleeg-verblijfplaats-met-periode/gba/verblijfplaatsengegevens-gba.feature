@@ -1,7 +1,7 @@
 #language: nl
 
 @gba
-Functionaliteit: test dat alle gegevens van verblijfplaatsen worden geleverd bij raadplegen op periode
+Functionaliteit: alle gegevens van verblijfplaatsen worden geleverd bij raadplegen op periode
 
 
     Scenario: verblijfplaats is een BAG-adres
