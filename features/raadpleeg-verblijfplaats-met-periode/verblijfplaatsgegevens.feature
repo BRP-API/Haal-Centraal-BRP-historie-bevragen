@@ -127,7 +127,7 @@
       | 0800                              | W                     | 20040526                           |
       En de persoon is vervolgens ingeschreven op een buitenlands adres met de volgende gegevens
       | gemeente van inschrijving (09.10) | datum aanvang adres buitenland (13.20) | land adres buitenland (13.10) | regel 1 adres buitenland (13.30) | regel 2 adres buitenland (13.40) | regel 3 adres buitenland (13.50) |
-      | 1999                              | 20100818                               | 6014                          | Die Erste Straße                 | Beverly Hills CA 91210           | Loin d'ici                       |
+      | 1999                              | 20100818                               | 6014                          | Die Erste Straße                 | Beverly Hills CA 90210           | Loin d'ici                       |
       Als verblijfplaatshistorie wordt gezocht met de volgende parameters
       | naam                | waarde              |
       | type                | RaadpleegMetPeriode |
@@ -139,10 +139,10 @@
       | VerblijfplaatsBuitenland | 1999                         | Registratie Niet Ingezetenen (RNI)   | Datum         | 2010-08-18     | 18 augustus 2010     |
       En heeft de verblijfplaats de volgende 'verblijfadres' gegevens
       | land.code | land.omschrijving            | regel1           | regel2                 | regel3     |
-      | 6014      | Verenigde Staten van Amerika | Die Erste Straße | Beverly Hills CA 91210 | Loin d'ici |
+      | 6014      | Verenigde Staten van Amerika | Die Erste Straße | Beverly Hills CA 90210 | Loin d'ici |
       En heeft de verblijfplaats de volgende 'adressering' gegevens
       | adresregel1      | adresregel2            | adresregel3 | land.code | land.omschrijving            |
-      | Die Erste Straße | Beverly Hills CA 91210 | Loin d'ici  | 6014      | Verenigde Staten van Amerika |
+      | Die Erste Straße | Beverly Hills CA 90210 | Loin d'ici  | 6014      | Verenigde Staten van Amerika |
 
     Scenario: verblijfplaats is onbekend
       Gegeven adres 'A1' heeft de volgende gegevens
