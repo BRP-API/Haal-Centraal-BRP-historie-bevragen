@@ -1,6 +1,6 @@
 #language: nl
 
-Functionaliteit: raadplegen historie levert geheimhoudingPersoonsgegevens
+Functionaliteit: raadplegen verblijfplaatshistorie levert geheimhoudingPersoonsgegevens
 
 
   Rule: Indicatie geheim met waarde hoger dan 0 wordt altijd meegeleverd
@@ -15,7 +15,7 @@ Functionaliteit: raadplegen historie levert geheimhoudingPersoonsgegevens
       En de persoon heeft de volgende 'inschrijving' gegevens
       | indicatie geheim (70.10) |
       | <indicatie geheim>       |
-      Als gba verblijfplaatshistorie wordt gezocht met de volgende parameters
+      Als verblijfplaatshistorie wordt gezocht met de volgende parameters
       | naam                | waarde              |
       | type                | RaadpleegMetPeriode |
       | burgerservicenummer | 000000024           |
