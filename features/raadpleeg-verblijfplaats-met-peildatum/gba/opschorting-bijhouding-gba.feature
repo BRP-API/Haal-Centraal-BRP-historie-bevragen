@@ -46,8 +46,8 @@ Functionaliteit: test voor raadplegen historie met peildatum dat opschorting bij
       | burgerservicenummer | 000000024             |
       | peildatum           | 2024-01-01            |
       Dan heeft de response verblijfplaatsen met de volgende gegevens
-      | straat | adresseerbaarObjectIdentificatie | datumAanvangAdreshouding | gemeenteVanInschrijving.code | gemeenteVanInschrijving.omschrijving |
-      | Laan   | 0800010000000001                 | 20100818                 | 0800                         | Hoogeloon, Hapert en Casteren        |
+      | straat | datumAanvangAdreshouding | gemeenteVanInschrijving.code | gemeenteVanInschrijving.omschrijving | straat           |
+      | Laan   | 20100818                 | 0800                         | Hoogeloon, Hapert en Casteren        | Korte straatnaam |
 
 
   Rule: Voor een persoon met afgevoerde persoonslijst wordt geen verblijfplaatshistorie geleverd
@@ -89,8 +89,8 @@ Functionaliteit: test voor raadplegen historie met peildatum dat opschorting bij
       | burgerservicenummer | 000000024             |
       | peildatum           | 2024-01-01            |
       Dan heeft de response verblijfplaatsen met de volgende gegevens
-      | straat | adresseerbaarObjectIdentificatie | datumAanvangAdreshouding | gemeenteVanInschrijving.code | gemeenteVanInschrijving.omschrijving |
-      | Laan   | 0800010000000001                 | 20100818                 | 0800                         | Hoogeloon, Hapert en Casteren        |
+      | straat | datumAanvangAdreshouding | gemeenteVanInschrijving.code | gemeenteVanInschrijving.omschrijving | straat           |
+      | Laan   | 20100818                 | 0800                         | Hoogeloon, Hapert en Casteren        | Korte straatnaam |
 
   
   Rule: opschortingBijhouding wordt geleverd
