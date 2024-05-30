@@ -543,7 +543,7 @@ Functionaliteit: test dat alleen de verblijfplaats(en) waar persoon verbleef op 
       | soort datum               | aanvang adreshouding | omschrijving                                               | peildatum  |
       | volledig onbekend         | 00000000             | peildatum ligt in onzekerheidsperiode en na aanvang vorige | 2012-01-01 |
       | alleen jaar is bekend     | 20100000             | peildatum ligt in onzekerheidsperiode en na aanvang vorige | 2010-08-01 |
-      | jaar en maand zijn bekend | 20100500             | peildatum is dag na aanvang vorige                         | 2010-05-27 |
+      | jaar en maand zijn bekend | 20100500             | peildatum ligt in onzekerheidsperiode en na aanvang vorige | 2010-05-29 |
       | alleen jaar is bekend     | 20100000             | peildatum is dag na aanvang vorige                         | 2010-05-27 |
       | jaar en maand zijn bekend | 20100500             | peildatum is dag na aanvang vorige                         | 2010-05-27 |
       | alleen jaar is bekend     | 20100000             | peildatum ligt na onzekerheidsperiode                      | 2011-03-14 |
