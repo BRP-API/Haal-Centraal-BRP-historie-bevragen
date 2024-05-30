@@ -7,58 +7,91 @@ Functionaliteit: test voor raadplegen historie met peildatum dat opschorting bij
       | gemeentecode (92.10) | straatnaam (11.10) |
       | 0800                 | Korte straatnaam   |
 
-  Rule: Een persoonslijst met reden opschorting bijhouding "W" (wissen) wordt niet geleverd
+  Rule: Voor een persoon op een logisch verwijderde persoonslijst wordt geen verblijfplaatshistorie geleverd
+    Een persoonslijst is logisch verwijderd wanneer reden opschorting bijhouding is gelijk aan "W" (wissen)
 
-    @fout-case
-    Scenario: historie wordt gevraagd op burgerservicenummer van gewiste persoonslijst
-      Gegeven de persoon met burgerservicenummer '000000012' is ingeschreven op adres 'A1' met de volgende gegevens
+    Abstract Scenario: Gevraagde persoon heeft een logisch verwijderde persoonslijst en <sub scenario>
+      Gegeven de persoon met burgerservicenummer '000000024' is ingeschreven op adres 'A1' met de volgende gegevens
       | gemeente van inschrijving (09.10) | datum aanvang adreshouding (10.30) |
-      | 0800                              | 20220801                           |
+      | 0800                              | 20100818                           |
       En de persoon heeft de volgende 'inschrijving' gegevens
-      | naam                                 | waarde   |
-      | reden opschorting bijhouding (67.20) | W        |
-      | datum opschorting bijhouding (67.10) | 20220829 |
+      | reden opschorting bijhouding (67.20) | datum opschorting bijhouding (67.10) |
+      | W                                    | <datum opschorting bijhouding>       |
       Als gba verblijfplaatshistorie wordt gezocht met de volgende parameters
       | naam                | waarde                |
       | type                | RaadpleegMetPeildatum |
-      | burgerservicenummer | 000000012             |
-      | peildatum           | 2022-08-15            |
-      Dan heeft de response een object met de volgende gegevens
-      | naam     | waarde                                                         |
-      | type     | https://datatracker.ietf.org/doc/html/rfc7231#section-6.5.4    |
-      | title    | Opgevraagde resource bestaat niet.                             |
-      | status   | 404                                                            |
-      | detail   | De persoon met burgerservicenummer 000000012 is niet gevonden. |
-      | code     | notFound                                                       |
-      | instance | /haalcentraal/api/brphistorie/verblijfplaatshistorie           |
-
-  Rule: bij het raadplegen van een persoon met opschorting bijhouding reden "F" (afgevoerde persoonslijst) wordt alleen de reden en datum opschorting geleverd
-    Overige gegevens op de afgevoerde persoonslijst worden niet geleverd
-
-    Abstract Scenario: historie wordt gevraagd van persoon waarvoor de bijhouding is opgeschort met reden "F" (fout)
-      Gegeven de persoon met burgerservicenummer '000000012' is ingeschreven op adres 'A1' met de volgende gegevens
-      | gemeente van inschrijving (09.10) | datum aanvang adreshouding (10.30) |
-      | 0800                              | 20220801                           |
-      En de persoon heeft de volgende 'inschrijving' gegevens
-      | naam                                 | waarde   |
-      | reden opschorting bijhouding (67.20) | F        |
-      | datum opschorting bijhouding (67.10) | 20220829 |
-      Als gba verblijfplaatshistorie wordt gezocht met de volgende parameters
-      | naam                | waarde                |
-      | type                | RaadpleegMetPeildatum |
-      | burgerservicenummer | 000000012             |
-      | peildatum           | <peildatum>            |
-      Dan heeft de response 0 verblijfplaatsen
-      En heeft de response de volgende gegevens
-      | naam                                     | waarde   |
-      | opschortingBijhouding.reden.code         | F        |
-      | opschortingBijhouding.reden.omschrijving | fout     |
-      | opschortingBijhouding.datum              | 20220829 |
+      | burgerservicenummer | 000000024             |
+      | peildatum           | 2016-07-31            |
+      Dan heeft de response geen verblijfplaatsen
 
       Voorbeelden:
-      | omschrijving           | peildatum  |
-      | voor datum opschorting | 2022-08-11 |
-      | na datum opschorting   | 2022-09-01 |
+      | datum opschorting bijhouding | sub scenario                                           |
+      | 20150401                     | datum opschorting ligt vóór de gevraagde peildatum     |
+      | 20160731                     | datum opschorting is gelijk aan de gevraagde peildatum |
+      | 20220829                     | datum opschorting ligt na de gevraagde peildatum       |
+
+    Scenario: Gevraagde persoon heeft een logisch verwijderde persoonslijst en met zelfde burgerservicenummer een actuele persoonslijst
+      Gegeven de persoon met burgerservicenummer '000000024' is ingeschreven op adres 'A1' met de volgende gegevens
+      | gemeente van inschrijving (09.10) | datum aanvang adreshouding (10.30) |
+      | 0800                              | 20100818                           |
+      En de persoon heeft de volgende 'inschrijving' gegevens
+      | reden opschorting bijhouding (67.20) | datum opschorting bijhouding (67.10) |
+      | W                                    | 20100823                             |
+      En de persoon met burgerservicenummer '000000024' is ingeschreven op adres 'A1' met de volgende gegevens
+      | gemeente van inschrijving (09.10) | datum aanvang adreshouding (10.30) |
+      | 0800                              | 20100818                           |
+      Als gba verblijfplaatshistorie wordt gezocht met de volgende parameters
+      | naam                | waarde                |
+      | type                | RaadpleegMetPeildatum |
+      | burgerservicenummer | 000000024             |
+      | peildatum           | 2024-01-01            |
+      Dan heeft de response verblijfplaatsen met de volgende gegevens
+      | straat | adresseerbaarObjectIdentificatie | datumAanvangAdreshouding | gemeenteVanInschrijving.code | gemeenteVanInschrijving.omschrijving |
+      | Laan   | 0800010000000001                 | 20100818                 | 0800                         | Hoogeloon, Hapert en Casteren        |
+
+
+  Rule: Voor een persoon met afgevoerde persoonslijst wordt geen verblijfplaatshistorie geleverd
+    Een persoonslijst is afgevoerd wanneer reden opschorting bijhouding is gelijk aan "F" (fout)
+
+    Abstract Scenario: Gevraagde persoon heeft een afgevoerde persoonslijst en <sub scenario>
+      Gegeven de persoon met burgerservicenummer '000000024' is ingeschreven op adres 'A1' met de volgende gegevens
+      | gemeente van inschrijving (09.10) | datum aanvang adreshouding (10.30) |
+      | 0800                              | 20100818                           |
+      En de persoon heeft de volgende 'inschrijving' gegevens
+      | reden opschorting bijhouding (67.20) | datum opschorting bijhouding (67.10) |
+      | F                                    | <datum opschorting bijhouding>       |
+      Als gba verblijfplaatshistorie wordt gezocht met de volgende parameters
+      | naam                | waarde                |
+      | type                | RaadpleegMetPeildatum |
+      | burgerservicenummer | 000000024             |
+      | peildatum           | 2016-07-31            |
+      Dan heeft de response geen verblijfplaatsen
+
+      Voorbeelden:
+      | datum opschorting bijhouding | sub scenario                                           |
+      | 20150401                     | datum opschorting ligt vóór de gevraagde peildatum     |
+      | 20160731                     | datum opschorting is gelijk aan de gevraagde peildatum |
+      | 20220829                     | datum opschorting ligt na de gevraagde peildatum       |
+
+    Scenario: Gevraagde persoon heeft een afgevoerde persoonslijst en met zelfde burgerservicenummer een actuele persoonslijst
+      Gegeven de persoon met burgerservicenummer '000000024' is ingeschreven op adres 'A1' met de volgende gegevens
+      | gemeente van inschrijving (09.10) | datum aanvang adreshouding (10.30) |
+      | 0800                              | 20100818                           |
+      En de persoon heeft de volgende 'inschrijving' gegevens
+      | reden opschorting bijhouding (67.20) | datum opschorting bijhouding (67.10) |
+      | F                                    | 20100823                             |
+      En de persoon met burgerservicenummer '000000024' is ingeschreven op adres 'A1' met de volgende gegevens
+      | gemeente van inschrijving (09.10) | datum aanvang adreshouding (10.30) |
+      | 0800                              | 20100818                           |
+      Als gba verblijfplaatshistorie wordt gezocht met de volgende parameters
+      | naam                | waarde                |
+      | type                | RaadpleegMetPeildatum |
+      | burgerservicenummer | 000000024             |
+      | peildatum           | 2024-01-01            |
+      Dan heeft de response verblijfplaatsen met de volgende gegevens
+      | straat | adresseerbaarObjectIdentificatie | datumAanvangAdreshouding | gemeenteVanInschrijving.code | gemeenteVanInschrijving.omschrijving |
+      | Laan   | 0800010000000001                 | 20100818                 | 0800                         | Hoogeloon, Hapert en Casteren        |
+
   
   Rule: opschortingBijhouding wordt geleverd
 
@@ -115,10 +148,10 @@ Functionaliteit: test voor raadplegen historie met peildatum dat opschorting bij
       | opschortingBijhouding.datum              | 20220829   |
 
       Voorbeelden:
-      | omschrijving | peildatum  | datum tot  |
-      | voor         | 2020-01-01 | 2021-01-01 |
-      | gelijk aan   | 2022-08-29 | 2023-01-01 |
-      | na           | 2023-01-01 | 2023-07-01 |
+      | omschrijving | peildatum  |
+      | voor         | 2020-01-01 |
+      | gelijk aan   | 2022-08-29 |
+      | na           | 2023-01-01 |
 
     Abstract Scenario: historie wordt gevraagd van persoon waarvoor de bijhouding is opgeschort voor peildatum waarop geen verblijfplaats wordt gevonden
       Gegeven de persoon met burgerservicenummer '000000012' is ingeschreven op adres 'A1' met de volgende gegevens

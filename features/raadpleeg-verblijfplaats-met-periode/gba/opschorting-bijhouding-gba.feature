@@ -9,27 +9,28 @@ Functionaliteit: raadplegen historie met periode op persoonslijst met opschortin
       | 0800                 | Korte straatnaam   |
 
   Rule: Voor een persoon op een logisch verwijderde persoonslijst wordt geen verblijfplaatshistorie geleverd
+    Een persoonslijst is logisch verwijderd wanneer reden opschorting bijhouding is gelijk aan "W" (wissen)
 
     Abstract Scenario: Gevraagde persoon heeft een logisch verwijderde persoonslijst en <sub scenario>
-    Gegeven de persoon met burgerservicenummer '000000024' is ingeschreven op adres 'A1' met de volgende gegevens
-    | gemeente van inschrijving (09.10) | datum aanvang adreshouding (10.30) |
-    | 0800                              | 20100818                           |
-    En de persoon heeft de volgende 'inschrijving' gegevens
-    | reden opschorting bijhouding (67.20) | datum opschorting bijhouding (67.10) |
-    | W                                    | 20100823                             |
-    Als gba verblijfplaatshistorie wordt gezocht met de volgende parameters
-    | naam                | waarde              |
-    | type                | RaadpleegMetPeriode |
-    | burgerservicenummer | 000000024           |
-    | datumVan            | 2015-07-01          |
-    | datumTot            | 2020-07-01          |
-    Dan heeft de response geen verblijfplaatsen
+      Gegeven de persoon met burgerservicenummer '000000024' is ingeschreven op adres 'A1' met de volgende gegevens
+      | gemeente van inschrijving (09.10) | datum aanvang adreshouding (10.30) |
+      | 0800                              | 20100818                           |
+      En de persoon heeft de volgende 'inschrijving' gegevens
+      | reden opschorting bijhouding (67.20) | datum opschorting bijhouding (67.10) |
+      | W                                    | <datum opschorting bijhouding>       |
+      Als gba verblijfplaatshistorie wordt gezocht met de volgende parameters
+      | naam                | waarde              |
+      | type                | RaadpleegMetPeriode |
+      | burgerservicenummer | 000000024           |
+      | datumVan            | 2015-07-01          |
+      | datumTot            | 2020-07-01          |
+      Dan heeft de response geen verblijfplaatsen
 
-    Voorbeelden:
-    | datum opschorting bijhouding | sub scenario                                     |
-    | 20150401                     | datum opschorting ligt vóór de gevraagde periode |
-    | 20160731                     | datum opschorting ligt in de gevraagde periode   |
-    | 20220829                     | datum opschorting ligt na de gevraagde periode   |
+      Voorbeelden:
+      | datum opschorting bijhouding | sub scenario                                     |
+      | 20150401                     | datum opschorting ligt vóór de gevraagde periode |
+      | 20160731                     | datum opschorting ligt in de gevraagde periode   |
+      | 20220829                     | datum opschorting ligt na de gevraagde periode   |
 
     Scenario: Gevraagde persoon heeft een logisch verwijderde persoonslijst en met zelfde burgerservicenummer een actuele persoonslijst
       Gegeven de persoon met burgerservicenummer '000000024' is ingeschreven op adres 'A1' met de volgende gegevens
@@ -45,14 +46,15 @@ Functionaliteit: raadplegen historie met periode op persoonslijst met opschortin
       | naam                | waarde              |
       | type                | RaadpleegMetPeriode |
       | burgerservicenummer | 000000024           |
-      | datumVan            | 2015-07-01          |
-      | datumTot            | 2020-07-01          |
+      | datumVan            | 2023-01-01          |
+      | datumTot            | 2024-01-01          |
       Dan heeft de response verblijfplaatsen met de volgende gegevens
       | straat | adresseerbaarObjectIdentificatie | datumAanvangAdreshouding | gemeenteVanInschrijving.code | gemeenteVanInschrijving.omschrijving |
       | Laan   | 0800010000000001                 | 20100818                 | 0800                         | Hoogeloon, Hapert en Casteren        |
 
 
   Rule: Voor een persoon met afgevoerde persoonslijst wordt geen verblijfplaatshistorie geleverd
+    Een persoonslijst is afgevoerd wanneer reden opschorting bijhouding is gelijk aan "F" (fout)
 
     Abstract Scenario: Gevraagde persoon heeft een afgevoerde persoonslijst en <sub scenario>
       Gegeven de persoon met burgerservicenummer '000000024' is ingeschreven op adres 'A1' met de volgende gegevens
@@ -89,8 +91,8 @@ Functionaliteit: raadplegen historie met periode op persoonslijst met opschortin
       | naam                | waarde              |
       | type                | RaadpleegMetPeriode |
       | burgerservicenummer | 000000024           |
-      | datumVan            | 2015-07-01          |
-      | datumTot            | 2020-07-01          |
+      | datumVan            | 2023-01-01          |
+      | datumTot            | 2024-01-01          |
       Dan heeft de response verblijfplaatsen met de volgende gegevens
       | straat | adresseerbaarObjectIdentificatie | datumAanvangAdreshouding | gemeenteVanInschrijving.code | gemeenteVanInschrijving.omschrijving |
       | Laan   | 0800010000000001                 | 20100818                 | 0800                         | Hoogeloon, Hapert en Casteren        |
