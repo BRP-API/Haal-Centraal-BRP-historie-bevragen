@@ -44,7 +44,7 @@ Functionaliteit: RNI-deelnemer gegevens leveren voor verblijfplaatshistorie met 
       | gemeenteVanInschrijving.code | gemeenteVanInschrijving.omschrijving | land.code | land.omschrijving | datumAanvangAdresBuitenland | rni.deelnemer.code | rni.deelnemer.omschrijving                      | rni.omschrijvingVerdrag |
       | 1999                         | Registratie Niet Ingezetenen (RNI)   | 0000      | Onbekend          | 20230210                    | 0101               | Belastingdienst (inzake heffingen en toeslagen) | Belastingverdrag        |
 
-    Scenario: Op peildatum heeft de persoon adres in Nederland en volgende verblijfplaats buitenland met RNI-deelnemer gegevens voor categorie 08
+    Scenario: Op peildatum heeft de persoon adres in Nederland en volgende verblijfplaats buitenland met RNI-deelnemer gegevens
       Als gba verblijfplaatshistorie wordt gezocht met de volgende parameters
       | naam                | waarde                |
       | type                | RaadpleegMetPeildatum |
