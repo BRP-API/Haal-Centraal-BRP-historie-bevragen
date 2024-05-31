@@ -48,7 +48,9 @@ Functionaliteit: test dat raadplegen historie met peildatum bij een opeenvolgend
       | omschrijving | datum aanvang | peildatum  |
       | gelijk aan   | 20020701      | 2002-07-01 |
       | eerder dan   | 20020628      | 2002-06-28 |
+      | eerder dan   | 20020628      | 2002-06-29 |
       | eerder dan   | 20020628      | 2002-07-01 |
+      | eerder dan   | 20020628      | 2002-07-03 |
 
     Abstract Scenario: wel leveren wanneer de datum aanvang na gecorrigeerde verblijfplaats later is dan de aanvang oorspronkelijke
       Gegeven de persoon met burgerservicenummer '000000012' is ingeschreven op adres 'A1' met de volgende gegevens
