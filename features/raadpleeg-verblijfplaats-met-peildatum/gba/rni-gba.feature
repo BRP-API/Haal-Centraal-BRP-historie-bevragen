@@ -22,7 +22,7 @@ Functionaliteit: RNI-deelnemer gegevens leveren voor verblijfplaatshistorie met 
       | 1999                              | 20230210                               | 0000                          | 0101                  | Belastingverdrag             |
 
 
-  Rule: Rule: RNI-deelnemer gegevens op een geleverde verblijfplaats worden geleverd
+  Rule: RNI-deelnemer gegevens op een geleverde verblijfplaats worden geleverd
 
     Scenario: Op peildatum heeft de persoon verblijfplaats buitenland met RNI-deelnemer gegevens
       Als gba verblijfplaatshistorie wordt gezocht met de volgende parameters
