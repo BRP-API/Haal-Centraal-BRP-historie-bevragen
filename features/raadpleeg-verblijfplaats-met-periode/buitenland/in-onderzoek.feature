@@ -177,7 +177,7 @@ Functionaliteit: leveren van inOnderzoek bij raadplegen met periode
 
   Rule: als de hele groep in verblijfplaats in onderzoek is, dan wordt voor alle velden van de groep, en die daaruit worden afgeleid, inOnderzoek en datumIngangOnderzoek ook geleverd
 
-    Scenario: groep gemeente is in onderzoek
+    Scenario: groep gemeente is in onderzoek maar komt niet voor bij verblijfplaats buitenland
       Gegeven de persoon met burgerservicenummer '000000012' is ingeschreven op een buitenlands adres met de volgende gegevens
       | gemeente van inschrijving (09.10) | datum aanvang adres buitenland (13.20) | land adres buitenland (13.10) | regel 1 adres buitenland (13.30) | regel 2 adres buitenland (13.40) | aanduiding in onderzoek (83.10) | datum ingang onderzoek (83.20) |
       | 1999                              | 20231014                               | 6014                          | Die Erste Straße                 | Beverly Hills CA 90210           | 080900                          | 20240516                       |
@@ -190,12 +190,6 @@ Functionaliteit: leveren van inOnderzoek bij raadplegen met periode
       Dan heeft de response verblijfplaatsen met de volgende gegevens
       | type                     | datumVan.type | datumVan.datum | datumVan.langFormaat |
       | VerblijfplaatsBuitenland | Datum         | 2023-10-14     | 14 oktober 2023      |
-      En heeft de verblijfplaats de volgende 'inOnderzoek' gegevens
-      | naam                             | waarde      |
-      | gemeenteVanInschrijving          | true        |
-      | datumIngangOnderzoek.type        | Datum       |
-      | datumIngangOnderzoek.datum       | 2024-05-16  |
-      | datumIngangOnderzoek.langFormaat | 16 mei 2024 |
       En heeft de verblijfplaats de volgende 'verblijfadres' gegevens
       | naam                                         | waarde                       |
       | land.code                                    | 6014                         |

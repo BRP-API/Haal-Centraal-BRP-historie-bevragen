@@ -594,6 +594,7 @@ Functionaliteit: leveren van inOnderzoek bij raadplegen met periode
       | groep adreshouding         | 581300               |
       | datum aanvang adreshouding | 581320               |
 
+
   Rule: wanneer een veld of groep in onderzoek staat die niet in verblijfplaatshistorie voorkomt, wordt geen inOnderzoek geleverd
 
     Abstract Scenario: <omschrijving> van verblijfplaats in Nederland is in onderzoek
