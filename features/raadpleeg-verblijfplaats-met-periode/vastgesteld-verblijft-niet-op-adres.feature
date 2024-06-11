@@ -1,6 +1,5 @@
 #language: nl 
 
-@gba
 Functionaliteit: persoon met 'indicatie vastgesteld verblijft niet op adres' bij verblijfplaatshistorie met periode
 
   Een burger kan bij de gemeente melden dat iemand anders ten onrechte op diens adres staat ingeschreven. 
@@ -30,7 +29,7 @@ Functionaliteit: persoon met 'indicatie vastgesteld verblijft niet op adres' bij
       Gegeven adres 'A1' heeft de volgende gegevens
       | gemeentecode (92.10) | straatnaam (11.10) | huisnummer (11.20) |
       | 0800                 | Testpad            | 8                  |
-      En dres 'A2' heeft de volgende gegevens
+      En adres 'A2' heeft de volgende gegevens
       | gemeentecode (92.10) | straatnaam (11.10) | huisnummer (11.20) |
       | 0800                 | Voorbeeldstraat    | 2                  |
 
@@ -41,7 +40,7 @@ Functionaliteit: persoon met 'indicatie vastgesteld verblijft niet op adres' bij
       Gegeven de persoon met burgerservicenummer '000000012' is ingeschreven op adres 'A1' met de volgende gegevens
       | gemeente van inschrijving (09.10) | datum aanvang adreshouding (10.30) | aanduiding in onderzoek (83.10) | datum ingang onderzoek (83.20) |
       | 0800                              | 20211014                           | <aanduiding onderzoek>          | 20230516                       |
-      Als gba verblijfplaatshistorie wordt gezocht met de volgende parameters
+      Als verblijfplaatshistorie wordt gezocht met de volgende parameters
       | naam                | waarde              |
       | type                | RaadpleegMetPeriode |
       | burgerservicenummer | 000000012           |
@@ -98,7 +97,7 @@ Functionaliteit: persoon met 'indicatie vastgesteld verblijft niet op adres' bij
       Gegeven de persoon met burgerservicenummer '000000012' is ingeschreven op adres 'A1' met de volgende gegevens
       | gemeente van inschrijving (09.10) | datum aanvang adreshouding (10.30) | aanduiding in onderzoek (83.10) | datum ingang onderzoek (83.20) |
       | 0800                              | 20211014                           | <aanduiding onderzoek>          | 20230516                       |
-      Als gba verblijfplaatshistorie wordt gezocht met de volgende parameters
+      Als verblijfplaatshistorie wordt gezocht met de volgende parameters
       | naam                | waarde              |
       | type                | RaadpleegMetPeriode |
       | burgerservicenummer | 000000012           |
@@ -125,7 +124,7 @@ Functionaliteit: persoon met 'indicatie vastgesteld verblijft niet op adres' bij
       Gegeven de persoon met burgerservicenummer '000000012' is ingeschreven op adres 'A1' met de volgende gegevens
       | gemeente van inschrijving (09.10) | datum aanvang adreshouding (10.30) | aanduiding in onderzoek (83.10) | datum ingang onderzoek (83.20) |
       | 0800                              | 20211014                           | <aanduiding onderzoek>          | 20230516                       |
-      Als gba verblijfplaatshistorie wordt gezocht met de volgende parameters
+      Als verblijfplaatshistorie wordt gezocht met de volgende parameters
       | naam                | waarde              |
       | type                | RaadpleegMetPeriode |
       | burgerservicenummer | 000000012           |
@@ -196,7 +195,7 @@ Functionaliteit: persoon met 'indicatie vastgesteld verblijft niet op adres' bij
       En de persoon is vervolgens ingeschreven op adres 'A2' met de volgende gegevens
       | gemeente van inschrijving (09.10) | datum aanvang adreshouding (10.30) |
       | 0800                              | 20230730                           |
-      Als gba verblijfplaatshistorie wordt gezocht met de volgende parameters
+      Als verblijfplaatshistorie wordt gezocht met de volgende parameters
       | naam                | waarde              |
       | type                | RaadpleegMetPeriode |
       | burgerservicenummer | 000000012           |
@@ -237,7 +236,7 @@ Functionaliteit: persoon met 'indicatie vastgesteld verblijft niet op adres' bij
       En de persoon is vervolgens ingeschreven op een buitenlands adres met de volgende gegevens
       | gemeente van inschrijving (09.10) | datum aanvang adres buitenland (13.20) | land adres buitenland (13.10) |
       | 1999                              | 20230730                               | 0000                          |
-      Als gba verblijfplaatshistorie wordt gezocht met de volgende parameters
+      Als verblijfplaatshistorie wordt gezocht met de volgende parameters
       | naam                | waarde              |
       | type                | RaadpleegMetPeriode |
       | burgerservicenummer | 000000012           |
@@ -273,7 +272,7 @@ Functionaliteit: persoon met 'indicatie vastgesteld verblijft niet op adres' bij
       En de persoon is vervolgens ingeschreven op adres 'A2' met de volgende gegevens
       | gemeente van inschrijving (09.10) | datum aanvang adreshouding (10.30) |
       | 0800                              | 20230730                           |
-      Als gba verblijfplaatshistorie wordt gezocht met de volgende parameters
+      Als verblijfplaatshistorie wordt gezocht met de volgende parameters
       | naam                | waarde              |
       | type                | RaadpleegMetPeriode |
       | burgerservicenummer | 000000012           |
@@ -327,7 +326,7 @@ Functionaliteit: persoon met 'indicatie vastgesteld verblijft niet op adres' bij
       En de persoon is vervolgens ingeschreven op een buitenlands adres met de volgende gegevens
       | gemeente van inschrijving (09.10) | datum aanvang adres buitenland (13.20) | land adres buitenland (13.10) |
       | 1999                              | 20230730                               | 0000                          |
-      Als gba verblijfplaatshistorie wordt gezocht met de volgende parameters
+      Als verblijfplaatshistorie wordt gezocht met de volgende parameters
       | naam                | waarde              |
       | type                | RaadpleegMetPeriode |
       | burgerservicenummer | 000000012           |
@@ -373,7 +372,7 @@ Functionaliteit: persoon met 'indicatie vastgesteld verblijft niet op adres' bij
       Gegeven de persoon met burgerservicenummer '000000012' is ingeschreven op adres 'A1' met de volgende gegevens
       | gemeente van inschrijving (09.10) | datum aanvang adreshouding (10.30) | aanduiding in onderzoek (83.10) | datum ingang onderzoek (83.20) | datum einde onderzoek (83.30) |
       | 0800                              | 20211014                           | <aanduiding onderzoek>          | 20230516                       | 20230730                      |
-      Als gba verblijfplaatshistorie wordt gezocht met de volgende parameters
+      Als verblijfplaatshistorie wordt gezocht met de volgende parameters
       | naam                | waarde              |
       | type                | RaadpleegMetPeriode |
       | burgerservicenummer | 000000012           |
