@@ -291,3 +291,31 @@ Functionaliteit: persoon met 'indicatie vastgesteld verblijft niet op adres' bij
       | 089999               |
       | 589999               |
     
+  Rule: vastgesteld verblijft niet op adres op de volgende verblijfplaats wordt niet geleverd
+    De aanduiding onderzoek vastgesteld verblijft niet langer op adres kan nooit betrekking hebben op de datum aanvang van dat adres,
+    en dus kan het geen betrekking hebben op de datum tot van het vorige verblijf.
+
+    Scenario: er is vastgesteld dat de persoon niet meer op het adres verblijft en de periode valt in het vorige verblijf
+      Gegeven de persoon met burgerservicenummer '000000012' is ingeschreven op adres 'A1' met de volgende gegevens
+      | gemeente van inschrijving (09.10) | datum aanvang adreshouding (10.30) |
+      | 0800                              | 20211014                           |
+      En de persoon is vervolgens ingeschreven op adres 'A2' met de volgende gegevens
+      | gemeente van inschrijving (09.10) | datum aanvang adreshouding (10.30) | aanduiding in onderzoek (83.10) | datum ingang onderzoek (83.20) |
+      | 0800                              | 20230730                           | 089999                          | 20230516                       |
+      Als verblijfplaatshistorie wordt gezocht met de volgende parameters
+      | naam                | waarde              |
+      | type                | RaadpleegMetPeriode |
+      | burgerservicenummer | 000000012           |
+      | datumVan            | 2022-01-01          |
+      | datumTot            | 2023-01-01          |
+      Dan heeft de response verblijfplaatsen met de volgende gegevens
+      | type  | datumVan.type | datumVan.datum | datumVan.langFormaat | datumTot.type | datumTot.datum | datumTot.langFormaat | gemeenteVanInschrijving.code | gemeenteVanInschrijving.omschrijving |
+      | Adres | Datum         | 2021-10-14     | 14 oktober 2021      | Datum         | 2023-07-30     | 30 juli 2023         | 0800                         | Hoogeloon, Hapert en Casteren        |
+      En heeft de verblijfplaats de volgende 'verblijfadres' gegevens
+      | naam            | waarde  |
+      | korteStraatnaam | Testpad |
+      | huisnummer      | 8       |
+      En heeft de verblijfplaats de volgende 'adressering' gegevens
+      | naam        | waarde                        |
+      | adresregel1 | Testpad 8                     |
+      | adresregel2 | HOOGELOON, HAPERT EN CASTEREN |
