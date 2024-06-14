@@ -23,7 +23,8 @@ Functionaliteit: persoon met 'indicatie vastgesteld verblijft niet op adres' bij
 
   Wanneer onderzoek is beëindigd voor de datum aanvang van een volgend verblijf kunnen we zeker aannemen dat het onderzoek ook inhoudelijk afgerond is.
   Wanneer onderzoek is beëindigd op of na de datum aanvang van een volgend verblijf kunnen we niet met zekerheid zeggen of het onderzoek inhoudelijk afgerond is dan wel alleen administratie afgerond.
-  In dat geval leveren we indicatieVastgesteldVerblijftNietOpAdres.
+  In dat geval leveren we verblijftNietOpAdresVanaf met de datum dat vastgesteld verblijft niet op adres is vastgelegd.
+
 
     Achtergrond:
       Gegeven adres 'A1' heeft de volgende gegevens
@@ -34,93 +35,9 @@ Functionaliteit: persoon met 'indicatie vastgesteld verblijft niet op adres' bij
       | 0800                 | Voorbeeldstraat    | 2                  |
 
 
-  Rule: bij een lopend onderzoek met aanduiding 089999 of 589999 wordt indicatieVastgesteldVerblijftNietOpAdres geleverd voor het verblijf met datumVan gelijk aan datum ingang van het onderzoek
+  Rule: bij een lopend onderzoek met aanduiding 089999 of 589999 wordt verblijftNietOpAdresVanaf geleverd met als waarde de datum ingang van het onderzoek
 
-    Abstract Scenario: er is vastgesteld dat de persoon niet meer op het adres verblijft en het onderzoek loopt nog en periode ligt na de datum ingang van het onderzoek
-      Gegeven de persoon met burgerservicenummer '000000012' is ingeschreven op adres 'A1' met de volgende gegevens
-      | gemeente van inschrijving (09.10) | datum aanvang adreshouding (10.30) | aanduiding in onderzoek (83.10) | datum ingang onderzoek (83.20) |
-      | 0800                              | 20211014                           | <aanduiding onderzoek>          | 20230516                       |
-      Als verblijfplaatshistorie wordt gezocht met de volgende parameters
-      | naam                | waarde              |
-      | type                | RaadpleegMetPeriode |
-      | burgerservicenummer | 000000012           |
-      | datumVan            | 2023-07-01          |
-      | datumTot            | 2024-01-01          |
-      Dan heeft de response verblijfplaatsen met de volgende gegevens
-      | type  | datumVan.type | datumVan.datum | datumVan.langFormaat | gemeenteVanInschrijving.code | gemeenteVanInschrijving.omschrijving | indicatieVastgesteldVerblijftNietOpAdres |
-      | Adres | Datum         | 2023-05-16     | 16 mei 2023          | 0800                         | Hoogeloon, Hapert en Casteren        | true                                     |
-      En heeft de verblijfplaats de volgende 'inOnderzoek' gegevens
-      | naam                             | waarde      |
-      | type                             | true        |
-      | gemeenteVanInschrijving          | true        |
-      | datumVan                         | true        |
-      | nummeraanduidingIdentificatie    | true        |
-      | adresseerbaarObjectIdentificatie | true        |
-      | functieAdres                     | true        |
-      | datumIngangOnderzoek.type        | Datum       |
-      | datumIngangOnderzoek.datum       | 2023-05-16  |
-      | datumIngangOnderzoek.langFormaat | 16 mei 2023 |
-      En heeft de verblijfplaats de volgende 'verblijfadres' gegevens
-      | naam                                         | waarde      |
-      | korteStraatnaam                              | Testpad     |
-      | huisnummer                                   | 8           |
-      | inOnderzoek.korteStraatnaam                  | true        |
-      | inOnderzoek.officieleStraatnaam              | true        |
-      | inOnderzoek.huisnummer                       | true        |
-      | inOnderzoek.huisletter                       | true        |
-      | inOnderzoek.huisnummertoevoeging             | true        |
-      | inOnderzoek.aanduidingBijHuisnummer          | true        |
-      | inOnderzoek.postcode                         | true        |
-      | inOnderzoek.woonplaats                       | true        |
-      | inOnderzoek.datumIngangOnderzoek.type        | Datum       |
-      | inOnderzoek.datumIngangOnderzoek.datum       | 2023-05-16  |
-      | inOnderzoek.datumIngangOnderzoek.langFormaat | 16 mei 2023 |
-      En heeft de verblijfplaats de volgende 'adressering' gegevens
-      | naam                                         | waarde                        |
-      | adresregel1                                  | Testpad 8                     |
-      | adresregel2                                  | HOOGELOON, HAPERT EN CASTEREN |
-      | inOnderzoek.adresregel1                      | true                          |
-      | inOnderzoek.adresregel2                      | true                          |
-      | inOnderzoek.datumIngangOnderzoek.type        | Datum                         |
-      | inOnderzoek.datumIngangOnderzoek.datum       | 2023-05-16                    |
-      | inOnderzoek.datumIngangOnderzoek.langFormaat | 16 mei 2023                   |
-
-      Voorbeelden:
-      | aanduiding onderzoek |
-      | 089999               |
-      | 589999               |
-
-
-  Rule: bij een lopend onderzoek met aanduiding 089999 of 589999 wordt geen onderzoek geleverd op de verblijfplaats voor datum ingang van het onderzoek
-
-    Abstract Scenario: er is vastgesteld dat de persoon niet meer op het adres verblijft en het onderzoek loopt nog en periode ligt voor de datum ingang van het onderzoek
-      Gegeven de persoon met burgerservicenummer '000000012' is ingeschreven op adres 'A1' met de volgende gegevens
-      | gemeente van inschrijving (09.10) | datum aanvang adreshouding (10.30) | aanduiding in onderzoek (83.10) | datum ingang onderzoek (83.20) |
-      | 0800                              | 20211014                           | <aanduiding onderzoek>          | 20230516                       |
-      Als verblijfplaatshistorie wordt gezocht met de volgende parameters
-      | naam                | waarde              |
-      | type                | RaadpleegMetPeriode |
-      | burgerservicenummer | 000000012           |
-      | datumVan            | 2022-01-01          |
-      | datumTot            | 2023-01-01          |
-      Dan heeft de response verblijfplaatsen met de volgende gegevens
-      | type  | datumVan.type | datumVan.datum | datumVan.langFormaat | datumTot.type | datumTot.datum | datumTot.langFormaat | gemeenteVanInschrijving.code | gemeenteVanInschrijving.omschrijving |
-      | Adres | Datum         | 2021-10-14     | 14 oktober 2021      | Datum         | 2023-05-16     | 16 mei 2023          | 0800                         | Hoogeloon, Hapert en Casteren        |
-      En heeft de verblijfplaats de volgende 'verblijfadres' gegevens
-      | naam            | waarde  |
-      | korteStraatnaam | Testpad |
-      | huisnummer      | 8       |
-      En heeft de verblijfplaats de volgende 'adressering' gegevens
-      | naam        | waarde                        |
-      | adresregel1 | Testpad 8                     |
-      | adresregel2 | HOOGELOON, HAPERT EN CASTEREN |
-
-      Voorbeelden:
-      | aanduiding onderzoek |
-      | 089999               |
-      | 589999               |
-    
-    Abstract Scenario: er is vastgesteld dat de persoon niet meer op het adres verblijft en het onderzoek loopt nog en periode overlapt de datum ingang van het onderzoek
+    Abstract Scenario: er is vastgesteld dat de persoon niet meer op het adres verblijft en het onderzoek loopt nog en <omschrijving>
       Gegeven de persoon met burgerservicenummer '000000012' is ingeschreven op adres 'A1' met de volgende gegevens
       | gemeente van inschrijving (09.10) | datum aanvang adreshouding (10.30) | aanduiding in onderzoek (83.10) | datum ingang onderzoek (83.20) |
       | 0800                              | 20211014                           | <aanduiding onderzoek>          | 20230516                       |
@@ -131,8 +48,13 @@ Functionaliteit: persoon met 'indicatie vastgesteld verblijft niet op adres' bij
       | datumVan            | 2023-01-01          |
       | datumTot            | 2024-01-01          |
       Dan heeft de response verblijfplaatsen met de volgende gegevens
-      | type  | datumVan.type | datumVan.datum | datumVan.langFormaat | gemeenteVanInschrijving.code | gemeenteVanInschrijving.omschrijving | indicatieVastgesteldVerblijftNietOpAdres |
-      | Adres | Datum         | 2023-05-16     | 16 mei 2023          | 0800                         | Hoogeloon, Hapert en Casteren        | true                                     |
+      | type  | datumVan.type | datumVan.datum | datumVan.langFormaat | gemeenteVanInschrijving.code | gemeenteVanInschrijving.omschrijving |
+      | Adres | Datum         | 2021-10-14     | 14 oktober 2021      | 0800                         | Hoogeloon, Hapert en Casteren        |
+      En heeft de verblijfplaats de volgende 'verblijftNietOpAdresVanaf' gegevens
+      | naam        | waarde      |
+      | type        | Datum       |
+      | datum       | 2023-05-16  |
+      | langFormaat | 16 mei 2023 |
       En heeft de verblijfplaats de volgende 'inOnderzoek' gegevens
       | naam                             | waarde      |
       | type                             | true        |
@@ -168,25 +90,14 @@ Functionaliteit: persoon met 'indicatie vastgesteld verblijft niet op adres' bij
       | inOnderzoek.datumIngangOnderzoek.type        | Datum                         |
       | inOnderzoek.datumIngangOnderzoek.datum       | 2023-05-16                    |
       | inOnderzoek.datumIngangOnderzoek.langFormaat | 16 mei 2023                   |
-      En heeft de response verblijfplaatsen met de volgende gegevens
-      | type  | datumVan.type | datumVan.datum | datumVan.langFormaat | datumTot.type | datumTot.datum | datumTot.langFormaat | gemeenteVanInschrijving.code | gemeenteVanInschrijving.omschrijving |
-      | Adres | Datum         | 2021-10-14     | 14 oktober 2021      | Datum         | 2023-05-16     | 16 mei 2023          | 0800                         | Hoogeloon, Hapert en Casteren        |
-      En heeft de verblijfplaats de volgende 'verblijfadres' gegevens
-      | naam            | waarde  |
-      | korteStraatnaam | Testpad |
-      | huisnummer      | 8       |
-      En heeft de verblijfplaats de volgende 'adressering' gegevens
-      | naam        | waarde                        |
-      | adresregel1 | Testpad 8                     |
-      | adresregel2 | HOOGELOON, HAPERT EN CASTEREN |
 
       Voorbeelden:
-      | aanduiding onderzoek |
-      | 089999               |
-      | 589999               |
+      | aanduiding onderzoek | datum van  | datum tot  | omschrijving                                       |
+      | 089999               | 2023-01-01 | 2024-01-01 | periode overlapt de datum ingang van het onderzoek |
+      | 589999               | 2022-01-01 | 2023-01-01 | periode ligt voor de start van het onderzoek       |
 
 
-  Rule: bij een beëindigd onderzoek met aanduiding 089999 of 589999 en datum einde van het onderzoek ligt voor datum aanvang van het volgende verblijf wordt het onderzoek niet geleverd
+  Rule: bij een beëindigd onderzoek met aanduiding 089999 of 589999 en datum einde van het onderzoek ligt voor datum aanvang van het volgende verblijf worden verblijftNietOpAdresVanaf en het onderzoek niet geleverd
 
     Abstract Scenario: er is vastgesteld dat de persoon niet meer op het adres verblijft en het onderzoek is beëindigd voor datum aanvang van de volgende verblijfplaats in Nederland
       Gegeven de persoon met burgerservicenummer '000000012' is ingeschreven op adres 'A1' met de volgende gegevens
@@ -263,7 +174,7 @@ Functionaliteit: persoon met 'indicatie vastgesteld verblijft niet op adres' bij
       | 589999               |
 
 
-  Rule: bij een beëindigd onderzoek met aanduiding 089999 of 589999 en datum einde van het onderzoek ligt op of na datum aanvang van het volgende verblijf wordt indicatieVastgesteldVerblijftNietOpAdres geleverd voor het verblijf met datumVan gelijk aan datum ingang van het onderzoek
+  Rule: bij een beëindigd onderzoek met aanduiding 089999 of 589999 en datum einde van het onderzoek ligt op of na datum aanvang van het volgende verblijf wordt verblijftNietOpAdresVanaf geleverd met als waarde de datum ingang van het onderzoek
 
     Abstract Scenario: er is vastgesteld dat de persoon niet meer op het adres verblijft en het onderzoek is beëindigd <op of na> datum aanvang van de volgende verblijfplaats in Nederland
       Gegeven de persoon met burgerservicenummer '000000012' is ingeschreven op adres 'A1' met de volgende gegevens
@@ -290,19 +201,13 @@ Functionaliteit: persoon met 'indicatie vastgesteld verblijft niet op adres' bij
       | adresregel1 | Voorbeeldstraat 2             |
       | adresregel2 | HOOGELOON, HAPERT EN CASTEREN |
       En heeft de response verblijfplaatsen met de volgende gegevens
-      | type  | datumVan.type | datumVan.datum | datumVan.langFormaat | datumTot.type | datumTot.datum | datumTot.langFormaat | gemeenteVanInschrijving.code | gemeenteVanInschrijving.omschrijving | indicatieVastgesteldVerblijftNietOpAdres |
-      | Adres | Datum         | 2023-05-16     | 16 mei 2023          | Datum         | 2023-07-30     | 30 juli 2023         | 0800                         | Hoogeloon, Hapert en Casteren        | true                                     |
-      En heeft de verblijfplaats de volgende 'verblijfadres' gegevens
-      | naam            | waarde  |
-      | korteStraatnaam | Testpad |
-      | huisnummer      | 8       |
-      En heeft de verblijfplaats de volgende 'adressering' gegevens
-      | naam        | waarde                        |
-      | adresregel1 | Testpad 8                     |
-      | adresregel2 | HOOGELOON, HAPERT EN CASTEREN |
-      En heeft de response verblijfplaatsen met de volgende gegevens
       | type  | datumVan.type | datumVan.datum | datumVan.langFormaat | datumTot.type | datumTot.datum | datumTot.langFormaat | gemeenteVanInschrijving.code | gemeenteVanInschrijving.omschrijving |
-      | Adres | Datum         | 2021-10-14     | 14 oktober 2021      | Datum         | 2023-05-16     | 16 mei 2023          | 0800                         | Hoogeloon, Hapert en Casteren        |
+      | Adres | Datum         | 2021-10-14     | 14 oktober 2021      | Datum         | 2023-07-30     | 30 juli 2023         | 0800                         | Hoogeloon, Hapert en Casteren        |
+      En heeft de verblijfplaats de volgende 'verblijftNietOpAdresVanaf' gegevens
+      | naam        | waarde      |
+      | type        | Datum       |
+      | datum       | 2023-05-16  |
+      | langFormaat | 16 mei 2023 |
       En heeft de verblijfplaats de volgende 'verblijfadres' gegevens
       | naam            | waarde  |
       | korteStraatnaam | Testpad |
@@ -319,7 +224,7 @@ Functionaliteit: persoon met 'indicatie vastgesteld verblijft niet op adres' bij
       | 089999               | na       | 20230731              |
       | 589999               | na       | 20230731              |
 
-    Abstract Scenario: er is vastgesteld dat de persoon niet meer op het adres verblijft en het onderzoek is beëindigd <op of na> datum vertrek met onbekende verblijfplaats
+    Abstract Scenario: er is vastgesteld dat de persoon niet meer op het adres verblijft en het onderzoek is beëindigd na datum vertrek met onbekende verblijfplaats en periode ligt voor de start van het onderzoek
       Gegeven de persoon met burgerservicenummer '000000012' is ingeschreven op adres 'A1' met de volgende gegevens
       | gemeente van inschrijving (09.10) | datum aanvang adreshouding (10.30) | aanduiding in onderzoek (83.10) | datum ingang onderzoek (83.20) | datum einde onderzoek (83.30) |
       | 0800                              | 20211014                           | <aanduiding onderzoek>          | 20230516                       | <datum einde onderzoek>       |
@@ -330,25 +235,16 @@ Functionaliteit: persoon met 'indicatie vastgesteld verblijft niet op adres' bij
       | naam                | waarde              |
       | type                | RaadpleegMetPeriode |
       | burgerservicenummer | 000000012           |
-      | datumVan            | 2023-01-01          |
-      | datumTot            | 2024-01-01          |
+      | datumVan            | 2022-01-01          |
+      | datumTot            | 2023-01-01          |
       Dan heeft de response verblijfplaatsen met de volgende gegevens
-      | type                   | datumVan.type | datumVan.datum | datumVan.langFormaat |
-      | VerblijfplaatsOnbekend | Datum         | 2023-07-30     | 30 juli 2023         |
-      En heeft de response verblijfplaatsen met de volgende gegevens
-      | type  | datumVan.type | datumVan.datum | datumVan.langFormaat | datumTot.type | datumTot.datum | datumTot.langFormaat | gemeenteVanInschrijving.code | gemeenteVanInschrijving.omschrijving | indicatieVastgesteldVerblijftNietOpAdres |
-      | Adres | Datum         | 2023-05-16     | 16 mei 2023          | Datum         | 2023-07-30     | 30 juli 2023         | 0800                         | Hoogeloon, Hapert en Casteren        | true                                     |
-      En heeft de verblijfplaats de volgende 'verblijfadres' gegevens
-      | naam            | waarde  |
-      | korteStraatnaam | Testpad |
-      | huisnummer      | 8       |
-      En heeft de verblijfplaats de volgende 'adressering' gegevens
-      | naam        | waarde                        |
-      | adresregel1 | Testpad 8                     |
-      | adresregel2 | HOOGELOON, HAPERT EN CASTEREN |
-      En heeft de response verblijfplaatsen met de volgende gegevens
       | type  | datumVan.type | datumVan.datum | datumVan.langFormaat | datumTot.type | datumTot.datum | datumTot.langFormaat | gemeenteVanInschrijving.code | gemeenteVanInschrijving.omschrijving |
-      | Adres | Datum         | 2021-10-14     | 14 oktober 2021      | Datum         | 2023-05-16     | 16 mei 2023          | 0800                         | Hoogeloon, Hapert en Casteren        |
+      | Adres | Datum         | 2021-10-14     | 14 oktober 2021      | Datum         | 2023-07-30     | 30 juli 2023         | 0800                         | Hoogeloon, Hapert en Casteren        |
+      En heeft de verblijfplaats de volgende 'verblijftNietOpAdresVanaf' gegevens
+      | naam        | waarde      |
+      | type        | Datum       |
+      | datum       | 2023-05-16  |
+      | langFormaat | 16 mei 2023 |
       En heeft de verblijfplaats de volgende 'verblijfadres' gegevens
       | naam            | waarde  |
       | korteStraatnaam | Testpad |
