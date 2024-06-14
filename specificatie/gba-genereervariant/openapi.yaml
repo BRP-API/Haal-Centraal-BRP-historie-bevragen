@@ -493,6 +493,8 @@ components:
           type: string
         datumIngangOnderzoek:
           $ref: '#/components/schemas/GbaDatum'
+        datumEindeOnderzoek:
+          $ref: '#/components/schemas/GbaDatum'
   responses:
     "400":
       description: Bad Request

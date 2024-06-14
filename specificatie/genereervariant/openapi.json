@@ -455,7 +455,7 @@
         } ]
       },
       "AdresVoorkomen" : {
-        "description" : "Gegevens over het adres voorkomen van een persoon.\n* **gemeenteVanInschrijving** - wordt gevuld met waarden uit de landelijke tabel 'Gemeenten'.\n* **functieAdres** - wordt gevuld met waarden voor 'Functie_Adres' in 'tabelwaarden.csv'.\n* **aanduidingBijHuisnummer** - wordt gevuld met waarden voor 'Aanduiding_Bij_Huisnummer' in 'tabelwaarden.csv'.\n* **datumVan** : de datum van aangifte of ambtshalve melding van verblijf en adres.\n* **datumTot** : de datum van aangifte of ambtshalve melding van volgende verblijf en adres.\n",
+        "description" : "Gegevens over het adres voorkomen van een persoon.\n* **gemeenteVanInschrijving** - wordt gevuld met waarden uit de landelijke tabel 'Gemeenten'.\n* **functieAdres** - wordt gevuld met waarden voor 'Functie_Adres' in 'tabelwaarden.csv'.\n* **aanduidingBijHuisnummer** - wordt gevuld met waarden voor 'Aanduiding_Bij_Huisnummer' in 'tabelwaarden.csv'.\n* **datumVan** : de datum van aangifte of ambtshalve melding van verblijf en adres.\n* **datumTot** : de datum van aangifte of ambtshalve melding van volgende verblijf en adres.\n* **verblijftNietOpAdresVanaf** : geeft aan op welke datum is vastgesteld dat de persoon niet langer op dit adres of deze locatie verblijft.\n",
         "allOf" : [ {
           "$ref" : "#/components/schemas/AbstractVerblijfplaatsVoorkomen"
         }, {
@@ -482,8 +482,8 @@
             "datumTot" : {
               "$ref" : "#/components/schemas/AbstractDatum"
             },
-            "indicatieVastgesteldVerblijftNietOpAdres" : {
-              "$ref" : "#/components/schemas/IndicatieVastgesteldVerblijftNietOpAdres"
+            "verblijftNietOpAdresVanaf" : {
+              "$ref" : "#/components/schemas/AbstractDatum"
             },
             "inOnderzoek" : {
               "$ref" : "#/components/schemas/AdresVoorkomenInOnderzoek"
@@ -564,7 +564,7 @@
         } ]
       },
       "LocatieVoorkomen" : {
-        "description" : "* **functieAdres** - wordt gevuld met waarden voor 'Functie_Adres' in 'tabelwaarden.csv'.\n* **gemeenteVanInschrijving** - wordt gevuld met waarden uit de landelijke tabel 'Gemeenten'.\n",
+        "description" : "* **functieAdres** - wordt gevuld met waarden voor 'Functie_Adres' in 'tabelwaarden.csv'.\n* **gemeenteVanInschrijving** - wordt gevuld met waarden uit de landelijke tabel 'Gemeenten'.\n* **verblijftNietOpAdresVanaf** : geeft aan op welke datum is vastgesteld dat de persoon niet langer op dit adres of deze locatie verblijft.\n",
         "allOf" : [ {
           "$ref" : "#/components/schemas/AbstractVerblijfplaatsVoorkomen"
         }, {
@@ -585,8 +585,8 @@
             "gemeenteVanInschrijving" : {
               "$ref" : "#/components/schemas/Waardetabel"
             },
-            "indicatieVastgesteldVerblijftNietOpAdres" : {
-              "$ref" : "#/components/schemas/IndicatieVastgesteldVerblijftNietOpAdres"
+            "verblijftNietOpAdresVanaf" : {
+              "$ref" : "#/components/schemas/AbstractDatum"
             },
             "inOnderzoek" : {
               "$ref" : "#/components/schemas/LocatieVoorkomenInOnderzoek"
@@ -1046,10 +1046,6 @@
         "type" : "string",
         "description" : "Unieke identificatie van een nummeraanduiding (en het bijbehorende adres) in de BAG.\n",
         "example" : "0518200000366054"
-      },
-      "IndicatieVastgesteldVerblijftNietOpAdres" : {
-        "type" : "boolean",
-        "description" : "Geeft aan dat is vastgesteld dat de persoon niet meer op de geregistreerde adres/locatie staat ingeschreven.\n"
       },
       "AdresseringBinnenland" : {
         "type" : "object",
