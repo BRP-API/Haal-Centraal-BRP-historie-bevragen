@@ -91,10 +91,6 @@ components:
       type: string
       pattern: ^[a-zA-Z0-9À-ž \(\)\,\.\-\']{1,80}$
       example: "Duiven"
-    IndicatieVastgesteldVerblijftNietOpAdres:
-      description: |
-        Geeft aan dat is vastgesteld dat de persoon niet meer op de geregistreerde adres/locatie staat ingeschreven.
-      type: boolean
     VerblijfadresBinnenland:
       type: object
       properties:
@@ -205,6 +201,7 @@ components:
         * **aanduidingBijHuisnummer** - wordt gevuld met waarden voor 'Aanduiding_Bij_Huisnummer' in 'tabelwaarden.csv'.
         * **datumVan** : de datum van aangifte of ambtshalve melding van verblijf en adres.
         * **datumIngangGeldigheid** : datum waarop de gegevens over de verblijfplaats geldig zijn geworden.
+        * **verblijftNietOpAdresVanaf** : geeft aan op welke datum is vastgesteld dat de persoon niet langer op dit adres of deze locatie verblijft.
       allOf:
         - $ref : '#/components/schemas/AbstractVerblijfplaats'
         - type: object
@@ -221,8 +218,8 @@ components:
               $ref: 'datum.yaml#/components/schemas/AbstractDatum'
             datumIngangGeldigheid:
               $ref: 'datum.yaml#/components/schemas/AbstractDatum'
-            indicatieVastgesteldVerblijftNietOpAdres:
-              $ref: '#/components/schemas/IndicatieVastgesteldVerblijftNietOpAdres'
+            verblijftNietOpAdresVanaf:
+              $ref: 'datum.yaml#/components/schemas/AbstractDatum'
             inOnderzoek:
               $ref: "#/components/schemas/AdresInOnderzoek"
     Locatie:
@@ -230,6 +227,7 @@ components:
         * **gemeenteVanInschrijving** - wordt gevuld met waarden uit de landelijke tabel 'Gemeenten'.
         * **functieAdres** - wordt gevuld met waarden voor 'Functie_Adres' in 'tabelwaarden.csv'.
         * **landVanWaarIngeschreven** : het land waar de persoon woonde voor (her)vestiging in Nederland. Wordt gevuld met waarden uit de landelijke tabel 'Landen'.
+        * **verblijftNietOpAdresVanaf** : geeft aan op welke datum is vastgesteld dat de persoon niet langer op dit adres of deze locatie verblijft.
       allOf:
         - $ref: '#/components/schemas/AbstractVerblijfplaats'
         - type: object
@@ -242,8 +240,8 @@ components:
               $ref: "#/components/schemas/VerblijfadresLocatie"
             datumIngangGeldigheid:
               $ref: 'datum.yaml#/components/schemas/AbstractDatum'
-            indicatieVastgesteldVerblijftNietOpAdres:
-              $ref: '#/components/schemas/IndicatieVastgesteldVerblijftNietOpAdres'
+            verblijftNietOpAdresVanaf:
+              $ref: 'datum.yaml#/components/schemas/AbstractDatum'
             inOnderzoek:
               $ref: '#/components/schemas/LocatieInOnderzoek'
     VerblijfplaatsOnbekend:
