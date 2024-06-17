@@ -49,7 +49,7 @@ components:
         * **aanduidingBijHuisnummer** - wordt gevuld met waarden voor 'Aanduiding_Bij_Huisnummer' in 'tabelwaarden.csv'.
         * **datumVan** : de datum van aangifte of ambtshalve melding van verblijf en adres.
         * **datumTot** : de datum van aangifte of ambtshalve melding van volgende verblijf en adres.
-        * **verblijftNietOpAdresVanaf** : geeft aan op welke datum is vastgesteld dat de persoon niet langer op dit adres of deze locatie verblijft.
+        * **verblijftNietOpAdresVanaf** : geeft aan op welke datum is vastgesteld dat de persoon niet langer op dit adres of deze locatie woont.
       allOf:
         - $ref : '#/components/schemas/AbstractVerblijfplaatsVoorkomen'
         - type: object
