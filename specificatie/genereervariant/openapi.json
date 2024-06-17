@@ -455,7 +455,7 @@
         } ]
       },
       "AdresVoorkomen" : {
-        "description" : "Gegevens over het adres voorkomen van een persoon.\n* **gemeenteVanInschrijving** - wordt gevuld met waarden uit de landelijke tabel 'Gemeenten'.\n* **functieAdres** - wordt gevuld met waarden voor 'Functie_Adres' in 'tabelwaarden.csv'.\n* **aanduidingBijHuisnummer** - wordt gevuld met waarden voor 'Aanduiding_Bij_Huisnummer' in 'tabelwaarden.csv'.\n* **datumVan** : de datum van aangifte of ambtshalve melding van verblijf en adres.\n* **datumTot** : de datum van aangifte of ambtshalve melding van volgende verblijf en adres.\n* **verblijftNietOpAdresVanaf** : geeft aan op welke datum is vastgesteld dat de persoon niet langer op dit adres of deze locatie verblijft.\n",
+        "description" : "Gegevens over het adres voorkomen van een persoon.\n* **gemeenteVanInschrijving** - wordt gevuld met waarden uit de landelijke tabel 'Gemeenten'.\n* **functieAdres** - wordt gevuld met waarden voor 'Functie_Adres' in 'tabelwaarden.csv'.\n* **aanduidingBijHuisnummer** - wordt gevuld met waarden voor 'Aanduiding_Bij_Huisnummer' in 'tabelwaarden.csv'.\n* **datumVan** : de datum van aangifte of ambtshalve melding van verblijf en adres.\n* **datumTot** : de datum van aangifte of ambtshalve melding van volgende verblijf en adres.\n* **verblijftNietOpAdresVanaf** : geeft aan op welke datum is vastgesteld dat de persoon niet langer op dit adres of deze locatie woont.\n",
         "allOf" : [ {
           "$ref" : "#/components/schemas/AbstractVerblijfplaatsVoorkomen"
         }, {
@@ -564,7 +564,7 @@
         } ]
       },
       "LocatieVoorkomen" : {
-        "description" : "* **functieAdres** - wordt gevuld met waarden voor 'Functie_Adres' in 'tabelwaarden.csv'.\n* **gemeenteVanInschrijving** - wordt gevuld met waarden uit de landelijke tabel 'Gemeenten'.\n* **verblijftNietOpAdresVanaf** : geeft aan op welke datum is vastgesteld dat de persoon niet langer op dit adres of deze locatie verblijft.\n",
+        "description" : "* **functieAdres** - wordt gevuld met waarden voor 'Functie_Adres' in 'tabelwaarden.csv'.\n* **gemeenteVanInschrijving** - wordt gevuld met waarden uit de landelijke tabel 'Gemeenten'.\n* **verblijftNietOpAdresVanaf** : geeft aan op welke datum is vastgesteld dat de persoon niet langer op dit adres of deze locatie woont.\n",
         "allOf" : [ {
           "$ref" : "#/components/schemas/AbstractVerblijfplaatsVoorkomen"
         }, {
