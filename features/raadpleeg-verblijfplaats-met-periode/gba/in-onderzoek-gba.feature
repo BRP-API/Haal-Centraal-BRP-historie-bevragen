@@ -136,3 +136,52 @@ Functionaliteit: leveren van inOnderzoek bij raadplegen met periode
       Dan heeft de response verblijfplaatsen met de volgende gegevens
       | gemeenteVanInschrijving.code | gemeenteVanInschrijving.omschrijving | datumAanvangAdreshouding | datumAanvangVolgendeAdreshouding | straat     | huisnummer | postcode |
       | 0800                         | Hoogeloon, Hapert en Casteren        | 20021014                 | 20040526                         | Teststraat | 1          | 1234AB   |
+
+
+  Rule: beëindigd onderzoek vastgesteld verblijft niet op adres wordt wel geleverd, inclusief datum einde
+
+    Abstract Scenario: er is vastgesteld dat de persoon niet meer op het adres verblijft en het onderzoek is beëindigd
+      Gegeven de persoon met burgerservicenummer '000000012' is ingeschreven op adres 'A1' met de volgende gegevens
+      | gemeente van inschrijving (09.10) | datum aanvang adreshouding (10.30) | aanduiding in onderzoek (83.10) | datum ingang onderzoek (83.20) | datum einde onderzoek (83.30) |
+      | 0800                              | 20211014                           | <aanduiding onderzoek>          | 20230516                       | 20230729                      |
+      En de persoon is vervolgens ingeschreven op adres 'A2' met de volgende gegevens
+      | gemeente van inschrijving (09.10) | datum aanvang adreshouding (10.30) |
+      | 0800                              | 20230730                           |
+      Als gba verblijfplaatshistorie wordt gezocht met de volgende parameters
+      | naam                | waarde              |
+      | type                | RaadpleegMetPeriode |
+      | burgerservicenummer | 000000012           |
+      | datumVan            | 2023-01-01          |
+      | datumTot            | 2024-01-01          |
+      Dan heeft de response verblijfplaatsen met de volgende gegevens
+      | gemeenteVanInschrijving.code | gemeenteVanInschrijving.omschrijving | datumAanvangAdreshouding | datumAanvangVolgendeAdreshouding | straat     | huisnummer | postcode | inOnderzoek.aanduidingGegevensInOnderzoek | inOnderzoek.datumIngangOnderzoek | inOnderzoek.datumEindeOnderzoek |
+      | 0800                         | Hoogeloon, Hapert en Casteren        | 20230730                 |                                  | Teststraat | 2          | 1234CD   |                                           |                                  |                                 |
+      | 0800                         | Hoogeloon, Hapert en Casteren        | 20021014                 | 20230730                         | Teststraat | 1          | 1234AB   | <aanduiding onderzoek>                    | 20230516                         | 20230729                        |
+
+      Voorbeelden:
+      | aanduiding onderzoek |
+      | 089999               |
+      | 589999               |
+
+    Abstract Scenario: beëindigd onderzoek vastgesteld verblijft niet op adres op volgende verblijfplaats wordt niet geleverd in inOnderzoekVolgendeVerblijfplaats
+      Gegeven de persoon met burgerservicenummer '000000012' is ingeschreven op adres 'A1' met de volgende gegevens
+      | gemeente van inschrijving (09.10) | datum aanvang adreshouding (10.30) |
+      | 0800                              | 20211014                           |
+      En de persoon is vervolgens ingeschreven op adres 'A2' met de volgende gegevens
+      | gemeente van inschrijving (09.10) | datum aanvang adreshouding (10.30) | aanduiding in onderzoek (83.10) | datum ingang onderzoek (83.20) | datum einde onderzoek (83.30) |
+      | 0800                              | 20230730                           | <aanduiding onderzoek>          | 20230516                       | 20230729                      |
+      Als gba verblijfplaatshistorie wordt gezocht met de volgende parameters
+      | naam                | waarde              |
+      | type                | RaadpleegMetPeriode |
+      | burgerservicenummer | 000000012           |
+      | datumVan            | 2023-01-01          |
+      | datumTot            | 2024-01-01          |
+      Dan heeft de response verblijfplaatsen met de volgende gegevens
+      | gemeenteVanInschrijving.code | gemeenteVanInschrijving.omschrijving | datumAanvangAdreshouding | datumAanvangVolgendeAdreshouding | straat     | huisnummer | postcode | inOnderzoek.aanduidingGegevensInOnderzoek | inOnderzoek.datumIngangOnderzoek | inOnderzoek.datumEindeOnderzoek |
+      | 0800                         | Hoogeloon, Hapert en Casteren        | 20230730                 |                                  | Teststraat | 2          | 1234CD   | <aanduiding onderzoek>                    | 20230516                         | 20230729                        |
+      | 0800                         | Hoogeloon, Hapert en Casteren        | 20021014                 | 20230730                         | Teststraat | 1          | 1234AB   |                                           |                                  |                                 |
+
+      Voorbeelden:
+      | aanduiding onderzoek |
+      | 089999               |
+      | 589999               |
