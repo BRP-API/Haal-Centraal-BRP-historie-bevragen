@@ -485,3 +485,138 @@ Functionaliteit: leveren van inOnderzoek bij raadplegen met periode
 
 
   Rule: als de datum aanvang van de volgende verblijfplaats in onderzoek is, dan wordt inOnderzoek datumTot en datumIngangOnderzoek ook geleverd
+
+    Abstract Scenario: datumTot staat in onderzoek, omdat <omschrijving> van de volgende verblijfplaats in onderzoek staat
+      Gegeven adres 'A1' heeft de volgende gegevens
+      | gemeentecode (92.10) | straatnaam (11.10) | huisnummer (11.20) |
+      | 0800                 | Testpad            | 1                  |
+      En adres 'A2' heeft de volgende gegevens
+      | gemeentecode (92.10) | straatnaam (11.10) | huisnummer (11.20) |
+      | 0800                 | Testpad            | 2                  |
+      En de persoon met burgerservicenummer '000000012' is ingeschreven op adres 'A1' met de volgende gegevens
+      | gemeente van inschrijving (09.10) | datum aanvang adreshouding (10.30) |
+      | 0800                              | 20231014                           |
+      En de persoon is vervolgens ingeschreven op adres 'A2' met de volgende gegevens
+      | gemeente van inschrijving (09.10) | datum aanvang adreshouding (10.30) | aanduiding in onderzoek (83.10) | datum ingang onderzoek (83.20) |
+      | 0800                              | 20240516                           | <aanduiding onderzoek>          | 20240526                       |
+      Als gba verblijfplaatshistorie wordt gezocht met de volgende parameters
+      | naam                | waarde              |
+      | type                | RaadpleegMetPeriode |
+      | burgerservicenummer | 000000012           |
+      | datumVan            | 2023-07-01          |
+      | datumTot            | 2024-01-01          |
+      Dan heeft de response verblijfplaatsen met de volgende gegevens
+      | type  | datumVan.type | datumVan.datum | datumVan.langFormaat | datumTot.type | datumTot.datum | datumTot.langFormaat | gemeenteVanInschrijving.code | gemeenteVanInschrijving.omschrijving |
+      | Adres | Datum         | 2023-10-14     | 14 oktober 2023      | Datum         | 2024-05-16     | 16 mei 2024          | 0800                         | Hoogeloon, Hapert en Casteren        |
+      En heeft de verblijfplaats de volgende 'inOnderzoek' gegevens
+      | naam                             | waarde      |
+      | datumTot                         | true        |
+      | datumIngangOnderzoek.type        | Datum       |
+      | datumIngangOnderzoek.datum       | 2024-05-16  |
+      | datumIngangOnderzoek.langFormaat | 16 mei 2024 |
+      En heeft de verblijfplaats de volgende 'verblijfadres' gegevens
+      | naam                                         | waarde      |
+      | korteStraatnaam                              | Testpad     |
+      | huisnummer                                   | 8           |
+      En heeft de verblijfplaats de volgende 'adressering' gegevens
+      | naam                                         | waarde                        |
+      | adresregel1                                  | Testpad 8                     |
+      | adresregel2                                  | HOOGELOON, HAPERT EN CASTEREN |
+
+      Voorbeelden:
+      | omschrijving                                  | aanduiding onderzoek |
+      | hele categorie verblijfplaats                 | 80000                |
+      | historische categorie verblijfplaats          | 58000                |
+      | hele groep adreshouding                       | 81000                |
+      | historische groep adreshouding                | 581000               |
+      | datum aanvang adreshouding                    | 81030                |
+      | historische datum aanvang adreshouding        | 581030               |
+      | hele groep verblijf buitenland                | 81300                |
+      | hele historische groep verblijf buitenland    | 581300               |
+      | datum aanvang verblijf buitenland             | 81320                |
+      | historische datum aanvang verblijf buitenland | 581320               |
+
+    Abstract Scenario: datumTot staat niet in onderzoek wanneer het onderzoek op de volgende verblijfplaats beëindigd is
+      Gegeven adres 'A1' heeft de volgende gegevens
+      | gemeentecode (92.10) | straatnaam (11.10) | huisnummer (11.20) |
+      | 0800                 | Testpad            | 1                  |
+      En adres 'A2' heeft de volgende gegevens
+      | gemeentecode (92.10) | straatnaam (11.10) | huisnummer (11.20) |
+      | 0800                 | Testpad            | 2                  |
+      En de persoon met burgerservicenummer '000000012' is ingeschreven op adres 'A1' met de volgende gegevens
+      | gemeente van inschrijving (09.10) | datum aanvang adreshouding (10.30) |
+      | 0800                              | 20231014                           |
+      En de persoon is vervolgens ingeschreven op adres 'A2' met de volgende gegevens
+      | gemeente van inschrijving (09.10) | datum aanvang adreshouding (10.30) | aanduiding in onderzoek (83.10) | datum ingang onderzoek (83.20) | datum einde onderzoek (83.30) |
+      | 0800                              | 20240516                           | <aanduiding onderzoek>          | 20240526                       | 20240604                      |
+      Als gba verblijfplaatshistorie wordt gezocht met de volgende parameters
+      | naam                | waarde              |
+      | type                | RaadpleegMetPeriode |
+      | burgerservicenummer | 000000012           |
+      | datumVan            | 2023-07-01          |
+      | datumTot            | 2024-01-01          |
+      Dan heeft de response verblijfplaatsen met de volgende gegevens
+      | type  | datumVan.type | datumVan.datum | datumVan.langFormaat | datumTot.type | datumTot.datum | datumTot.langFormaat | gemeenteVanInschrijving.code | gemeenteVanInschrijving.omschrijving |
+      | Adres | Datum         | 2023-10-14     | 14 oktober 2023      | Datum         | 2024-05-16     | 16 mei 2024          | 0800                         | Hoogeloon, Hapert en Casteren        |
+      En heeft de verblijfplaats de volgende 'verblijfadres' gegevens
+      | naam                                         | waarde      |
+      | korteStraatnaam                              | Testpad     |
+      | huisnummer                                   | 8           |
+      En heeft de verblijfplaats de volgende 'adressering' gegevens
+      | naam                                         | waarde                        |
+      | adresregel1                                  | Testpad 8                     |
+      | adresregel2                                  | HOOGELOON, HAPERT EN CASTEREN |
+
+      Voorbeelden:
+      | omschrijving                                  | aanduiding onderzoek |
+      | hele categorie verblijfplaats                 | 80000                |
+      | historische categorie verblijfplaats          | 58000                |
+      | hele groep adreshouding                       | 81000                |
+      | historische groep adreshouding                | 581000               |
+      | datum aanvang adreshouding                    | 81030                |
+      | historische datum aanvang adreshouding        | 581030               |
+      | hele groep verblijf buitenland                | 81300                |
+      | hele historische groep verblijf buitenland    | 581300               |
+      | datum aanvang verblijf buitenland             | 81320                |
+      | historische datum aanvang verblijf buitenland | 581320               |
+
+    Abstract Scenario: datumTot staat niet in onderzoek wanneer <omschrijving> van de volgende verblijfplaats in onderzoek staat
+      Gegeven adres 'A1' heeft de volgende gegevens
+      | gemeentecode (92.10) | straatnaam (11.10) | huisnummer (11.20) |
+      | 0800                 | Testpad            | 1                  |
+      En adres 'A2' heeft de volgende gegevens
+      | gemeentecode (92.10) | straatnaam (11.10) | huisnummer (11.20) |
+      | 0800                 | Testpad            | 2                  |
+      En de persoon met burgerservicenummer '000000012' is ingeschreven op adres 'A1' met de volgende gegevens
+      | gemeente van inschrijving (09.10) | datum aanvang adreshouding (10.30) |
+      | 0800                              | 20231014                           |
+      En de persoon is vervolgens ingeschreven op adres 'A2' met de volgende gegevens
+      | gemeente van inschrijving (09.10) | datum aanvang adreshouding (10.30) | aanduiding in onderzoek (83.10) | datum ingang onderzoek (83.20) |
+      | 0800                              | 20240516                           | <aanduiding onderzoek>          | 20240526                       |
+      Als gba verblijfplaatshistorie wordt gezocht met de volgende parameters
+      | naam                | waarde              |
+      | type                | RaadpleegMetPeriode |
+      | burgerservicenummer | 000000012           |
+      | datumVan            | 2023-07-01          |
+      | datumTot            | 2024-01-01          |
+      Dan heeft de response verblijfplaatsen met de volgende gegevens
+      | type  | datumVan.type | datumVan.datum | datumVan.langFormaat | datumTot.type | datumTot.datum | datumTot.langFormaat | gemeenteVanInschrijving.code | gemeenteVanInschrijving.omschrijving |
+      | Adres | Datum         | 2023-10-14     | 14 oktober 2023      | Datum         | 2024-05-16     | 16 mei 2024          | 0800                         | Hoogeloon, Hapert en Casteren        |
+      En heeft de verblijfplaats de volgende 'verblijfadres' gegevens
+      | naam                                         | waarde      |
+      | korteStraatnaam                              | Testpad     |
+      | huisnummer                                   | 8           |
+      En heeft de verblijfplaats de volgende 'adressering' gegevens
+      | naam                                         | waarde                        |
+      | adresregel1                                  | Testpad 8                     |
+      | adresregel2                                  | HOOGELOON, HAPERT EN CASTEREN |
+
+      Voorbeelden:
+      | omschrijving                                   | aanduiding onderzoek |
+      | functie adres                                  | 81010                |
+      | hele groep adres                               | 81100                |
+      | huisnummer                                     | 81020                |
+      | locatie                                        | 81210                |
+      | vastgesteld verblijft niet op adres            | 89999                |
+      | historisch vastgesteld verblijft niet op adres | 589999               |
+
