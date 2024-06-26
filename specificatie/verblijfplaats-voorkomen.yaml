@@ -35,6 +35,8 @@ components:
             $ref: 'datum.yaml#/components/schemas/AbstractDatum'
           datumTot:
             $ref: 'datum.yaml#/components/schemas/AbstractDatum'
+          gemeenteVanInschrijving:
+            $ref: 'common.yaml#/components/schemas/Waardetabel'
           inOnderzoek:
             $ref: '#/components/schemas/VerblijfplaatsBuitenlandVoorkomenInOnderzoek'
           rni:
@@ -49,6 +51,7 @@ components:
         * **aanduidingBijHuisnummer** - wordt gevuld met waarden voor 'Aanduiding_Bij_Huisnummer' in 'tabelwaarden.csv'.
         * **datumVan** : de datum van aangifte of ambtshalve melding van verblijf en adres.
         * **datumTot** : de datum van aangifte of ambtshalve melding van volgende verblijf en adres.
+        * **verblijftNietOpAdresVanaf** : geeft aan op welke datum is vastgesteld dat de persoon niet langer op dit adres of deze locatie woont.
       allOf:
         - $ref : '#/components/schemas/AbstractVerblijfplaatsVoorkomen'
         - type: object
@@ -67,8 +70,8 @@ components:
               $ref: 'datum.yaml#/components/schemas/AbstractDatum'
             datumTot:
               $ref: 'datum.yaml#/components/schemas/AbstractDatum'
-            indicatieVastgesteldVerblijftNietOpAdres:
-              $ref: 'verblijfplaats.yaml#/components/schemas/IndicatieVastgesteldVerblijftNietOpAdres'
+            verblijftNietOpAdresVanaf:
+              $ref: 'datum.yaml#/components/schemas/AbstractDatum'
             inOnderzoek:
               $ref: "#/components/schemas/AdresVoorkomenInOnderzoek"
             adressering:
@@ -77,6 +80,7 @@ components:
       description: |
         * **functieAdres** - wordt gevuld met waarden voor 'Functie_Adres' in 'tabelwaarden.csv'.
         * **gemeenteVanInschrijving** - wordt gevuld met waarden uit de landelijke tabel 'Gemeenten'.
+        * **verblijftNietOpAdresVanaf** : geeft aan op welke datum is vastgesteld dat de persoon niet langer op dit adres of deze locatie verblijft.
       allOf:
         - $ref: '#/components/schemas/AbstractVerblijfplaatsVoorkomen'
         - type: object
@@ -91,8 +95,8 @@ components:
               $ref: "verblijfplaats.yaml#/components/schemas/VerblijfadresLocatie"
             gemeenteVanInschrijving:
               $ref: 'common.yaml#/components/schemas/Waardetabel'
-            indicatieVastgesteldVerblijftNietOpAdres:
-              $ref: 'verblijfplaats.yaml#/components/schemas/IndicatieVastgesteldVerblijftNietOpAdres'
+            verblijftNietOpAdresVanaf:
+              $ref: 'datum.yaml#/components/schemas/AbstractDatum'
             inOnderzoek:
               $ref: '#/components/schemas/LocatieVoorkomenInOnderzoek'
             adressering:
@@ -106,6 +110,8 @@ components:
               $ref: 'datum.yaml#/components/schemas/AbstractDatum'
             datumTot:
               $ref: 'datum.yaml#/components/schemas/AbstractDatum'
+            gemeenteVanInschrijving:
+              $ref: 'common.yaml#/components/schemas/Waardetabel'
             inOnderzoek:
               $ref: '#/components/schemas/VerblijfplaatsOnbekendVoorkomenInOnderzoek'
             rni:
@@ -148,6 +154,8 @@ components:
               type: boolean
             datumTot:
               type: boolean
+            gemeenteVanInschrijving:
+              type: boolean
     AdresVoorkomenInOnderzoek:
       allOf:
         - $ref: 'persoon.yaml#/components/schemas/InOnderzoek'
@@ -177,6 +185,8 @@ components:
             datumVan:
               type: boolean
             datumTot:
+              type: boolean
+            gemeenteVanInschrijving:
               type: boolean
     LocatieVoorkomenInOnderzoek:
       allOf:
