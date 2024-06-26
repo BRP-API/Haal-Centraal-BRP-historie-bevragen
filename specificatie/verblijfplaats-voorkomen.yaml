@@ -35,6 +35,8 @@ components:
             $ref: 'datum.yaml#/components/schemas/AbstractDatum'
           datumTot:
             $ref: 'datum.yaml#/components/schemas/AbstractDatum'
+          gemeenteVanInschrijving:
+            $ref: 'common.yaml#/components/schemas/Waardetabel'
           inOnderzoek:
             $ref: '#/components/schemas/VerblijfplaatsBuitenlandVoorkomenInOnderzoek'
           rni:
@@ -108,6 +110,8 @@ components:
               $ref: 'datum.yaml#/components/schemas/AbstractDatum'
             datumTot:
               $ref: 'datum.yaml#/components/schemas/AbstractDatum'
+            gemeenteVanInschrijving:
+              $ref: 'common.yaml#/components/schemas/Waardetabel'
             inOnderzoek:
               $ref: '#/components/schemas/VerblijfplaatsOnbekendVoorkomenInOnderzoek'
             rni:
@@ -150,6 +154,8 @@ components:
               type: boolean
             datumTot:
               type: boolean
+            gemeenteVanInschrijving:
+              type: boolean
     AdresVoorkomenInOnderzoek:
       allOf:
         - $ref: 'persoon.yaml#/components/schemas/InOnderzoek'
@@ -179,6 +185,8 @@ components:
             datumVan:
               type: boolean
             datumTot:
+              type: boolean
+            gemeenteVanInschrijving:
               type: boolean
     LocatieVoorkomenInOnderzoek:
       allOf:
