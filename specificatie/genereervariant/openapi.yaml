@@ -335,6 +335,8 @@ components:
             $ref: '#/components/schemas/AbstractDatum'
           datumTot:
             $ref: '#/components/schemas/AbstractDatum'
+          gemeenteVanInschrijving:
+            $ref: '#/components/schemas/Waardetabel'
           inOnderzoek:
             $ref: '#/components/schemas/VerblijfplaatsBuitenlandVoorkomenInOnderzoek'
           rni:
@@ -351,6 +353,8 @@ components:
           datumVan:
             type: boolean
           datumTot:
+            type: boolean
+          gemeenteVanInschrijving:
             type: boolean
     AdresVoorkomen:
       description: |
@@ -413,6 +417,8 @@ components:
             $ref: '#/components/schemas/AbstractDatum'
           datumTot:
             $ref: '#/components/schemas/AbstractDatum'
+          gemeenteVanInschrijving:
+            $ref: '#/components/schemas/Waardetabel'
           inOnderzoek:
             $ref: '#/components/schemas/VerblijfplaatsOnbekendVoorkomenInOnderzoek'
           rni:
@@ -427,6 +433,8 @@ components:
           datumVan:
             type: boolean
           datumTot:
+            type: boolean
+          gemeenteVanInschrijving:
             type: boolean
     LocatieVoorkomen:
       description: |
@@ -626,13 +634,6 @@ components:
       minimum: 1
       type: integer
       format: int32
-    RniDeelnemer:
-      type: object
-      properties:
-        deelnemer:
-          $ref: '#/components/schemas/Waardetabel'
-        omschrijvingVerdrag:
-          $ref: '#/components/schemas/OmschrijvingVerdrag'
     Waardetabel:
       type: object
       properties:
@@ -644,6 +645,13 @@ components:
           pattern: "^[a-zA-Z0-9À-ž \\'\\,\\(\\)\\.\\-]{1,200}$"
           type: string
           example: Nederland
+    RniDeelnemer:
+      type: object
+      properties:
+        deelnemer:
+          $ref: '#/components/schemas/Waardetabel'
+        omschrijvingVerdrag:
+          $ref: '#/components/schemas/OmschrijvingVerdrag'
     OmschrijvingVerdrag:
       pattern: "^[a-zA-Z0-9À-ž \\.\\-\\']{1,50}$"
       type: string

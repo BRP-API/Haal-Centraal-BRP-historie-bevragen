@@ -424,6 +424,9 @@
             "datumTot" : {
               "$ref" : "#/components/schemas/AbstractDatum"
             },
+            "gemeenteVanInschrijving" : {
+              "$ref" : "#/components/schemas/Waardetabel"
+            },
             "inOnderzoek" : {
               "$ref" : "#/components/schemas/VerblijfplaatsBuitenlandVoorkomenInOnderzoek"
             },
@@ -449,6 +452,9 @@
               "type" : "boolean"
             },
             "datumTot" : {
+              "type" : "boolean"
+            },
+            "gemeenteVanInschrijving" : {
               "type" : "boolean"
             }
           }
@@ -536,6 +542,9 @@
             "datumTot" : {
               "$ref" : "#/components/schemas/AbstractDatum"
             },
+            "gemeenteVanInschrijving" : {
+              "$ref" : "#/components/schemas/Waardetabel"
+            },
             "inOnderzoek" : {
               "$ref" : "#/components/schemas/VerblijfplaatsOnbekendVoorkomenInOnderzoek"
             },
@@ -558,6 +567,9 @@
               "type" : "boolean"
             },
             "datumTot" : {
+              "type" : "boolean"
+            },
+            "gemeenteVanInschrijving" : {
               "type" : "boolean"
             }
           }
@@ -830,17 +842,6 @@
         "type" : "integer",
         "format" : "int32"
       },
-      "RniDeelnemer" : {
-        "type" : "object",
-        "properties" : {
-          "deelnemer" : {
-            "$ref" : "#/components/schemas/Waardetabel"
-          },
-          "omschrijvingVerdrag" : {
-            "$ref" : "#/components/schemas/OmschrijvingVerdrag"
-          }
-        }
-      },
       "Waardetabel" : {
         "type" : "object",
         "properties" : {
@@ -853,6 +854,17 @@
             "pattern" : "^[a-zA-Z0-9À-ž \\'\\,\\(\\)\\.\\-]{1,200}$",
             "type" : "string",
             "example" : "Nederland"
+          }
+        }
+      },
+      "RniDeelnemer" : {
+        "type" : "object",
+        "properties" : {
+          "deelnemer" : {
+            "$ref" : "#/components/schemas/Waardetabel"
+          },
+          "omschrijvingVerdrag" : {
+            "$ref" : "#/components/schemas/OmschrijvingVerdrag"
           }
         }
       },
