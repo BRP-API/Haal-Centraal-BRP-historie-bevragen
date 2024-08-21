@@ -16,13 +16,11 @@ De BRP Historie API voor verblijfplaatshistorie wordt rond 1 september 2024 verw
 ## Aansluiten en voorwaarden
 De BRP Historie API is beschikbaar voor gemeenten en andere afnemers van de BRP met een passend autorisatiebesluit voor verstrekking van een zoekvraag die deelnemen aan het [Experiment Dataminimalisatie]. Iedere deelnemer sluit aan met een API Gateway voor een veilige verbinding met RvIG, en sluit een convenant met RvIG waarin de afspraken voor deelname zijn vastgelegd. De aansluiting verloopt via Diginetwerk, vereist een TLS verbinding (PKIO certificaat) en een OAuth 2.0 token (OAuth 2.0 client credentials flow). 
 
-Stuur een mail naar info@RvIG voor een kennismakingmakingsgesprek en onboarding. [Download]({{ site.onboardingUrl }}){:target="_blank" rel="noopener"} en lees het onboardingproces.
-
 ## Direct uitproberen?
 * Bekijk de specificaties met [Swagger UI](swagger-ui) of [Redoc](redoc)
 * Lees de [Getting started](./getting-started)
 * Download de [technische specificaties](https://github.com/BRP-API/Haal-Centraal-BRP-historie-bevragen/blob/master/specificatie/genereervariant/openapi.yaml){:target="_blank" rel="noopener"}
-* Vraag een API-key voor toegang tot de Haal Centraal probeeromgeving aan bij de product owner [cathy.dingemanse@rvig.nl](mailto:cathy.dingemanse@rvig.nl)
+* Vraag een API-key voor toegang tot de Haal Centraal demo-omgeving aan bij de product owner [cathy.dingemanse@rvig.nl](mailto:cathy.dingemanse@rvig.nl)
 
 ## Heb je meer nodig? 
 Gebruik de BRP historie bevragen API in combinatie met (een van de) andere BRP API’s:
