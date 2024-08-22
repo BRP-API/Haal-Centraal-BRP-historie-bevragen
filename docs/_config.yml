@@ -13,14 +13,12 @@ organisation-url: "http://www.rvig.nl"
 # Indien een 'url' voorradig dan wordt daarmee de 'href' gevuld en dient het path slechts om te bepalen welke link active is.
 # 'target: blank' zorgt er voor dat de link in een nieuw tabblad wordt geöpend.
 nav:
-  - title: BRP Historie 
+  - title: BRP Verblijfplaatshistorie 
     subnav:
       - title: Main
         path: /
 #      - title: Goals canvas
 #        path: /goals-canvas
-  - title: Specificaties v. 1.0
-    subnav:
       - title: Getting started
         path: /getting-started
       - title: User stories
@@ -29,20 +27,10 @@ nav:
         url: https://gitlab.com/vng-realisatie/haal-centraal-brp-afgeschermd/-/issues?label_name%5B%5D=historie
         path: /user-stories-afgeschermd
         target: blank
-      - title: Bevragen API (swagger-ui)
-        path: /swagger-ui
-      - title: Bevragen API (redoc)
-        path: /redoc
+      - title: Specificaties (redoc)
+        path: /redoc-io
       - title: Features
         path: /features
-  - title: Specificaties v. 2.0 (IO)
-    subnav:
-      - title: User stories
-        path: /user-stories-dev
-      - title: Historie bevragen API (redoc)
-        path: /redoc-io
-      - title: Historie bevragen API (redoc), GBA variant
-        path: /redoc-gba-io
 plugins:
   - jekyll-redirect-from
   - jekyll-remote-theme
