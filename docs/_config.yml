@@ -1,7 +1,16 @@
 baseurl: "/Haal-Centraal-BRP-historie-bevragen"
-apiname: "BRP Historie Bevragen"
+apiname: "BRP Verblijfplaatshistorie"
 url: "http://localhost:4000"
 proefProxyUrl: https://demo-omgeving.haalcentraal.nl
+onboardingUrl: https://github.com/BRP-API/Haal-Centraal-BRP-bevragen/blob/master/docs/240610%20deelname%20BRP%20API%20v2.6.ppsx
+proefProxyUrl: https://demo-omgeving.haalcentraal.nl
+
+PO-email: cathy.dingemanse@rvig.nl
+CZ-email: melvin.lee@rvig.nl
+Tester-email: frank.samwel@rvig.nl
+
+apiname: "BRP API Verblijfplaatshistorie"
+
 # M.b.v. de optionele variabele 'logo' kan een ander logo dan het VNG logo in de rechterbovenhoek geplaatst worden.
 # Het betreffende bestand zal dan wel in de folder '\assets\img' van het remote the 'VNG-Realisatie/jekyll-theme-haal-centraal' moeten worden geplaatst.
 # Met de variabele 'organisation-url' kan de link onder het logo worden bepaald.
