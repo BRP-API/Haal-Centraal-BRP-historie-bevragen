@@ -1,9 +1,9 @@
 ---
 layout: page-with-side-nav
-title: BRP Historie
+title: BRP Verblijfplaatshistorie
 ---
 
-# BRP Historie
+# BRP Verblijfplaatshistorie
 
 ![lint oas](https://github.com/BRP-API/Haal-Centraal-BRP-historie-bevragen/workflows/lint-oas/badge.svg)
 ![ci](https://github.com/BRP-API/Haal-Centraal-BRP-historie-bevragen/workflows/ci/badge.svg)
