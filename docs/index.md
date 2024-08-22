@@ -17,7 +17,7 @@ De BRP API Verblijfplaatshistorie wordt rond 1 september 2024 verwacht.
 De BRP API Verblijfplaatshistorie is beschikbaar voor gemeenten en andere afnemers van de BRP met een passend autorisatiebesluit die deelnemen aan het [Experiment Dataminimalisatie]. Iedere deelnemer sluit aan met een API Gateway voor een veilige verbinding met RvIG, en sluit een convenant met RvIG waarin de afspraken voor deelname zijn vastgelegd. De aansluiting verloopt via Diginetwerk, vereist een TLS verbinding (PKIO certificaat) en een OAuth 2.0 token (OAuth 2.0 client credentials flow). 
 
 ## Direct uitproberen?
-* Bekijk de specificaties met [Redoc](redoc)
+* Bekijk de specificaties met [Redoc](redoc-io)
 * Lees de [Getting started](./getting-started)
 
 ## Heb je meer nodig? 
