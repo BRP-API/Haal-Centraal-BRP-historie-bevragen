@@ -1,6 +1,16 @@
 baseurl: "/Haal-Centraal-BRP-historie-bevragen"
-apiname: "BRP Historie Bevragen"
+apiname: "BRP Verblijfplaatshistorie"
 url: "http://localhost:4000"
+proefProxyUrl: https://demo-omgeving.haalcentraal.nl
+onboardingUrl: https://github.com/BRP-API/Haal-Centraal-BRP-bevragen/blob/master/docs/240610%20deelname%20BRP%20API%20v2.6.ppsx
+proefProxyUrl: https://demo-omgeving.haalcentraal.nl
+
+PO-email: cathy.dingemanse@rvig.nl
+CZ-email: melvin.lee@rvig.nl
+Tester-email: frank.samwel@rvig.nl
+
+apiname: "BRP API Verblijfplaatshistorie"
+
 # M.b.v. de optionele variabele 'logo' kan een ander logo dan het VNG logo in de rechterbovenhoek geplaatst worden.
 # Het betreffende bestand zal dan wel in de folder '\assets\img' van het remote the 'VNG-Realisatie/jekyll-theme-haal-centraal' moeten worden geplaatst.
 # Met de variabele 'organisation-url' kan de link onder het logo worden bepaald.
@@ -12,14 +22,12 @@ organisation-url: "http://www.rvig.nl"
 # Indien een 'url' voorradig dan wordt daarmee de 'href' gevuld en dient het path slechts om te bepalen welke link active is.
 # 'target: blank' zorgt er voor dat de link in een nieuw tabblad wordt geöpend.
 nav:
-  - title: BRP Historie 
+  - title: BRP Verblijfplaatshistorie 
     subnav:
       - title: Main
         path: /
 #      - title: Goals canvas
 #        path: /goals-canvas
-  - title: Specificaties v. 1.0
-    subnav:
       - title: Getting started
         path: /getting-started
       - title: User stories
@@ -28,20 +36,10 @@ nav:
         url: https://gitlab.com/vng-realisatie/haal-centraal-brp-afgeschermd/-/issues?label_name%5B%5D=historie
         path: /user-stories-afgeschermd
         target: blank
-      - title: Bevragen API (swagger-ui)
-        path: /swagger-ui
-      - title: Bevragen API (redoc)
-        path: /redoc
+      - title: Specificaties (redoc)
+        path: /redoc-io
       - title: Features
         path: /features
-  - title: Specificaties v. 2.0 (IO)
-    subnav:
-      - title: User stories
-        path: /user-stories-dev
-      - title: Historie bevragen API (redoc)
-        path: /redoc-io
-      - title: Historie bevragen API (redoc), GBA variant
-        path: /redoc-gba-io
 plugins:
   - jekyll-redirect-from
   - jekyll-remote-theme
