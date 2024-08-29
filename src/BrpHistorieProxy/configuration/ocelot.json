@@ -1,0 +1,15 @@
+{
+  "Routes": [
+    {
+      "UpstreamPathTemplate": "/haalcentraal/api/brphistorie/{everything}",
+      "DownstreamPathTemplate": "/haalcentraal/api/brphistorie/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "brphistoriemock",
+          "Port": "5010"
+        }
+      ]
+    }
+  ]
+}

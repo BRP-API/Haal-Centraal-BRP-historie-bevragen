@@ -1,0 +1,72 @@
+openapi: 3.0.3
+info:
+  title: Adressering definities
+  version: 2.0.0
+  contact: {}
+paths: {}
+components:
+  schemas:
+    Adresregel1:
+      type: string
+      maxLength: 40
+      description: |
+        Het eerste deel van een adres is een combinatie van de straat en huisnummer.
+      # example: "1600 Pennsylvania Avenue NW"
+      example: "Kappeyne v d Cappellostr 26A-3"
+    Adresregel2:
+      type: string
+      maxLength: 50
+      description: |
+        Het tweede deel van een adres is een combinatie van woonplaats eventueel in combinatie met de postcode.
+      # example: "Washington, DC 20500"
+      example: "1234AA Nootdorp"
+    Adresregel3:
+      type: string
+      maxLength: 35
+      description: |
+        Het derde deel van een adres is optioneel. Het gaat om een of meer geografische gebieden van het adres in het buitenland.
+      example: "Selangor"
+    AdresseringBinnenland:
+      type: object
+      properties:
+        adresregel1:
+          $ref: "#/components/schemas/Adresregel1"
+        adresregel2:
+          $ref: "#/components/schemas/Adresregel2"
+        inOnderzoek:
+          $ref: '#/components/schemas/AdresseringBinnenlandInOnderzoek'
+    AdresseringBinnenlandInOnderzoek:
+      allOf:
+        - $ref: 'persoon.yaml#/components/schemas/InOnderzoek'
+        - type: object
+          properties:
+            adresregel1:
+              type: boolean
+            adresregel2:
+              type: boolean
+    AdresseringBuitenland:
+      type: object
+      properties:
+        adresregel1:
+          $ref: "#/components/schemas/Adresregel1"
+        adresregel2:
+          $ref: "#/components/schemas/Adresregel2"
+        adresregel3:
+          $ref: "#/components/schemas/Adresregel3"
+        land:
+          $ref: "common.yaml#/components/schemas/Waardetabel"
+        inOnderzoek:
+          $ref: '#/components/schemas/AdresseringBuitenlandInOnderzoek'
+    AdresseringBuitenlandInOnderzoek:
+      allOf:
+        - $ref: 'persoon.yaml#/components/schemas/InOnderzoek'
+        - type: object
+          properties:
+            adresregel1:
+              type: boolean
+            adresregel2:
+              type: boolean
+            adresregel3:
+              type: boolean
+            land:
+              type: boolean
