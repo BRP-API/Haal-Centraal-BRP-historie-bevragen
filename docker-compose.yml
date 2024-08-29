@@ -1,0 +1,34 @@
+version: '3.7'
+
+services:
+  brphistorieproxy:
+    container_name: brphistorieproxy
+    image: ghcr.io/brp-api/haal-centraal-brp-historie-proxy:latest
+    build:
+      context: .
+      dockerfile: src/BrpHistorieProxy/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Release
+      - ASPNETCORE_URLS=http://+:5000
+    ports:
+      - "5000:5000"
+    networks:
+      - brphistorie-api-network
+
+  brphistorieservice:
+    container_name: brphistoriemock
+    image: ghcr.io/brp-api/haal-centraal-brp-historie-mock:latest
+    build:
+      context: .
+      dockerfile: src/BrpHistorieStub/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Release
+      - ASPNETCORE_URLS=http://+:5010
+    ports:
+      - "5010:5010"
+    networks:
+      - brphistorie-api-network
+
+networks:
+  brphistorie-api-network:
+    name: brphistorie-api-network

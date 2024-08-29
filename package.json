@@ -1,7 +1,7 @@
-{
-  "name": "Haal-Centraal-BRP-historie-bevragen",
+  {
+  "name": "haal-centraal-brp-historie-bevragen",
   "version": "1.0.0",
-  "description": "",
+  "description": "BRP Bevragen is een Haal Centraal API voor het zoeken en raadplegen van ingeschreven natuurlijke personen voor alle binnengemeentelijke afnemers in NL. De informatie die de API levert is herleidbaar naar het LO GBA 3.10.",
   "main": "index.js",
   "scripts": {
     "nswag:gen": "bash scripts/nswag-gen.sh",
@@ -22,10 +22,10 @@
     "specs:verify": "bash scripts/specs-verify.sh",
     "pre-commit": "npm run oas:lint && npm run oas:resolve && npm run oas:lint-genereervariant && npm run unstage-generated",
     "prepare": "husky install",
-    "dotnet:clean": "for /d /r . %d in (bin,obj) do @if exist \"%d\" rd /s/q \"%d\"",
-    "dotnet:restore": "dotnet restore src/Bewoning.sln",
-    "dotnet:build": "dotnet build src/Bewoning.sln --configuration Release --no-restore",
-    "dotnet:test": "dotnet test src/Bewoning.sln --configuration Release --no-build --verbosity normal --collect:\"XPlat Code Coverage\" --results-directory ./coverage"
+    "dotnet:clean": "for /d /r src %d in (bin,obj) do @if exist \"%d\" rd /s/q \"%d\"",
+    "dotnet:restore": "dotnet restore src/BRP-Historie.sln",
+    "dotnet:build": "dotnet build src/BRP-Historie.sln --configuration Release --no-restore",
+    "dotnet:test": "dotnet test src/BRP-Historie.sln --configuration Release --no-build --verbosity normal --collect:\"XPlat Code Coverage\" --results-directory ./coverage"
   },
   "repository": {
     "type": "git",
