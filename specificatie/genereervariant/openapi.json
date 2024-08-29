@@ -13,8 +13,8 @@
     "version" : "2.0.0"
   },
   "servers" : [ {
-    "url" : "https://www.haalcentraal.nl/haalcentraal/api/brphistorie",
-    "description" : "APILAB testserver historie"
+    "url" : "https://apigw.npr.idm.diginetwerk.net/lap/api/brp",
+    "description" : "RvIG Proefomgeving"
   } ],
   "tags" : [ {
     "name" : "BRP historie bevragen",

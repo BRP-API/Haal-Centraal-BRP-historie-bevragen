@@ -1,7 +1,7 @@
 openapi: 3.0.3
 servers:
-  - description: "APILAB testserver historie"
-    url: https://www.haalcentraal.nl/haalcentraal/api/brphistorie
+  - description: "RvIG Proefomgeving"
+    url: https://apigw.npr.idm.diginetwerk.net/lap/api/brp
 info:
   title: BRP historie bevragen
   description: |
