@@ -37,7 +37,7 @@ nav:
         path: /user-stories-afgeschermd
         target: blank
       - title: Specificaties (redoc)
-        path: /redoc-io
+        path: /redoc
       - title: Features
         path: /features
 plugins:
