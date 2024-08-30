@@ -39,7 +39,7 @@ nav:
       - title: Specificaties (redoc)
         path: /redoc
       - title: Features
-        path: /features
+        path: /features-overzicht
 plugins:
   - jekyll-redirect-from
   - jekyll-remote-theme
