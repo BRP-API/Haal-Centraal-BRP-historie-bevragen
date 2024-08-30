@@ -78,35 +78,4 @@ Optioneel kun je de volgende tools ook op de lokale machine installeren:
   docker compose -f docker-compose.yml down
 
   ```
-
-### Gebruik Kubernetes als container engine
-
-- Download de [kubernetes configuratie bestanden]({{ site.devBranchUrl }}/.k8s){:target="_blank" rel="noopener"}
-- Start een command prompt window voor de map met de kubernetes manifest bestanden
-- Start de {{ site.apiname }} en de mock met behulp van de volgende statement:
-  ```sh
-
-  kubectl apply -f .k8s/brphistoriemock-deployment.yaml \
-                -f .k8s/brphistoriemock-service.yaml 
-
-  ```
-  De {{ site.apiname }} mock is nu te benaderen via de url: *http://localhost:5000/haalcentraal/api/brp/verblijfplaatshistorie*
-- Valideer dat de {{ site.apiname }} mock draait met behulp van de volgende curl statement:
-  ```sh
-
-  curl --location --request POST 'http://localhost:5001/haalcentraal/api/brp/personen' \
-  --header 'Content-Type: application/json' \
-  --data-raw '{
-      "burgerservicenummer": "999994669",
-      "type": "RaadpleegMetPeildatum",
-      "peildatum": "2020-07-01"
-  }'
-
-  ```
-- Om de {{ site.apiname }} mock container te stoppen voer je de volgende statement uit:
-  ```sh
-
-  kubectl delete -f .k8s/brphistoriemock-deployment.yaml \
-                 -f .k8s/brphistoriemock-service.yaml 
-
-  ```
+  
