@@ -27,6 +27,19 @@ Je kunt de {{ site.apiname }} uitproberen op de demo omgeving met de volgende ur
 - Vraag een apikey aan bij de product owner [{{ site.PO-email }}](mailto:{{ site.PO-email }}). 
 - Voeg de apikey toe aan een request met de __X-API-KEY__ header.
 
+Bijvoorbeeld met de volgende aanroep, waarbij je de waarde "••••••" bij header x-api-key vervangt met de api key die je ontvangen hebt:
+```
+curl --location 'https://demo-omgeving.haalcentraal.nl/haalcentraal/api/brphistorie/verblijfplaatshistorie' \
+--header 'Content-Type: application/json' \
+--header 'Accept: application/json' \
+--header 'x-api-key: ••••••' \
+--data '{
+  "burgerservicenummer": "999994669",
+  "type": "RaadpleegMetPeildatum",
+  "peildatum": "2020-07-01"
+}
+```
+
 ### Prerequisites
 
 - [Docker Desktop](https://www.docker.com/products/docker-desktop) voor het hosten van containers
