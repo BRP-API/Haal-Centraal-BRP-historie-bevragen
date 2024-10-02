@@ -20,7 +20,7 @@ Stuur een mail naar [info@RvIG](mailto:info@rvig) voor een kennismakingmakingsge
 
 
 ## Direct uitproberen?
-* Bekijk de specificaties met [Redoc](redoc-io)
+* Bekijk de specificaties met [Redoc](/redoc)
 * Lees de [Getting started](./getting-started)
 
 ## Heb je meer nodig? 
