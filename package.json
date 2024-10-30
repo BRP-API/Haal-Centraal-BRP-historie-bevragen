@@ -1,4 +1,4 @@
-  {
+{
   "name": "haal-centraal-brp-historie-bevragen",
   "version": "1.0.0",
   "description": "BRP Bevragen is een Haal Centraal API voor het zoeken en raadplegen van ingeschreven natuurlijke personen voor alle binnengemeentelijke afnemers in NL. De informatie die de API levert is herleidbaar naar het LO GBA 3.10.",
@@ -21,7 +21,6 @@
     "specs:summary": "node scripts/parse-summary.js",
     "specs:verify": "bash scripts/specs-verify.sh",
     "pre-commit": "npm run oas:lint && npm run oas:resolve && npm run oas:lint-genereervariant && npm run unstage-generated",
-    "prepare": "husky install",
     "dotnet:clean": "for /d /r src %d in (bin,obj) do @if exist \"%d\" rd /s/q \"%d\"",
     "dotnet:restore": "dotnet restore src/BRP-Historie.sln",
     "dotnet:build": "dotnet build src/BRP-Historie.sln --configuration Release --no-restore",
@@ -39,17 +38,10 @@
   },
   "homepage": "https://github.com/BRP-API/Haal-Centraal-BRP-historie-bevragen#readme",
   "devDependencies": {
-    "@cucumber/cucumber": "^10.0.1",
-    "@openapitools/openapi-generator-cli": "^2.7.0",
-    "@stoplight/spectral-cli": "^6.11.0",
-    "axios": "^1.6.2",
-    "chai": "^4.3.10",
-    "cucumber-html-reporter": "^7.1.1",
+    "@openapitools/openapi-generator-cli": "^2.15.0",
+    "@stoplight/spectral-cli": "^6.13.1",
     "deep-equal-in-any-order": "^2.0.6",
-    "husky": "^8.0.3",
     "mkdirp": "^3.0.1",
-    "mvn-dl": "^6.1.1",
-    "nswag": "^13.20.0",
-    "pg": "^8.11.3"
+    "mvn-dl": "^6.1.1"
   }
 }
