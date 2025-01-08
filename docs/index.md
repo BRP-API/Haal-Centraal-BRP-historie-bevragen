@@ -11,10 +11,10 @@ title: BRP Verblijfplaatshistorie
 Met de BRP API Verblijfplaatshistorie kun je de verblijfplaats(en) van een persoon opvragen in een periode of op een peildatum. 
 
 ## Planning en Roadmap
-De BRP API Verblijfplaatshistorie is begin september 2024 live gegaan. 
+De BRP API Verblijfplaatshistorie is live sinds september 2024. 
 
 ## Aansluiten en voorwaarden
-Gemeenten en andere afnemers van de BRP met een autorisatiebesluit mogen deelnemen aan het experiment en de BRP API gebruiken. Iedere deelnemer sluit een convenant met RvIG waarin de afspraken voor deelname zijn vastgelegd. Voor de technische aansluiting is een API Gateway nodig. Aansluiten kan via Diginetwerk met gebruik van een TLS verbinding (PKIO certificaat) en een OAuth 2.0 token (OAuth 2.0 client credentials flow).
+Gemeenten en andere afnemers van de BRP met een autorisatiebesluit mogen deelnemen aan het Experiment Dataminimalisatie en de BRP API gebruiken. Iedere deelnemer sluit een convenant met RvIG waarin de afspraken voor deelname zijn vastgelegd. Voor de technische aansluiting is een API Gateway nodig. Aansluiten kan via Diginetwerk met gebruik van een TLS verbinding (PKIO certificaat) en een OAuth 2.0 token (OAuth 2.0 client credentials flow).
 
 Stuur een mail naar [info@RvIG](mailto:info@rvig) voor een kennismakingmakingsgesprek en onboarding. [Download]({{ site.onboardingUrl }}){:target="_blank" rel="noopener"} en lees het onboardingproces.
 
@@ -27,7 +27,6 @@ Stuur een mail naar [info@RvIG](mailto:info@rvig) voor een kennismakingmakingsge
 Gebruik de BRP API Verblijfplaatshistorie in combinatie met andere functies van de BRP API:
 
 * [BRP Personen](https://BRP-API.github.io/Haal-Centraal-BRP-bevragen){:target="_blank" rel="noopener"}
-* [BRP Reisdocumenten](https://BRP-API.github.io/Haal-Centraal-Reisdocumenten-bevragen){:target="_blank" rel="noopener"}
 * [BRP Bewoning](https://BRP-API.github.io/Haal-Centraal-BRP-bewoning){:target="_blank" rel="noopener"}
 
 ## Bronnen
