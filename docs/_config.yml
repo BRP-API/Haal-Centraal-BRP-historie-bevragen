@@ -2,7 +2,7 @@ baseurl: "/Haal-Centraal-BRP-historie-bevragen"
 apiname: "BRP Verblijfplaatshistorie"
 url: "http://localhost:4000"
 proefProxyUrl: https://demo-omgeving.haalcentraal.nl
-onboardingUrl: https://github.com/BRP-API/Haal-Centraal-BRP-bevragen/blob/master/docs/240610%20deelname%20BRP%20API%20v2.6.ppsx
+onboardingUrl: https://github.com/BRP-API/Haal-Centraal-BRP-bevragen/blob/master/docs/250204%20deelname%20BRP%20API%20v3.0.pdf
 proefProxyUrl: https://demo-omgeving.haalcentraal.nl
 
 PO-email: cathy.dingemanse@rvig.nl
