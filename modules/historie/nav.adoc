@@ -1,0 +1,3 @@
+.Verblijfplaatshistorie
+* xref:historie:releasenotes.adoc[Releasenotes]
+* xref:historie:specificatie.adoc[Specificatie]
