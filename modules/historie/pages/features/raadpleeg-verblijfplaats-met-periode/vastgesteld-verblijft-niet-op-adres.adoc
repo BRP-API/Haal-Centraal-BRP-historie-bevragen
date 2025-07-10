@@ -1,0 +1,4 @@
+[source,gherkin]
+----
+include::example$features/raadpleeg-verblijfplaats-met-periode/vastgesteld-verblijft-niet-op-adres.feature[]
+----
